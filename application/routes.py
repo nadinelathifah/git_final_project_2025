@@ -8,24 +8,23 @@ from application import app
 @app.route('/home')
 def home():
     error = ""
-    registration_form = ClientRegistrationForm()
+    client_register = ClientRegistrationForm()
 
     if request.method == 'POST':
-        first_name = registration_form.first_name.data
-        last_name = registration_form.last_name.data
-        email = registration_form.email.data
-        password = registration_form.password.data
+        first_name = client_register.first_name.data
+        last_name = client_register.last_name.data
+        email = client_register.email.data
+        password = client_register.password.data
 
         if len(first_name) == 0 or len(last_name) == 0:
             error = 'Please supply both a first and last name'
-
         else:
             clients.append({'Firstname': first_name, 'Lastname': last_name, 'Email': email, 'Password': password})
             add_client(first_name, last_name, email, password)
             return redirect(url_for('welcome'))
 
     return render_template('home.html',
-                           form=registration_form,
+                           form=client_register,
                            message=error,
                            head="home",
                            title="My Home Heroes",
@@ -34,6 +33,6 @@ def home():
 
 @app.route('/welcome')
 def welcome():
-    registration_form = ClientRegistrationForm()
-    first_name = registration_form.first_name.data
-    return render_template('welcome.html', form=registration_form, head='welcome', title='Account Successfully Created!', name=first_name, subheading='Explore and browse our services', img='static/images/paint.jpeg')
+    client_register = ClientRegistrationForm()
+    first_name = client_register.first_name.data
+    return render_template('welcome.html', form=client_register, head='welcome', title='Account Successfully Created!', name=first_name, subheading='Explore and browse our services', img='static/images/paint.jpeg')
