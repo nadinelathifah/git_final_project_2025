@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
+from wtforms.fields.choices import SelectField
 from wtforms.validators import ValidationError, InputRequired
 
     
@@ -13,9 +14,28 @@ def password_validation(form, field):
         raise ValidationError('Password is too long.')
     
 
-class RegistrationForm(FlaskForm):
+class ClientRegistrationForm(FlaskForm):
     first_name = StringField('Firstname', validators=[InputRequired('Please fill in your first name.')], render_kw={'class':'form-control'})
     last_name = StringField('Lastname', validators=[InputRequired('Please fill in your surname.')], render_kw={'class':'form-control'})
+    email = StringField('Email', validators=[InputRequired('Please fill in your email address.')], render_kw={'class':'form-control'})
+    password = PasswordField('Password', validators=[InputRequired('Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
+    submit = SubmitField('SIGN UP', render_kw={"class": "btn btn-primary btn-lg btn-block"})
+
+
+class WorkerRegistrationForm(FlaskForm):
+    first_name = StringField('Firstname', validators=[InputRequired('Please fill in your first name.')], render_kw={'class':'form-control'})
+    last_name = StringField('Lastname', validators=[InputRequired('Please fill in your surname.')], render_kw={'class':'form-control'})
+    profession = SelectField('Profession', choices=[('', 'Choose your field: '),
+                                                    ('1', 'Painting'),
+                                                    ('2', 'Home Repair'),
+                                                    ('3', 'Assembly & Installation'),
+                                                    ('4', 'Transportation'),
+                                                    ('5', 'Electrician'),
+                                                    ('6', 'Cleaning'),
+                                                    ('7', 'Plumbing'),
+                                                    ('8', 'Lawn Care'),
+                                                    ], render_kw={'class':'form-control'})
+    town = StringField('Town', validators=[InputRequired('Please fill in your job location.')], render_kw={'class':'form-control'})
     email = StringField('Email', validators=[InputRequired('Please fill in your email address.')], render_kw={'class':'form-control'})
     password = PasswordField('Password', validators=[InputRequired('Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
     submit = SubmitField('SIGN UP', render_kw={"class": "btn btn-primary btn-lg btn-block"})

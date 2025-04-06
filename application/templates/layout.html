@@ -13,99 +13,106 @@
     </head>
 
    <body>
-        <header 
-        style="
-        width: 100%;
-        height: 100vh;
-        left: 0;
-        top: 0; 
-        background: url( '{{ img }}' ) no-repeat center center/cover;">
-            <nav class="navbar navbar-expand-lg sticky-top">
-                <div class="container-fluid">
-                    <a href="#" class="navbar-brand">
-                        <img src="{{ url_for('static', filename='logo/tool2.png')}}" alt="Handy Hive logo displaying a hammer and screwdriver crossed together.">
-                        <h2>Hive Heroes</h2>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div id="navbarNav" class="collapse navbar-collapse">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
-                                <ul class="drop-down">
-                                    <li><a href="#" class="dropdown-item">Item 1</a></li>
-                                    <li><a href="#" class="dropdown-item">Item 2</a></li>
-                                    <li><a href="#" class="dropdown-item">Item 3</a></li>
-                                    <li><a href="#" class="dropdown-item">Item 4</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a href="#" class="nav-link">Reviews</a></li>
-                            <p class="signup-text">Sign Up or Login:</p>
-                            <li><a href="#"><button class="login-btn">As a Client</button></a></li>
-                            <li><a href="#"><button class="login-btn">As a Tradesperson</button></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            
-            <section id="head-section" class="container pt-5">
-                <h1> {{ title }} </h1>
-                <h4> {{ subheading }} </h4>
-            </section>
-
-            <div class="blur-bg-overlay"></div>
-            <div class="form-popup">
-                <span class="close-btn material-symbols-outlined">close</span>
-                <div class="form-box">
-                    <div class="form-details">
-                        <h2>Welcome</h2>
-                        <p>Please select Sign up to create a new account or Log in to an existing account.</p>
-                    </div>
-                    <div class="form-content">
-                        <h2>Sign Up</h2>
-                        <form action="" method="POST">
-                            {{ form.hidden_tag() }}
-                            <div class="input-field">
-                                {{ form.first_name.label}}
-                                {{ form.first_name}}
-                            </div>
-                            <div class="input-field">
-                                {{ form.last_name.label }}
-                                {{ form.last_name }}
-                            </div>
-                            <div class="input-field">
-                                {{ form.email.label }}
-                                {{ form.email }}
-                            </div>
-                            <div class="input-field">
-                                {{ form.password.label }}
-                                {{ form.password }}
-                            </div>
-                            {{ form.submit }}
-                        </form>
-                        <hr>
-                        <h2>Log in</h2>
-                        <form action="#">
-                            <div class="input-field">
-                                <input type="text">
-                                <label>Email</label>
-                            </div>
-                            <div class="input-field">
-                                <input type="password">
-                                <label>Password</label>
-                            </div>
-                            <a href="#" class="forgot-pass">Forgot Password?</a>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
-                        </form>
-                    </div>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">
+                    <img src="{{ url_for('static', filename='logo/tool2.png')}}" alt="My Home Heroes logo displaying a hammer and screwdriver crossed together.">
+                    <h2>My Home Heroes</h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarNav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        {% if request.path != '/' and request.path !='/home' %}
+                        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
+                        {% else %}
+                        <li class="nav-item"><a href="#head-section" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
+                        {% endif %}
+                        <li class="nav-item"><a href="#about-section" class="nav-link">About</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+                            <ul class="drop-down">
+                                <li><a href="#" class="dropdown-item">Item 1</a></li>
+                                <li><a href="#" class="dropdown-item">Item 2</a></li>
+                                <li><a href="#" class="dropdown-item">Item 3</a></li>
+                                <li><a href="#" class="dropdown-item">Item 4</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link">Reviews</a></li>
+                        <p class="signup-text">Sign Up or Login:</p>
+                        <li><a href="#"><button class="login-btn">As a Client</button></a></li>
+                        <li><a href="#"><button class="login-btn">As a Tradesperson</button></a></li>
+                    </ul>
                 </div>
             </div>
-        </header>
-
+        </nav>
         
 
+        <div class="blur-bg-overlay"></div>
+
+        <div class="form-popup">
+            <span class="close-btn material-symbols-outlined">close</span>
+            <div class="form-box">
+                <div class="form-details">
+                    <h2>Welcome</h2>
+                    <p>Please select Sign up to create a new account or Log in to an existing account.</p>
+                </div>
+                <div class="form-content">
+                    <h2>Sign Up</h2>
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="input-field">
+                            {{ form.first_name.label}}
+                            {{ form.first_name}}
+                        </div>
+                        <div class="input-field">
+                            {{ form.last_name.label }}
+                            {{ form.last_name }}
+                        </div>
+                        <div class="input-field">
+                            {{ form.email.label }}
+                            {{ form.email }}
+                        </div>
+                        <div class="input-field">
+                            {{ form.password.label }}
+                            {{ form.password }}
+                        </div>
+                        {{ form.submit }}
+                    </form>
+                    <hr>
+                    <h2>Log in</h2>
+                    <form action="#">
+                        <div class="input-field">
+                            <input type="text">
+                            <label>Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password">
+                            <label>Password</label>
+                        </div>
+                        <a href="#" class="forgot-pass">Forgot Password?</a>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="head-section"
+            style="
+            background-image: url('{{ img }}');
+            height: 100vh;
+            position: relative;
+            top: 0;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;">
+            <div class="container pt-5" >
+                <h1>{{ title }}</h1>
+                <h4>{{ subheading }}</h4>
+            </div>
+        </section>
         
 
         {% block body_content %}
