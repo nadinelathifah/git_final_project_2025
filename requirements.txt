@@ -1,3 +1,4 @@
 wtforms~=3.2.1
 flask~=3.1.0
 mysql-connector-python~=9.2.0
+bcrypt
