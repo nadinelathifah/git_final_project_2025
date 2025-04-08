@@ -15,26 +15,35 @@ title {
     text-transform: capitalize;
 }
 
-#head-section {
+#hero-section {
     padding-top: 250px;
 }
 
-#head-section h1 {
-    color: rgb(13, 47, 113);
+#hero-section h1 {
+    color: rgb(0, 21, 116);
     font-family: 'Bungee', sans-serif;
     text-transform: capitalize;
-    text-shadow: 3px 3px 7px rgba(245, 247, 255, 0.559);
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
 }
 
-#head-section h4 {
-    color: rgb(68, 110, 193);
+#hero-section h4 {
+    color: rgb(0, 21, 116);
     font-weight: 600;
     font-size: 1.3rem;
-    background: rgb(255, 255, 255);
+    text-transform: capitalize;
+    background: rgb(253, 222, 98);
     box-shadow: 0 4px 8px rgba(0,0,0, 0.2);
-    padding: 6px;
-    width: auto;
-    max-width: 400px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 3px solid rgb(0, 21, 116);
+    padding: 6px 21px 6px 21px;
+    display: inline-block;
+}
+
+#hero-section i {
+    color: #158fd1;
+    font-size: 2.9rem;
+    padding-right: 15px;
 }
 
 footer {
@@ -68,9 +77,10 @@ footer {
 .navbar-brand h2 {
     font-family: 'Bungee', sans-serif;
     font-size: 1.5rem;
-    color: rgb(247, 185, 0);
-    /* color: rgb(251, 142, 0); */
+    color: #fcc332;
     text-shadow: 3px 3px 8px rgba(38, 28, 0, 0.43);
+    -webkit-text-stroke: 1.5px rgb(0, 21, 116);
+
 }
 
 @media (min-width: 992px) {
@@ -79,6 +89,10 @@ footer {
         justify-content: flex-end;
         align-items: center;
     }
+}
+
+.navbar {
+    align-items: center;
 }
 
 .sticky-top {
@@ -103,20 +117,18 @@ footer {
 
 .nav-link {
     color: rgb(0, 21, 116);
+    transition: background 0.3s border-radius 0.3s;
+    border-radius: 20px;
 }
 
 .navbar-nav .nav-link:hover {
-    /* background: rgb(255, 219, 141); */
     background: rgb(255, 247, 199);
-    border-radius: 20px;
 }
 
 #navbarNav .login-btn {
     border-radius: 20px;
     padding: 4px 20px 5px 20px;
     background: linear-gradient(to bottom, rgb(244, 167, 0), rgb(247, 185, 0));
-    /* background: rgb(247, 173, 0); */
-    /* background: rgb(251, 142, 0); */
     color: white;
     border-color: white;
     font-weight: 600;
@@ -124,20 +136,21 @@ footer {
 }
 
 #navbarNav .login-btn:hover {
-    background: #007bff;
+    background: rgb(251, 142, 0);
+}
+
+.navbar-nav p {
+    margin-top:16px;
 }
 
 .signup-text {
-    color: rgb(68, 110, 193);
-    margin-left: 20px;
-    background: rgb(255, 255, 255);
-    box-shadow: 0 4px 8px rgba(0,0,0, 0.2);
-    padding: 5px 5px 5px 5px;
+    color: rgb(0, 21, 116);
+    text-decoration: underline;
 }
+
 
 .drop-down {
     list-style: none;
-    /* background: rgb(255, 219, 141); */
     background: rgb(255, 247, 199);
     box-shadow: 0 4px 8px rgba(0,0,0, 0.2);
     border-radius: 20px;
@@ -164,8 +177,15 @@ footer {
 }
 
 .dropdown-item:hover {
-    color: rgb(227, 95, 12);
+    background: rgba(251, 142, 0, 0.517);
 }
+
+.login-btn i {
+    margin-right: 4px;
+    font-size: 1.1rem;
+}
+
+
 
 
 /* -------------- Sign Up Form Styling -------------- */
@@ -173,15 +193,16 @@ footer {
     position: fixed;
     top: 50%;
     left: 50%;
-    background: white;
-    border: 3px solid white;
-    transform: translate(-50%, -100%);
     width: 100%;
     max-width: 750px;
-    overflow-y: auto;
-    z-index: 1050;
+    background: white;
+    border: 3px solid white;
+    border-radius: 5%;
+    transform: translate(-50%, -100%);
     opacity: 0;
     pointer-events: none;
+    overflow-y: auto;
+    z-index: 1050;
 }
 
 .blur-bg-overlay {
@@ -290,13 +311,13 @@ form .btn-primary {
 }
 
 form .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: rgb(0, 21, 116);
 }
 
 .form-popup .close-btn {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 15px;
+    right: 15px;
     color: rgb(33, 33, 33);
     cursor: pointer;
 }

@@ -40,71 +40,53 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a href="#" class="nav-link">Reviews</a></li>
-                        <p class="signup-text">Sign Up or Login:</p>
-                        <li><a href="#"><button class="login-btn"><i class='bx bxs-home bx-tada-hover'></i>As a Client</button></a></li>
-                        <li><a href="#"><button class="login-btn"><i class='bx bxs-rocket bx-tada-hover'></i>As a Tradesperson</button></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         
 
-        <div class="blur-bg-overlay"></div>
-        <div class="form-popup client-popup">
-            <span class="close-btn material-symbols-outlined">close</span>
-            <div class="form-box">
-                <div class="form-details">
-                    <h2>welcome</h2>
-                    <p>Please Log in to access an existing account or create a new account by clicking the link below.</p>
+        <div id="client-signup">
+            <h2>Sign Up</h2>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="input-field">
+                    {{ form.first_name.label}}
+                    {{ form.first_name}}
                 </div>
-                <div class="form-content">
-                    <h2>Log in</h2>
-                    <form action="#">
-                        <div class="input-field">
-                            <input type="text">
-                            <label>Email</label>
-                        </div>
-                        <div class="input-field">
-                            <input type="password">
-                            <label>Password</label>
-                        </div>
-                        <a href="#" class="forgot-pass">Forgot Password?</a>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
-                    </form>
+                <div class="input-field">
+                    {{ form.last_name.label }}
+                    {{ form.last_name }}
                 </div>
-            </div>
+                <div class="input-field">
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </div>
+                <div class="input-field">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </div>
+                {{ form.submit }}
+            </form>
         </div>
 
         <section id="hero-section"
             style="
-            background: url('{{ img1 }}'), url('{{ img2 }}'), url('{{ img3 }}');
+            background: url('{{ img }}');
             height: 100vh;
-            background-position: right -30px top -60px, center bottom 10px, center center;
-            background-size: 700px auto, 600px auto, cover;
+            background-position: center center;
+            background-size: cover;
             background-repeat: no-repeat;">
             <div class="container pt-5" >
                 <h1>{{ title }}</h1>
                 <h4>{{ subheading }}</h4>
-                <br>
-                <i class='bx bxs-torch bx-tada-hover'></i>
-                <i class='bx bxs-hard-hat bx-tada-hover'></i>
-                <i class='bx bxs-user-check bx-tada-hover'></i>
-                <i class='bx bx-wrench bx-tada-hover'></i>
-                <i class='bx bxs-institution bx-tada-hover'></i>
             </div>
         </section>
         
-
         {% block body_content %}
         {% endblock %}
 
         <footer>
-            <ul>
-                <li class="footer-item"><a class="footer-link" href="#">FAQs</a></li>
-                <li class="footer-item"><a class="footer-link" href="#">Contact us</a></li>
-                <li class="footer-item"><a class="footer-link" href="#">Location</a></li>
-            </ul>
-            <hr>
             &copy; 2025 My Home Heroes | All Rights Reserved
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

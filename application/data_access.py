@@ -37,8 +37,8 @@ def add_tradesperson(firstname, lastname, profession, town, email, password):
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO clients (firstname, lastname, profession, town, email, password) VALUES (%s %s %s %s %s %s)"
-    val = (firstname, lastname, email, encoded_password)
+    sql = "INSERT INTO tradespeople (firstname, lastname, profession, town, email, password) VALUES (%s %s %s %s %s %s)"
+    val = (firstname, lastname, profession, town, email, encoded_password)
     cursor.execute(sql, val)
     conn.commit()
 
@@ -46,7 +46,14 @@ def add_tradesperson(firstname, lastname, profession, town, email, password):
 
 
 def get_client():
-    pass
+    conn = get_tradespeopledb_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT
+        
+
+
+""")
 
 def get_tradesperson():
     pass
