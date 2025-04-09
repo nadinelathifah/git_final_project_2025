@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 /* -------------- General Styling -------------- */
@@ -11,9 +10,23 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-title {
-    text-transform: capitalize;
+footer {
+    padding: 10px;
+    color: rgb(0, 21, 116);
+    font-weight: 500;
+    background: wheat;
 }
+
+.footer-item {
+    list-style: none;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: rgb(0, 21, 116);
+}
+
+/* ------Front Page------ */
 
 #hero-section {
     padding-top: 250px;
@@ -46,21 +59,29 @@ title {
     padding-right: 15px;
 }
 
-footer {
-    padding: 10px;
-    color: rgb(0, 21, 116);
-    font-weight: 500;
-    background: wheat;
+.hero-img {
+    position: absolute;
+    height: auto;
+    overflow: hidden;
 }
 
-.footer-item {
-    list-style: none;
+.hero-img.img-1 {
+    top: -60px; 
+    right: -30px; 
+    width: 700px; 
+    opacity: 0.8;
+    z-index: 1;  
 }
 
-.footer-link {
-    text-decoration: none;
-    color: rgb(0, 21, 116);
+.hero-img.img-2 {
+    bottom: 10px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 600px; 
+    opacity: 0.9; 
+    z-index: 2;
 }
+
 
 /* -------------- Navbar Styling -------------- */
 /* --- Logo --- */
@@ -125,6 +146,10 @@ footer {
     background: rgb(255, 247, 199);
 }
 
+.bxs-chevron-down-circle {
+    margin-right: 3px;
+}
+
 #navbarNav .login-btn {
     border-radius: 20px;
     padding: 4px 20px 5px 20px;
@@ -136,7 +161,7 @@ footer {
 }
 
 #navbarNav .login-btn:hover {
-    background: rgb(251, 142, 0);
+    background: linear-gradient(to bottom, rgb(251, 142, 0), rgb(255, 93, 44));
 }
 
 .navbar-nav p {
@@ -188,16 +213,17 @@ footer {
 
 
 
-/* -------------- Sign Up Form Styling -------------- */
+/* -------------- Login Form Styling -------------- */
 .form-popup {
     position: fixed;
     top: 50%;
     left: 50%;
+    height: 60vh;
     width: 100%;
     max-width: 750px;
     background: white;
-    border: 3px solid white;
-    border-radius: 5%;
+    border: 6px solid #90e0ef;
+    border-radius: 50px;
     transform: translate(-50%, -100%);
     opacity: 0;
     pointer-events: none;
@@ -223,7 +249,7 @@ footer {
     pointer-events: auto;
 }
 
-.show-popup .form-popup {
+.form-popup.show-popup {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -50%);
@@ -233,6 +259,8 @@ footer {
 .form-popup .form-box {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
 .form-content h2 {
@@ -242,15 +270,19 @@ footer {
 
 .form-box .form-details {
     max-width: 340px;
-    padding: 250px 0px 0px 15px;
     color: white;
     text-align: center;
-    align-items: center;
-    justify-content: center;
-    background-image: url('images/closeup3.jpeg');
     background-size: cover;
-    background-position: 10%;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
+
 
 .form-box .form-details h2 {
     text-transform: capitalize;
@@ -258,19 +290,28 @@ footer {
 
 .form-box h2 {
     text-align: center;
-    margin-bottom: 15px;
 }
 
 .form-box .form-content {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 35px;
 }
+
+.form-box .form-content a {
+    text-decoration: none;
+}  
+
+.form-box .form-content h2 {
+    margin-bottom: 20px;
+}  
 
 form .input-field {
     position: relative;
     height: 40px;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 form .input-field input {
@@ -282,6 +323,11 @@ form .input-field input {
     border-radius: 3px;
     padding: 0px 15px;
     box-sizing: border-box;
+}
+
+.input-field input:not(:placeholder-shown) + label {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .input-field input:focus {
@@ -299,7 +345,7 @@ form .input-field label {
 }
 
 form .btn-primary {
-    margin-top: 10px;
+    margin-top: 15px;
     padding: 10px;
     width: 100%;
     background-color: #007bff;
@@ -316,8 +362,8 @@ form .btn-primary:hover {
 
 .form-popup .close-btn {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 30px;
+    right: 30px;
     color: rgb(33, 33, 33);
     cursor: pointer;
 }
@@ -325,6 +371,61 @@ form .btn-primary:hover {
 
 /* -------------- Home Page -------------- */
 #about-section {
+    position: relative;
+    overflow: hidden;
     height: 100vh;
-    
+}
+
+#about-section.container {
+    position: relative;
+    z-index: 10;
+}
+
+.about-img {
+    position: absolute;
+    width: auto;
+}
+
+.about-img.img-1 {
+    height: 52vh;
+    right: 200px;
+    z-index: 5;
+}
+
+.about-img.img-2 {
+    height: 55vh;
+    right: 100px;
+    opacity: 0.6;
+    z-index: 3;
+}
+
+/* .about-img.img-3 {
+    height: 48vh;
+    top: 1000px;
+    right: 480px;
+    opacity: 0.9;
+    z-index: 2;
+} */
+
+.about-img.img-4 {
+    height: 40vh;
+    top: 250px;
+    right: 300px;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+/* .about-img.img-4 {
+    height: 47vh;
+    top: 970px;
+    right: 150px;
+    opacity: 0.8;
+    z-index: 1;
+} */
+
+.about-img.img-5 {
+    height: 20vh;
+    top: 450px;
+    left: 0;
+    z-index: 4;
 }

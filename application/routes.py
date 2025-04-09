@@ -11,9 +11,10 @@ def home():
                            head="home",
                            title="My Home Heroes",
                            subheading="need a hand? call our heroes!",
-                           img1='static/images/squiggle2.png',
-                           img2='static/images/squiggle.png',
-                           img3='static/images/wideshot4.jpg')
+                           img1='decoration/squiggle2.png',
+                           img2='decoration/squiggle.png',
+                           background_image='static/images/wideshot44.jpeg')
+
 
 @app.route('/welcome/client')
 def welcome_client():
@@ -22,6 +23,7 @@ def welcome_client():
                             title='Account Successfully Created!', 
                             subheading='Explore and browse our services', 
                             img3='static/images/paint.jpeg')
+
 
 @app.route('/welcome/tradesperson')
 def welcome_tradesperson():
@@ -32,7 +34,7 @@ def welcome_tradesperson():
                             img='static/images/wideshot.jpg')
 
 
-@app.route('/register/client')
+@app.route('/register/client', methods=['GET', 'POST'])
 def register_client():
     error = ""
     client_register = ClientRegistrationForm()
@@ -44,22 +46,25 @@ def register_client():
         password = client_register.password.data
 
         if len(first_name) == 0 or len(last_name) == 0:
-            error = 'Please supply both a first and last name'
+            error = 'Please provide both a first and last name'
         else:
             clients.append({'Firstname': first_name, 'Lastname': last_name, 'Email': email, 'Password': password})
             add_client(first_name, last_name, email, password)
             return redirect(url_for('welcome_client'))
         
-    return render_template('welcome_client.html', 
-                           form=client_register, 
-                           head='welcome', 
-                           title='Account Successfully Created!', 
-                           name=first_name, subheading='Explore & browse our services.', 
-                           img='static/images/paint.jpeg')
+    return render_template('register_client.html', 
+                            form=client_register, 
+                            message=error,
+                            head='client sign up', 
+                            title='⚒ Connect with us ⚒', 
+                            subheading='Get in touch with our skilled team',
+                            img1 = '/static/images/wideshot2.jpeg',
+                            img2='/static/decoration/arrowyellow.png',
+                            img3='/static/decoration/arrownavy.png')
 
 
 
-@app.route('/register/tradesperson')
+@app.route('/register/tradesperson', methods=['GET', 'POST'])
 def register_tradesperson():
     error = ""
     worker_register = WorkerRegistrationForm()
@@ -73,15 +78,16 @@ def register_tradesperson():
         password = worker_register.password.data
 
         if len(first_name) == 0 or len(last_name) == 0:
-            error = 'Please supply both a first and last name'
+            error = 'Please provide both a first and last name'
         else:
             tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
-            add_tradesperson(first_name, last_name, email, password)
+            add_tradesperson(first_name, last_name, profession, town, email, password)
             return redirect(url_for('welcome_tradesperson'))
     
-    return render_template('welcome_tradesperson.html', 
+    return render_template('register_tradesperson.html', 
                            form=worker_register, 
-                           head='welcome', 
-                           title='Account Successfully Created!', 
-                           name=first_name, subheading='Let''s get started!', 
+                           message=error,
+                           head='tradesperson sign up', 
+                           title='Get Bookings Now!', 
+                            subheading='Sign up and join our heroes',
                            img='static/images/wideshot.jpg')

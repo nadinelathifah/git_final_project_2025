@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ url_for('static', filename= 'styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'styles_register.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close"/>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <script src="{{ url_for('static', filename= 'script.js') }}" defer></script>
-        <title>{{ head }}</title>
+        <title>{{ head|title }}</title>
     </head>
 
    <body>
@@ -25,11 +25,11 @@
                 <div id="navbarNav" class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         {% if request.path != '/' and request.path !='/home' %}
-                        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
+                        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);"><i class="bx bxs-rocket bx-tada-hover"></i>Back to Home Page</a></li>
                         {% else %}
-                        <li class="nav-item"><a href="#head-section" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
+                        <li class="nav-item"><a href="#head-section" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);"><i class="bx bxs-rocket bx-tada-hover"></i>Back to Home Page</a></li>
                         {% endif %}
-                        <li class="nav-item"><a href="#about-section" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="/home" class="nav-link">About</a></li>
                         <li class="nav-item dropdown"><a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>Services</i></a>
                             <ul class="drop-down">
                                 <li><a href="#" class="dropdown-item">Moving</a></li>
@@ -44,47 +44,38 @@
                 </div>
             </div>
         </nav>
-        
 
-        <div id="client-signup">
-            <h2>Sign Up</h2>
-            <form action="" method="POST">
-                {{ form.hidden_tag() }}
-                <div class="input-field">
-                    {{ form.first_name.label}}
-                    {{ form.first_name}}
-                </div>
-                <div class="input-field">
-                    {{ form.last_name.label }}
-                    {{ form.last_name }}
-                </div>
-                <div class="input-field">
-                    {{ form.email.label }}
-                    {{ form.email }}
-                </div>
-                <div class="input-field">
-                    {{ form.password.label }}
-                    {{ form.password }}
-                </div>
-                {{ form.submit }}
-            </form>
-        </div>
 
         <section id="hero-section"
             style="
-            background: url('{{ img }}');
+            background: url('{{ img1 }}');
             height: 100vh;
+            width: auto;
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;">
-            <div class="container pt-5" >
-                <h1>{{ title }}</h1>
-                <h4>{{ subheading }}</h4>
-            </div>
+            <img src="{{ img2 }}" alt="Arrow Decoration"
+            style="
+            position: absolute;
+            width: 200px;
+            height: auto;
+            top: 140px;
+            right: 450px;
+            z-index: 3;
+            ">
+            <img src="{{ img3 }}" alt="Arrow Decoration"
+            style="
+            position: absolute;
+            width: 200px;
+            height: auto;
+            top: 142px;
+            right: 452px;
+            opacity: 0.4;
+            z-index: 2;
+            ">
+            {% block body_content %}
+            {% endblock %}  
         </section>
-        
-        {% block body_content %}
-        {% endblock %}
 
         <footer>
             &copy; 2025 My Home Heroes | All Rights Reserved
