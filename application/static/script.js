@@ -9,22 +9,67 @@
 // "submit"       form is submitted
 
 
-// Show Register Form Popup when 'As a Client' button is clicked.
-const showRegisterPopup = document.querySelector(".login-btn");
-
-showRegisterPopup.addEventListener("click", function() {
-    document.body.classList.toggle("show-popup");
+// Show the popup Client login form
+const clientForm = document.getElementById("client-login");
+const clientButton = document.querySelector(".login-btn.client");
+clientButton.addEventListener("click", function() {
+    document.body.classList.add("show-popup");
+    clientForm.classList.add("show-popup");
 });
 
-// Hide Register Form Popup when the 'x' icon is clicked.
-const hideRegisterPopup = document.querySelector(".form-popup .close-btn");
+// Show the popup Tradesperson login form
+const tradespersonForm = document.getElementById("tradesperson-login");
+const tradespersonButton = document.querySelector(".login-btn.tradesperson");
+tradespersonButton.addEventListener("click", function() {
+    document.body.classList.add("show-popup");
+    tradespersonForm.classList.add("show-popup");
+});
 
-hideRegisterPopup.addEventListener("click", function() {showRegisterPopup.click()});
-
+// Close both forms
+const closeForms = document.querySelectorAll(".form-popup .close-btn").forEach(function(button) {
+    button.addEventListener("click", function() {
+        document.body.classList.remove("show-popup");
+        clientForm.classList.remove("show-popup");
+        tradespersonForm.classList.remove("show-popup");
+    });
+});
 
 // Make labels disappear when the user types in the input field.
-const textbox = document.getElementsByClassName('.input-field')
-const label = document.getElementById('label')
+const inputBox = document.getElementsByClassName('.input-field');
+const label = document.getElementById('label');
 
-const loginButtons = document.querySelectorAll(".login-btn");
+function removeTheLabel() {
+    inputBox.classList.remove(label);
+}
+inputBox.addEventListener("keydown", removeTheLabel());
 
+// Trigger the typing animation on the about section when user is within viewport of the about section.
+// const typingAnimation = document.querySelector(".typing-text")
+// const aboutSection = document.getElementById("about-section")
+
+// window.addEventListener("scroll", function() {
+//     const position = aboutSection.getBoundingClientRect()
+
+//     if (position.top <= window.innerHeight * 0.5 && position.bottom >= window.innerHeight * 0.5 ) {
+//         typingAnimation.classList.add("start-typing");
+//     } else {
+//         typingAnimation.classList.remove("start-typing");
+//     }
+// });
+
+
+// const topPosition = aboutSection.offsetTop;
+
+// function triggerTyping() {
+//     if (window.scrollY >= topPosition) {
+//         typingAnimation.classList.add("start-typing");
+//     } else {
+//         typingAnimation.classList.remove("start-typing");
+//     }
+// }
+// window.addEventListener("scroll", triggerTyping());
+
+// .typing-text.start-typing .line-1,
+// .typing-text.start-typing .line-2 {
+//     visibility: visible;
+// } 

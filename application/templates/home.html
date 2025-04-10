@@ -2,10 +2,59 @@
 {% block body_content %}
 
 <section id="about-section">
-    <div class="container pt-5">
-        <h6>who are we?</h6>
-        <h3>My Home Heroes is your main platform to find the best handymen and women to build a comfortable, quality life.</h3>
-        <img src="{{ url_for('static', filename='images/')}}" alt="">
+    <div class="container">
+        <h5>who are we?</h5>
+        <div class="typing-text">
+            <h3>
+                <span class="line-1">My Home Heroes is your platform to find the best handymen and women to help you</span>
+                <br>
+                <span class="line-2">with friendly fixes and build a comfortable, quality life.</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row about-content">
+        <div class="col-12 col-sm-4">
+            <div class="card">
+                <h4><strong>company ethos</strong></h4>
+                <p>We believe every home deserves a helping hand. Whether you need a painter, a plumber, a mover, or a mounting wizard, 
+                    we connect property owners with trusted local pros who get the job done right. No stress, no fuss — just real people ready to help. 
+                    Tell us your concern and we'll find you an available handy person in your area.</p>
+            </div>
+            <img class="about-img img-6" src="{{ url_for('static', filename= '/logo/drill.png') }}" alt="Abstract shape.">
+            <img class="about-img img-7" src="{{ url_for('static', filename= '/decoration/circle_orange.png') }}" alt="Abstract shape.">
+        </div>
+        <div class="col-12 col-sm-8">
+            <div class="image-stack">
+                <img class="about-img img-1" src="{{ url_for('static', filename= '/images/medium3.png') }}" alt="Two handy people wearing construction hats and vests.">
+                <img class="about-img img-2" src="{{ url_for('static', filename= '/decoration/blue.png') }}" alt="Abstract shape.">
+                <img class="about-img img-3" src="{{ url_for('static', filename= '/decoration/lightblue.png') }}" alt="Abstract shape.">
+                <img class="about-img img-4" src="{{ url_for('static', filename= '/logo/hammer_orange.png') }}" alt="Abstract shape.">
+                <img class="about-img img-5" src="{{ url_for('static', filename= '/decoration/circle_orange.png') }}" alt="Abstract shape.">
+            </div>
+        </div>
+    </div>
+    <div class="statistic-content">
+        <div class="card">
+            <div class="row">
+                <div class="col-sm" style="border-right: 1px solid black;">
+                    <h3><strong>1.5k+</strong></h3>
+                    <p>satisfied customers</p>
+                </div>
+                <div class="col-sm" style="border-right: 1px solid black;">
+                    <h3><strong>3k+</strong></h3>
+                    <p>tasks completed</p>
+                </div>
+                <div class="col-sm">
+                    <h3><strong>450</strong></h3>
+                    <p>members in our team</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+<section id="services-section">
+
+</section>
+
 {% endblock %}

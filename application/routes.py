@@ -11,9 +11,10 @@ def home():
                            head="home",
                            title="My Home Heroes",
                            subheading="need a hand? call our heroes!",
-                           img1='static/images/squiggle2.png',
-                           img2='static/images/squiggle.png',
-                           img3='static/images/wideshot4.jpg')
+                           img1='decoration/squiggle2.png',
+                           img2='decoration/squiggle.png',
+                           background_image='static/images/wideshot44.jpeg')
+
 
 @app.route('/welcome/client')
 def welcome_client():
@@ -21,7 +22,15 @@ def welcome_client():
                             head='welcome', 
                             title='Account Successfully Created!', 
                             subheading='Explore and browse our services', 
-                            img3='static/images/paint.jpeg')
+                            background_image='/static/images/paint.jpeg')
+
+@app.route('/example')
+def empty():
+    return render_template('example.html',
+                            head='Example',
+                            title='This is an example webpage',
+                            subheading='This is a subtitle',
+                            background_image="/static/images/wideshot4.jpg")
 
 @app.route('/welcome/tradesperson')
 def welcome_tradesperson():
@@ -29,10 +38,10 @@ def welcome_tradesperson():
                             head='welcome', 
                             title='Account Successfully Created!', 
                             subheading='Let''s get started!', 
-                            img='static/images/wideshot.jpg')
+                            background_image='/static/images/wield.jpg')
 
 
-@app.route('/register/client')
+@app.route('/register/client', methods=['GET', 'POST'])
 def register_client():
     error = ""
     client_register = ClientRegistrationForm()
@@ -44,22 +53,25 @@ def register_client():
         password = client_register.password.data
 
         if len(first_name) == 0 or len(last_name) == 0:
-            error = 'Please supply both a first and last name'
+            error = 'Please provide both a first and last name'
         else:
             clients.append({'Firstname': first_name, 'Lastname': last_name, 'Email': email, 'Password': password})
             add_client(first_name, last_name, email, password)
             return redirect(url_for('welcome_client'))
         
-    return render_template('welcome_client.html', 
-                           form=client_register, 
-                           head='welcome', 
-                           title='Account Successfully Created!', 
-                           name=first_name, subheading='Explore & browse our services.', 
-                           img='static/images/paint.jpeg')
+    return render_template('register_client.html', 
+                            form=client_register, 
+                            message=error,
+                            head='client sign up', 
+                            title='⚒ Connect with us ⚒', 
+                            subheading='Get in touch with our skilled team',
+                            img1='decoration/arrowyellow.png',
+                            img2='decoration/arrownavy.png',
+                            background_image = '/static/images/wideshot2.jpeg')
 
 
 
-@app.route('/register/tradesperson')
+@app.route('/register/tradesperson', methods=['GET', 'POST'])
 def register_tradesperson():
     error = ""
     worker_register = WorkerRegistrationForm()
@@ -73,15 +85,18 @@ def register_tradesperson():
         password = worker_register.password.data
 
         if len(first_name) == 0 or len(last_name) == 0:
-            error = 'Please supply both a first and last name'
+            error = 'Please provide both a first and last name'
         else:
             tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
-            add_tradesperson(first_name, last_name, email, password)
+            add_tradesperson(first_name, last_name, profession, town, email, password)
             return redirect(url_for('welcome_tradesperson'))
     
-    return render_template('welcome_tradesperson.html', 
-                           form=worker_register, 
-                           head='welcome', 
-                           title='Account Successfully Created!', 
-                           name=first_name, subheading='Let''s get started!', 
-                           img='static/images/wideshot.jpg')
+    return render_template('register_tradesperson.html', 
+                            form=worker_register, 
+                            message=error,
+                            head='tradesperson sign up', 
+                            title='⚒ Get Bookings Now! ⚒', 
+                            subheading='Sign up and join our team of heroes',
+                            img1='decoration/arrowyellow.png',
+                            img2='decoration/arrownavy.png',
+                            background_image='/static/images/wideshotb.jpeg')

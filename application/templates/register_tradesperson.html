@@ -1,4 +1,42 @@
-{% extends "layout_form.html" %}
+{% extends "layout_register.html" %}
 {% block body_content %}
+
+<div class="main-wrapper container pt-5">
+    <div>
+        <h1>{{ title }}</h1>
+        <h4>{{ subheading }}</h4>
+    </div>
+    <div id="tradesperson-signup">
+        <h2>Sign Up</h2>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="input-field">
+                {{ form.first_name.label}}
+                {{ form.first_name}}
+            </div>
+            <div class="input-field">
+                {{ form.last_name.label}}
+                {{ form.last_name}}
+            </div>
+            <div class="input-field">
+                {{ form.profession.label(class="drop-down") }}
+                {{ form.profession }}
+            </div>
+            <div class="input-field">
+                {{ form.town.label }}
+                {{ form.town }}
+            </div>
+            <div class="input-field">
+                {{ form.email.label }}
+                {{ form.email }}
+            </div>
+            <div class="input-field">
+                {{ form.password.label }}
+                {{ form.password }}
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+</div>
 
 {% endblock %}
