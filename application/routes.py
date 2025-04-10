@@ -22,7 +22,7 @@ def welcome_client():
                             head='welcome', 
                             title='Account Successfully Created!', 
                             subheading='Explore and browse our services', 
-                            img3='static/images/paint.jpeg')
+                            background_image='/static/images/paint.jpeg')
 
 
 @app.route('/welcome/tradesperson')
@@ -31,7 +31,7 @@ def welcome_tradesperson():
                             head='welcome', 
                             title='Account Successfully Created!', 
                             subheading='Let''s get started!', 
-                            img='static/images/wideshot.jpg')
+                            background_image='/static/images/wield.jpg')
 
 
 @app.route('/register/client', methods=['GET', 'POST'])
