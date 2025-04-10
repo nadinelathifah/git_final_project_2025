@@ -9,11 +9,13 @@
     <div class="row about-wrapper">
         <div class="col-12 col-sm-4">
             <div class="card">
+                <h4><strong>company ethos</strong></h4>
                 <p>We believe every home deserves a helping hand. Whether you need a painter, a plumber, a mover, or a mounting wizard, 
                     we connect property owners with trusted local pros who get the job done right. No stress, no fuss — just real people ready to help. 
                     Tell us your concern and we'll find you an available handy person in your area.</p>
             </div>
             <img class="about-img img-6" src="{{ url_for('static', filename= '/logo/drill.png') }}" alt="Abstract shape.">
+            <img class="about-img img-8" src="{{ url_for('static', filename= '/decoration/circle_orange.png') }}" alt="Abstract shape.">
         </div>
         <div class="col-12 col-sm-8">
             <div class="image-stack">
@@ -23,8 +25,32 @@
                 <img class="about-img img-4" src="{{ url_for('static', filename= '/decoration/lightblue.png') }}" alt="Abstract shape.">
                 <!-- <img class="about-img img-5" src="{{ url_for('static', filename= '/decoration/dot.png') }}" alt="Dotted line decoration."> -->
                 <img class="about-img img-7" src="{{ url_for('static', filename= '/logo/hammer_orange.png') }}" alt="Abstract shape.">
+                <img class="about-img img-9" src="{{ url_for('static', filename= '/decoration/circle_orange.png') }}" alt="Abstract shape.">
+            </div>
+        </div>
+    </div>
+    <div class="review-container">
+        <div class="card">
+            <div class="row">
+                <div class="col-sm" style="border-right: 1px solid black;">
+                    <h3><strong>1.5k+</strong></h3>
+                    <p>satisfied customers</p>
+                </div>
+                <div class="col-sm" style="border-right: 1px solid black;">
+                    <h3><strong>3k+</strong></h3>
+                    <p>tasks completed</p>
+                </div>
+                <div class="col-sm">
+                    <h3><strong>450</strong></h3>
+                    <p>members in our team</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<section id="services-section">
+
+</section>
+
 {% endblock %}

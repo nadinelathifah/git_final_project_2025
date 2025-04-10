@@ -89,7 +89,7 @@ def register_tradesperson():
                             message=error,
                             head='tradesperson sign up', 
                             title='⚒ Get Bookings Now! ⚒', 
-                            subheading='Sign up and join our heroes',
-                            img1='decoration/arroworange.png',
+                            subheading='Sign up and join our team of heroes',
+                            img1='decoration/arrowyellow.png',
                             img2='decoration/arrownavy.png',
                             background_image='/static/images/wideshotb.jpeg')

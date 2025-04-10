@@ -11,7 +11,7 @@
 }
 
 footer {
-    padding: 10px;
+    padding: 15px;
     color: rgb(0, 21, 116);
     font-weight: 500;
     background: wheat;
@@ -161,7 +161,7 @@ footer {
 }
 
 #navbarNav .login-btn:hover {
-    background: linear-gradient(to bottom, rgb(251, 142, 0), rgb(255, 93, 44));
+    background: linear-gradient(to bottom, rgb(251, 142, 0), rgb(255, 108, 45));
 }
 
 .navbar-nav p {
@@ -375,6 +375,7 @@ form .btn-primary:hover {
     overflow: hidden;
     height: 100vh;
     background-color: whitesmoke;
+    overflow: hidden;
 }
 
 #about-section .container {
@@ -388,6 +389,7 @@ form .btn-primary:hover {
     width: auto;
 }
 
+/* Image of 2 tradespeople */
 .about-img.img-1 {
     height: 52vh;
     top: 0;
@@ -395,14 +397,16 @@ form .btn-primary:hover {
     z-index: 5;
 }
 
+/* Abstract Shape: Indigo */
 .about-img.img-2 {
     height: 55vh;
     top: 0;
     right: 30px;
     opacity: 0.6;
-    z-index: 3;
+    z-index: 2;
 }
 
+/* Abstract Shape: Yellow */
 /* .about-img.img-3 {
     height: 48vh;
     top: 1000px;
@@ -411,6 +415,7 @@ form .btn-primary:hover {
     z-index: 2;
 } */
 
+/* Abstract Shape: Blue */
 .about-img.img-4 {
     height: 40vh;
     top: 100px;
@@ -419,6 +424,7 @@ form .btn-primary:hover {
     z-index: 1;
 }
 
+/* Abstract Shape: Blue */
 /* .about-img.img-4 {
     height: 47vh;
     top: 970px;
@@ -427,6 +433,7 @@ form .btn-primary:hover {
     z-index: 1;
 } */
 
+/* Decoration: Dotted Line */
 /* .about-img.img-5 {
     height: 20vh;
     top: 450px;
@@ -434,6 +441,7 @@ form .btn-primary:hover {
     z-index: 4;
 } */
 
+/* Logo: Drill */
 .about-img.img-6 {
     height: 75px;
     top: 0;
@@ -441,17 +449,34 @@ form .btn-primary:hover {
     z-index: 1;
 }
 
+/* Logo: Hammer-Wrench */
 .about-img.img-7 {
     height: 75px;
     transform: translateY(490px);
     right: 60px;
     z-index: 1;
 }
+ /* Decoration: orange circle left */
+.about-img.img-8 {
+    height: 250px;
+    left: 0;
+    transform: translate(-20px, 250px);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+ /* Decoration: orange circle right */
+.about-img.img-9 {
+    height: 180px;
+    right: 0;
+    top: 0;
+    opacity: 0.5;
+    z-index: 1;
+}
 
 .about-wrapper {
     position: relative;
 }
-
 
 .about-wrapper .col-sm-8 {
     position: relative;
@@ -480,8 +505,43 @@ form .btn-primary:hover {
     padding: 20px;
     background: white;
     border-radius: 25px;
-    border: 2px solid white;
+    border: 1px solid rgb(255, 200, 152);
+    box-shadow: -10px 10px rgb(255, 173, 86);
     transform: translate(150px, 80px);
-    
+    z-index: 3;
 }
 
+.about-wrapper .card h4 {
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.review-container {
+    min-width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.review-container .card {
+    position: absolute;
+    width: 60%;
+    height: 16vh;
+    bottom: 20px;
+    background: rgb(251, 142, 0);
+    border: 1px solid rgb(251, 142, 0);
+    border-radius: 5px;
+    color: black;
+    padding: 20px;
+}
+
+.review-container .card p {
+    text-transform: capitalize;
+}
+
+
+/* -------------- Services Section -------------- */
+#services-section {
+    height: 100vh;
+    background-color: aliceblue;
+}
