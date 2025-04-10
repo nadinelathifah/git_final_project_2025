@@ -1,19 +1,25 @@
 import mysql.connector
 import bcrypt
+import sys
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="tradespeopledb"
-)
+if sys.platform == "win32":
+    mysql_password = "password"
+else:
+    mysql_password = ""
+
+# mydb = mysql.connector.connect(
+#   host="localhost",
+#   user="root",
+#   password="password",
+#   database="tradespeopledb"
+# )
 
 
 def get_tradespeopledb_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",
+        password="password",
         database="tradespeopledb"
     )
     return mydb
