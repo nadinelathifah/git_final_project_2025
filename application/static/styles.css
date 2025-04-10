@@ -374,11 +374,13 @@ form .btn-primary:hover {
     position: relative;
     overflow: hidden;
     height: 100vh;
+    background-color: whitesmoke;
 }
 
-#about-section.container {
+#about-section .container {
     position: relative;
     z-index: 10;
+    padding-top: 80px;
 }
 
 .about-img {
@@ -388,13 +390,15 @@ form .btn-primary:hover {
 
 .about-img.img-1 {
     height: 52vh;
-    right: 200px;
+    top: 0;
+    right: 130px;
     z-index: 5;
 }
 
 .about-img.img-2 {
     height: 55vh;
-    right: 100px;
+    top: 0;
+    right: 30px;
     opacity: 0.6;
     z-index: 3;
 }
@@ -409,8 +413,8 @@ form .btn-primary:hover {
 
 .about-img.img-4 {
     height: 40vh;
-    top: 250px;
-    right: 300px;
+    top: 100px;
+    right: 230px;
     opacity: 0.6;
     z-index: 1;
 }
@@ -423,9 +427,61 @@ form .btn-primary:hover {
     z-index: 1;
 } */
 
-.about-img.img-5 {
+/* .about-img.img-5 {
     height: 20vh;
     top: 450px;
     left: 0;
     z-index: 4;
+} */
+
+.about-img.img-6 {
+    height: 75px;
+    top: 0;
+    left: 70px;
+    z-index: 1;
 }
+
+.about-img.img-7 {
+    height: 75px;
+    transform: translateY(490px);
+    right: 60px;
+    z-index: 1;
+}
+
+.about-wrapper {
+    position: relative;
+}
+
+
+.about-wrapper .col-sm-8 {
+    position: relative;
+}
+
+.image-stack {
+    position: relative;
+    height: 100%;
+}
+
+.about-wrapper .col-sm-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.about-wrapper .card {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 20px;
+    background: white;
+    border-radius: 25px;
+    border: 2px solid white;
+    transform: translate(150px, 80px);
+    
+}
+
