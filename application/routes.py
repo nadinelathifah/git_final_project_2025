@@ -24,6 +24,13 @@ def welcome_client():
                             subheading='Explore and browse our services', 
                             background_image='/static/images/paint.jpeg')
 
+@app.route('/example')
+def empty():
+    return render_template('example.html',
+                            head='Example',
+                            title='This is an example webpage',
+                            subheading='This is a subtitle',
+                            background_image="/static/images/wideshot4.jpg")
 
 @app.route('/welcome/tradesperson')
 def welcome_tradesperson():
