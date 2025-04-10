@@ -144,6 +144,7 @@ footer {
 
 .navbar-nav .nav-link:hover {
     background: rgb(255, 247, 199);
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.2);
 }
 
 .bxs-chevron-down-circle {
@@ -382,7 +383,91 @@ form .btn-primary:hover {
     position: relative;
     z-index: 10;
     padding-top: 80px;
+    display: flex;
+    flex-direction: column;
 }
+
+#about-section .container h5 {
+    color: #158fd1;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+#about-section .container .typing-text h3 {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.typing-text .line-1,
+.typing-text .line-2 {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* .typing-text .line-1 {
+    border-right: 4px solid aquamarine;
+    animation: typingline1 5s steps(65);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.typing-text .line-2 {
+    border-right: none;
+    width: 0ch;
+    animation: typingline2 5s steps(42);
+    animation-delay: 5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes typingline1 {
+    0% {width: 0ch; border-right: 4px solid aquamarine;}
+    98.46% {width: 64ch; border-right: 4px solid aquamarine;}
+    100% {width: 65ch; border-right: none;}
+}
+
+@keyframes typingline2 {
+    0% {width: 0ch;}
+    2.381% {width: 1ch; border-right: 4px solid aquamarine;}
+    97.61% {width: 41ch; border-right: 4px solid aquamarine;}
+    100% {width: 42ch; border-right: none;}
+} */
+
+.typing-text .line-1 {
+    border-right: 4px solid aquamarine;
+    animation: typingline1 20s steps(65);
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+.typing-text .line-2 {
+    border-right: none;
+    width: 0ch;
+    animation: typingline2 20s steps(42);
+    animation-delay: 5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes typingline1 {
+    0% {width: 0ch; border-right: 4px solid aquamarine;}
+    24.61% {width: 64ch; border-right: 4px solid aquamarine;}
+    25% {width: 65ch; border-right: none;}
+    50% {width: 65ch; border-right: none;}
+    100% {width: 65ch; border-right: none;}
+}
+
+@keyframes typingline2 {
+    0% {width: 0ch;}
+    0.59% {width: 1ch; border-right: 4px solid aquamarine;}
+    24.4% {width: 41ch; border-right: 4px solid aquamarine;}
+    25% {width: 42ch; border-right: none;}
+    74.9% {width: 42ch; border-right: none;}
+    75% {width: 0; border-right: none;}
+    100% {width: 0; border-right: none;}
+}
+
 
 .about-img {
     position: absolute;
@@ -449,20 +534,20 @@ form .btn-primary:hover {
     z-index: 1;
 }
 
-.about-wrapper {
-    position: relative;
-}
-
-.about-wrapper .col-sm-8 {
-    position: relative;
-}
-
 .image-stack {
     position: relative;
     height: 100%;
 }
 
-.about-wrapper .col-sm-4 {
+.about-content {
+    position: relative;
+}
+
+.about-content .col-sm-8 {
+    position: relative;
+}
+
+.about-content .col-sm-4 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -471,7 +556,7 @@ form .btn-primary:hover {
     left: 0;
 }
 
-.about-wrapper .card {
+.about-content .card {
     text-align: center;
     padding: 10px;
     width: 100%;
@@ -486,31 +571,31 @@ form .btn-primary:hover {
     z-index: 3;
 }
 
-.about-wrapper .card h4 {
+.about-content .card h4 {
     text-transform: capitalize;
     margin-bottom: 10px;
 }
 
-.review-container {
+.statistic-content  {
     min-width: 100vw;
     height: auto;
     display: flex;
     justify-content: center;
 }
 
-.review-container .card {
+.statistic-content  .card {
     position: absolute;
     width: 60%;
     height: 16vh;
     bottom: 20px;
-    background: rgb(251, 142, 0);
+    background: rgb(255, 153, 44);
     border: 1px solid rgb(251, 142, 0);
     border-radius: 5px;
     color: black;
     padding: 20px;
 }
 
-.review-container .card p {
+.statistic-content .card p {
     text-transform: capitalize;
 }
 

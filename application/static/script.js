@@ -38,6 +38,38 @@ const closeForms = document.querySelectorAll(".form-popup .close-btn").forEach(f
 const inputBox = document.getElementsByClassName('.input-field');
 const label = document.getElementById('label');
 
-inputBox.addEventListener("keydown", function() {
-    inputBox.classList.remove(label)
-})
+function removeTheLabel() {
+    inputBox.classList.remove(label);
+}
+inputBox.addEventListener("keydown", removeTheLabel());
+
+// Trigger the typing animation on the about section when user is within viewport of the about section.
+// const typingAnimation = document.querySelector(".typing-text")
+// const aboutSection = document.getElementById("about-section")
+
+// window.addEventListener("scroll", function() {
+//     const position = aboutSection.getBoundingClientRect()
+
+//     if (position.top <= window.innerHeight * 0.5 && position.bottom >= window.innerHeight * 0.5 ) {
+//         typingAnimation.classList.add("start-typing");
+//     } else {
+//         typingAnimation.classList.remove("start-typing");
+//     }
+// });
+
+
+// const topPosition = aboutSection.offsetTop;
+
+// function triggerTyping() {
+//     if (window.scrollY >= topPosition) {
+//         typingAnimation.classList.add("start-typing");
+//     } else {
+//         typingAnimation.classList.remove("start-typing");
+//     }
+// }
+// window.addEventListener("scroll", triggerTyping());
+
+// .typing-text.start-typing .line-1,
+// .typing-text.start-typing .line-2 {
+//     visibility: visible;
+// } 
