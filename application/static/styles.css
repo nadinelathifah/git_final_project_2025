@@ -406,17 +406,8 @@ form .btn-primary:hover {
     z-index: 2;
 }
 
-/* Abstract Shape: Yellow */
-/* .about-img.img-3 {
-    height: 48vh;
-    top: 1000px;
-    right: 480px;
-    opacity: 0.9;
-    z-index: 2;
-} */
-
 /* Abstract Shape: Blue */
-.about-img.img-4 {
+.about-img.img-3 {
     height: 40vh;
     top: 100px;
     right: 230px;
@@ -424,22 +415,22 @@ form .btn-primary:hover {
     z-index: 1;
 }
 
-/* Abstract Shape: Blue */
-/* .about-img.img-4 {
-    height: 47vh;
-    top: 970px;
-    right: 150px;
-    opacity: 0.8;
+/* Logo: Hammer-Wrench */
+.about-img.img-4 {
+    height: 75px;
+    transform: translateY(490px);
+    right: 60px;
     z-index: 1;
-} */
+}
 
-/* Decoration: Dotted Line */
-/* .about-img.img-5 {
-    height: 20vh;
-    top: 450px;
-    left: 0;
-    z-index: 4;
-} */
+ /* Decoration: orange circle right */
+ .about-img.img-5 {
+    height: 180px;
+    right: 0;
+    top: 0;
+    opacity: 0.5;
+    z-index: 1;
+}
 
 /* Logo: Drill */
 .about-img.img-6 {
@@ -449,28 +440,12 @@ form .btn-primary:hover {
     z-index: 1;
 }
 
-/* Logo: Hammer-Wrench */
-.about-img.img-7 {
-    height: 75px;
-    transform: translateY(490px);
-    right: 60px;
-    z-index: 1;
-}
  /* Decoration: orange circle left */
-.about-img.img-8 {
+.about-img.img-7 {
     height: 250px;
     left: 0;
     transform: translate(-20px, 250px);
     opacity: 0.8;
-    z-index: 1;
-}
-
- /* Decoration: orange circle right */
-.about-img.img-9 {
-    height: 180px;
-    right: 0;
-    top: 0;
-    opacity: 0.5;
     z-index: 1;
 }
 
