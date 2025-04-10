@@ -39,4 +39,4 @@ class WorkerRegistrationForm(FlaskForm):
     town = StringField('Town', validators=[InputRequired('Please fill in your job location.')], render_kw={'class':'form-control'})
     email = StringField('Email', validators=[InputRequired('Please fill in your email address.')], render_kw={'class':'form-control'})
     password = PasswordField('Password', validators=[InputRequired('Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
-    submit = SubmitField('SIGN UP', render_kw={"name": "worker_submit","class": "btn btn-primary btn-lg btn-block"})
+    submit = SubmitField('SIGN UP', render_kw={"class": "btn btn-primary btn-lg btn-block"})

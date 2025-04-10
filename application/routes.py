@@ -58,9 +58,9 @@ def register_client():
                             head='client sign up', 
                             title='⚒ Connect with us ⚒', 
                             subheading='Get in touch with our skilled team',
-                            img1 = '/static/images/wideshot2.jpeg',
-                            img2='/static/decoration/arrowyellow.png',
-                            img3='/static/decoration/arrownavy.png')
+                            img1='decoration/arrowyellow.png',
+                            img2='decoration/arrownavy.png',
+                            background_image = '/static/images/wideshot2.jpeg')
 
 
 
@@ -85,9 +85,11 @@ def register_tradesperson():
             return redirect(url_for('welcome_tradesperson'))
     
     return render_template('register_tradesperson.html', 
-                           form=worker_register, 
-                           message=error,
-                           head='tradesperson sign up', 
-                           title='Get Bookings Now!', 
+                            form=worker_register, 
+                            message=error,
+                            head='tradesperson sign up', 
+                            title='⚒ Get Bookings Now! ⚒', 
                             subheading='Sign up and join our heroes',
-                           img='static/images/wideshot.jpg')
+                            img1='decoration/arroworange.png',
+                            img2='decoration/arrownavy.png',
+                            background_image='/static/images/wideshotb.jpeg')

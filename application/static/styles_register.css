@@ -7,6 +7,22 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+footer {
+    padding: 10px;
+    color: rgb(0, 21, 116);
+    font-weight: 500;
+    background: wheat;
+}
+
+.footer-item {
+    list-style: none;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: rgb(0, 21, 116);
+}
+
 #hero-section {
     padding-top: 250px;
     height: auto;
@@ -41,21 +57,25 @@
     padding-right: 15px;
 }
 
-footer {
-    padding: 10px;
-    color: rgb(0, 21, 116);
-    font-weight: 500;
-    background: wheat;
+.hero-img {
+    position: absolute;
+    width: 200px;
+    height: auto;
 }
 
-.footer-item {
-    list-style: none;
+.hero-img.img-1 {
+    top: 90px;
+    right: 500px;
+    z-index: 3;
 }
 
-.footer-link {
-    text-decoration: none;
-    color: rgb(0, 21, 116);
+.hero-img.img-2 {
+    top: 92px;
+    right: 502px;
+    z-index: 2;
+    opacity: 0.4;
 }
+
 
 /* -------------- Navbar Styling -------------- */
 /* --- Logo --- */
@@ -188,15 +208,18 @@ footer {
     width: 100%;
     max-width: 400px;
     background: white;
-    border-radius: 25px;
+    border-radius: 35px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border: 6px solid rgb(255, 238, 124);
     text-transform: capitalize;
     font-weight: 500;
     padding: 40px;
     text-align: center;
+    margin-top: -60px;
+    transform: translateX(-60px);
 }
 
+#tradesperson-signup h2,
 #client-signup h2 {
     margin-bottom: 20px;
 }
@@ -235,7 +258,7 @@ form .input-field label {
 }
 
 form .btn-primary {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 10px;
     width: 100%;
     background-color: #007bff;
@@ -245,3 +268,23 @@ form .btn-primary {
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+
+#tradesperson-signup {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border: 6px solid #fcc027;
+    border-radius: 35px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    height: auto;
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 40px;
+    text-align: center;
+    margin-top: -80px;
+    transform: translateX(-30px);
+}
+

@@ -48,31 +48,14 @@
 
         <section id="hero-section"
             style="
-            background: url('{{ img1 }}');
+            background: url('{{ background_image }}');
             height: 100vh;
             width: auto;
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;">
-            <img src="{{ img2 }}" alt="Arrow Decoration"
-            style="
-            position: absolute;
-            width: 200px;
-            height: auto;
-            top: 140px;
-            right: 450px;
-            z-index: 3;
-            ">
-            <img src="{{ img3 }}" alt="Arrow Decoration"
-            style="
-            position: absolute;
-            width: 200px;
-            height: auto;
-            top: 142px;
-            right: 452px;
-            opacity: 0.4;
-            z-index: 2;
-            ">
+            <img class="hero-img img-1" src="{{ url_for('static', filename=img1) }}" alt="Decorative Arrow">
+            <img class="hero-img img-2" src="{{ url_for('static', filename=img2) }}" alt="Decorative Arrow">
             {% block body_content %}
             {% endblock %}  
         </section>
