@@ -5,6 +5,7 @@
 #example-section {
     height: 100vh;                /* Setting the height to 100vh ensures the section spans the entire height of the screen - vh is short for viewport height. */
     background: whitesmoke;     /* This sets the background colour to whitesmoke*/
+    overflow-y: auto;
 }
 
 /* To add styling to the card, we have to specify which id or class this card is from (#example-section) */
@@ -25,6 +26,7 @@
     justify-content: center;     /* Centers the items horizontally */
     align-items: center;         /* Centers the items vertically */
     gap: 50px;                   /* Adds space (gap) between the items in the flexbox container – i.e. gap between cards. */
+    flex-wrap: wrap;
 }
 
 /* We are specifically targeting the h3 heading of each card */
@@ -67,13 +69,18 @@
 
 /* Editing the bottom box styling */
 #example-bottom-container .box {
-    height: 30vh;
+    min-height: 30vh;
     width: 70vw; 
     background: white;
     border: 1px solid rgb(0, 21, 116);
     border-radius: 15px;
     box-shadow: -10px 10px #96c9ff;
     padding: 20px;
+    overflow-block: auto;
+}
+
+#example-bottom-container .box h4 {
+    font-size: 1.3rem;
 }
 
 
