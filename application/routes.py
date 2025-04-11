@@ -16,12 +16,14 @@ def home():
                            background_image='static/images/wideshot44.jpeg')
 
 @app.route('/example')
-def empty():
+def example():
     return render_template('example.html',
                             head='Example',
                             title='This is an example webpage',
                             subheading='This is a subtitle',
-                            background_image="/static/images/wideshot4.jpg")
+                            img1='decoration/squiggle2.png',
+                            img2='decoration/squiggle.png',
+                            background_image="/static/images/example.jpg")
 
 @app.route('/welcome/client')
 def welcome_client():

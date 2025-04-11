@@ -1,16 +1,46 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<section id="example">
+<section id="example-section">
     <div class="container pt-5">
         <h1>This is a title in the body</h1>
         <p>This is a paragraph</p>
     </div>
-    <div class="card">
-        <h3>This is a card</h3>
-        <p>card stuff</p>
-    </div>
+    <div class="example-wrapper">
+        <div class="col-sm">
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/house.jpg' )}}" alt="">
+                <h3>This is a card</h3>
+                <p>card content</p>
+<!--                <a href="#"><button class="btn btn-primary">This is a button</button></a>-->
+            </div>
 
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/house4.jpg' )}}" alt="">
+                <h3>This is a card</h3>
+                <p>card content</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/house3.jpg' )}}" alt="">
+                <h3>This is a card</h3>
+                <p>card content</p>
+            </div>
+        </div>
+
+        <div id="example-bottom-container" class="container">
+            <div class="box">
+                <h4>This is a random text box to add writing or content. 
+                    This is a super basic example of what you can add to your respective webpages.
+                    <br>If you want me to do one for an accordion or a carousel please let me know.
+                    <br>Otherwise I will work on another layout soon.
+                </h4>
+            </div>
+        </div>
+
+    </div>
 </section>
 
 {% endblock %}
+
+
