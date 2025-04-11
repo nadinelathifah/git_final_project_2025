@@ -10,6 +10,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 footer {
     padding: 15px;
     color: rgb(0, 21, 116);
@@ -30,6 +34,7 @@ footer {
 
 #hero-section {
     padding-top: 250px;
+    position: relative;
 }
 
 #hero-section h1 {
