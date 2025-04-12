@@ -73,3 +73,8 @@ inputBox.addEventListener("keydown", removeTheLabel());
 // .typing-text.start-typing .line-2 {
 //     visibility: visible;
 // } 
+
+AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+  });

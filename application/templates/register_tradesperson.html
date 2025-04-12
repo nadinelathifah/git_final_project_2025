@@ -3,7 +3,7 @@
 
 <div class="main-wrapper container pt-5">
     <div>
-        <h1>{{ title }}
+        <h1 data-aos="fade-up">{{ title }}
             <span class="material-symbols-outlined" 
             style="
             font-variation-settings: 'FILL' 1; 
@@ -11,9 +11,9 @@
             display: inline-flex; 
             vertical-align: middle;">construction</span>
         </h1>
-        <h4>{{ subheading }}</h4>
+        <h4 data-aos="fade-up">{{ subheading }}</h4>
     </div>
-    <div id="tradesperson-signup">
+    <div data-aos="fade-up" id="tradesperson-signup">
         <h2>Sign Up</h2>
         <form action="" method="POST">
             {{ form.hidden_tag() }}

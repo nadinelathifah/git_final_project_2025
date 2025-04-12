@@ -23,11 +23,13 @@ footer {
     color: rgb(0, 21, 116);
 }
 
+
+/* -------------- Hero-Section Styling -------------- */
 #hero-section {
     padding-top: 250px;
     height: auto;
     position: relative;
-    overflow-y:unset;
+    overflow-y: auto;
 }
 
 #hero-section h1 {
@@ -74,6 +76,20 @@ footer {
     right: 502px;
     z-index: 2;
     opacity: 0.4;
+}
+
+.hero-img.img-3 {
+    bottom: 120px;
+    right: 600px;
+    opacity: 0.95;
+    z-index: 3;
+}
+
+.hero-img.img-4 {
+    bottom: 118px;
+    right: 598px;
+    opacity: 0.4;
+    z-index: 2;
 }
 
 

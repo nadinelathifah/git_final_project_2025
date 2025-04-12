@@ -11,8 +11,8 @@ def home():
                            head="home",
                            title="My Home Heroes",
                            subheading="need a hand? call our heroes!",
-                           img1='decoration/squiggle2.png',
-                           img2='decoration/squiggle.png',
+                           img1='decoration/squiggleblue.png',
+                           img2='decoration/squiggleblue2.png',
                            background_image='static/images/wideshot44.jpeg')
 
 @app.route('/example')
@@ -69,6 +69,8 @@ def register_client():
                             subheading='Get in touch with our skilled team',
                             img1='decoration/arrowyellow.png',
                             img2='decoration/arrownavy.png',
+                            img3='decoration/arrowupyellow.png',
+                            img4='decoration/arrowupblack.png',
                             background_image = '/static/images/wideshot2.jpeg')
 
 
@@ -101,4 +103,26 @@ def register_tradesperson():
                             subheading='Sign up and join our team of heroes',
                             img1='decoration/arroworange.png',
                             img2='decoration/arrownavy.png',
-                            background_image='/static/images/wideshotb.jpeg')
+                            img3='decoration/arrowuporange.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image='/static/images/wideshot6.jpg')
+
+
+@app.route('/services/painting')
+def painting():
+    return render_template('painting.html', 
+                           head='Painting Services',
+                           title='Painting',
+                           subheading='Home needs a splash of colour? Call our painters',
+                           icon='imagesearch_roller',
+                           img1='decoration/squiggleblue.png',
+                           background_image='/static/images/paint.jpeg')
+
+@app.route('/services/lawn_care')
+def lawn_care():
+    return render_template('lawn_care.html',
+                           head='Lawn Care Services',
+                           title='Yardwork & Lawn Care',
+                           subheading='need your hedges trimmed? look no further...',
+                           icon='psychiatry',
+                           background_image='/static/images/lawn3.jpg')
