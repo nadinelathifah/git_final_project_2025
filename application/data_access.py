@@ -11,7 +11,7 @@ else:
 #   host="localhost",
 #   user="root",
 #   password="password",
-#   database="tradespeopledb"
+#   database="homeheroes1"
 # )
 
 
@@ -20,7 +20,7 @@ def get_tradespeopledb_connection():
         host="localhost",
         user="root",
         password="password",
-        database="tradespeopledb"
+        database="homeheroes1"
     )
     return mydb
 

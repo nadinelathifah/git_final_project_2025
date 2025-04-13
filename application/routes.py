@@ -11,17 +11,19 @@ def home():
                            head="home",
                            title="My Home Heroes",
                            subheading="need a hand? call our heroes!",
-                           img1='decoration/squiggle2.png',
-                           img2='decoration/squiggle.png',
+                           img1='decoration/squiggleblue.png',
+                           img2='decoration/squiggleblue2.png',
                            background_image='static/images/wideshot44.jpeg')
 
 @app.route('/example')
-def empty():
+def example():
     return render_template('example.html',
                             head='Example',
                             title='This is an example webpage',
                             subheading='This is a subtitle',
-                            background_image="/static/images/wideshot4.jpg")
+                            img1='decoration/squiggle2.png',
+                            img2='decoration/squiggle.png',
+                            background_image="/static/images/example.jpg")
 
 @app.route('/welcome/client')
 def welcome_client():
@@ -63,10 +65,12 @@ def register_client():
                             form=client_register, 
                             message=error,
                             head='client sign up', 
-                            title='⚒ Connect with us ⚒', 
+                            title='Connect with us', 
                             subheading='Get in touch with our skilled team',
                             img1='decoration/arrowyellow.png',
                             img2='decoration/arrownavy.png',
+                            img3='decoration/arrowupyellow.png',
+                            img4='decoration/arrowupblack.png',
                             background_image = '/static/images/wideshot2.jpeg')
 
 
@@ -95,9 +99,9 @@ def register_tradesperson():
                             form=worker_register, 
                             message=error,
                             head='tradesperson sign up', 
-                            title='⚒ Get Bookings Now! ⚒', 
+                            title='Get Bookings Now!', 
                             subheading='Sign up and join our team of heroes',
-                            img1='decoration/arrowyellow.png',
+                            img1='decoration/arroworange.png',
                             img2='decoration/arrownavy.png',
                             background_image='/static/images/wideshotb.jpeg')
 
@@ -110,3 +114,24 @@ def example():
                                img1='decoration/squiggle2.png',
                                img2='decoration/squiggle.png',
                                background_image="/static/images/electrician1.jpg")
+
+
+@app.route('/services/painting')
+def painting():
+    return render_template('painting.html', 
+                           head='Painting Services',
+                           title='Painting',
+                           subheading='Home needs a splash of colour? Call our painters',
+                           icon='imagesearch_roller',
+                           background_image='/static/paints/painting.jpg')
+
+@app.route('/services/lawn_care')
+def lawn_care():
+    return render_template('lawn_care.html',
+                           head='Lawn Care Services',
+                           title='Yardwork & Lawn Care',
+                           subheading='need your hedges trimmed? look no further...',
+                           icon='psychiatry',
+                           background_image='/static/images/lawn3.jpg')
+
+
