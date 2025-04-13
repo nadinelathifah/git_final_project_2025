@@ -605,3 +605,9 @@ form .btn-primary:hover {
     height: 100vh;
     background-color: aliceblue;
 }
+
+/* Electrician */
+#electrian-section {
+    height: 100vh;
+    background: whitesmoke;
+    }

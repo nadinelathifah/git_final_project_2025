@@ -100,3 +100,13 @@ def register_tradesperson():
                             img1='decoration/arrowyellow.png',
                             img2='decoration/arrownavy.png',
                             background_image='/static/images/wideshotb.jpeg')
+
+@app.route('/electrician')
+def example():
+        return render_template('electrician.html',
+                               head='Electrician',
+                               title='Your Local Electrical Home Heroes Are Here!',
+                               subheading='Flickering light, a faulty socket, or need a complete electrical overhaul? Home Heroes are on call!',
+                               img1='decoration/squiggle2.png',
+                               img2='decoration/squiggle.png',
+                               background_image="/static/images/electrician1.jpg")
