@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout_services.html" %}
 {% block body_content %}
 
 <section id="electrician-section">
@@ -18,8 +18,21 @@
         <h2>Need an Electrical Hero? Contact Us Today for a Free Quote! </h2>
     </div>
 
-
 </section>
 
-
+<section id="lawncare-section">
+    <div class="container pt-5">
+        <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/waterhose.jpg' )}}" alt="">
+        <div class="card"></div>
+        <div class="content">
+            <h3>Lawn Care Services <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>
+            <p>Not everyone was born with a green thumb — and that's okay.
+                Sometimes, a tidy lawn or freshly mulched garden bed is all it takes to freshen up your green spaces.
+                <br>At My Home Hero, we’re all about those little wins.
+                Whether you need a little help sprucing up the front yard or a full backyard rescue mission,
+                our garden pros will transform your outdoor spaces into places to spend time with family and friends.
+            </p>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -117,7 +117,7 @@ def register_tradesperson():
                             background_image='/static/images/wideshotb.jpeg')
 
 @app.route('/electrician')
-def example():
+def electrician():
         return render_template('electrician.html',
                                head='Electrician',
                                title='Your Local Electrical Home Heroes Are Here!',
