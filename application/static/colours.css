@@ -8,16 +8,21 @@
 
 /* Colour Palette */
 title {
+    color: rgb(255, 238, 124);
     color: rgb(255, 219, 141);
     color: rgb(247, 173, 0);
     color: rgb(251, 142, 0);
+    color: rgb(255, 136, 16);
     color: rgb(68, 110, 193);
     color: rgb(0, 21, 116);
+    background: linear-gradient(to bottom, rgb(255, 136, 16), rgb(238, 99, 18));
+    background: linear-gradient(to bottom, rgb(251, 142, 0), rgb(255, 93, 44));
 
     color: #007bff;
+    color: #96c9ff;
     color: #0056b3;
     color: rgb(10, 71, 107);
-    color: #ffb703, #eae2b7,  #e5e5e5, #90e0ef, #2a4a8a, #ffd066;
+    color: #ffb703, #eae2b7,  #e5e5e5, #90e0ef, #00b4d8, #2a4a8a, #ffd066;
 
     color: #0F2043;
     color: #162F65;
@@ -26,6 +31,9 @@ title {
     color: #E7E6DD;
     color: #3361AC;
     color: #158fd1;
+
+    background: rgb(255, 249, 229);
+    background: rgb(246, 255, 220);
 
 }
 

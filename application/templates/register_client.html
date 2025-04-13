@@ -1,4 +1,40 @@
-{% extends "layout_form.html" %}
+{% extends "layout_register.html" %}
 {% block body_content %}
+
+<div class="container pt-5">
+    <div class="main-wrapper">
+        <div class="container">
+            <h1 data-aos="fade-up">{{ title }}</h1>
+            <h4 data-aos="fade-up">{{ subheading }}</h4>
+        </div>
+        <div data-aos="fade-up" id="client-signup">
+            <h2>Sign Up</h2>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="input-field">
+                    {{ form.first_name.label}}
+                    {{ form.first_name}}
+                </div>
+                <div class="input-field">
+                    {{ form.last_name.label }}
+                    {{ form.last_name }}
+                </div>
+                <div class="input-field">
+                    {{ form.dob.label }}
+                    {{ form.dob }}
+                </div>
+                <div class="input-field">
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </div>
+                <div class="input-field">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </div>
+                {{ form.submit }}
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

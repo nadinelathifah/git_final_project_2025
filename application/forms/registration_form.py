@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
 from wtforms.fields.choices import SelectField
-from wtforms.validators import ValidationError, InputRequired
+from wtforms.validators import ValidationError, InputRequired, Length, Email
 
     
 def password_validation(form, field):
@@ -15,9 +15,10 @@ def password_validation(form, field):
     
 
 class ClientRegistrationForm(FlaskForm):
-    first_name = StringField('Firstname', validators=[InputRequired('Please fill in your first name.')], render_kw={'class':'form-control'})
-    last_name = StringField('Lastname', validators=[InputRequired('Please fill in your surname.')], render_kw={'class':'form-control'})
-    email = StringField('Email', validators=[InputRequired('Please fill in your email address.')], render_kw={'class':'form-control'})
+    first_name = StringField('Firstname', validators=[InputRequired('Please fill in your first name.'), Length(max=100)], render_kw={'class':'form-control'})
+    last_name = StringField('Lastname', validators=[InputRequired('Please fill in your surname.'), Length(max=150)], render_kw={'class':'form-control'})
+    dob = StringField('Date of Birth', validators=[InputRequired('Please fill in your date of birth.'), Email('Please enter a valid email address.')], render_kw={'class':'form-control'})
+    email = StringField('Email', validators=[InputRequired('Please fill in your email address.'), Length(max=150)], render_kw={'class':'form-control'})
     password = PasswordField('Password', validators=[InputRequired('Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
     submit = SubmitField('SIGN UP', render_kw={"class": "btn btn-primary btn-lg btn-block"})
 
@@ -38,4 +39,4 @@ class WorkerRegistrationForm(FlaskForm):
     town = StringField('Town', validators=[InputRequired('Please fill in your job location.')], render_kw={'class':'form-control'})
     email = StringField('Email', validators=[InputRequired('Please fill in your email address.')], render_kw={'class':'form-control'})
     password = PasswordField('Password', validators=[InputRequired('Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
-    submit = SubmitField('SIGN UP', render_kw={"name": "worker_submit","class": "btn btn-primary btn-lg btn-block"})
+    submit = SubmitField('SIGN UP', render_kw={"class": "btn btn-primary btn-lg btn-block"})

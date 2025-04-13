@@ -1,0 +1,210 @@
+/* -------------- Painting Services -------------- */
+
+#painting-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    background: rgb(255, 249, 229);
+    z-index: 0;
+}
+
+#painting-section .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1;
+}
+
+#painting-section .card {
+    position: relative;
+    height: 80vh;
+    width: 80vw;
+    background: linear-gradient(to left, rgb(255, 125, 125), rgb(246, 142, 114), rgb(255, 249, 229));
+    border: none;
+    border-radius: 25px;
+    margin-top: 85px;
+    z-index: 2;
+}
+
+#painting-section .content {
+    position: absolute;
+    bottom: 120px;
+    right: 50px;
+    background: whitesmoke;
+    height: 42vh;
+    width: 47vw;
+    border-radius: 25px;
+    padding: 30px;
+    overflow-y: auto;
+    z-index: 5;
+}
+
+#painting-section .content h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.75rem;
+}
+
+#painting-section .content p {
+    font-size: 1rem;
+    font-weight: 420;
+}
+
+#painting-section .container img {
+    position: absolute;
+    left: 80px;
+    bottom: 60px;
+    max-height: 65vh;
+    height: auto;
+    border-radius: 50px;
+    z-index: 3;
+}
+
+
+/* iPad Pro */
+@media (max-width: 1024px) {
+    #painting-section .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #painting-section .card {
+        width: 95vw;
+        height: 95vh;
+        margin-top: 25px;
+    }
+
+    #painting-section .content {
+        width: 83%;
+        height: 35%;
+        left: 80px;
+        bottom: 40px;
+        padding: 40px;
+    }
+
+    #painting-section .content h3 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.7rem;
+    }
+
+    #painting-section .content p {
+        font-size: 1.4rem;
+    }
+
+    #painting-section .container img {
+        height: 60%;  
+        border-radius: 15px;
+        top: 80px;
+        left: 85px;
+    }
+}
+
+/* iPad Mini */
+@media (max-width: 768px) {
+    #painting-section .content {
+        left: 60px;
+        bottom: 40px;
+        width: 83%;
+        height: 41.5%;
+    }
+
+    #painting-section .content h3 {
+        font-size: 1.5rem;
+    }
+
+    #painting-section .content p {
+        font-size: 1.1rem;
+    }
+
+    #painting-section .container img {
+        top: 60px;
+        left: 60px;
+        border-radius: 20px;
+    }
+}
+
+/* iPhone 13 */
+@media (max-width: 390px) {
+    #painting-section .container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #painting-section .card {
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;
+    }
+
+    #painting-section .content {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 61%;
+    }
+
+    #painting-section .content h3 {
+        font-size: 1.35rem;
+    }
+
+    #painting-section .content p {
+        font-size: 1rem;
+    }
+
+    #painting-section .container img {
+        height: 44.9%;
+        top: 0;
+        left: 0;
+        border-radius: 20px;
+    }
+
+}
+
+
+
+/* @media (max-width: 2560px) {
+    #painting-section .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #painting-section .card {
+        position: relative;
+        min-height: 80vh;
+        min-width: 80vw;
+    }
+
+    #painting-section .container img {
+        position: absolute;
+        max-width: 40vw;
+        height: auto;
+        border-radius: 50px;
+        z-index: 3;
+    }
+
+    #painting-section .content {
+        bottom: 0;
+        right: 0;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    #painting-section .content h3 {
+        font-size: 3rem;
+    }
+
+    #painting-section .content p {
+        font-size: 1.7rem;
+    }
+
+} */
