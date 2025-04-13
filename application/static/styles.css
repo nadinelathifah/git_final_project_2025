@@ -691,6 +691,11 @@ form .btn-primary:hover {
     background-color: #fcf8e5;
 }
 
+/* Electrician */
+#electrian-section {
+    height: 100vh;
+    background: whitesmoke;
+    }
 
 
 /* -------------- How Section -------------- */
@@ -764,3 +769,4 @@ form .btn-primary:hover {
     border-radius: 50px;
     z-index: 3;
 }
+>>>>>>> 0c19cd4783d0cfb046790edf9cc17ae98c667bf8

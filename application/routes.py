@@ -114,9 +114,17 @@ def register_tradesperson():
                             subheading='Sign up and join our team of heroes',
                             img1='decoration/arroworange.png',
                             img2='decoration/arrownavy.png',
-                            img3='decoration/arrowuporange.png',
-                            img4='decoration/arrowupblack.png',
-                            background_image='/static/images/wideshot6.jpeg')
+                            background_image='/static/images/wideshotb.jpeg')
+
+@app.route('/electrician')
+def example():
+        return render_template('electrician.html',
+                               head='Electrician',
+                               title='Your Local Electrical Home Heroes Are Here!',
+                               subheading='Flickering light, a faulty socket, or need a complete electrical overhaul? Home Heroes are on call!',
+                               img1='decoration/squiggle2.png',
+                               img2='decoration/squiggle.png',
+                               background_image="/static/images/electrician1.jpg")
 
 
 @app.route('/login/client', methods=['GET', 'POST'])
