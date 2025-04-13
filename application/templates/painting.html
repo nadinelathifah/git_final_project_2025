@@ -2,7 +2,22 @@
 {% block body_content %}
 
 <section id="painting-section">
-    <h2>This is the painting section</h2>
+    <div class="container">
+        <div class="card"></div>
+            <div class="content">
+                <h3>Painting Services <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>
+                <p>Here at My Home Heroes we believe your home deserves walls that reflect your personal style. 
+                    Whether you're moving into a new place or simply refreshing your current one, our pros specialize in painting, 
+                    wallpaper design, and giving your walls a complete makeover with a fresh coat or a brand new look. 
+                    Whether you want a bold, vibrant design or something more subtle, our experts will help bring your vision to life. 
+                    if you're dealing with old wallpaper, we'll remove it carefully, start with a clean slate and create something that really suits you!
+                </p>
+            </div>
+            <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/painter.jpeg' )}}" alt="">
+        </div>
+    </div>
 </section>
 
 {% endblock %}
+
+

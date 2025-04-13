@@ -1,13 +1,16 @@
 /* -------------- Lawn Care Services -------------- */
 
 #lawncare-section {
-    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
     background: rgb(255, 249, 229);
     z-index: 1;
 }
 
 #lawncare-section .container {
     position: relative;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -20,7 +23,7 @@
     background: linear-gradient(to left, rgb(125, 218, 151), rgb(159, 226, 137), rgb(255, 249, 229));
     border: none;
     border-radius: 25px;
-    margin-top: 10px;
+    margin-top: 40px;
     z-index: 2;
 }
 
@@ -36,14 +39,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    opacity: 0.95;
+    overflow: auto;
 }
 
 #lawncare-section .content h3 {
     margin-top: 10px;
     margin-bottom: 10px;
+    font-size: 1.75rem;
 }
 
+#lawncare-section .content p {
+    font-size: 1rem;
+    font-weight: 420;
+}
 
 #lawncare-section .container img {
     position: absolute;
@@ -53,3 +61,126 @@
     z-index: 3;
 }
 
+/* iPad Pro */
+@media (max-width: 1024px) {
+    #lawncare-section .container {
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+    }
+
+    #lawncare-section .card {
+        width: 90vw;
+        height: 90vh;
+        margin-top: 10px;
+    }
+
+    #lawncare-section .content {
+        width: 75%;
+        height: 40%;
+        bottom: 100px;
+        left: 150px;
+        margin-bottom: 20px;
+        padding: 40px;
+    }
+
+    #lawncare-section .content h3 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.7rem;
+    }
+    
+    #lawncare-section .content p {
+        font-size: 1.4rem;
+    }
+
+    #lawncare-section .container img {
+        width: 70%; 
+        height: auto;  
+        border-radius: 15px;
+        top: 180px;
+        left: 150px;
+    }
+}
+
+/* iPad Mini */
+@media (max-width: 768px) {
+    #lawncare-section .container {
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+    }
+
+    #lawncare-section .card {
+        width: 90vw;
+        height: 90vh;
+        margin-top: 10px;
+    }
+
+    #lawncare-section .content {
+        width: 80%;
+        height: 40%;
+        bottom: 75px;
+        left: 100px;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    #lawncare-section .container img {
+        width: 70%; 
+        height: auto;  
+        border-radius: 15px;
+        top: 150px;
+        left: 100px;
+    }
+
+    #lawncare-section .content h3 {
+        font-size: 1.5rem; 
+    }
+
+    #lawncare-section .content p {
+        font-size: 1.1rem;
+    }
+}
+
+/* iPhone */
+@media (max-width: 390px) {
+    #lawncare-section .container {
+        height: auto;
+        width: auto;
+    }
+
+    #lawncare-section .card {
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;
+    }
+
+    #lawncare-section .content {
+        width: 100%;
+        height: 50%;
+        bottom: 60px;
+        left: 30px;
+        border-radius: 0;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    #lawncare-section .container img {
+        width: 100%; 
+        top: 100px;
+        left: 0;
+        border-radius: 0;
+        height: auto;
+    }
+
+    #lawncare-section .content h3 {
+        font-size: 1.35rem; 
+    }
+
+    #lawncare-section .content p {
+        font-size: 1rem;
+    }
+}

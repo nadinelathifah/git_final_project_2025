@@ -105,7 +105,7 @@ def register_tradesperson():
                             img2='decoration/arrownavy.png',
                             img3='decoration/arrowuporange.png',
                             img4='decoration/arrowupblack.png',
-                            background_image='/static/images/wideshot6.jpg')
+                            background_image='/static/images/wideshot6.jpeg')
 
 
 @app.route('/services/painting')
@@ -115,8 +115,7 @@ def painting():
                            title='Painting',
                            subheading='Home needs a splash of colour? Call our painters',
                            icon='imagesearch_roller',
-                           img1='decoration/squiggleblue.png',
-                           background_image='/static/images/paint.jpeg')
+                           background_image='/static/paints/painting.jpg')
 
 @app.route('/services/lawn_care')
 def lawn_care():
@@ -126,3 +125,12 @@ def lawn_care():
                            subheading='need your hedges trimmed? look no further...',
                            icon='psychiatry',
                            background_image='/static/images/lawn3.jpg')
+
+
+@app.route('/fix')
+def fix():
+    return render_template('fix.html',
+                           head="home",
+                           title="My Home Heroes",
+                           subheading="need a hand? call our heroes!",
+                           background_image='static/images/wideshot44.jpeg')
