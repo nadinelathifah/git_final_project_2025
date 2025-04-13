@@ -2,7 +2,6 @@ import mysql.connector
 import bcrypt
 import sys
 
-
 if sys.platform == "win32":
     mysql_password = "password"
 else:
@@ -12,7 +11,7 @@ else:
 #   host="localhost",
 #   user="root",
 #   password="password",
-#   database="tradespeopledb"
+#   database="homeheroes1"
 # )
 
 
@@ -20,8 +19,8 @@ def get_tradespeopledb_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password=mysql_password,
-        database="tradespeopledb"
+        password="password",
+        database="homeheroes1"
     )
     return mydb
 
