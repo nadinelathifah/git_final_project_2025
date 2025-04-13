@@ -18,12 +18,10 @@
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <div class="input-field">
-                {{ form.first_name.label}}
-                {{ form.first_name}}
+                {{ form.first_name(class="form-control", placeholder="Firstname") }}
             </div>
             <div class="input-field">
-                {{ form.last_name.label}}
-                {{ form.last_name}}
+                {{ form.last_name(class="form-control", placeholder="Lastname") }}
             </div>
             <div class="input-field">
                 {{ form.dob}}
@@ -37,12 +35,10 @@
                 {{ form.town }}
             </div>
             <div class="input-field">
-                {{ form.email.label }}
-                {{ form.email }}
+                {{ form.email(class="form-control", placeholder="Email") }}
             </div>
             <div class="input-field">
-                {{ form.password.label }}
-                {{ form.password }}
+                {{ form.password(class="form-control", placeholder="Password") }}
             </div>
             {{ form.submit }}
         </form>

@@ -2,30 +2,29 @@ import mysql.connector
 import bcrypt
 import sys
 
-if sys.platform == "win32":
-    mysql_password = "password"
-else:
-    mysql_password = ""
+# if sys.platform == "win32":
+#     mysql_password = "password"
+# else:
+#     mysql_password = ""
 
-# mydb = mysql.connector.connect(
-#   host="localhost",
-#   user="root",
-#   password="password",
-#   database="homeheroes1"
-# )
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="",
+  database="homeheroes1"
+)
 
-
-def get_tradespeopledb_connection():
+def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password",
+        password="",
         database="homeheroes1"
     )
     return mydb
 
 def add_client(firstname, lastname, date_of_birth, email, password):
-    conn = get_tradespeopledb_connection()
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
@@ -38,7 +37,7 @@ def add_client(firstname, lastname, date_of_birth, email, password):
     print(f"Client, {firstname} {lastname}, was added.")
 
 def add_tradesperson(firstname, lastname, date_of_birth, profession, town, email, password):
-    conn = get_tradespeopledb_connection()
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
@@ -52,7 +51,7 @@ def add_tradesperson(firstname, lastname, date_of_birth, profession, town, email
 
 
 def get_client():
-    conn = get_tradespeopledb_connection()
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("""
     SELECT
@@ -63,6 +62,26 @@ def get_client():
 
 def get_tradesperson():
     pass
+
+def find_user(email, role):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    if role == 'client':
+        query = 'SELECT * FROM clients WHERE email = %s'
+    elif role == 'tradesperson':
+        query = 'SELECT * FROM tradespeople WHERE email = %s'
+    else:
+        raise ValueError()
+
+    cursor.execute(query, (email,))
+    user = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    return user
+
 
 if __name__ == "__main__":
     main()

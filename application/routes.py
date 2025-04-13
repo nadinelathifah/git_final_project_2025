@@ -1,7 +1,7 @@
-from flask import render_template, url_for, request, redirect
+from flask import render_template, url_for, request, redirect, session
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson
+from application.data_access import add_client, add_tradesperson, find_user
 from application import app
 
 @app.route('/')
@@ -27,10 +27,14 @@ def example():
 
 @app.route('/welcome/client')
 def welcome_client():
-    return render_template('welcome_client.html', 
+    name = request.args.get('name', 'Guest')
+    return render_template('welcome_client.html',
+                           name=name,
                             head='welcome', 
                             title='Account Successfully Created!', 
-                            subheading='Explore and browse our services', 
+                            subheading='Explore and browse our services',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
                             background_image='/static/images/paint.jpeg')
 
 
@@ -39,7 +43,9 @@ def welcome_tradesperson():
     return render_template('welcome_tradesperson.html',
                             head='welcome', 
                             title='Account Successfully Created!', 
-                            subheading='Let''s get started!', 
+                            subheading='Let''s get started!',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
                             background_image='/static/images/wield.jpg')
 
 
@@ -51,15 +57,20 @@ def register_client():
     if request.method == 'POST':
         first_name = client_register.first_name.data
         last_name = client_register.last_name.data
+        date_of_birth = client_register.dob.data
         email = client_register.email.data
         password = client_register.password.data
 
         if len(first_name) == 0 or len(last_name) == 0:
             error = 'Please provide both a first and last name'
         else:
-            clients.append({'Firstname': first_name, 'Lastname': last_name, 'Email': email, 'Password': password})
-            add_client(first_name, last_name, email, password)
-            return redirect(url_for('welcome_client'))
+            clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Email': email, 'Password': password})
+            add_client(first_name, last_name, date_of_birth, email, password)
+
+            session['loggedIn'] = True
+            session['username'] = first_name
+
+            return redirect(url_for('welcome_client', name=first_name))
         
     return render_template('register_client.html', 
                             form=client_register, 
@@ -108,6 +119,72 @@ def register_tradesperson():
                             background_image='/static/images/wideshot6.jpeg')
 
 
+@app.route('/login/client', methods=['GET', 'POST'])
+def login_client():
+    error = ""
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        role = 'client' 
+
+        try:
+            user = find_user(email, role)
+            if user[4] == password:
+                session['loggedIn'] = True
+                session['username'] = email
+                session['role'] = role
+                session['first_name'] = user[1]
+
+                return redirect(url_for('welcome_client'))
+            else:
+                error = "Invalid credentials. Please try again."
+        except ValueError as err:
+            print('User does not exist.')
+            error = "User does not exist. Please sign up first."
+    return render_template('login_client.html', 
+                           error=error,
+                           head='Welcome Client',
+                           title='welcome back',
+                           subheading='let''s get started')
+
+
+@app.route('/login/tradesperson', methods=['GET', 'POST'])
+def login_tradesperson():
+    error = ""
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        role = 'tradesperson'
+
+        try:
+            user = find_user(email, role)
+            if user[4] == password: 
+                session['loggedIn'] = True
+                session['username'] = email
+                session['role'] = role
+                session['first_name'] = user[1]
+
+                return redirect(url_for('welcome_tradesperson'))
+            else:
+                error = "Invalid credentials. Please try again."
+        except ValueError as err:
+            print('User does not exist.')
+            error = "User does not exist. Please sign up first."
+    return render_template('login_tradesperson.html', 
+                           error=error,
+                           head='Welcome Tradesperson',
+                           title='welcome back',
+                           subheading='let''s get started')
+
+
+app.route('/logout')
+def logout():
+    session.pop('username', None)
+    session.pop('role', None)
+    session['loggedIn'] = False
+    return redirect(url_for('home'))        
+
+
 @app.route('/services/painting')
 def painting():
     return render_template('painting.html', 
@@ -127,10 +204,3 @@ def lawn_care():
                            background_image='/static/images/lawn3.jpg')
 
 
-@app.route('/fix')
-def fix():
-    return render_template('fix.html',
-                           head="home",
-                           title="My Home Heroes",
-                           subheading="need a hand? call our heroes!",
-                           background_image='static/images/wideshot44.jpeg')

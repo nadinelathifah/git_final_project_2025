@@ -34,15 +34,6 @@ const closeForms = document.querySelectorAll(".form-popup .close-btn").forEach(f
     });
 });
 
-// Make labels disappear when the user types in the input field.
-const inputBox = document.getElementsByClassName('.input-field');
-const label = document.getElementById('label');
-
-function removeTheLabel() {
-    inputBox.classList.remove(label);
-}
-inputBox.addEventListener("keydown", removeTheLabel());
-
 
 AOS.init({
     duration: 800,
