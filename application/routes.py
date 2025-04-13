@@ -122,8 +122,6 @@ def electrician():
                                head='Electrician',
                                title='Your Local Electrical Home Heroes Are Here!',
                                subheading='Flickering light, a faulty socket, or need a complete electrical overhaul? Home Heroes are on call!',
-                               img1='decoration/squiggle2.png',
-                               img2='decoration/squiggle.png',
                                background_image="/static/images/electrician1.jpg")
 
 
