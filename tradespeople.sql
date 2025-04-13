@@ -71,4 +71,3 @@ values ("Painting", "Applying paint or coating to walls, ceilings, and surfaces.
 ("Plumbing", "Fixing and installing pipes, faucets, toilets and water systems."), 
 ("Lawn Care", "Maintaining outdoor vicinity by mowing, trimming, and seasonal upkeep.");
 
-

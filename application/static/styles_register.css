@@ -27,7 +27,7 @@ footer {
 /* -------------- Hero-Section Styling -------------- */
 #hero-section {
     padding-top: 250px;
-    height: auto;
+    min-height: 100vh;
     position: relative;
     overflow-y: auto;
 }
@@ -277,6 +277,7 @@ transform: translateY(0);
 
 #tradesperson-signup h2,
 #client-signup h2 {
+    font-size: 1.8rem;
     margin-bottom: 20px;
 }
 
