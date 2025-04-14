@@ -24,6 +24,15 @@ WHERE task_name = 'Painting' AND town = 'Livingston'
 ORDER BY hourly_rate ASC;
 
 
+CREATE VIEW view_booking_requests AS
+SELECT
+    CONCAT(c.firstname, ' ', c.lastname) AS full_name,
+    tk.task_name,
+    l.town,
+    tp.booking_date,
+    tp.service_start_date,
+    DATEDIFF(tp.service_start_date, tp.service_end_date) AS working_days
+
 DELIMITER //
 CREATE PROCEDURE BookJob (
 	IN p_clientID BIGINT,
@@ -42,6 +51,10 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE getBooking ()
 
 
     

@@ -5,6 +5,7 @@ from application.data_access import add_client, add_tradesperson, get_client_by_
 from application import app
 import bcrypt
 
+# --------------- Home Page --------------- #
 @app.route('/')
 @app.route('/home')
 def home():
@@ -27,32 +28,8 @@ def example():
                             background_image="/static/images/example.jpg")
 
 
-# Change this to make it /welcome/<name>
-@app.route('/welcome/client', methods=['GET'])
-def welcome_client():
-    name = request.args.get('name', 'Guest')
-    return render_template('welcome_client.html',
-                           name=name,
-                            head='welcome', 
-                            title='Account Successfully Created!', 
-                            subheading='Explore and browse our services',
-                            img1='decoration/squiggleblue.png',
-                            img2='decoration/squiggleblue2.png',
-                            background_image='/static/images/wideshot5.jpeg')
 
-
-# Change this to make it /welcome/<name>
-@app.route('/welcome/tradesperson', methods=['GET'])
-def welcome_tradesperson():
-    return render_template('welcome_tradesperson.html',
-                            head='welcome', 
-                            title='Account Successfully Created!', 
-                            subheading='Let''s get started!',
-                            img1='decoration/squiggleblue.png',
-                            img2='decoration/squiggleblue2.png',
-                            background_image='/static/images/wield.jpg')
-
-
+# --------------- Sign up Pages --------------- #
 @app.route('/register/client', methods=['GET', 'POST'])
 def register_client():
     client_register = ClientRegistrationForm()
@@ -69,6 +46,7 @@ def register_client():
 
         session['loggedIn'] = True
         session['user'] = email
+        session['role'] = 'client'
 
         return redirect(url_for('welcome_client', name=first_name))
         
@@ -92,14 +70,20 @@ def register_tradesperson():
     if request.method == 'POST' and worker_register.validate():
         first_name = worker_register.first_name.data
         last_name = worker_register.last_name.data
+        date_of_birth = worker_register.dob.data
         profession = worker_register.profession.data
         town = worker_register.town.data
         email = worker_register.email.data
         password = worker_register.password.data
 
-        tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
-        add_tradesperson(first_name, last_name, profession, town, email, password)
-        return redirect(url_for('welcome_tradesperson'))
+        tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
+        add_tradesperson(first_name, last_name, date_of_birth, profession, town, email, password)
+
+        session['loggedIn'] = True
+        session['user'] = email
+        session['role'] = 'tradesperson'
+        
+        return redirect(url_for('welcome_tradesperson', name=first_name))
     
     return render_template('register_tradesperson.html', 
                             form=worker_register, 
@@ -110,18 +94,39 @@ def register_tradesperson():
                             img2='decoration/arrow.png',
                             img3='decoration/arrowuporange.png',
                             img4='decoration/arrowupblack.png',
+                            background_image='/static/images/wideshot6.jpeg')
+
+
+
+# --------------- Welcome Pages --------------- #
+# Change this to make it /welcome/<name>
+@app.route('/welcome/client', methods=['GET'])
+def welcome_client():
+    name = request.args.get('name', 'Guest')
+    return render_template('welcome_client.html',
+                           name=name,
+                            head='welcome', 
+                            title='Account Successfully Created!', 
+                            subheading='Explore and browse our services',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
+                            background_image='/static/images/wideshot5.jpeg')
+
+
+# Change this to make it /welcome/<name>
+@app.route('/welcome/tradesperson', methods=['GET'])
+def welcome_tradesperson():
+    return render_template('welcome_tradesperson.html',
+                            head='welcome', 
+                            title='Account Successfully Created!', 
+                            subheading='Let''s get started!',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
                             background_image='/static/images/wideshotb.jpeg')
 
-@app.route('/electrician')
-def electrician():
-        return render_template('electrician.html',
-                               head='Electrician',
-                               title='Your Local Electrical Home Heroes Are Here!',
-                               subheading='Flickering light, a faulty socket, or need a complete electrical overhaul? Home Heroes are on call!',
-                               background_image="/static/images/electrician1.jpg")
 
 
-
+# --------------- Login Routes --------------- #
 @app.route('/login/client', methods=['GET','POST'])
 def login_client():
     email = request.form['client_email']
@@ -144,17 +149,18 @@ def login_tradesperson():
     email = request.form['tp_email']
     password = request.form['tp_password']
 
-    tp = get_tp_by_email(email)
-    if tp and bcrypt.checkpw(password.encode('UTF-8'), tp['password'].encode('UTF-8')):
-        session['loggedIN'] = True
+    tradesperson = get_tp_by_email(email)
+    if tradesperson and bcrypt.checkpw(password.encode('UTF-8'), tradesperson['password'].encode('UTF-8')):
+        session['loggedIn'] = True
         session['user'] = email
         session['role'] = 'tradesperson'
-        return redirect(url_for('welcome_tradesperson'))
+        return redirect(url_for('welcome_tradesperson', name=tradesperson['firstname']))
     else:
         flash("Invalid email or password", "error")
         return redirect(request.referrer)
 
 
+# --------------- Logout Route --------------- #
 @app.route('/logout', methods=['POST'])
 def logout():
     # session.clear()
@@ -164,27 +170,80 @@ def logout():
     return redirect(url_for('home'))    
 
 
-@app.route('/services/booking', methods=['GET', 'POST'])
+
+# --------------- Dashboards --------------- #
+@app.route('/client/dashboard')
+def client_dashboard():
+    return render_template('client_dashboard.html',
+                           head='client dashboard',
+                           title='your dashboard',
+                           subheading='explore our services',
+                           background_image='/static/images/house.jpg')
+
+
+@app.route('/task/dashboard')
+def task_dashboard():
+    return render_template('tp_dashboard.html',
+                           head='task dashboard',
+                           title='your dashboard',
+                           subheading='view your profile',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+
+# --------------- Booking Pages --------------- #
+@app.route('/booking/services', methods=['GET', 'POST'])
 def book_service():
     if 'user' not in session:
         return redirect(url_for('home.html'))
     
-    # if request.method == 'POST':
-    #     clientID = session['client_id']
-    #     workerID = request.form['worker_id']
-    #     taskID = request.form['task_id']
-    #     service_start = request.form['service_start']
-    #     service_end = request.form['service_end']
-    #     townID = request.form['town_id']
-    #     task_desc = request.form['task_desc']
+    if request.method == 'POST':
+        clientID = session['client_id']
+        workerID = request.form['worker_id']
+        taskID = request.form['task_id']
+        service_start = request.form['service_start']
+        service_end = request.form['service_end']
+        townID = request.form['town_id']
+        task_desc = request.form['task_desc']
 
-    #     book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc)
+        book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc)
     return render_template('book_service.html',
                            head="Book a tradesperson",
                            title='Book a tradesperson!',
                            subheading='your home rescue, just a click away',
                            background_image='/static/images/house3.jpg')
 
+
+# @app.route('/booking/requests', methods=['GET', 'POST'])
+# def booking_requests():
+#     if 'user' not in session:
+#         return redirect(url_for('home.html'))
+    
+#     if request.method == 'GET':
+#         clientID = session['client_id']
+#         workerID = request.form['worker_id']
+#         taskID = request.form['task_id']
+#         service_start = request.form['service_start']
+#         service_end = request.form['service_end']
+#         townID = request.form['town_id']
+#         task_desc = request.form['task_desc']
+
+#         book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc)
+#     return render_template('book_service.html',
+#                            head="Book a tradesperson",
+#                            title='Book a tradesperson!',
+#                            subheading='your home rescue, just a click away',
+#                            background_image='/static/images/house3.jpg')
+
+
+
+@app.route('/electrician')
+def electrician():
+        return render_template('electrician.html',
+                               head='Electrician',
+                               title='Your Local Electrical Home Heroes Are Here!',
+                               subheading='Flickering light, a faulty socket, or need a complete electrical overhaul? Home Heroes are on call!',
+                               background_image="/static/images/electrician1.jpg")
 
 
 @app.route('/services/painting')
@@ -217,10 +276,3 @@ def reviews():
                            background_image='/static/images/gardener.jpeg')
 
 
-@app.route('/client/dashboard')
-def client_dashboard():
-    return render_template('client_dashboard.html',
-                           head='client dashboard',
-                           title='your dashboard',
-                           subheading='explore our services',
-                           background_image='/static/images/house.jpg')

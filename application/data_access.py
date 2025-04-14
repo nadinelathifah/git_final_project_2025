@@ -44,13 +44,12 @@ def add_tradesperson(firstname, lastname, date_of_birth, task, town, email, pass
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
     val = (firstname, lastname, date_of_birth, task, town, email, encoded_password)
     cursor.execute(sql, val)
     connection.commit()
 
     print(f"Tradesperson, {firstname} {lastname}, was added.")
-
 
 
 def get_all_tradespeople():
@@ -72,9 +71,10 @@ def get_client_by_email(email):
     connection.close()
     return client
 
+
 def get_tp_by_email(email):
     connection = get_db_connection()
-    cursor = connection.cursor()
+    cursor = connection.cursor(dictionary=True)
     query = "SELECT * FROM tradespeople WHERE email = %s"
     cursor.execute(query, (email,))
     tradesperson = cursor.fetchone()
@@ -94,6 +94,9 @@ def book_job(clientID, workerID, taskID, service_start, service_end, townID, tas
     connection.commit()
     cursor.close()
     connection.close()
+
+def get_booking():
+    pass
 
 
 if __name__ == "__main__":

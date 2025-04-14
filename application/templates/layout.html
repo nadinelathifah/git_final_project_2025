@@ -30,9 +30,12 @@
                 </button>
                 <div id="navbarNav" class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                        {% if session['loggedIn'] %}
+                        {% if session['loggedIn'] and session['role'] == 'client' %}
                         <li class="nav-item"><a href="/client/dashboard" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Client Dashboard</a></li>
-                        <li class="nav-item"><a href="/services/booking" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Make Booking</a></li>
+                        <li class="nav-item"><a href="/booking/services" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Make Booking</a></li>
+                        {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
+                        <li class="nav-item"><a href="/task/dashboard" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Task Dashboard</a></li>
+                        <li class="nav-item"><a href="/booking/requests" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">See Bookings</a></li>
                         {% else %}
                         {% endif %}
                         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
