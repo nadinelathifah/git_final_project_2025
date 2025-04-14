@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<section id="moving-section">
+    <div class="container pt-5">
+        <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/dog_moving.jpg' )}}" alt="">
+        <div class="card"></div>
+        <div class="content">
+            <h3>Moving Services <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>
+            <p>Not everyone has the time (or the back strength) to lift sofas and haul boxes — and that’s okay.
+                Moving doesn’t have to be a headache.
+                <br>At My Home Hero, we’re all about making your next chapter easier.
+                    Whether you're heading across town or just down the street, our pros handle the heavy lifting so you can focus on settling in, not stressing out.
+                    Let’s make your move a smooth one.
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+<!-- We'll bring the tools, you just sit back and enjoy the view. -->
