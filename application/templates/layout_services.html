@@ -11,7 +11,6 @@
         <link rel="stylesheet" href="{{ url_for('static', filename= 'electrician.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'lawn_care.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'painting.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename= 'welcome.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'example.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <script src="{{ url_for('static', filename= 'script.js') }}" defer></script>
@@ -30,14 +29,6 @@
                 </button>
                 <div id="navbarNav" class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                        {% if session['loggedIn'] and session['role'] == 'client' %}
-                        <li class="nav-item"><a href="/client/dashboard" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Client Dashboard</a></li>
-                        <li class="nav-item"><a href="/booking/services" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Make Booking</a></li>
-                        {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
-                        <li class="nav-item"><a href="/task/dashboard" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Task Dashboard</a></li>
-                        <li class="nav-item"><a href="/booking/requests" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">See Bookings</a></li>
-                        {% else %}
-                        {% endif %}
                         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>About</a>
@@ -82,20 +73,26 @@
                                 {% endif %}
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="/reviews" class="nav-link">Reviews</a></li>
-                        {% if session['loggedIn'] %}
-                        <form action="{{ url_for('logout') }}" method="POST">
-                            <button type="submit" id="logout-button" class="btn btn-primary logout-btn">Logout</button>
-                        </form>
+                        <li class="nav-item"><a href="#" class="nav-link">Reviews</a></li>
+    
+                        {% if session['loggedIn'] == True %}
+                            <li class="nav-item">
+                                <form action="{{ url_for('logout') }}" method="POST">
+                                    <button type="submit" class="btn btn-danger logout-btn">Logout</button>
+                                </form>
+                            </li>
                         {% else %}
-                        <p class="signup-text">Sign Up or Login:</p>
+                            <p class="signup-text">Sign Up or Login:</p>
+                        {% endif %}
+    
                         <li><button class="login-btn client"><i class='bx bxs-home bx-tada-hover'></i>Client</button></li>
                         <li><button class="login-btn tradesperson"><i class='bx bxs-rocket bx-tada-hover'></i>Tradesperson</button></li>
-                        {% endif %}
                     </ul>
                 </div>
             </div>
-        </nav>     
+        </nav>
+    
+        
 
         <div class="blur-bg-overlay"></div>
         <div id="client-login" class="form-popup">
@@ -109,10 +106,10 @@
                     <h2>Log in</h2>
                     <form action="/login/client" method="POST">
                         <div class="input-field">
-                            <input type="text" name="client_email" placeholder="Email" required>
+                            <input type="text" name="email" placeholder="Email">
                         </div>
                         <div class="input-field">
-                            <input type="text" name="client_password" placeholder="Password" required>
+                            <input type="text" name="password" placeholder="Password">
                         </div>
                         <input type="hidden" name="role" value="client">
                         <a href="#" class="forgot-pass">Forgot Password?</a>
@@ -136,10 +133,10 @@
                     <h2>Log in</h2>
                     <form action="/login/tradesperson" method="POST">
                         <div class="input-field">
-                            <input type="text" name="tp_email" placeholder="Email">
+                            <input type="text" name="email" placeholder="Email">
                         </div>
                         <div class="input-field">
-                            <input type="text" name="tp_password" placeholder="Password">
+                            <input type="text" name="password" placeholder="Password">
                         </div>
                         <input type="hidden" name="role" value="tradesperson">
                         <a href="#" class="forgot-pass">Forgot Password?</a>
@@ -155,34 +152,17 @@
             style="
             background: url('{{ background_image }}');
             height: 100vh;
-            width: 100%;
             background-position: center center;
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
             position: relative;
             overflow: hidden;">
-            <div class="container pt-5">
-                {% if request.path == '/home' or request.path == '/' %}
-                <img data-aos="fade-up" class="hero-img img-1" src="{{ url_for('static', filename=img1) }}" alt="Decorative abtract shape">
-                <img data-aos="fade-up" class="hero-img img-2" src="{{ url_for('static', filename=img2) }}" alt="Decorative abtract shape">
-                <h1 data-aos="fade-up">{{ title }}</h1>
-                <h4 data-aos="fade-up">{{ subheading }}</h4>
-                <div data-aos="fade-up" class="icon-wrapper">
-                    <!-- <i class='bx bxs-torch bx-tada-hover'></i>  -->
-                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 2.85rem; color: #158fd1; margin-right: 8px; transform:translateY(2px)">tools_power_drill</span>
-                    <i class='bx bxs-hard-hat bx-tada-hover'></i>
-                    <i class='bx bxs-user-check bx-tada-hover'></i>
-                    <!-- <i class='bx bx-wrench bx-tada-hover'></i> -->
-                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 2.8rem; color: #158fd1; transform:translate(-8px,-1px)">build_circle</span>
-                    <i class='bx bxs-institution bx-tada-hover'></i>
-                </div>
-                {% else %}
+            <div class="container pt-5" >
                 <h1 data-aos="fade-up">{{ title }}</h1>
                 <h4 data-aos="fade-up"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> 
                     {{ subheading }}
                 </h4>
-                {% endif %}
             </div>
         </section>
         

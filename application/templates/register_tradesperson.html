@@ -3,36 +3,42 @@
 
 <div class="main-wrapper container pt-5">
     <div>
-        <h1>{{ title }}</h1>
-        <h4>{{ subheading }}</h4>
+        <h1 data-aos="fade-up">{{ title }}
+            <span class="material-symbols-outlined" 
+            style="
+            font-variation-settings: 'FILL' 1; 
+            font-size: 3rem; 
+            display: inline-flex; 
+            vertical-align: middle;">construction</span>
+        </h1>
+        <h4 data-aos="fade-up">{{ subheading }}</h4>
     </div>
-    <div id="tradesperson-signup">
+    <div data-aos="fade-up" id="tradesperson-signup">
         <h2>Sign Up</h2>
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <div class="input-field">
-                {{ form.first_name.label}}
-                {{ form.first_name}}
+                {{ form.first_name(class="form-control", placeholder="Firstname") }}
             </div>
             <div class="input-field">
-                {{ form.last_name.label}}
-                {{ form.last_name}}
+                {{ form.last_name(class="form-control", placeholder="Lastname") }}
+            </div>
+            <div class="input-field">
+                {{ form.dob}}
             </div>
             <div class="input-field">
                 {{ form.profession.label(class="drop-down") }}
                 {{ form.profession }}
             </div>
             <div class="input-field">
-                {{ form.town.label }}
+                {{ form.town.label(class="drop-down") }}
                 {{ form.town }}
             </div>
             <div class="input-field">
-                {{ form.email.label }}
-                {{ form.email }}
+                {{ form.email(class="form-control", placeholder="Email") }}
             </div>
             <div class="input-field">
-                {{ form.password.label }}
-                {{ form.password }}
+                {{ form.password(class="form-control", placeholder="Password") }}
             </div>
             {{ form.submit }}
         </form>

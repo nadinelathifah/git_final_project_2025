@@ -23,11 +23,13 @@ footer {
     color: rgb(0, 21, 116);
 }
 
+
+/* -------------- Hero-Section Styling -------------- */
 #hero-section {
     padding-top: 250px;
-    height: auto;
+    min-height: 100vh;
     position: relative;
-    overflow-y:unset;
+    overflow-y: auto;
 }
 
 #hero-section h1 {
@@ -76,6 +78,20 @@ footer {
     opacity: 0.4;
 }
 
+.hero-img.img-3 {
+    bottom: 120px;
+    right: 600px;
+    opacity: 0.95;
+    z-index: 3;
+}
+
+.hero-img.img-4 {
+    bottom: 118px;
+    right: 598px;
+    opacity: 0.4;
+    z-index: 2;
+}
+
 
 /* -------------- Navbar Styling -------------- */
 /* --- Logo --- */
@@ -108,6 +124,34 @@ footer {
 
 .navbar {
     align-items: center;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse.collapsing,
+    .navbar-collapse.show {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+    }
+  
+    .navbar-nav .nav-link {
+      color: #000;
+    }
+
+    .navbar-nav {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+}
+
+.navbar-collapse.show {
+opacity: 1;
+transform: translateY(0);
 }
 
 .sticky-top {
@@ -115,7 +159,6 @@ footer {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: transparent;
     z-index: 1000;
 }
 
@@ -141,6 +184,19 @@ footer {
 
 .navbar-nav .nav-link:hover {
     background: rgb(255, 247, 199);
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .login-button,
+    .signup-button {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
 
 .bxs-rocket {
@@ -221,6 +277,7 @@ footer {
 
 #tradesperson-signup h2,
 #client-signup h2 {
+    font-size: 1.8rem;
     margin-bottom: 20px;
 }
 

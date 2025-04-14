@@ -4,32 +4,27 @@
 <div class="container pt-5">
     <div class="main-wrapper">
         <div class="container">
-            <h1>{{ title }}</h1>
-            <h4>{{ subheading }}</h4>
+            <h1 data-aos="fade-up">{{ title }}</h1>
+            <h4 data-aos="fade-up">{{ subheading }}</h4>
         </div>
-        <div id="client-signup">
+        <div data-aos="fade-up" id="client-signup">
             <h2>Sign Up</h2>
             <form action="" method="POST">
                 {{ form.hidden_tag() }}
                 <div class="input-field">
-                    {{ form.first_name.label}}
-                    {{ form.first_name}}
+                    {{ form.first_name(class="form-control", placeholder="Firstname") }}
                 </div>
                 <div class="input-field">
-                    {{ form.last_name.label }}
-                    {{ form.last_name }}
+                    {{ form.last_name(class="form-control", placeholder="Lastname") }}
                 </div>
                 <div class="input-field">
-                    {{ form.dob.label }}
                     {{ form.dob }}
                 </div>
                 <div class="input-field">
-                    {{ form.email.label }}
-                    {{ form.email }}
+                    {{ form.email(class="form-control", placeholder="Email") }}
                 </div>
                 <div class="input-field">
-                    {{ form.password.label }}
-                    {{ form.password }}
+                    {{ form.password(class="form-control", placeholder="Password") }}
                 </div>
                 {{ form.submit }}
             </form>
