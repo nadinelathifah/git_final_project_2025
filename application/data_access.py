@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="",
-  database="homeheroes1"
+  database="homeheroes2"
 )
 
 def get_db_connection():
@@ -19,68 +19,81 @@ def get_db_connection():
         host="localhost",
         user="root",
         password="",
-        database="homeheroes1"
+        database="homeheroes2"
     )
     return mydb
 
+
 def add_client(firstname, lastname, date_of_birth, email, password):
-    conn = get_db_connection()
-    cursor = conn.cursor()
+    connection = get_db_connection()
+    cursor = connection.cursor()
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO clients (firstname, lastname, date_of_birth, email, password, registration_date) VALUES (%s, %s, %s, %s, %s, CURRENT_DATE())"
+    sql = "INSERT INTO clients (firstname, lastname, date_of_birth, email, password) VALUES (%s, %s, %s, %s, %s)"
     val = (firstname, lastname, date_of_birth, email, encoded_password)
     cursor.execute(sql, val)
-    conn.commit()
+    connection.commit()
 
     print(f"Client, {firstname} {lastname}, was added.")
 
-def add_tradesperson(firstname, lastname, date_of_birth, profession, town, email, password):
-    conn = get_db_connection()
-    cursor = conn.cursor()
+
+def add_tradesperson(firstname, lastname, date_of_birth, task, town, email, password):
+    connection = get_db_connection()
+    cursor = connection.cursor()
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, profession, town, email, password, registration_date) VALUES (%s, %s, %s, %s, %s, %s, CURRENT_DATE())"
-    val = (firstname, lastname, date_of_birth, profession, town, email, encoded_password)
+    sql = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (firstname, lastname, date_of_birth, task, town, email, encoded_password)
     cursor.execute(sql, val)
-    conn.commit()
+    connection.commit()
 
     print(f"Tradesperson, {firstname} {lastname}, was added.")
 
 
-def get_client():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-    SELECT
-        
+
+def get_all_tradespeople():
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM view_tradespeople_by_category;")
+    workers = cursor.fetchall()
+    return workers
 
 
-""")
-
-def get_tradesperson():
-    pass
-
-def find_user(email, role):
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    if role == 'client':
-        query = 'SELECT * FROM clients WHERE email = %s'
-    elif role == 'tradesperson':
-        query = 'SELECT * FROM tradespeople WHERE email = %s'
-    else:
-        raise ValueError()
-
+def get_client_by_email(email):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT * FROM clients WHERE email = %s"
     cursor.execute(query, (email,))
-    user = cursor.fetchone()
+    client = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    connection.close()
+    return client
 
-    return user
+def get_tp_by_email(email):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    query = "SELECT * FROM tradespeople WHERE email = %s"
+    cursor.execute(query, (email,))
+    tradesperson = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+    return tradesperson
+    
+
+
+def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, townID, task_desc])
+
+    connection.commit()
+    cursor.close()
+    connection.close()
 
 
 if __name__ == "__main__":
