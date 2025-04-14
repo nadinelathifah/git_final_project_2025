@@ -33,9 +33,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>About</a>
                             <ul class="drop-down">
-                                <li><a href="#about-section" class="dropdown-item">Who we are</a></li>
-                                <li><a href="#how-section" class="dropdown-item">How it works</a></li>
-                                <li><a href="#services-section" class="dropdown-item">Our services</a></li>
+                                <li><a href="/#about-section" class="dropdown-item">Who we are</a></li>
+                                <li><a href="/#how-section" class="dropdown-item">How it works</a></li>
+                                <li><a href="/#services-section" class="dropdown-item">Our services</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -51,10 +51,10 @@
                                 {% else %}
                                     <li><a href="#" class="dropdown-item nav-link disabled">Home Repairs</a></li>
                                 {% endif %}
-                                {% if request.path != '/example' %}
-                                    <li><a href="#" class="dropdown-item">Electrician</a></li>
+                                {% if request.path != '/electrician' %}
+                                    <li><a href="/electrician" class="dropdown-item">Electrician</a></li>
                                 {% else %}
-                                    <li><a href="#" class="dropdown-item nav-link disabled">Electrician</a></li>
+                                    <li><a href="/electrician" class="dropdown-item nav-link disabled">Electrician</a></li>
                                 {% endif %}
                                 {% if request.path != '/example' %}
                                     <li><a href="#" class="dropdown-item">Plumbing</a></li>

@@ -721,7 +721,7 @@ form .btn-primary:hover {
     position: absolute;
     background: whitesmoke;
     min-height: 41vh;
-    max-width: 41vw;
+    min-width: 40vw;
     border-radius: 25px;
     padding: 30px;
     transform: translate(-30px, 15px);
@@ -763,4 +763,3 @@ form .btn-primary:hover {
     border-radius: 50px;
     z-index: 3;
 }
->>>>>>> 0c19cd4783d0cfb046790edf9cc17ae98c667bf8
