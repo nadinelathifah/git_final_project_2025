@@ -203,4 +203,13 @@ def lawn_care():
                            icon='psychiatry',
                            background_image='/static/images/lawn3.jpg')
 
-
+@app.route('/services/plumbing')
+def plumbing():
+    return render_template('plumbing.html',
+                            head='Plumbing',
+                            title='Plumbing',
+                            subheading='Because even the best pipes have bad days',
+                            img1='decoration/squiggle2.png',
+                            img2='decoration/squiggle.png',
+                            icon='imagesearch_roller',
+                            background_image="/static/images/pipes background.jpg")
