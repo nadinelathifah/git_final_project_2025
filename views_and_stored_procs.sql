@@ -1,8 +1,8 @@
-USE homeheroes2;
+USE homeheroes6;
 
 CREATE VIEW view_tradespeople_by_category AS
 SELECT
-    t.workerID
+    t.workerID,
 	CONCAT(t.firstname, ' ', t.lastname) AS full_name,
     tk.task_name,
     l.town,
@@ -16,9 +16,15 @@ JOIN tradesperson_profile AS tp ON t.workerID = tp.workerID
 JOIN tasks AS tk ON t.taskID = tk.taskID
 JOIN location AS l ON t.townID = l.townID
 JOIN reviews AS r ON tp.tp_profileID = r.tp_profileID
-GROUP BY CONCAT(t.firstname, ' ', t.lastname), tk.task_name, l.town, tp.phone_number, tp.hourly_rate, tp.bio;
-    
+GROUP BY t.workerID, CONCAT(t.firstname, ' ', t.lastname), tk.task_name, l.town, tp.phone_number, tp.hourly_rate, tp.bio;
+
+drop view view_tradespeople_by_category;
+   
 SELECT * FROM view_tradespeople_by_category;
+SELECT task_name FROM view_tradespeople_by_category;
+SELECT 
+
+
 
 SELECT * FROM view_tradespeople_by_category 
 WHERE task_name = 'Painting' AND town = 'Livingston'
