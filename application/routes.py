@@ -266,6 +266,7 @@ def lawn_care():
                            icon='psychiatry',
                            background_image='/static/images/lawn3.jpg')
 
+
 @app.route('/services/moving')
 def moving():
     return render_template('moving.html',
@@ -286,4 +287,13 @@ def reviews():
                            background_image='/static/images/gardener.jpeg')
 
 
-
+@app.route('/services/plumbing')
+def plumbing():
+    return render_template('plumbing.html',
+                            head='Plumbing',
+                            title='Plumbing services',
+                            subheading='Because even the best pipes have bad days',
+                            img1='decoration/squiggle3.png',
+                            img2='decoration/squiggle.png',
+                            icon='plumbing',
+                            background_image="/static/images/pipes background.jpg")
