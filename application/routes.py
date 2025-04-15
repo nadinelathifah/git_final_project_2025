@@ -275,4 +275,15 @@ def reviews():
                            icon='sentiment_very_satisfied',
                            background_image='/static/images/gardener.jpeg')
 
+@app.route('/services/home_repairs')
+def home_repairs():
+    return render_template('home_repairs.html',
+                           head='Home Repairs',
+                           title='Home Repair Services',
+                           subheading='From Leaks to Locks, We Handle It All!',
+                           # icon=
+                           background_image='/static/images/repairstwo.jpg')
+
+
+
 
