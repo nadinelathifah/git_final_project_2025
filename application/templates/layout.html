@@ -55,9 +55,9 @@
                                     <li><a href="#" class="dropdown-item nav-link disabled">Electrician</a></li>
                                 {% endif %}
                                 {% if request.path != '/services/plumbing' %}
-                                    <li><a href="#" class="dropdown-item">Plumbing</a></li>
+                                    <li><a href="/services/plumbing" class="dropdown-item">Plumbing</a></li>
                                 {% else %}
-                                    <li><a href="#" class="dropdown-item nav-link disabled">Plumbing</a></li>
+                                    <li><a href="/services/plumbing" class="dropdown-item nav-link disabled">Plumbing</a></li>
                                 {% endif %}
                                 {% if request.path != '/services/painting' %}
                                     <li><a href="/services/painting" class="dropdown-item">Painting</a></li>
