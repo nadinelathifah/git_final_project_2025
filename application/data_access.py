@@ -14,6 +14,7 @@ mydb = mysql.connector.connect(
   database="homeheroes6"
 )
 
+
 def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",

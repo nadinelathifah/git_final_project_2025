@@ -266,6 +266,15 @@ def lawn_care():
                            icon='psychiatry',
                            background_image='/static/images/lawn3.jpg')
 
+@app.route('/services/moving')
+def moving():
+    return render_template('moving.html',
+                           head='Moving Services',
+                           title='Moving Services',
+                           subheading='need help moving items or houses? look no further...',
+                           icon='deployed_code',
+                           background_image='/static/images/Moving_background.png')
+
 
 @app.route('/reviews')
 def reviews():
@@ -275,5 +284,6 @@ def reviews():
                            subheading='review our work',
                            icon='sentiment_very_satisfied',
                            background_image='/static/images/gardener.jpeg')
+
 
 
