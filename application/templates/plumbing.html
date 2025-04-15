@@ -1,82 +1,115 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-
-
 <section id="plumbing-section">
     <div class="container pt-5">
-    <h1> Plumbing services <span class="material-symbols-outlined">plumbing style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h1>
-                <p>Here at My Home Heroes we offer a wide range of plumbing services to keep your home flowing smoothly.
-                  Whether you’re dealing with a sneaky leak or your shower's suddenly decided it’s a sprinkler,
-                  we’ve got your back.<p>
-                 <p>Here’s what we can help you with:<p>
+        <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/sink2.jpg' )}}" alt="">
+        <div class="card"></div>
+        <div class="content">
+            <h3>Plumbing services <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>
+            <p>Here at My Home Heroes we offer a wide range of plumbing services to keep your home flowing smoothly.
+                Whether you’re dealing with a sneaky leak or your shower's suddenly decided it’s a sprinkler,
+                we’ve got your back.<p>
+            <p>Explore the services below to see what we can help you with!<p>
+        </div>
+    </div>
+</section>
+
+<section id="plumbing-services-section">
+    <div class="plumbing-wrapper">
+        <div class="row">
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/sink.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Leaky Taps & Fixtures</h3>
+                        <p>That constant dripping sound isn't just annoying—it adds up on your water bill and can cause hidden damage. We'll fix or replace the faulty bits, and you’ll be back to silent sinks in no time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/drain.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Blocked Drains</h3>
+                        <p>Whether it’s a slow kitchen sink or a total bathroom backup, blocked drains can get messy fast. We use professional tools (and not just a bent wire hanger) to clear the blockage safely and efficiently.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/plumber.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Toilet Repairs</h3>
+                        <p>Running toilets, blockages, or mystery flushes? We’ll investigate, diagnose, and repair all toilet troubles—without judgment (we’ve seen it all, promise).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/plumber2.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Emergency Call-Outs</h3>
+                        <p>Plumbing problems rarely happen at convenient times. That’s why we offer emergency call-outs—so whether it’s 10 AM or 10 PM, you’re not left with a flood and a frantic Google search.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-<section>
+        <div class="row">
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/plumber3.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Boiler & Water Heater Fixes</h3>
+                        <p>No hot water on a cold morning is a nightmare. We handle boiler servicing, repairs, and replacements so your hot showers stay sacred.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/plumber4.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Burst Pipes</h3>
+                        <p>A burst pipe is a serious issue. We offer rapid response to stop leaks, replace damaged sections, and help dry things out to prevent long-term damage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/plumber5.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Appliance Hook-Ups</h3>
+                        <p>Just got a new dishwasher or washing machine? We’ll install it safely, check the connections, and make sure it’s running properly before we leave.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-
-</section id=plumbing-services-section">
-
-<div class="plumbing-wrapper">
-    <div class="col-sm">
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female fixing sink.jpg')}}} alt="">
-           <h3>Leaky Taps & Fixtures</h3>
-           <p>That constant dripping sound isn't just annoying—it adds up on your water bill and can cause hidden damage. We'll fix or replace the faulty bits, and you’ll be back to silent sinks in no time.</p>
-
-    <div class="col-sm">
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female blocked drain.jpg')}}} alt="">
-           <h3>Blocked Drains</h3>
-           <p>Whether it’s a slow kitchen sink or a total bathroom backup, blocked drains can get messy fast. We use professional tools (and not just a bent wire hanger) to clear the blockage safely and efficiently.</p>
-
-
-
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female plumber WC.png')}}} alt="">
-           <h3>Toilet Repairs</h3>
-           <p>Running toilets, blockages, or mystery flushes? We’ll investigate, diagnose, and repair all toilet troubles—without judgment (we’ve seen it all, promise).</p>
-
-
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female fixing the heating.png')}}} alt="">
-           <h3>Boiler & Water Heater Fixes</h3>
-            <p>No hot water on a cold morning is a nightmare. We handle boiler servicing, repairs, and replacements so your hot showers stay sacred.</p>
-
-
-
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female welding pipe.jpg')}}} alt="">
-           <h3>Burst Pipes</h3>
-           <p>A burst pipe is a serious issue. We offer rapid response to stop leaks, replace damaged sections, and help dry things out to prevent long-term damage.</p>
-
-
-
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female plumber.jpg')}}} alt="">
-           <h3>Appliance Hook-Ups</h3>
-           <p>Just got a new dishwasher or washing machine? We’ll install it safely, check the connections, and make sure it’s running properly before we leave.</p>
-
-
-
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female fixing shower.jpg')}}} alt="">
-           <h3>Shower Installations</h3>
-           <p>Whether you're upgrading your bathroom or just replacing a worn-out unit, we install all kinds of showers with an eye for neatness, waterproofing, and water pressure.</p>
-
-
-       <div class="card">
-           <img src="{{url_for('static', filename='images/female call out.jpg')}}} alt="">
-           <h3>Emergency Call-Outs</h3>
-           <p>Plumbing problems rarely happen at convenient times. That’s why we offer emergency call-outs—so whether it’s 10 AM or 10 PM, you’re not left with a flood and a frantic Google search.</p>
-
-
-<section>
+            <div class="col-sm">
+                <div data-aos="fade-up" class="card">
+                    <img src="{{ url_for('static', filename= 'images/plumber6.jpeg' )}}" alt="">
+                    <div class="text-content">
+                        <h3>Shower Installations</h3>
+                        <p>Whether you're upgrading your bathroom or just replacing a worn-out unit, we install all kinds of showers with an eye for neatness, waterproofing, and water pressure.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 
