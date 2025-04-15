@@ -238,12 +238,13 @@ def book_service():
 
 
 
-@app.route('/electrician')
+@app.route('/services/electrician')
 def electrician():
         return render_template('electrician.html',
                                head='Electrician',
                                title='Your Local Electrical Home Heroes Are Here!',
-                               subheading='Flickering light, a faulty socket, or need a complete electrical overhaul? Home Heroes are on call!',
+                               subheading='Flickering light, faulty socket, or need an electrical overhaul? Home Heroes are on call!',
+                               icon='electrical_services',
                                background_image="/static/images/electrician1.jpg")
 
 
