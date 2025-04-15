@@ -168,6 +168,16 @@
 }
 
 
+#painting-services {
+    background: rgb(255, 251, 237);
+    min-height: 100vh;
+    border-top: 1px solid rgba(150, 124, 90, 0.489);
+}
+
+/* #painting-services img {
+    max-width: 25vw;
+} */
+
 
 /* @media (max-width: 2560px) {
     #painting-section .container {

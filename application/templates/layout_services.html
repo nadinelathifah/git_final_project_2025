@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename= 'electrician.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'lawn_care.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'painting.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'plumbing.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'example.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <script src="{{ url_for('static', filename= 'script.js') }}" defer></script>
@@ -33,9 +34,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>About</a>
                             <ul class="drop-down">
-                                <li><a href="#about-section" class="dropdown-item">Who we are</a></li>
-                                <li><a href="#how-section" class="dropdown-item">How it works</a></li>
-                                <li><a href="#services-section" class="dropdown-item">Our services</a></li>
+                                <li><a href="/#about-section" class="dropdown-item">Who we are</a></li>
+                                <li><a href="/#how-section" class="dropdown-item">How it works</a></li>
+                                <li><a href="/#services-section" class="dropdown-item">Our services</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -51,10 +52,10 @@
                                 {% else %}
                                     <li><a href="#" class="dropdown-item nav-link disabled">Home Repairs</a></li>
                                 {% endif %}
-                                {% if request.path != '/example' %}
-                                    <li><a href="#" class="dropdown-item">Electrician</a></li>
+                                {% if request.path != '/electrician' %}
+                                    <li><a href="/electrician" class="dropdown-item">Electrician</a></li>
                                 {% else %}
-                                    <li><a href="#" class="dropdown-item nav-link disabled">Electrician</a></li>
+                                    <li><a href="/electrician" class="dropdown-item nav-link disabled">Electrician</a></li>
                                 {% endif %}
                                 {% if request.path != '/example' %}
                                     <li><a href="#" class="dropdown-item">Plumbing</a></li>
@@ -158,7 +159,6 @@
             background-repeat: no-repeat;
             position: relative;
             overflow: hidden;">
-            <img class="hero-img img-1" src="{{ url_for('static', filename=img1) }}" alt="">
             <div class="container pt-5" >
                 <h1 data-aos="fade-up">{{ title }}</h1>
                 <h4 data-aos="fade-up"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> 
