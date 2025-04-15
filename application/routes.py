@@ -267,6 +267,16 @@ def lawn_care():
                            background_image='/static/images/lawn3.jpg')
 
 
+@app.route('/services/moving')
+def moving():
+    return render_template('moving.html',
+                           head='Moving Services',
+                           title='Moving Services',
+                           subheading='need help moving items or houses? look no further...',
+                           icon='deployed_code',
+                           background_image='/static/images/Moving_background.png')
+
+
 @app.route('/reviews')
 def reviews():
     return render_template('reviews.html',
@@ -277,3 +287,11 @@ def reviews():
                            background_image='/static/images/gardener.jpeg')
 
 
+@app.route('/services/plumbing')
+def plumbing():
+    return render_template('plumbing.html',
+                            head='Plumbing',
+                            title='Plumbing services',
+                            subheading='Because even the best pipes have bad days',
+                            icon='plumbing',
+                            background_image="/static/images/pipes background.jpg")
