@@ -2,7 +2,7 @@ USE homeheroes2;
 
 CREATE VIEW view_tradespeople_by_category AS
 SELECT
-    t.workerID
+    t.workerID,
 	CONCAT(t.firstname, ' ', t.lastname) AS full_name,
     tk.task_name,
     l.town,
