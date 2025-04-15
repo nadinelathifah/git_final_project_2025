@@ -207,9 +207,9 @@ def lawn_care():
 def plumbing():
     return render_template('plumbing.html',
                             head='Plumbing',
-                            title='Plumbing',
+                            title='Plumbing services',
                             subheading='Because even the best pipes have bad days',
-                            img1='decoration/squiggle2.png',
+                            img1='decoration/squiggle3.png',
                             img2='decoration/squiggle.png',
-                            icon='imagesearch_roller',
+                            icon='plumbing',
                             background_image="/static/images/pipes background.jpg")

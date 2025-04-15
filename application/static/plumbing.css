@@ -2,7 +2,7 @@
 
 /* Selecting the id="example-section" allows us to add styling to the entire section */
 /* The # (hash) before the id name lets CSS know that you are selecting the element with id="example-section"*/
-#example-section {
+#plumbing-section {
     height: 100vh;                /* Setting the height to 100vh ensures the section spans the entire height of the screen - vh is short for viewport height. */
     background: whitesmoke;     /* This sets the background colour to whitesmoke*/
     overflow-y: auto;
@@ -10,17 +10,19 @@
 
 /* To add styling to the card, we have to specify which id or class this card is from (#example-section) */
 /* class="card" -> A class is selected by writing it as .class (full-stop before the class name) */
-#example-section .card {
+#plumbing-section .card {
     width: 300px;                /* Set a width (unchanging) or a maximum-width (more responsive when you minimise the screen size) to the card */
     background: #007bff;
     color: white;              /* Unlike background or background-color, 'color' sets the text-color*/
     /* padding: 20px;               This adds padding (spacing) inside the card. Adds top, bottom, left & right spacing */
+
+
     text-align: center;          /* Aligns text inside the card to the center */
     box-shadow: -10px 10px orange;  /* Adds a box-shadow to the card, you can adjust the opacity & shadow size */
     border-radius: 25px;
 }
 
-#example-section .col-sm {
+#plumbing-services-section .col-sm {
     display: flex;               /* Turns .col-sm into a flexbox container */
     flex-direction: row;         /* Lays out the items inside the flexbox container (cards) in a horizontal row */
     justify-content: center;     /* Centers the items horizontally */
@@ -30,14 +32,14 @@
 }
 
 /* We are specifically targeting the h3 heading of each card */
-#example-section .card h3 {
+#plumbing-section .card h3 {
     margin-top: 20px;            /* Adds a margin to the top of the heading */
     font-size: 1.5rem;           /* 1rem = 16px */
     text-transform: capitalize;           /* Capitalises all h3 headings in the card */
 }
 
 /* Now we're editing the dimensions of the images in each card */
-#example-section .card img {
+#plumbing-section .card img {
     border-radius: 25px 25px 0px 0px;     /* Making the top left and top right edges curved */
     width: 100%;                          /* Making the width span the length of the card */
     height: auto;                         /* Setting height to automatic */
@@ -51,7 +53,7 @@
 } */
 
 /* Editing the container that contains both the 3 cards and the bottom box. */
-.example-wrapper {
+.plumbing-wrapper {
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -59,7 +61,7 @@
 }
 
 /* Editing the outer container of the bottom box */
-#example-bottom-container {
+#plumbing-bottom-container {
     height: 40vh;
     width: 100vw;                        /* Set the width as 100% of the vw - viewport width*/
     display: flex;
@@ -68,7 +70,7 @@
 }
 
 /* Editing the bottom box styling */
-#example-bottom-container .box {
+#plumbing-bottom-container .box {
     min-height: 30vh;
     width: 70vw; 
     background: white;
@@ -79,7 +81,7 @@
     overflow-block: auto;
 }
 
-#example-bottom-container .box h4 {
+#plumbing-bottom-container .box h4 {
     font-size: 1.3rem;
 }
 
@@ -88,20 +90,20 @@
 /* ---------------------------Example 2 Section---------------------------*/
 
 
-#example-2 {
+#plumbing-2 {
     height: 100vh;
     background: aliceblue;
     z-index: 1;
 }
 
-#example-2 .container {
+#plumbing-2 .container {
     position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-#example-2 .card {
+#plumbing-services-2 .card {
     position: relative;
     background: linear-gradient(to left, #96c9ff, #90e0ef);
     height: 80vh;
@@ -112,7 +114,7 @@
     z-index: 2;
 }
 
-#example-2 .content {
+#plumbing-2 .content {
     position: absolute;
     background: whitesmoke;
     height: 35vh;
@@ -123,7 +125,7 @@
     z-index: 5;
 }
 
-#example-2 .container img {
+#plumbing-2 .container img {
     position: absolute;
     left: 55px;
     width: 50vw;
