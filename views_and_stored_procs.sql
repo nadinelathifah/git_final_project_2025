@@ -2,6 +2,7 @@ USE homeheroes2;
 
 CREATE VIEW view_tradespeople_by_category AS
 SELECT
+    t.workerID
 	CONCAT(t.firstname, ' ', t.lastname) AS full_name,
     tk.task_name,
     l.town,
@@ -9,7 +10,7 @@ SELECT
     tp.hourly_rate,
     tp.bio,
     ROUND(AVG(r.rating), 2) AS average_rating,
-    COUNT(r.reviewiD) AS total_reviews
+    COUNT(r.reviewID) AS total_reviews
 FROM tradespeople AS t
 JOIN tradesperson_profile AS tp ON t.workerID = tp.workerID
 JOIN tasks AS tk ON t.taskID = tk.taskID
@@ -29,9 +30,16 @@ SELECT
     CONCAT(c.firstname, ' ', c.lastname) AS full_name,
     tk.task_name,
     l.town,
-    tp.booking_date,
-    tp.service_start_date,
-    DATEDIFF(tp.service_start_date, tp.service_end_date) AS working_days
+    jb.booking_date,
+    jb.service_start_date,
+    DATEDIFF(jb.service_start_date, jb.service_end_date) AS working_days,
+    jb.task_description
+FROM job_booking AS jb 
+JOIN clients AS c ON jb.clientID = c.clientID
+JOIN tasks AS tk ON jb.taskID = tk.taskID
+JOIN location AS l ON l.townID = jb.townID
+GROUP BY CONCAT(c.firstname, ' ', c.lastname), task_name, booking_date, service_start_date, DATEDIFF(jb.service_start_date, jb.service_end_date), task_description; 
+
 
 DELIMITER //
 CREATE PROCEDURE BookJob (

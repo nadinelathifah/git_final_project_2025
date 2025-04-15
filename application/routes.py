@@ -38,11 +38,12 @@ def register_client():
         first_name = client_register.first_name.data
         last_name = client_register.last_name.data
         date_of_birth = client_register.dob.data
+        town = client_register.town.data
         email = client_register.email.data
         password = client_register.password.data
 
-        clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Email': email, 'Password': password})
-        add_client(first_name, last_name, date_of_birth, email, password)
+        clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Town': town, 'Email': email, 'Password': password})
+        add_client(first_name, last_name, date_of_birth, town, email, password)
 
         session['loggedIn'] = True
         session['user'] = email
@@ -56,7 +57,7 @@ def register_client():
                             title='Connect with us', 
                             subheading='Get in touch with our skilled team',
                             img1='decoration/arrowyellow.png',
-                            img2='decoration/arrownavy.png',
+                            img2='decoration/arrow.png',
                             img3='decoration/arrowupyellow.png',
                             img4='decoration/arrowupblack.png',
                             background_image = '/static/images/wideshot2.jpeg')
@@ -140,7 +141,7 @@ def login_client():
         return redirect(url_for('client_dashboard', name=client['firstname']))
     else:
         flash("Invalid email or password", "error")
-        return redirect(request.referrer)
+        return redirect(url_for('home'))
 
 
 
@@ -157,7 +158,7 @@ def login_tradesperson():
         return redirect(url_for('welcome_tradesperson', name=tradesperson['firstname']))
     else:
         flash("Invalid email or password", "error")
-        return redirect(request.referrer)
+        return redirect(url_for('home'))
 
 
 # --------------- Logout Route --------------- #
@@ -178,7 +179,7 @@ def client_dashboard():
                            head='client dashboard',
                            title='your dashboard',
                            subheading='explore our services',
-                           background_image='/static/images/house.jpg')
+                           background_image='/static/images/interior.png')
 
 
 @app.route('/task/dashboard')
@@ -198,7 +199,7 @@ def book_service():
         return redirect(url_for('home.html'))
     
     if request.method == 'POST':
-        clientID = session['client_id']
+        clientID = session['user']
         workerID = request.form['worker_id']
         taskID = request.form['task_id']
         service_start = request.form['service_start']

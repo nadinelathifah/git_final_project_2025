@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="",
-  database="homeheroes2"
+  database="homeheroes6"
 )
 
 def get_db_connection():
@@ -19,20 +19,20 @@ def get_db_connection():
         host="localhost",
         user="root",
         password="",
-        database="homeheroes2"
+        database="homeheroes6"
     )
     return mydb
 
 
-def add_client(firstname, lastname, date_of_birth, email, password):
+def add_client(firstname, lastname, date_of_birth, town, email, password):
     connection = get_db_connection()
     cursor = connection.cursor()
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO clients (firstname, lastname, date_of_birth, email, password) VALUES (%s, %s, %s, %s, %s)"
-    val = (firstname, lastname, date_of_birth, email, encoded_password)
-    cursor.execute(sql, val)
+    insert = "INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
+    values = (firstname, lastname, date_of_birth, town, email, encoded_password)
+    cursor.execute(insert, values)
     connection.commit()
 
     print(f"Client, {firstname} {lastname}, was added.")
@@ -44,9 +44,9 @@ def add_tradesperson(firstname, lastname, date_of_birth, task, town, email, pass
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    val = (firstname, lastname, date_of_birth, task, town, email, encoded_password)
-    cursor.execute(sql, val)
+    insert = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    values = (firstname, lastname, date_of_birth, task, town, email, encoded_password)
+    cursor.execute(insert, values)
     connection.commit()
 
     print(f"Tradesperson, {firstname} {lastname}, was added.")
@@ -82,7 +82,30 @@ def get_tp_by_email(email):
     cursor.close()
     connection.close()
     return tradesperson
+
+
+def get_towns():
+    connection = get_db_connection()
+    cursor = connection.cursor()
     
+    query = "SELECT town FROM view_tradespeople_by_category"
+
+
+def find_tradesperson(task, location, price_order, rating_order):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    query = "SELECT * FROM view_tradespeople_by_category WHERE 1-1"
+    search_parameters = []
+
+    if task:
+        query += "AND task_name = %s"
+        search_parameters.append(task)
+    
+    if location:
+        query += "AND town = %s"
+        search_parameters.append(location)
+
 
 
 def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):

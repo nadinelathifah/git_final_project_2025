@@ -17,6 +17,9 @@ footer {
     color: rgb(0, 21, 116);
     font-weight: 500;
     background: wheat;
+    border-top: 1px solid rgba(30, 29, 29, 0.489);
+    box-shadow: 0 -2px 5px rgba(87, 86, 86, 0.193);
+    z-index: 50;
 }
 
 .footer-item {
@@ -225,6 +228,12 @@ transform: translateY(0);
     background: linear-gradient(to bottom, rgb(251, 142, 0), rgb(255, 108, 45));
 }
 
+.login-btn i {
+    margin-right: 4px;
+    font-size: 1.1rem;
+}
+
+
 @media (max-width: 768px) {
     .navbar-nav .nav-item {
         text-align: center;
@@ -278,12 +287,6 @@ transform: translateY(0);
 .dropdown-item:hover {
     background: rgba(251, 142, 0, 0.517);
 }
-
-.login-btn i {
-    margin-right: 4px;
-    font-size: 1.1rem;
-}
-
 
 
 
@@ -685,13 +688,6 @@ form .btn-primary:hover {
 }
 
 
-/* -------------- Services Section -------------- */
-#services-section {
-    height: 100vh;
-    background-color: #fcf8e5;
-}
-
-
 /* -------------- How Section -------------- */
 #how-section {
     height: 100vh;
@@ -764,19 +760,165 @@ form .btn-primary:hover {
     z-index: 3;
 }
 
+
+/* -------------- Login/Logout Styling -------------- */
 #logout-button {
     padding: 10px;
     width: 100%;
-    border-radius: 25px;
-    border: 2px solid whitesmoke;
+    border-radius: 30px;
+    border: 1px solid whitesmoke;
     cursor: pointer;
     margin-right: 10px;
     font-size: 1rem;
     font-weight: 500;
-    background: linear-gradient(to top, rgb(181, 1, 34), rgb(218, 68, 42));
+    background: linear-gradient(to top, rgb(16, 74, 211), rgb(36, 111, 250));
     transform: translateY(-10px);
 }
 
 #logout-button:hover {
-    background: linear-gradient(to bottom, rgb(255, 136, 16), rgb(238, 99, 18));
+    background: whitesmoke;
+    color: rgb(16, 74, 211);
+}
+
+#profile-icon {
+    font-variation-settings: 'FILL' 1;
+    color: #fcc332;
+    font-size: 2.5rem;
+    margin-right: 5px;
+}
+
+#dashboard {
+    color: rgb(238, 119, 0);
+    background: rgb(255, 247, 199);
+}
+
+#dashboard:hover {
+    color: rgb(255, 247, 199);
+    background: rgb(255, 130, 6);
+}
+
+
+/* -------------- Services Section -------------- */
+#services-section {
+    min-height: 100vh;
+    background-color: #fcf8e5;
+    overflow-y: auto;
+}
+
+#services-section .card {
+    width: 290px;
+    background: #007bff;
+    color: white;
+    text-align: center;     
+    box-shadow: -10px 10px orange; 
+    border-radius: 25px;
+}
+
+#services-section .col-sm {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;  
+    flex-wrap: wrap;
+}
+
+#services-section .card h3 {
+    margin-top: 20px;
+    font-size: 1.3rem;  
+    text-transform: capitalize; 
+}
+
+#services-section .card img {
+    border-radius: 25px 25px 0px 0px;   
+    width: 100%;                 
+    height: auto;         
+}
+
+#services-section .card button {
+    background: rgb(255, 238, 124);              
+    color: black;          
+    margin-bottom: 20px;  
+    font-weight: 500;               
+}
+
+#services-section .card button:hover {
+    background: rgb(247, 173, 0);
+}
+
+.services-wrapper {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+#services-section .container h2 {
+    background: rgb(255, 238, 124);
+    border-radius: 25px;
+}
+
+
+/* -------------- Location Section -------------- */
+
+#location-section {
+    min-height: 100vh;
+    width: 100vw;
+    background: aliceblue;
+    z-index: 1;
+}
+
+#location-section .container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#location-section .card {
+    position: relative;
+    height: 75vh;
+    width: 70vw;
+    background: linear-gradient(to right, #96c9ff, #90e0ef, aliceblue);
+    border: none;
+    border-radius: 25px;
+    margin-top: 40px;
+    z-index: 2;
+}
+
+#location-section .content {
+    position: absolute;
+    left: 50px;
+    background: whitesmoke;
+    height: 42vh;
+    width: 41vw;
+    border-radius: 25px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 5;
+    overflow: auto;
+}
+
+#location-section .content h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.75rem;
+}
+
+#location-section .content p {
+    font-size: 1rem;
+    font-weight: 420;
+}
+
+#location-section .container img {
+    position: absolute;
+    right: 55px;
+    max-width: 45vw;
+    border-radius: 50px;
+    z-index: 3;
 }

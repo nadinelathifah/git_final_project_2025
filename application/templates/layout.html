@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename= 'painting.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'welcome.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'example.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'bookings.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <script src="{{ url_for('static', filename= 'script.js') }}" defer></script>
         <title>{{ head|title }}</title>
@@ -21,23 +22,29 @@
     <body>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container-fluid">
+                {% if session['loggedIn'] %}
                 <a href="#" class="navbar-brand">
-                    <img src="{{ url_for('static', filename='logo/hero5.png')}}" alt="My Home Heroes logo displaying a hammer and screwdriver crossed together.">
+                    <i id="profile-icon" class="bx bx-user-circle bx-burst-hover"></i>
+                    <h2>Profile</h2>
+                </a>
+                {% else %}
+                <a href="#" class="navbar-brand">
+                    <img src="{{ url_for('static', filename='logo/girlhero.png')}}" alt="My Home Heroes logo displaying a hammer and screwdriver crossed together.">
                     <h2>My Home Heroes</h2>
                 </a>
+                {% endif %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div id="navbarNav" class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         {% if session['loggedIn'] and session['role'] == 'client' %}
-                        <li class="nav-item"><a href="/client/dashboard" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Client Dashboard</a></li>
-                        <li class="nav-item"><a href="/booking/services" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Make Booking</a></li>
+                        <li class="nav-item"><a href="/client/dashboard" id="dashboard" class="nav-link" aria-current="page">Client Dashboard</a></li>
+                        <li class="nav-item"><a href="/booking/services" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
                         {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
-                        <li class="nav-item"><a href="/task/dashboard" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">Task Dashboard</a></li>
-                        <li class="nav-item"><a href="/booking/requests" class="nav-link" aria-current="page" style="color: rgb(218, 110, 3);">See Bookings</a></li>
+                        <li class="nav-item"><a href="/task/dashboard" id="dashboard" class="nav-link" aria-current="page">Task Dashboard</a></li>
+                        <li class="nav-item"><a href="/booking/requests" id="dashboard" class="nav-link" aria-current="page">See Bookings</a></li>
                         {% else %}
-                        {% endif %}
                         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>About</a>
@@ -45,8 +52,10 @@
                                 <li><a href="/#about-section" class="dropdown-item">Who we are</a></li>
                                 <li><a href="/#how-section" class="dropdown-item">How it works</a></li>
                                 <li><a href="/#services-section" class="dropdown-item">Our services</a></li>
+                                <li><a href="/#location-section" class="dropdown-item">Where we're located</a></li>
                             </ul>
                         </li>
+                        {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>Services</a>
                             <ul class="drop-down">

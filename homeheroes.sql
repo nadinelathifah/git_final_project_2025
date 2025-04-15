@@ -1,28 +1,9 @@
-CREATE DATABASE homeheroes2;
-USE homeheroes2;
+CREATE DATABASE homeheroes6;
+USE homeheroes6;
 
 SHOW TABLES;
 
-SELECT * FROM clients;
-
-CREATE TABLE clients (
-clientID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-firstname VARCHAR(100),
-lastname VARCHAR(100),
-date_of_birth date,
-email VARCHAR(100) UNIQUE NOT NULL,
-password VARCHAR(255) NOT NULL,
-registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
-);
-
-
-SELECT * FROM tasks;
-
-CREATE TABLE tasks (
-taskID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-task_name VARCHAR(200),
-description VARCHAR(200)
-);
+drop database homeheroes4;
 
 
 SELECT * FROM location;
@@ -34,6 +15,27 @@ council VARCHAR(200),
 country VARCHAR(150)
 );
 
+SELECT * FROM clients;
+
+CREATE TABLE clients (
+clientID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+firstname VARCHAR(100),
+lastname VARCHAR(100),
+date_of_birth date,
+townID BIGINT,
+email VARCHAR(100) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+FOREIGN KEY (townID) REFERENCES location(townID)
+);
+
+SELECT * FROM tasks;
+
+CREATE TABLE tasks (
+taskID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+task_name VARCHAR(200),
+description VARCHAR(200)
+);
 
 SELECT * FROM tradespeople;
 
@@ -83,10 +85,8 @@ taskID BIGINT,
 booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
 service_start_date DATE,
 service_end_date DATE,
-townID BIGINT,
 task_description TEXT,
 statusID BIGINT DEFAULT 1,
-FOREIGN KEY (townID) REFERENCES location(townID),
 FOREIGN KEY (taskID) REFERENCES tasks(taskID),
 FOREIGN KEY (clientID) REFERENCES clients(clientID),
 FOREIGN KEY (workerID) REFERENCES tradespeople(workerID),
