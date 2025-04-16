@@ -255,7 +255,7 @@ def painting():
                            title='Painting',
                            subheading='Home needs a splash of colour? Call our painters',
                            icon='imagesearch_roller',
-                           background_image='/static/paints/painting.jpg')
+                           background_image='/static/paints/paint.jpeg')
 
 
 @app.route('/services/lawn_care')
