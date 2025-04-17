@@ -918,7 +918,7 @@ form .btn-primary:hover {
 #location-section .container img {
     position: absolute;
     right: 55px;
-    max-width: 45vw;
+    max-width: 43vw;
     border-radius: 50px;
     z-index: 3;
 }
