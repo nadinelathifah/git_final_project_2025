@@ -43,7 +43,7 @@
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         {% if session['loggedIn'] and session['role'] == 'client' %}
                         <li class="nav-item"><a href="/client/dashboard" id="dashboard" class="nav-link" aria-current="page">Client Dashboard</a></li>
-                        <li class="nav-item"><a href="/booking/services" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
+                        <li class="nav-item"><a href="/find_tradesperson" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
                         {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
                         <li class="nav-item"><a href="/task/dashboard" id="dashboard" class="nav-link" aria-current="page">Task Dashboard</a></li>
                         <li class="nav-item"><a href="/booking/requests" id="dashboard" class="nav-link" aria-current="page">See Bookings</a></li>
@@ -68,9 +68,9 @@
                                     <li><a href="/services/moving" class="dropdown-item nav-link disabled">Moving</a></li>
                                 {% endif %}
                                 {% if request.path != '/example' %}
-                                    <li><a href="#" class="dropdown-item">Home Repairs</a></li>
+                                    <li><a href="/services/home_repairs" class="dropdown-item">Home Repairs</a></li>
                                 {% else %}
-                                    <li><a href="#" class="dropdown-item nav-link disabled">Home Repairs</a></li>
+                                    <li><a href="/services/home_repairs" class="dropdown-item nav-link disabled">Home Repairs</a></li>
                                 {% endif %}
                                 {% if request.path != '/services/electrician' %}
                                     <li><a href="/services/electrician" class="dropdown-item">Electrician</a></li>
@@ -124,7 +124,7 @@
                             <input type="text" name="client_email" placeholder="Email" required>
                         </div>
                         <div class="input-field">
-                            <input type="text" name="client_password" placeholder="Password" required>
+                            <input type="password" name="client_password" placeholder="Password" required>
                         </div>
                         <input type="hidden" name="role" value="client">
                         <a href="#" class="forgot-pass">Forgot Password?</a>
@@ -151,7 +151,7 @@
                             <input type="text" name="tp_email" placeholder="Email">
                         </div>
                         <div class="input-field">
-                            <input type="text" name="tp_password" placeholder="Password">
+                            <input type="password" name="tp_password" placeholder="Password">
                         </div>
                         <input type="hidden" name="role" value="tradesperson">
                         <a href="#" class="forgot-pass">Forgot Password?</a>
