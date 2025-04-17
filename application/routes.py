@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople
 from application import app
 import bcrypt
 
@@ -193,10 +193,12 @@ def task_dashboard():
 
 
 # --------------- Booking Pages --------------- #
-@app.route('/booking/services', methods=['GET', 'POST'])
+
+# Client
+@app.route('/book_service', methods=['GET', 'POST'])
 def book_service():
     if 'user' not in session:
-        return redirect(url_for('home.html'))
+        return redirect(url_for('home'))
     
     if request.method == 'POST':
         clientID = session['user']
@@ -215,28 +217,29 @@ def book_service():
                            background_image='/static/images/house3.jpg')
 
 
-# @app.route('/booking/requests', methods=['GET', 'POST'])
-# def booking_requests():
-#     if 'user' not in session:
-#         return redirect(url_for('home.html'))
-    
-#     if request.method == 'GET':
-#         clientID = session['client_id']
-#         workerID = request.form['worker_id']
-#         taskID = request.form['task_id']
-#         service_start = request.form['service_start']
-#         service_end = request.form['service_end']
-#         townID = request.form['town_id']
-#         task_desc = request.form['task_desc']
 
-#         book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc)
-#     return render_template('book_service.html',
-#                            head="Book a tradesperson",
-#                            title='Book a tradesperson!',
-#                            subheading='your home rescue, just a click away',
-#                            background_image='/static/images/house3.jpg')
+@app.route('/find_tradesperson', methods=['GET', 'POST'])
+def find_tradesperson():
+    towns = get_all_towns()
+    tasks = get_all_tasks()
+    results = []
 
+    if request.method == 'POST':
+        location = request.form.get('location')
+        task = request.form.get('task')
+        hourly_rate = request.form.get('hourly_rate')
+        star_rating = request.form.get('star_rating')
 
+        results = find_matching_tradespeople(task, location, hourly_rate, star_rating)
+
+    return render_template('book_service.html', 
+                           towns=towns, 
+                           tasks=tasks, 
+                           results=results,
+                           head="find a tradesperson",
+                           title="find & book your home hero!",
+                           subheading="get your task done now",
+                           background_image='/static/images/house3.jpg')
 
 @app.route('/services/electrician')
 def electrician():
@@ -247,7 +250,6 @@ def electrician():
                                icon='electrical_services',
                                background_image="/static/images/electrician1.jpg")
 
-
 @app.route('/services/painting')
 def painting():
     return render_template('painting.html', 
@@ -256,7 +258,6 @@ def painting():
                            subheading='Home needs a splash of colour? Call our painters',
                            icon='imagesearch_roller',
                            background_image='/static/paints/paint.jpeg')
-
 
 @app.route('/services/lawn_care')
 def lawn_care():
@@ -267,7 +268,6 @@ def lawn_care():
                            icon='psychiatry',
                            background_image='/static/images/lawn3.jpg')
 
-
 @app.route('/services/moving')
 def moving():
     return render_template('moving.html',
@@ -276,16 +276,6 @@ def moving():
                            subheading='need help moving items or houses? look no further...',
                            icon='deployed_code',
                            background_image='/static/images/Moving_background.png')
-
-
-@app.route('/reviews')
-def reviews():
-    return render_template('reviews.html',
-                           head='reviews',
-                           title='customer experiences',
-                           subheading='review our work',
-                           icon='sentiment_very_satisfied',
-                           background_image='/static/images/gardener.jpeg')
 
 @app.route('/services/home_repairs')
 def home_repairs():
@@ -297,8 +287,6 @@ def home_repairs():
                            background_image='/static/images/repairstwo.jpg')
 
 
-
-
 @app.route('/services/plumbing')
 def plumbing():
     return render_template('plumbing.html',
@@ -307,3 +295,14 @@ def plumbing():
                             subheading='Because even the best pipes have bad days',
                             icon='plumbing',
                             background_image="/static/images/pipes background.jpg")
+
+
+
+@app.route('/reviews')
+def reviews():
+    return render_template('reviews.html',
+                           head='reviews',
+                           title='customer experiences',
+                           subheading='review our work',
+                           icon='sentiment_very_satisfied',
+                           background_image='/static/images/gardener.jpeg')

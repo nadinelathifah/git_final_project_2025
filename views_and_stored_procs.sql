@@ -1,8 +1,12 @@
-USE homeheroes6;
+USE homeheroes10;
 
+-- The purpose of this view is to support the filter function for when a client searches a tradesperson by category and is shown a
+-- list of profiles. And to display general reviews on the reviews webpage.
 CREATE VIEW view_tradespeople_by_category AS
 SELECT
     t.workerID,
+    t.taskID,
+    t.townID,
 	CONCAT(t.firstname, ' ', t.lastname) AS full_name,
     tk.task_name,
     l.town,
@@ -15,20 +19,30 @@ FROM tradespeople AS t
 JOIN tradesperson_profile AS tp ON t.workerID = tp.workerID
 JOIN tasks AS tk ON t.taskID = tk.taskID
 JOIN location AS l ON t.townID = l.townID
-JOIN reviews AS r ON tp.tp_profileID = r.tp_profileID
-GROUP BY t.workerID, CONCAT(t.firstname, ' ', t.lastname), tk.task_name, l.town, tp.phone_number, tp.hourly_rate, tp.bio;
+LEFT JOIN reviews AS r ON tp.tp_profileID = r.tp_profileID
+GROUP BY t.workerID, t.taskID, t.townID, CONCAT(t.firstname, ' ', t.lastname), tk.task_name, l.town, tp.phone_number, tp.hourly_rate, tp.bio;
 
-drop view view_tradespeople_by_category;
-   
+
+-- Display all
 SELECT * FROM view_tradespeople_by_category;
-SELECT task_name FROM view_tradespeople_by_category;
-SELECT 
 
+-- Display all tradespeople in Livingston
+SELECT * FROM view_tradespeople_by_category WHERE town = 'Livingston';
 
+-- Display full name & equivalent task specialisation
+SELECT task_name, full_name FROM view_tradespeople_by_category;
 
-SELECT * FROM view_tradespeople_by_category 
+-- Display the profile of painters in livingston
+SELECT * FROM view_tradespeople_by_category
 WHERE task_name = 'Painting' AND town = 'Livingston'
 ORDER BY hourly_rate ASC;
+
+-- Display gardeners in bathgate
+SELECT * FROM view_tradespeople_by_category
+WHERE task_name = 'Lawn Care' AND town = 'Bathgate'
+ORDER BY hourly_rate ASC;
+
+drop view if exists view_tradespeople_by_category;
 
 
 CREATE VIEW view_booking_requests AS
