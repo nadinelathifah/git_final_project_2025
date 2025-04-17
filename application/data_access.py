@@ -7,19 +7,19 @@ import sys
 # else:
 #     mysql_password = ""
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="homeheroes6"
-)
+#mydb = mysql.connector.connect(
+#  host="localhost",
+#  user="root",
+#  password="",
+#  database="homeheroes6"
+#)
 
 
 def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",
+        password="password",
         database="homeheroes6"
     )
     return mydb
