@@ -125,7 +125,10 @@ def welcome_tradesperson():
                             img2='decoration/squiggleblue2.png',
                             background_image='/static/images/wideshotb.jpeg')
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/nadine
 
 # --------------- Login Routes --------------- #
 @app.route('/login/client', methods=['GET','POST'])
