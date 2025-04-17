@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="",
-  database="homeheroes6"
+  database="homeheroes11"
 )
 
 
@@ -20,7 +20,7 @@ def get_db_connection():
         host="localhost",
         user="root",
         password="",
-        database="homeheroes6"
+        database="homeheroes11"
     )
     return mydb
 
@@ -89,7 +89,13 @@ def get_towns():
     connection = get_db_connection()
     cursor = connection.cursor()
     
-    query = "SELECT town FROM view_tradespeople_by_category"
+    cursor.execute("SELECT town FROM view_tradespeople_by_category")
+    location = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+    return location
+
 
 
 def find_tradesperson(task, location, price_order, rating_order):
@@ -109,6 +115,7 @@ def find_tradesperson(task, location, price_order, rating_order):
 
 
 
+
 def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):
     connection = get_db_connection()
     cursor = connection.cursor()
@@ -122,6 +129,69 @@ def book_job(clientID, workerID, taskID, service_start, service_end, townID, tas
 def get_booking():
     pass
 
+
+# TO ENCODE THE PASSWORD OF CLIENTS
+# client_passwords = [
+#     ('miranda@gmail.com', 'Miranda123'),
+#     ('nadine@gmail.com', 'Nadine123'),
+#     ('liya@gmail.com', 'Liyaa123'),
+#     ('malvina@gmail.com', 'Malvina123'),
+#     ('ayishat@gmail.com', 'Ayishat123'),
+#     ('ailsa@gmail.com', 'Ailsa123'),
+#     ('angus@gmail.com', 'Angus123'),
+#     ('kirsty@gmail.com', 'Kirsty123'),
+#     ('rory@gmail.com', 'Roryy123'),
+#     ('fiona@gmail.com', 'Fiona123'),
+#     ('iain@gmail.com', 'Iainn123'),
+#     ('skye@gmail.com', 'Skyee123'),
+#     ('finlay@gmail.com', 'Finlay123'),
+#     ('lachlan@gmail.com', 'Lachlan123'),
+#     ('isla@gmail.com', 'islaa123'),
+# ]
+
+# mydb = get_db_connection()
+# cursor = mydb.cursor()
+
+# for email, password in client_passwords:
+#     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(12)).decode('utf-8')
+
+#     cursor.execute("""
+#         UPDATE clients
+#         SET password = %s
+#         WHERE email = %s
+#     """, (hashed_password, email))
+
+# mydb.commit()
+# cursor.close()
+# mydb.close()
+
+# print("Passwords updated successfully.")
+
+
+# TO ENCODE THE PASSWORD OF TRADESPEOPLE
+# tradespeople_passwords = [
+#     ('lucy@edc.com', 'lucylack123'),
+#     ('anita@edc.com', 'anita123')
+# ]
+
+# mydb = get_db_connection()
+# cursor = mydb.cursor()
+
+# for email, password in tradespeople_passwords:
+#     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(12)).decode('utf-8')
+
+#     cursor.execute("""
+#         UPDATE tradespeople
+#         SET password = %s
+#         WHERE email = %s
+#     """, (hashed_password, email))
+
+# mydb.commit()
+
+# cursor.close()
+# mydb.close()
+
+# print("Tradespeople passwords updated successfully.")
 
 if __name__ == "__main__":
     main()

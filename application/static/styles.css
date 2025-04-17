@@ -800,7 +800,7 @@ form .btn-primary:hover {
 
 /* -------------- Services Section -------------- */
 #services-section {
-    min-height: 105vh;
+    min-height: 115vh;
     background-color: #fcf8e5;
     overflow-y: auto;
 }
