@@ -10,78 +10,188 @@ import sys
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="password",
-  database="homeheroes1"
+  password="",
+  database="homeheroes11"
 )
+
 
 def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
         password="",
-        database="homeheroes1"
+        database="homeheroes11"
     )
     return mydb
 
-def add_client(firstname, lastname, date_of_birth, email, password):
-    conn = get_db_connection()
-    cursor = conn.cursor()
+
+def add_client(firstname, lastname, date_of_birth, town, email, password):
+    connection = get_db_connection()
+    cursor = connection.cursor()
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO clients (firstname, lastname, date_of_birth, email, password, registration_date) VALUES (%s, %s, %s, %s, %s, CURRENT_DATE())"
-    val = (firstname, lastname, date_of_birth, email, encoded_password)
-    cursor.execute(sql, val)
-    conn.commit()
+    insert = "INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
+    values = (firstname, lastname, date_of_birth, town, email, encoded_password)
+    cursor.execute(insert, values)
+    connection.commit()
 
     print(f"Client, {firstname} {lastname}, was added.")
 
-def add_tradesperson(firstname, lastname, date_of_birth, profession, town, email, password):
-    conn = get_db_connection()
-    cursor = conn.cursor()
+
+def add_tradesperson(firstname, lastname, date_of_birth, task, town, email, password):
+    connection = get_db_connection()
+    cursor = connection.cursor()
 
     encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
 
-    sql = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, profession, town, email, password, registration_date) VALUES (%s, %s, %s, %s, %s, %s, CURRENT_DATE())"
-    val = (firstname, lastname, date_of_birth, profession, town, email, encoded_password)
-    cursor.execute(sql, val)
-    conn.commit()
+    insert = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    values = (firstname, lastname, date_of_birth, task, town, email, encoded_password)
+    cursor.execute(insert, values)
+    connection.commit()
 
     print(f"Tradesperson, {firstname} {lastname}, was added.")
 
 
-def get_client():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-    SELECT
-        
+def get_all_tradespeople():
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM view_tradespeople_by_category;")
+    workers = cursor.fetchall()
+    return workers
 
 
-""")
-
-def get_tradesperson():
-    pass
-
-def find_user(email, role):
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    if role == 'client':
-        query = 'SELECT * FROM clients WHERE email = %s'
-    elif role == 'tradesperson':
-        query = 'SELECT * FROM tradespeople WHERE email = %s'
-    else:
-        raise ValueError()
-
+def get_client_by_email(email):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT * FROM clients WHERE email = %s"
     cursor.execute(query, (email,))
-    user = cursor.fetchone()
+    client = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    connection.close()
+    return client
 
-    return user
 
+def get_tp_by_email(email):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT * FROM tradespeople WHERE email = %s"
+    cursor.execute(query, (email,))
+    tradesperson = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+    return tradesperson
+
+
+def get_towns():
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    
+    cursor.execute("SELECT town FROM view_tradespeople_by_category")
+    location = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+    return location
+
+
+
+def find_tradesperson(task, location, price_order, rating_order):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    query = "SELECT * FROM view_tradespeople_by_category WHERE 1-1"
+    search_parameters = []
+
+    if task:
+        query += "AND task_name = %s"
+        search_parameters.append(task)
+    
+    if location:
+        query += "AND town = %s"
+        search_parameters.append(location)
+
+
+
+
+def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, townID, task_desc])
+
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+def get_booking():
+    pass
+
+
+# TO ENCODE THE PASSWORD OF CLIENTS
+# client_passwords = [
+#     ('miranda@gmail.com', 'Miranda123'),
+#     ('nadine@gmail.com', 'Nadine123'),
+#     ('liya@gmail.com', 'Liyaa123'),
+#     ('malvina@gmail.com', 'Malvina123'),
+#     ('ayishat@gmail.com', 'Ayishat123'),
+#     ('ailsa@gmail.com', 'Ailsa123'),
+#     ('angus@gmail.com', 'Angus123'),
+#     ('kirsty@gmail.com', 'Kirsty123'),
+#     ('rory@gmail.com', 'Roryy123'),
+#     ('fiona@gmail.com', 'Fiona123'),
+#     ('iain@gmail.com', 'Iainn123'),
+#     ('skye@gmail.com', 'Skyee123'),
+#     ('finlay@gmail.com', 'Finlay123'),
+#     ('lachlan@gmail.com', 'Lachlan123'),
+#     ('isla@gmail.com', 'islaa123'),
+# ]
+
+# mydb = get_db_connection()
+# cursor = mydb.cursor()
+
+# for email, password in client_passwords:
+#     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(12)).decode('utf-8')
+
+#     cursor.execute("""
+#         UPDATE clients
+#         SET password = %s
+#         WHERE email = %s
+#     """, (hashed_password, email))
+
+# mydb.commit()
+# cursor.close()
+# mydb.close()
+
+# print("Passwords updated successfully.")
+
+
+# TO ENCODE THE PASSWORD OF TRADESPEOPLE
+# tradespeople_passwords = [
+#     ('lucy@edc.com', 'lucylack123'),
+#     ('anita@edc.com', 'anita123')
+# ]
+
+# mydb = get_db_connection()
+# cursor = mydb.cursor()
+
+# for email, password in tradespeople_passwords:
+#     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(12)).decode('utf-8')
+
+#     cursor.execute("""
+#         UPDATE tradespeople
+#         SET password = %s
+#         WHERE email = %s
+#     """, (hashed_password, email))
+
+# mydb.commit()
+
+# cursor.close()
+# mydb.close()
+
+# print("Tradespeople passwords updated successfully.")
 
 if __name__ == "__main__":
     main()

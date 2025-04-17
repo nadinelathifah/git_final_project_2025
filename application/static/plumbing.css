@@ -22,7 +22,7 @@
     border-radius: 25px;
 }
 
-#plumbing-section .col-sm {
+#plumbing-services-section .col-sm {
     display: flex;               /* Turns .col-sm into a flexbox container */
     flex-direction: row;         /* Lays out the items inside the flexbox container (cards) in a horizontal row */
     justify-content: center;     /* Centers the items horizontally */
@@ -103,7 +103,7 @@
     align-items: center;
 }
 
-#plumbing-2 .card {
+#plumbing-services-2 .card {
     position: relative;
     background: linear-gradient(to left, #96c9ff, #90e0ef);
     height: 80vh;

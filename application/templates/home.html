@@ -70,7 +70,7 @@
         <div class="content">
             <h3>How it works</h1>
             <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.5;">counter_1</span>Create an account.</p>
-            <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.69;">counter_2</span>Choose a tradesperson by task, price & reviews.</p>
+            <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.69;">counter_2</span>Choose a tradesperson by task & location.</p>
             <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.85;">counter_3</span>Schedule a service date.</p>
             <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon">counter_4</span>Chat, pay and leave a review.</p>
         </div>
@@ -78,7 +78,70 @@
 </section>
 
 <section id="services-section">
+    <div class="container pt-5">
+        <h2>
+            <span class="material-symbols-outlined" style="font-size: 2rem; display: inline-flex; vertical-align: middle; margin-right: 5px;">
+                home_repair_service
+            </span>
+            Our Services
+        </h2>
+    </div>
+    <br>
+    <div class="services-wrapper">
+        <div class="col-sm">
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/Moving_background.png' )}}" alt="">
+                <h3>Moving</h3>
+               <a href="/services/moving"><button class="btn btn-primary">Learn More</button></a>
+            </div>
 
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/fix.jpeg' )}}" alt="">
+                <h3>Home Repairs</h3>
+                <a href="#"><button class="btn btn-primary">Learn More</button></a>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/et.jpeg' )}}" alt="">
+                <h3>Electrician</h3>
+                <a href="/electrician"><button class="btn btn-primary">Learn More</button></a>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/plumber7.jpeg' )}}" alt="">
+                <h3>Plumbing</h3>
+               <a href="/services/plumbing"><button class="btn btn-primary">Learn More</button></a>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'paints/rollers.jpeg' )}}" alt="">
+                <h3>Painting</h3>
+                <a href="/services/painting"><button class="btn btn-primary">Learn More</button></a>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename= 'images/lawn.jpg' )}}" alt="">
+                <h3>Lawn Care</h3>
+                <a href="/services/lawn_care"><button class="btn btn-primary">Learn More</button></a>
+            </div>
+        </div>
+
+</section>
+
+
+<section id="location-section">
+    <div class="container pt-5">
+        <img data-aos="fade-left" src="{{ url_for('static', filename= 'images/houses2.jpg' )}}" alt="">
+        <div class="card"></div>
+        <div class="content">
+            <h3>Location <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>
+            <p>Based in Livingston, My Home Hero is rooted in the West Lothian community. 
+                We’re proud to serve 15 towns across the region, bringing reliable home services right to your doorstep. 
+                No matter where you are in West Lothian, a trusted local hero is nearby and ready to help.
+            </p>
+        </div>
+    </div>
 </section>
 
 
