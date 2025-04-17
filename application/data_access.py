@@ -85,34 +85,59 @@ def get_tp_by_email(email):
     return tradesperson
 
 
-def get_towns():
+def get_all_towns():
     connection = get_db_connection()
     cursor = connection.cursor()
-    
-    cursor.execute("SELECT town FROM view_tradespeople_by_category")
-    location = cursor.fetchall()
+    cursor.execute("SELECT DISTINCT town FROM view_tradespeople_by_category")
+    towns = cursor.fetchall()
 
     cursor.close()
     connection.close()
-    return location
+    return towns
 
-
-
-def find_tradesperson(task, location, price_order, rating_order):
+def get_all_tasks():
     connection = get_db_connection()
     cursor = connection.cursor()
+    cursor.execute("SELECT DISTINCT task_name FROM view_tradespeople_by_category")
+    tasks = cursor.fetchall()
 
-    query = "SELECT * FROM view_tradespeople_by_category WHERE 1-1"
+    cursor.close()
+    connection.close()
+    return tasks
+
+
+
+def find_matching_tradespeople(task=None, location=None, hourly_rate=None, star_rating=None):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    query = "SELECT * FROM view_tradespeople_by_category WHERE 1=1"
     search_parameters = []
 
     if task:
-        query += "AND task_name = %s"
+        query += " AND task_name = %s"
         search_parameters.append(task)
     
     if location:
-        query += "AND town = %s"
+        query += " AND town = %s"
         search_parameters.append(location)
+    
+    order_clauses = []
+    if hourly_rate:
+        order_clauses.append(f"hourly_rate {hourly_rate}")
 
+    if star_rating:
+        order_clauses.append(f"average_rating {star_rating}")
+
+    if order_clauses:
+        query += " ORDER BY " + ", ".join(order_clauses)
+
+    cursor.execute(query, search_parameters)
+    results_from_search = cursor.fetchall()
+    cursor.close()
+    connection.close()
+
+    return results_from_search
 
 
 
@@ -193,5 +218,6 @@ def get_booking():
 
 # print("Tradespeople passwords updated successfully.")
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    print("Tasks test:", get_all_tasks())
+    print("Towns test:", get_all_towns())
