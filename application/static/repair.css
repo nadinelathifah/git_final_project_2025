@@ -40,3 +40,20 @@
     height: auto;
     border-radius: 25px 25px 0px 0px;
 }
+
+#repair-section .card button {
+  background-color: yellow;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#repair-section .card button:hover {
+  background-color: orange;
+}
+
+
