@@ -1,4 +1,4 @@
-USE homeheroes11;
+USE homeheroes12;
 
 -- The purpose of this view is to support the filter function for when a client searches a tradesperson by category and is shown a
 -- list of profiles. And to display general reviews on the reviews webpage.

@@ -934,6 +934,7 @@ form .btn-primary:hover {
     min-height: 100vh;
     width: 100vw;
     background: whitesmoke;
+    overflow-x: hidden;
     z-index: 0;
 }
 
@@ -990,7 +991,34 @@ form .btn-primary:hover {
     font-variation-settings: 'FILL' 1;
 }
 
-#reviews .row {
+.review-wrapper {
     display: flex;
     justify-content: center;
+}
+
+.reviewcard-img {
+    max-width: 9.5vw;
+    /* border-radius: 50%; */
+    height: auto;
+}
+
+#reviews .card {
+    width: 100%;
+    padding: 20px;
+    border-radius: 25px;
+    border: 1px solid white;
+    box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.137);
+    z-index: 5;
+}
+
+#reviews .card-text {
+    margin-top: 20px;
+}
+
+#reviews .col-sm.col-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 }

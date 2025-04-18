@@ -1,5 +1,5 @@
-CREATE DATABASE homeheroes11;
-USE homeheroes11;
+CREATE DATABASE homeheroes12;
+USE homeheroes12;
 
 drop database if exists homeheroes9;
 
@@ -14,7 +14,6 @@ council VARCHAR(200),
 country VARCHAR(150)
 );
 
-SELECT * FROM clients;
 
 CREATE TABLE clients (
 clientID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -28,15 +27,12 @@ registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
 FOREIGN KEY (townID) REFERENCES location(townID)
 );
 
-SELECT * FROM tasks;
 
 CREATE TABLE tasks (
 taskID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 task_name VARCHAR(200),
 description VARCHAR(200)
 );
-
-
 
 
 CREATE TABLE tradespeople (
@@ -54,8 +50,6 @@ FOREIGN KEY (townID) REFERENCES location(townID)
 );
 
 
-SELECT * FROM tradesperson_profile;
-
 CREATE TABLE tradesperson_profile (
 tp_profileID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 workerID BIGINT,
@@ -68,15 +62,11 @@ UNIQUE(workerID)
 );
 
 
-SELECT * FROM job_status;
-
 CREATE TABLE job_status (
 statusID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 status VARCHAR(50) NOT NULL
 );
 
-
-SELECT * FROM job_booking;
 
 CREATE TABLE job_booking (
 bookingID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -94,8 +84,6 @@ FOREIGN KEY (workerID) REFERENCES tradespeople(workerID),
 FOREIGN KEY (statusID) REFERENCES job_status(statusID)
 );
 
-
-SELECT * FROM reviews;
 
 CREATE TABLE reviews (
 reviewID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -272,7 +260,7 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (54, '+44 7534 789 012', 50.65, 'Drill Works', "I'm the drill master, making sure your repairs are on point!"),
 (55, '+44 7412 567 890', 28.99, 'Brick Builders', 'Laying the foundation for a better home, one brick at a time!'),
 (56, '+44 7534 789 012', 35.50, 'Paint Prodigy', 'Fixing more than just the surface — I restore your walls to perfection!'),
-(57, '+44 7823 678 901', 47.80, 'Duct Dudes', "No duct too tricky — I'll seal the deal!");
+(57, '+44 7823 678 901', 47.80, 'Duct Dudes', "No duct too tricky — I'll seal the deal!"),
 
 
 -- need miranda
@@ -325,7 +313,7 @@ select * from clients;
 -- Reviews for Painting Services -- 
 INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date) 
 VALUES (1, 1, 5, "Lucy did an amazing job with our interior painting. She has such an eye for detail, and the finish was flawless. Our living room looks like a brand new space! Highly recommend!", '2008-03-15'),
-(2, 1, 5, "Lucy helped us with a color consultation, and we couldn’t be happier with her recommendations! She really listened to our preferences and guided us toward the perfect shades for our home. The space looks incredible, and the atmosphere is so much warmer and inviting now.", '2008-06-22'),
+(2, 1, 5, "Lucy helped us with a color consultation, and we couldn’t be happier with her recommendations! She really listened to our preferences and guided us toward the perfect shades for our home.", '2008-06-22'),
 (10, 2, 5, "Anita was fantastic with the wallpaper removal in our bedroom. She worked efficiently, and there wasn’t a speck of mess left behind. Very professional and easy to communicate with. Thank you, Anita!", '2008-09-30'),
 (10, 2, 4, "Anita recently assisted us with recoating the walls in our hallway, and the result is fantastic! She made sure every corner was covered, and the walls look smooth and flawless. We were impressed with her professionalism and care, and will definitely hire her again!", '2008-12-08'),
 (6, 3, 5, "Matt really transformed our kitchen with his drywall repair and fresh coat of paint. The quality of work is top-notch, and the entire process was smooth from start to finish. Extremely satisfied!", '2009-02-11'),
