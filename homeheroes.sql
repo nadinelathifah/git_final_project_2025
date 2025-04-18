@@ -169,16 +169,6 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Poppy', 'Moore', '2002-02-21', 6, 4, 'poppy@wksolutions.com', 'poppy123', '2024-07-01'),
 ('Olive', 'Bloomfield', '1997-02-16', 6, 4, 'olive@gardenbros.com', 'olive123', '2024-10-01'),
 ('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01'),
-<<<<<<< HEAD
-('Alice', 'Wonderland', '1987-01-02', 2, 5, 'alice.wonderland@fixitpros.com', 'alice123', '2020-01-01'),
-('Sarah', 'Sky', '2000-09-10', 2, 2, 'sarah.sky@skyhighrepairs.com', 'sarah123', '2021-02-03'),
-('Tina', 'Tape', '1999-08-07', 2, 3, 'tinatape@tapeitright.com', 'tina123', '2022-03-04'),
-('Cindy', 'Saw', '1984-11-14', 2, 4, 'cindy.saw@sawmasters.com', 'cindy123', '2023-04-05'),
-('Danny', 'Drill', '1997-12-12', 2, 5, 'danny.drill@drillworks.com', 'danny123', '2024-06-07'),
-('Ben', 'Brick', '1978-02-23', 2, 1, 'ben.brick@brickbuilders.com', 'ben123', '2025-01-01'),
-('Pat', 'Paint', '1995-05-05', 2, 2, 'pat.paint@paintprodigy.com', 'pat123', '2019-08-07'),
-('Dean', 'Duct', '1990-06-07', 2, 5, 'dean.duct@ductdudes.com', 'dean123', '2018-09-08');
-=======
 ('David', 'Dunn', '1982-05-06', 3, 7, 'david.dunn@upliftlogistics.com', 'david123', '2024-06-20'),
 ('Sean', 'Hill', '1981-06-01', 3, 8, 'sean.hill@atlashaulers.com', 'sean123', '2023-02-20'),
 ('Sheila', 'Mcintosh', '1999-10-12', 3, 8, 'sheila.mcintosh@packmasters.com', 'sheila123', '2023-08-22'),
@@ -195,13 +185,19 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Bryan', 'Barrett', '1983-03-02', 3, 2, 'bryan.barrett@urbantrekrelocations.com', 'bryan123', '2024-02-04'),
 ('Michael', 'Rice', '1984-09-02', 3, 6, 'michael.rice@summithauling.com', 'michael123', '2023-09-01'),
 ('Daniel', 'Deleon', '2002-12-12', 3, 7, 'daniel.deleon@urbantrekrelocations.com', 'daniel123', '2024-04-29'),
-('Matthew', 'Bray', '1994-11-10', 3, 7, 'matthew.bray@peakpointmovers.com', 'matthew123', '2023-08-08');
->>>>>>> origin/ayishat
+('Matthew', 'Bray', '1994-11-10', 3, 7, 'matthew.bray@peakpointmovers.com', 'matthew123', '2023-08-08'),
+('Alice', 'Wonderland', '1987-01-02', 2, 5, 'alice.wonderland@fixitpros.com', 'alice123', '2020-01-01'),
+('Sarah', 'Sky', '2000-09-10', 2, 2, 'sarah.sky@skyhighrepairs.com', 'sarah123', '2021-02-03'),
+('Tina', 'Tape', '1999-08-07', 2, 3, 'tinatape@tapeitright.com', 'tina123', '2022-03-04'),
+('Cindy', 'Saw', '1984-11-14', 2, 4, 'cindy.saw@sawmasters.com', 'cindy123', '2023-04-05'),
+('Danny', 'Drill', '1997-12-12', 2, 5, 'danny.drill@drillworks.com', 'danny123', '2024-06-07'),
+('Ben', 'Brick', '1978-02-23', 2, 1, 'ben.brick@brickbuilders.com', 'ben123', '2025-01-01'),
+('Pat', 'Paint', '1995-05-05', 2, 2, 'pat.paint@paintprodigy.com', 'pat123', '2019-08-07'),
+('Dean', 'Duct', '1990-06-07', 2, 5, 'dean.duct@ductdudes.com', 'dean123', '2018-09-08');
+
+-- Need insert miranda
 
 -- plumbing tradespeople
-INSERT INTO tradespeople (
-firstname, lastname, date_of_birth, taskID, townID, email, password, registration_date
-) VALUES
 ('Pippa', 'Drains', '1976-02-10', 5, 1, 'Pippa.Drains@homeheroes.co.uk', 'Pippa123', '2023-09-01'),
 ('Lee Kay', 'Faucet', '1986-03-10', 5, 2, 'Lee Kay.Faucet@homeheroes.co.uk', 'Lee Kay123', '2024-04-29'),
 ('Lou', 'Sinkler', '1976-04-02', 5, 3, 'Lou.Sinkler@homeheroes.co.uk', 'Lou123', '2023-08-08'),
@@ -217,6 +213,7 @@ firstname, lastname, date_of_birth, taskID, townID, email, password, registratio
 ('Billy', 'Backflow', '2002-11-10', 5, 2, 'Billy.Backflow@homeheroes.co.uk', 'Billy123', '2024-09-20'),
 ('Greta', 'Gasket', '1976-10-15', 5, 8, 'Greta.Gasket@homeheroes.co.uk', 'Greta123', '2024-02-01'),
 ('Val V.', 'Pressure', '1976-10-16', 5, 1, 'ValV.Pressure@homeheroes.co.uk', 'ValV123', '2022-12-06')
+
 
 INSERT INTO tradesperson_profile (workerID, phone_number, hourly_rate, business, bio)
 VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I live for vibrant, flawless finishes. I bring passion and precision to every paint job, transforming your space into a work of art.'),
@@ -251,39 +248,37 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (30, '+44 1324-804102', 22.50, 'Wise Knotweed Solutions', 'I''m Poppy and my work is a national treasure. I’ll turn your outdoor space into a blooming beauty.'),
 (31, '+44 7495-234871', 22.80, 'Garden Bros', 'Bringing lush greenery and blooming beauty to your garden. I’ll help you create a peaceful retreat with vibrant plants.'),
 (32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.'),
-<<<<<<< HEAD
-(52, '+44 7567 234 567', 45.99, 'Wonder Home Solutions', 'Turning your home repairs into a wonderland of fixes!'),
-(53, '+44 7456 123 456', 20.75, 'Sky High Repairs', 'Bringing your home repairs to new heights'),
-(54, '+44 7890 345 678', 39.20, 'Tape It Right', "I'll stick with you until the job's done right!"),
-(55, '+44 7745 890 123', 26.25, 'Saw Masters', 'Cutting through problems, one saw at a time'),
-(56, '+44 7534 789 012', 50.65, 'Drill Works', "I'm the drill master, making sure your repairs are on point!"),
-(57, '+44 7412 567 890', 28.99, 'Brick Builders', 'Laying the foundation for a better home, one brick at a time!'),
-(58, '+44 7534 789 012', 35.50, 'Paint Prodigy', 'Fixing more than just the surface — I restore your walls to perfection!'),
-(59, '+44 7823 678 901', 47.80, 'Duct Dudes', "No duct too tricky — I'll seal the deal!");
-=======
-(35, '+44 7620 567 890', 28.75, 'Uplift Logistics', 'Need a move that\'s fast and flawless? I\'m David, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
-(36, '+44 7709 234 567', 24.60, 'Atlas Haulers', 'Hey there! I\'m Sean, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
-(37, '+44 7561 123 987', 26.30, 'PackMasters', 'Hi! Sheila here — moving isn’t just a job; it\'s my passion. I make transitions easy, treating every item as if it’s my own.'),
-(38, '+44 7420 987 654', 23.90, 'Titan Transit', 'Hi! Kimberly here — moving isn’t just a job; it\'s my passion. I make transitions easy, treating every item as if it’s my own.'),
-(39, '+44 7799 876 543', 25.45, 'Rocket Relocations', 'Hi! Candace here — moving isn’t just a job; it\'s my passion. I make transitions easy, treating every item as if it’s my own.'),
-(40, '+44 7623 489 230', 27.10, 'BoldMove Haulers', 'Hey there! I\'m Nathan, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
-(41, '+44 7754 123 987', 29.25, 'SilverLine Shifters', 'Hey there! I\'m Seth, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
-(42, '+44 7609 876 543', 26.80, 'SilverLine Shifters', 'Ready to roll? I\'m Rebecca, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home.'),
-(43, '+44 7901 345 678', 25.90, 'MetroMax Relocations', 'Need a move that\'s fast and flawless? I\'m Monica, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
-(44, '+44 7832 234 567', 25.10, 'Rocket Relocations', 'Need a move that\'s fast and flawless? I\'m Danielle, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
-(45, '+44 7712 345 678', 22.95, 'FirstClass Freight', 'Hey there! I\'m Nicole, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
-(46, '+44 7654 987 654', 24.10, 'AnchorWave Movers', 'Looking for a reliable mover? I\'m Kaitlyn, and I know how to turn moving day into a smooth and stress-free experience. Let’s make it happen!'),
-(47, '+44 7745 890 123', 22.75, 'BoldMove Haulers', 'Ready to roll? I\'m Anthony, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home.'),
-(48, '+44 7534 789 012', 25.00, 'Urban Trek Relocations', 'Ready to roll? I\'m Bryan, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home.'),
-(49, '+44 7823 678 901', 23.40, 'Summit Hauling', 'Need a move that\'s fast and flawless? I\'m Michael, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
-(50, '+44 7412 567 890', 23.95, 'Urban Trek Relocations', 'Need a move that\'s fast and flawless? I\'m Daniel, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
-(51, '+44 7701 456 789', 24.75, 'PeakPoint Movers', 'Need a move that\'s fast and flawless? I\'m Matthew, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!');
->>>>>>> origin/ayishat
+(33, "+44 7620 567 890", 28.75, "Uplift Logistics", "Need a move that's fast and flawless? I'm David, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(34, "+44 7709 234 567", 24.60, "Atlas Haulers", "Hey there! I'm Sean, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(35, "+44 7561 123 987", 26.30, "PackMasters", "Hi! Sheila here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(36, "+44 7420 987 654", 23.90, "Titan Transit", "Hi! Kimberly here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(37, "+44 7799 876 543", 25.45, "Rocket Relocations", "Hi! Candace here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(38, "+44 7623 489 230", 27.10, "BoldMove Haulers", "Hey there! I'm Nathan, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(39, "+44 7754 123 987", 29.25, "SilverLine Shifters", "Hey there! I'm Seth, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(40, "+44 7609 876 543", 26.80, "SilverLine Shifters", "Ready to roll? I'm Rebecca, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(41, "+44 7901 345 678", 25.90, "MetroMax Relocations", "Need a move that's fast and flawless? I'm Monica, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(42, "+44 7832 234 567", 25.10, "Rocket Relocations", "Need a move that's fast and flawless? I'm Danielle, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(43, "+44 7712 345 678", 22.95, "FirstClass Freight", "Hey there! I'm Nicole, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(44, "+44 7654 987 654", 24.10, "AnchorWave Movers", "Looking for a reliable mover? I'm Kaitlyn, and I know how to turn moving day into a smooth and stress-free experience. Let’s make it happen!"),
+(45, "+44 7745 890 123", 22.75, "BoldMove Haulers", "Ready to roll? I'm Anthony, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(46, "+44 7534 789 012", 25.00, "Urban Trek Relocations", "Ready to roll? I'm Bryan, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(47, "+44 7823 678 901", 23.40, "Summit Hauling", "Need a move that's fast and flawless? I'm Michael, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(48, "+44 7412 567 890", 23.95, "Urban Trek Relocations", "Need a move that's fast and flawless? I'm Daniel, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(49, "+44 7701 456 789", 24.75, "PeakPoint Movers", "Need a move that's fast and flawless? I'm Matthew, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(50, '+44 7567 234 567', 45.99, 'Wonder Home Solutions', 'Turning your home repairs into a wonderland of fixes!'),
+(51, '+44 7456 123 456', 20.75, 'Sky High Repairs', 'Bringing your home repairs to new heights'),
+(52, '+44 7890 345 678', 39.20, 'Tape It Right', "I'll stick with you until the job's done right!"),
+(53, '+44 7745 890 123', 26.25, 'Saw Masters', 'Cutting through problems, one saw at a time'),
+(54, '+44 7534 789 012', 50.65, 'Drill Works', "I'm the drill master, making sure your repairs are on point!"),
+(55, '+44 7412 567 890', 28.99, 'Brick Builders', 'Laying the foundation for a better home, one brick at a time!'),
+(56, '+44 7534 789 012', 35.50, 'Paint Prodigy', 'Fixing more than just the surface — I restore your walls to perfection!'),
+(57, '+44 7823 678 901', 47.80, 'Duct Dudes', "No duct too tricky — I'll seal the deal!");
 
--- plumbing profiles
-INSERT INTO tradesperson_profile (		
-workerID, phone_number, hourly_rate, business, bio		
-) VALUES		
+
+-- need miranda
+
+
+-- plumbing profiles - need to insert WORKERID	
 ('+44 7712 345678', '£24.99', 'PurePipes by Pippa', 'Plumbing problems? I’m Pippa — precise, practical, and proud to get things flowing again. From leaks to installations, I’ve got it covered.'),		
 ('+44 7400 123456', '£27.99', 'Lee Kay’s Quick Fixes', 'Hi, I’m Lee Kay! I thrive on solving the trickiest pipe puzzles. You can count on me for fast fixes and lasting results.'),		
 ('+44 7891 234567', '£28.99', 'Lil’ Lou’s Plumbing Crew', 'I’m Lou, and plumbing is my passion. I keep things running smoothly so you don’t have to worry about a drip or a clog again.'),		
@@ -300,6 +295,8 @@ workerID, phone_number, hourly_rate, business, bio
 ('+44 7300 998877', '£29.99', 'Green Greta Plumbing', 'Hello! I’m Greta. I combine care and craftsmanship to deliver spotless plumbing work every single time.'),		
 ('+44 7409 123456', '£28.99', 'Val V. Prestige Plumbing', 'I’m Val V. — known for cool under pressure and sharp solutions. Leaks beware, I’m on the job!')		
 
+
+
 INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password, registration_date)
 VALUES ('Miranda', 'Fanta', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoyy/usxIaevDg5VTtOaoeBcVgoYirqdbMZm16kzi.VVIpU4A2', '2000-01-01'),
 ('Nadine', 'Vimto', '1997-01-08', 1, 'nadine@gmail.com', '$2b$12$KDLed2NMC6s/1x3kI7CVgu4XM0Mkou7fMePfHUEBM.qRLgsKIVelK', '2000-01-05'),
@@ -315,13 +312,14 @@ VALUES ('Miranda', 'Fanta', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoy
 ('Skye', 'MacPherson', '1988-07-24', 8, 'skye@gmail.com', '$2b$12$wwsYCsXlPRtD53Bsu89LeeVnAnQTkikJKSmRuXKCHoMohoe4hp4Ha', '2000-01-12'),
 ('Finlay', 'McArthur', '2000-03-13', 2, 'finlay@gmail.com', '$2b$12$1DT6uvCD9WulCVAheoVtY.hOnDqBD82usbXQ3XtWPOEajBMt90Z6u', '2000-01-13'),
 ('Lachlan', 'Fraser', '1983-11-28', 3, 'lachlan@gmail.com', '$2b$12$5ZXeuWPSCYuvve9UoBuJk.uB.WE/LPJk2IRUGgeCgAzFiIUhmZycu', '2000-01-14'),
-('Isla', 'Buchanan', '2003-05-13', 4, 'isla@gmail.com', '$2b$12$e74zoQ6WYDCWUkIn5c1teudTpzdbXrSbBfHVqypw0jBAM6uoWn3Mu', '2000-01-15');
+('Isla', 'Buchanan', '2003-05-13', 4, 'isla@gmail.com', '$2b$12$e74zoQ6WYDCWUkIn5c1teudTpzdbXrSbBfHVqypw0jBAM6uoWn3Mu', '2000-01-15'),
 ('Spec', 'Saver', '2000-06-14, 4', 'spec@gmail.com', 'Spec123456', '2000-01-16'),
 ('Coraline', 'Jones', '1968-03-03', 2, 'coraline@gmail.com', 'Coraline123', '2000-01-17'),
 ('Strawberry', 'Shortcake', '2004-08-08', 3, 'strawberry@gmail.com', 'Strawberry123', '2001-01-18'),
 ('Will', 'Smith', '1999-09-09', 4, 'wills@gmail.com', 'WillS1234', '2001-01-19');
 
 select * from clients;
+
 
 
 -- Reviews for Painting Services -- 
@@ -395,7 +393,43 @@ VALUES (4, 17, 5, 'Penny turned our dull backyard into a blooming paradise! Her 
 (11, 32, 2, 'We hired Tommy to help with flower bed planning and planting, but the results were underwhelming. Some of the choices didn’t suit the space or season, and it felt a bit rushed overall. He was friendly, but the execution just didn’t deliver what we hoped for.', '2015-04-19'),
 (11, 32, 3, 'Tommy handled our front yard landscaping. He clearly knows his plants, but the overall design felt a bit basic for what we discussed. It looks good now, just not quite as polished as we expected.', '2015-04-20');
 
-<<<<<<< HEAD
+-- Reviews for Moving Services --
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+VALUES (5, 35, 5, 'David Dunn communicated well and completed the move quicker than expected.', '2024-08-02'),
+(11, 35, 5, 'David Dunn took great care with our belongings. Very professional service.', '2024-11-22'),
+(7, 36, 4, 'Sean Hill took great care with our belongings. Very professional service.', '2025-01-31'),
+(12, 36, 5, 'Sean Hill provided excellent packing and delivery services.', '2024-05-27'),
+(13, 37, 5, 'Sheila Mcintosh provided excellent packing and delivery services.', '2024-01-18'),
+(7, 37, 5, 'Sheila Mcintosh provided excellent packing and delivery services.', '2024-01-02'),
+(12, 38, 4, 'Kimberly Martin took great care with our belongings. Very professional service.', '2024-02-23'),
+(5, 38, 5, 'Kimberly Martin communicated well and completed the move quicker than expected.', '2024-11-28'),
+(14, 39, 1, 'Candace Thomas delivered incomplete service, leaving many items behind.', '2024-03-20'),
+(6, 39, 2, 'Candace Thomas communication was poor, and the move was stressful and chaotic.', '2025-02-11'),
+(9, 40, 5, 'Nathan Garcia handled our move flawlessly! Everything arrived safely and on time.', '2024-04-03'),
+(11, 40, 4, 'Nathan Garcia communicated well and completed the move quicker than expected.', '2024-05-02'),
+(13, 41, 5, 'Seth Warner took great care with our belongings. Very professional service.', '2024-02-28'),
+(1, 41, 4, 'Seth Warner took great care with our belongings. Very professional service.', '2024-01-29'),
+(10, 42, 5, 'Rebecca Lane communicated well and completed the move quicker than expected.', '2024-02-09'),
+(8, 42, 4, 'Rebecca Lane took great care with our belongings. Very professional service.', '2024-05-23'),
+(1, 43, 5, 'Monica Wolf made our relocation smooth and stress-free. Highly recommended!', '2024-08-08'),
+(13, 43, 4, 'Monica Wolf took great care with our belongings. Very professional service.', '2024-06-08'),
+(6, 44, 5, 'Danielle Collins communicated well and completed the move quicker than expected.', '2024-12-01'),
+(6, 44, 5, 'Danielle Collins provided excellent packing and delivery services.', '2024-05-02'),
+(12, 45, 4, 'Nicole West communicated well and completed the move quicker than expected.', '2024-06-29'),
+(4, 45, 5, 'Nicole West took great care with our belongings. Very professional service.', '2024-09-23'),
+(15, 46, 5, 'Kaitlyn Rivera communicated well and completed the move quicker than expected.', '2024-04-20'),
+(10, 46, 5, 'Kaitlyn Rivera took great care with our belongings. Very professional service.', '2025-02-10'),
+(7, 47, 3, 'Anthony Reed was polite and professional, though the move took longer than planned.', '2024-04-03'),
+(9, 47, 4, 'Anthony Reed took great care with our belongings. Very professional service.', '2024-02-18'),
+(3, 48, 4, 'Bryan Barrett provided excellent packing and delivery services.', '2025-01-30'),
+(9, 48, 5, 'Bryan Barrett communicated well and completed the move quicker than expected.', '2025-03-22'),
+(10, 49, 4, 'Michael Rice took great care with our belongings. Very professional service.', '2024-10-24'),
+(15, 49, 4, 'Michael Rice made our relocation smooth and stress-free. Highly recommended!', '2024-02-02'),
+(4, 50, 4, 'Daniel Deleon handled our move flawlessly! Everything arrived safely and on time.', '2024-07-02'),
+(4, 50, 5, 'Daniel Deleon handled our move flawlessly! Everything arrived safely and on time.', '2024-05-01'),
+(8, 51, 5, 'Matthew Bray provided excellent packing and delivery services.', '2024-07-10'),
+(2, 51, 4, 'Matthew Bray handled our move flawlessly! Everything arrived safely and on time.', '2025-02-05');
+
 -- Reviews for Repair Services --
 INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
 VALUES
@@ -407,6 +441,8 @@ VALUES
 (22, 57, 4, 'Ben''s brickwork is top-notch. He built a strong, solid structure that will last for years!', '2023-03-28'),
 (23, 58, 3, 'Pat doesn''t just paint, he repaired and restored my walls to perfect condition – great craftsmanship!', '2023-09-07'),
 (24, 59, 3, 'Dean''s duct work saved me so much trouble – efficient and tidy!', '2022-04-03');
+
+
 -- Reviews for plumbing
 INSERT INTO reviews (	
 clientID, tp_profileID, rating, comment, review_date	
@@ -445,42 +481,5 @@ clientID, tp_profileID, rating, comment, review_date
 (14, 84, 2, 'Val V. left us a bit underwhelmed. She replaced the valves under our sink, but we noticed a slight rattle in the pipes afterward. It’s not a huge deal, but it left us questioning the quality of the finish.', '2023-08-03'),	
 (5, 84, 5, 'Val V. was excellent—she fitted a luxury rainfall shower and the finish is stunning, clearly takes pride in her work.', '2023-05-19'),	
 (6, 84, 3, 'Val V. was good, not great. She handled a full bathroom plumbing install. While the work is neat and everything functions well, the job ran over time and budget a bit. Communication was polite, though.', '2023-08-13')	
-=======
--- Reviews for Moving Services --
-INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
-VALUES (5, 35, 5, 'David Dunn communicated well and completed the move quicker than expected.', '2024-08-02'),
-(11, 35, 5, 'David Dunn took great care with our belongings. Very professional service.', '2024-11-22'),
-(7, 36, 4, 'Sean Hill took great care with our belongings. Very professional service.', '2025-01-31'),
-(12, 36, 5, 'Sean Hill provided excellent packing and delivery services.', '2024-05-27'),
-(13, 37, 5, 'Sheila Mcintosh provided excellent packing and delivery services.', '2024-01-18'),
-(7, 37, 5, 'Sheila Mcintosh provided excellent packing and delivery services.', '2024-01-02'),
-(12, 38, 4, 'Kimberly Martin took great care with our belongings. Very professional service.', '2024-02-23'),
-(5, 38, 5, 'Kimberly Martin communicated well and completed the move quicker than expected.', '2024-11-28'),
-(14, 39, 1, 'Candace Thomas delivered incomplete service, leaving many items behind.', '2024-03-20'),
-(6, 39, 2, 'Candace Thomas communication was poor, and the move was stressful and chaotic.', '2025-02-11'),
-(9, 40, 5, 'Nathan Garcia handled our move flawlessly! Everything arrived safely and on time.', '2024-04-03'),
-(11, 40, 4, 'Nathan Garcia communicated well and completed the move quicker than expected.', '2024-05-02'),
-(13, 41, 5, 'Seth Warner took great care with our belongings. Very professional service.', '2024-02-28'),
-(1, 41, 4, 'Seth Warner took great care with our belongings. Very professional service.', '2024-01-29'),
-(10, 42, 5, 'Rebecca Lane communicated well and completed the move quicker than expected.', '2024-02-09'),
-(8, 42, 4, 'Rebecca Lane took great care with our belongings. Very professional service.', '2024-05-23'),
-(1, 43, 5, 'Monica Wolf made our relocation smooth and stress-free. Highly recommended!', '2024-08-08'),
-(13, 43, 4, 'Monica Wolf took great care with our belongings. Very professional service.', '2024-06-08'),
-(6, 44, 5, 'Danielle Collins communicated well and completed the move quicker than expected.', '2024-12-01'),
-(6, 44, 5, 'Danielle Collins provided excellent packing and delivery services.', '2024-05-02'),
-(12, 45, 4, 'Nicole West communicated well and completed the move quicker than expected.', '2024-06-29'),
-(4, 45, 5, 'Nicole West took great care with our belongings. Very professional service.', '2024-09-23'),
-(15, 46, 5, 'Kaitlyn Rivera communicated well and completed the move quicker than expected.', '2024-04-20'),
-(10, 46, 5, 'Kaitlyn Rivera took great care with our belongings. Very professional service.', '2025-02-10'),
-(7, 47, 3, 'Anthony Reed was polite and professional, though the move took longer than planned.', '2024-04-03'),
-(9, 47, 4, 'Anthony Reed took great care with our belongings. Very professional service.', '2024-02-18'),
-(3, 48, 4, 'Bryan Barrett provided excellent packing and delivery services.', '2025-01-30'),
-(9, 48, 5, 'Bryan Barrett communicated well and completed the move quicker than expected.', '2025-03-22'),
-(10, 49, 4, 'Michael Rice took great care with our belongings. Very professional service.', '2024-10-24'),
-(15, 49, 4, 'Michael Rice made our relocation smooth and stress-free. Highly recommended!', '2024-02-02'),
-(4, 50, 4, 'Daniel Deleon handled our move flawlessly! Everything arrived safely and on time.', '2024-07-02'),
-(4, 50, 5, 'Daniel Deleon handled our move flawlessly! Everything arrived safely and on time.', '2024-05-01'),
-(8, 51, 5, 'Matthew Bray provided excellent packing and delivery services.', '2024-07-10'),
-(2, 51, 4, 'Matthew Bray handled our move flawlessly! Everything arrived safely and on time.', '2025-02-05');
 
->>>>>>> origin/ayishat
+
