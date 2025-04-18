@@ -167,7 +167,24 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Cameron', 'Sprinkler', '1998-05-18', 6, 2, 'cameron@acorngardening.com', 'cameron123', '2024-06-01'),
 ('Poppy', 'Moore', '2002-02-21', 6, 4, 'poppy@wksolutions.com', 'poppy123', '2024-07-01'),
 ('Olive', 'Bloomfield', '1997-02-16', 6, 4, 'olive@gardenbros.com', 'olive123', '2024-10-01'),
-('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01');
+('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01'),
+('David', 'Dunn', '1982-05-06', 3, 7, 'david.dunn@upliftlogistics.com', 'david123', '2024-06-20'),
+('Sean', 'Hill', '1981-06-01', 3, 8, 'sean.hill@atlashaulers.com', 'sean123', '2023-02-20'),
+('Sheila', 'Mcintosh', '1999-10-12', 3, 8, 'sheila.mcintosh@packmasters.com', 'sheila123', '2023-08-22'),
+('Kimberly', 'Martin', '1997-04-19', 3, 1, 'kimberly.martin@titantransit.com', 'kimberly123', '2023-12-08'),
+('Candace', 'Thomas', '1988-11-09', 9, 3, 'candace.thomas@rocketrelocations.com', 'candace123', '2023-09-02'),
+('Nathan', 'Garcia', '1991-04-10', 3, 5, 'nathan.garcia@boldmovehaulers.com', 'nathan123', '2024-09-29'),
+('Seth', 'Warner', '1987-12-02', 3, 8, 'seth.warner@silverlineshifters.com', 'seth123', '2024-09-20'),
+('Rebecca', 'Lane', '2000-06-20', 3, 3, 'rebecca.lane@silverlineshifters.com', 'rebecca123', '2024-02-01'),
+('Monica', 'Wolf', '1998-02-08', 3, 1, 'monica.wolf@metromaxrelocations.com', 'monica123', '2024-07-20'),
+('Danielle', 'Collins', '1996-12-02', 3, 8, 'danielle.collins@rocketrelocations.com', 'danielle123', '2024-12-22'),
+('Nicole', 'West', '1996-10-11', 3, 8, 'nicole.west@firstclassfreight.com', 'nicole123', '2024-04-15'),
+('Kaitlyn', 'Rivera', '1984-10-03', 3, 5, 'kaitlyn.rivera@anchorwavemovers.com', 'kaitlyn123', '2023-04-17'),
+('Anthony', 'Reed', '1994-03-07', 3, 4, 'anthony.reed@boldmovehaulers.com', 'anthony123', '2024-11-13'),
+('Bryan', 'Barrett', '1983-03-02', 3, 2, 'bryan.barrett@urbantrekrelocations.com', 'bryan123', '2024-02-04'),
+('Michael', 'Rice', '1984-09-02', 3, 6, 'michael.rice@summithauling.com', 'michael123', '2023-09-01'),
+('Daniel', 'Deleon', '2002-12-12', 3, 7, 'daniel.deleon@urbantrekrelocations.com', 'daniel123', '2024-04-29'),
+('Matthew', 'Bray', '1994-11-10', 3, 7, 'matthew.bray@peakpointmovers.com', 'matthew123', '2023-08-08');
 
 
 INSERT INTO tradesperson_profile (workerID, phone_number, hourly_rate, business, bio)
@@ -202,7 +219,24 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (29, '+44 7796-624310', 23.60, 'Acorn Garden Services', 'Keeping your greens quenched and blooming. Sprinklers, hoses, or hands-on care—I’ve got watering down to a science.'),
 (30, '+44 1324-804102', 22.50, 'Wise Knotweed Solutions', 'I''m Poppy and my work is a national treasure. I’ll turn your outdoor space into a blooming beauty.'),
 (31, '+44 7495-234871', 22.80, 'Garden Bros', 'Bringing lush greenery and blooming beauty to your garden. I’ll help you create a peaceful retreat with vibrant plants.'),
-(32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.');
+(32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.'),
+(35, '+44 7620 567 890', 28.75, 'Uplift Logistics', 'Need a move that\'s fast and flawless? I\'m David, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
+(36, '+44 7709 234 567', 24.60, 'Atlas Haulers', 'Hey there! I\'m Sean, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
+(37, '+44 7561 123 987', 26.30, 'PackMasters', 'Hi! Sheila here — moving isn’t just a job; it\'s my passion. I make transitions easy, treating every item as if it’s my own.'),
+(38, '+44 7420 987 654', 23.90, 'Titan Transit', 'Hi! Kimberly here — moving isn’t just a job; it\'s my passion. I make transitions easy, treating every item as if it’s my own.'),
+(39, '+44 7799 876 543', 25.45, 'Rocket Relocations', 'Hi! Candace here — moving isn’t just a job; it\'s my passion. I make transitions easy, treating every item as if it’s my own.'),
+(40, '+44 7623 489 230', 27.10, 'BoldMove Haulers', 'Hey there! I\'m Nathan, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
+(41, '+44 7754 123 987', 29.25, 'SilverLine Shifters', 'Hey there! I\'m Seth, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
+(42, '+44 7609 876 543', 26.80, 'SilverLine Shifters', 'Ready to roll? I\'m Rebecca, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home.'),
+(43, '+44 7901 345 678', 25.90, 'MetroMax Relocations', 'Need a move that\'s fast and flawless? I\'m Monica, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
+(44, '+44 7832 234 567', 25.10, 'Rocket Relocations', 'Need a move that\'s fast and flawless? I\'m Danielle, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
+(45, '+44 7712 345 678', 22.95, 'FirstClass Freight', 'Hey there! I\'m Nicole, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!'),
+(46, '+44 7654 987 654', 24.10, 'AnchorWave Movers', 'Looking for a reliable mover? I\'m Kaitlyn, and I know how to turn moving day into a smooth and stress-free experience. Let’s make it happen!'),
+(47, '+44 7745 890 123', 22.75, 'BoldMove Haulers', 'Ready to roll? I\'m Anthony, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home.'),
+(48, '+44 7534 789 012', 25.00, 'Urban Trek Relocations', 'Ready to roll? I\'m Bryan, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home.'),
+(49, '+44 7823 678 901', 23.40, 'Summit Hauling', 'Need a move that\'s fast and flawless? I\'m Michael, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
+(50, '+44 7412 567 890', 23.95, 'Urban Trek Relocations', 'Need a move that\'s fast and flawless? I\'m Daniel, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!'),
+(51, '+44 7701 456 789', 24.75, 'PeakPoint Movers', 'Need a move that\'s fast and flawless? I\'m Matthew, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!');
 
 
 INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password, registration_date)
