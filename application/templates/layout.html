@@ -43,7 +43,7 @@
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         {% if session['loggedIn'] and session['role'] == 'client' %}
                         <li class="nav-item"><a href="/client/dashboard" id="dashboard" class="nav-link" aria-current="page">Client Dashboard</a></li>
-                        <li class="nav-item"><a href="/booking/services" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
+                        <li class="nav-item"><a href="/find_tradesperson" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
                         {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
                         <li class="nav-item"><a href="/task/dashboard" id="dashboard" class="nav-link" aria-current="page">Task Dashboard</a></li>
                         <li class="nav-item"><a href="/booking/requests" id="dashboard" class="nav-link" aria-current="page">See Bookings</a></li>

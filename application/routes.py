@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople
 from application import app
 import bcrypt
 
@@ -125,7 +125,10 @@ def welcome_tradesperson():
                             img2='decoration/squiggleblue2.png',
                             background_image='/static/images/wideshotb.jpeg')
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/nadine
 
 # --------------- Login Routes --------------- #
 @app.route('/login/client', methods=['GET','POST'])
@@ -195,10 +198,10 @@ def task_dashboard():
 # --------------- Booking Pages --------------- #
 
 # Client
-@app.route('/booking/services', methods=['GET', 'POST'])
+@app.route('/book_service', methods=['GET', 'POST'])
 def book_service():
     if 'user' not in session:
-        return redirect(url_for('home.html'))
+        return redirect(url_for('home'))
     
     if request.method == 'POST':
         clientID = session['user']
@@ -218,8 +221,28 @@ def book_service():
 
 
 
+@app.route('/find_tradesperson', methods=['GET', 'POST'])
+def find_tradesperson():
+    towns = get_all_towns()
+    tasks = get_all_tasks()
+    results = []
 
+    if request.method == 'POST':
+        location = request.form.get('location')
+        task = request.form.get('task')
+        hourly_rate = request.form.get('hourly_rate')
+        star_rating = request.form.get('star_rating')
 
+        results = find_matching_tradespeople(task, location, hourly_rate, star_rating)
+
+    return render_template('book_service.html', 
+                           towns=towns, 
+                           tasks=tasks, 
+                           results=results,
+                           head="find a tradesperson",
+                           title="find & book your home hero!",
+                           subheading="get your task done now",
+                           background_image='/static/images/house3.jpg')
 
 @app.route('/services/electrician')
 def electrician():

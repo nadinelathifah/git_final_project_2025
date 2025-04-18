@@ -1,5 +1,5 @@
-CREATE DATABASE homeheroes10;
-USE homeheroes10;
+CREATE DATABASE homeheroes11;
+USE homeheroes11;
 
 drop database if exists homeheroes9;
 
