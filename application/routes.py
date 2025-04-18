@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews
 from application import app
 import bcrypt
 
@@ -155,7 +155,8 @@ def login_tradesperson():
         session['loggedIn'] = True
         session['user'] = email
         session['role'] = 'tradesperson'
-        return redirect(url_for('welcome_tradesperson', name=tradesperson['firstname']))
+        session['name'] = 'firstname'
+        return redirect(url_for('task_dashboard', name=tradesperson['firstname']))
     else:
         flash("Invalid email or password", "error")
         return redirect(url_for('home'))
@@ -214,32 +215,37 @@ def book_service():
                            head="Book a tradesperson",
                            title='Book a tradesperson!',
                            subheading='your home rescue, just a click away',
-                           background_image='/static/images/house3.jpg')
+                           background_image='/static/images/houses.jpg')
 
 
 
 @app.route('/find_tradesperson', methods=['GET', 'POST'])
 def find_tradesperson():
+    if 'user' not in session:
+        return redirect(url_for('home'))
+    
     towns = get_all_towns()
     tasks = get_all_tasks()
     results = []
 
     if request.method == 'POST':
-        location = request.form.get('location')
-        task = request.form.get('task')
-        hourly_rate = request.form.get('hourly_rate')
-        star_rating = request.form.get('star_rating')
+        location = request.form['location']
+        task = request.form['task']
+        hourly_rate = request.form['hourly_rate']
+        star_rating = request.form['star_rating']
 
         results = find_matching_tradespeople(task, location, hourly_rate, star_rating)
 
-    return render_template('book_service.html', 
+    return render_template('find_tradesperson.html', 
                            towns=towns, 
                            tasks=tasks, 
                            results=results,
                            head="find a tradesperson",
                            title="find & book your home hero!",
                            subheading="get your task done now",
-                           background_image='/static/images/house3.jpg')
+                           background_image='/static/images/houses.jpg')
+
+
 
 @app.route('/services/electrician')
 def electrician():
@@ -266,7 +272,7 @@ def lawn_care():
                            title='Yardwork & Lawn Care',
                            subheading='need your hedges trimmed? look no further...',
                            icon='psychiatry',
-                           background_image='/static/images/lawn3.jpg')
+                           background_image='/static/images/gardening2.jpg')
 
 @app.route('/services/moving')
 def moving():
@@ -300,9 +306,12 @@ def plumbing():
 
 @app.route('/reviews')
 def reviews():
+    show_review = get_reviews()
+    print(show_review)
     return render_template('reviews.html',
                            head='reviews',
+                           reviews = show_review,
                            title='customer experiences',
                            subheading='review our work',
-                           icon='sentiment_very_satisfied',
-                           background_image='/static/images/gardener.jpeg')
+                           icon='star',
+                           background_image='/static/images/gardening.jpg')

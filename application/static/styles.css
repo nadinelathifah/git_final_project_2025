@@ -427,6 +427,7 @@ form .btn-primary {
     width: 100%;
     background-color: #007bff;
     color: white;
+    border: 1px solid white !important;
     font-size: 0.95rem;
     border: none;
     border-radius: 5px;
@@ -434,7 +435,10 @@ form .btn-primary {
 }
 
 form .btn-primary:hover {
-    background-color: rgb(0, 21, 116);
+    background: white;
+    color: #007bff;
+    border: 1px solid #007bff !important;
+    cursor: pointer;
 }
 
 .form-popup .close-btn {
@@ -921,4 +925,72 @@ form .btn-primary:hover {
     max-width: 43vw;
     border-radius: 50px;
     z-index: 3;
+}
+
+
+/* -------------- Reviews Section -------------- */
+
+#reviews {
+    min-height: 100vh;
+    width: 100vw;
+    background: whitesmoke;
+    z-index: 0;
+}
+
+#reviews .container {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+#reviews .text-content {
+    position: relative;
+    padding-top: 30px;
+    text-align: center;
+    width: 60%;
+    z-index: 2;
+}
+
+#reviews .text-content h3 {
+    text-transform: capitalize;
+}
+
+.review-img {
+    position: absolute;
+    z-index: 1;
+}
+
+.review-img.img-1 {
+    max-height: 50vh;
+    top: 0;
+    right: -220px;
+    opacity: 0.8;
+}
+
+.review-img.img-2 {
+    max-height: 50vh;
+    top: 100px;
+    right: -600px;
+    opacity: 0.5;
+}
+
+.review-img.img-3 {
+    max-height: 50vh;
+    top: 100px;
+    left: -600px;
+    opacity: 0.8;
+}
+
+
+#reviews .text-content span {
+    font-size: 2rem;
+}
+
+#stars .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;
+}
+
+#reviews .row {
+    display: flex;
+    justify-content: center;
 }

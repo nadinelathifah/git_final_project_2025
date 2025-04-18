@@ -122,37 +122,46 @@ def find_matching_tradespeople(task=None, location=None, hourly_rate=None, star_
         query += " AND town = %s"
         search_parameters.append(location)
     
-    order_clauses = []
+    order = []
     if hourly_rate:
-        order_clauses.append(f"hourly_rate {hourly_rate}")
+        order.append(f"hourly_rate {hourly_rate}")
 
     if star_rating:
-        order_clauses.append(f"average_rating {star_rating}")
+        order.append(f"average_rating {star_rating}")
 
-    if order_clauses:
-        query += " ORDER BY " + ", ".join(order_clauses)
+    if order:
+        order += " ORDER BY " + ", ".join(order)
 
     cursor.execute(query, search_parameters)
-    results_from_search = cursor.fetchall()
+    search_results = cursor.fetchall()
     cursor.close()
     connection.close()
-
-    return results_from_search
+    return search_results
 
 
 
 def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):
     connection = get_db_connection()
     cursor = connection.cursor()
-
     cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, townID, task_desc])
-
     connection.commit()
     cursor.close()
     connection.close()
 
+
 def get_booking():
     pass
+
+
+def get_reviews():
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("SELECT rating, full_name, comment FROM view_reviews")
+    reviews = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return reviews
 
 
 # TO ENCODE THE PASSWORD OF CLIENTS

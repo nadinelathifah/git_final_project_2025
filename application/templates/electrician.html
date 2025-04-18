@@ -26,56 +26,57 @@
 </section>
 
 <section id="electrician-services-section">
-    <h2 class="pt-3 pb-2">Services</h2>
+    <div class="container pt-5">
+      <h2 class="pt-3 pb-2">Services</h2>
+      <hr>
 
-
-
-    <div class="container overflow-hidden"> <!--A Bootstrap feature that hides content that overflows the container-->
-      <div class="row gy-5 pb-5"> <!--Bootstrap grid system that sets the 'guttering' or space between the pictures.-->
-        <div class="col-4"> <!--Sets out how much space this will take up, so it will take up 4 out of 12 columns, creating a 3 column layout. On smaller screens it will take up the full width.-->
-          <div class="p-3"> <!--Bootstrap to add padding to all sides of the pictures.-->
-              <img src="{{ url_for('static', filename='images/electrician_rewire1.jpg') }}" alt="Man rewiring an electric box" style="width: 100%;"> <!--Adds an image to the grid.-->
-            <p class="mt-2 text-center">Finding the Right Connection for You</p> <!--Sets the margin top (mt-2) and centres the text.-->
-              <h4 class="mt-2 text-center">Full and Partial Rewire</h4>
+      <div class="container overflow-hidden"> <!--A Bootstrap feature that hides content that overflows the container-->
+        <div class="row gy-5 pb-5"> <!--Bootstrap grid system that sets the 'guttering' or space between the pictures.-->
+          <div class="col-4"> <!--Sets out how much space this will take up, so it will take up 4 out of 12 columns, creating a 3 column layout. On smaller screens it will take up the full width.-->
+            <div class="p-3"> <!--Bootstrap to add padding to all sides of the pictures.-->
+                <img src="{{ url_for('static', filename='images/electrician_rewire1.jpg') }}" alt="Man rewiring an electric box" style="width: 100%;"> <!--Adds an image to the grid.-->
+              <p class="mt-2 text-center">Finding the Right Connection for You</p> <!--Sets the margin top (mt-2) and centres the text.-->
+                <h4 class="mt-2 text-center">Full and Partial Rewire</h4>
+            </div>
           </div>
-        </div>
-        <div class="col-4">
-          <div class="p-3">
-              <img src="{{ url_for('static', filename='images/electrician_outdoor_lights1.jpg') }}" alt="Front of house lit up with lights at night time" style="width: 100%;">
-              <p class="mt-2 text-center">Bright Spark Solutions</p>
-              <h4 class="mt-2 text-center">Indoor and Outdoor Lighting</h4>
+          <div class="col-4">
+            <div class="p-3">
+                <img src="{{ url_for('static', filename='images/electrician_outdoor_lights1.jpg') }}" alt="Front of house lit up with lights at night time" style="width: 100%;">
+                <p class="mt-2 text-center">Bright Spark Solutions</p>
+                <h4 class="mt-2 text-center">Indoor and Outdoor Lighting</h4>
+            </div>
           </div>
-        </div>
-        <div class="col-4">
-          <div class="p-3">
-              <img src="{{ url_for('static', filename='images/electrician_smoke1.jpeg') }}" alt="Female electrician installing a smoke alarm" style="width: 100%;">
-            <p class="mt-2 text-center">Stay Current</p>
-              <h4 class="mt-2 text-center">Smoke Alarm Installation</h4>
+          <div class="col-4">
+            <div class="p-3">
+                <img src="{{ url_for('static', filename='images/electrician_smoke1.jpeg') }}" alt="Female electrician installing a smoke alarm" style="width: 100%;">
+              <p class="mt-2 text-center">Stay Current</p>
+                <h4 class="mt-2 text-center">Smoke Alarm Installation</h4>
+            </div>
           </div>
-        </div>
-            <div class="col-4">
-          <div class="p-3">
-              <img src="{{ url_for('static', filename='images/electrician_fault1.jpeg') }}" alt="Electrician working on an electrics box" style="width: 100%;">
-            <p class="mt-2 text-center">Watt’s Up?</p>
-              <h4 class="mt-2 text-center">Fault Finding</h4>
+              <div class="col-4">
+            <div class="p-3">
+                <img src="{{ url_for('static', filename='images/electrician_fault1.jpeg') }}" alt="Electrician working on an electrics box" style="width: 100%;">
+              <p class="mt-2 text-center">Watt’s Up?</p>
+                <h4 class="mt-2 text-center">Fault Finding</h4>
+            </div>
           </div>
-        </div>
-                  <div class="col-4">
-          <div class="p-3">
-              <img src="{{ url_for('static', filename='images/electrician_plug_socket1.jpg') }}" alt="Female electrician repairing a plug socket" style="width: 100%;">
-            <p class="mt-2 text-center">We’ve Got It Plugged</p>
-              <h4 class="mt-2 text-center">Indoor and Outdoor Sockets</h4>
+                    <div class="col-4">
+            <div class="p-3">
+                <img src="{{ url_for('static', filename='images/electrician_plug_socket1.jpg') }}" alt="Female electrician repairing a plug socket" style="width: 100%;">
+              <p class="mt-2 text-center">We’ve Got It Plugged</p>
+                <h4 class="mt-2 text-center">Indoor and Outdoor Sockets</h4>
+            </div>
           </div>
-        </div>
-            <div class="col-4">
-          <div class="p-3">
-              <img src="{{ url_for('static', filename='images/electrician_cctv1.jpg') }}" alt="CCTV camera in front of a house" style="width: 100%;">
-            <p class="mt-2 text-center">Time to Amp Up?</p>
-              <h4 class="mt-2 text-center">CCTV Installation</h4>
+              <div class="col-4">
+            <div class="p-3">
+                <img src="{{ url_for('static', filename='images/electrician_cctv1.jpg') }}" alt="CCTV camera in front of a house" style="width: 100%;">
+              <p class="mt-2 text-center">Time to Amp Up?</p>
+                <h4 class="mt-2 text-center">CCTV Installation</h4>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      </div>
 </section> <!--End of the electrician-services-section.-->
 
 {% endblock %} <!--This closes the body_content block so the content from layout-services template will end here. I.e., end of inheritance.-->

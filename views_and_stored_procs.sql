@@ -1,4 +1,4 @@
-USE homeheroes10;
+USE homeheroes11;
 
 -- The purpose of this view is to support the filter function for when a client searches a tradesperson by category and is shown a
 -- list of profiles. And to display general reviews on the reviews webpage.
@@ -81,8 +81,54 @@ END //
 DELIMITER ;
 
 
-DELIMITER //
-CREATE PROCEDURE getBooking ()
+CREATE VIEW view_tp_reviews AS
+SELECT
+	r.reviewID,
+    r.rating,
+	c.clientID,
+    CONCAT(c.firstname, ' ', c.lastname),
+    r.comment
+FROM reviews as r
+JOIN clients as c ON r.clientID = c.clientID
+GROUP BY r.reviewID, r.rating, c.clientID, CONCAT(c.firstname, ' ', c.lastname), r.comment;
+
+SELECT * FROM view_tp_reviews;
+
+SELECT * FROM view_tp_reviews ORDER BY rating DESC;
+
+
+CREATE VIEW view_reviews AS
+-- Common Table Expression (CTE) temporary result set to use in final query. 
+-- Inside the CTE, you assign a "rank" to each review within each client’s group. 
+WITH ranked_reviews AS (
+    SELECT
+        r.reviewID,
+        r.rating,
+        c.clientID,
+        CONCAT(c.firstname, ' ', c.lastname) AS full_name,
+        r.comment,
+        -- ROW_NUMBER() assigns a number to each row within a group. 
+        ROW_NUMBER() OVER (
+			-- PARTITION BY c.clientID means group all reviews by the same client. 
+            PARTITION BY c.clientID
+			-- Within each client’s group, sort reviews by rating (highest first) 
+            -- If two are the same, use the smallest reviewID as a tiebreaker. 
+            ORDER BY r.rating DESC, r.reviewID ASC
+		-- Each client’s best-rated review gets rn = 1. 
+        ) AS rn
+    FROM reviews AS r
+    JOIN clients AS c ON r.clientID = c.clientID
+)
+SELECT
+    reviewID,
+    rating,
+    clientID,
+    full_name,
+    comment
+FROM ranked_reviews
+WHERE rn = 1;
+
+SELECT rating, full_name, comment FROM view_reviews;
 
 
     

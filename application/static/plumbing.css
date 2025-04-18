@@ -55,8 +55,9 @@
 
 #plumbing-section .container img {
     position: absolute;
+    top: 155px;
     left: 55px;
-    width: 50vw;
+    width: 47vw;
     border-radius: 50px;
     z-index: 3;
 }
@@ -67,8 +68,8 @@
 /* Selecting the id="example-section" allows us to add styling to the entire section */
 /* The # (hash) before the id name lets CSS know that you are selecting the element with id="example-section"*/
 #plumbing-services-section {
-    min-height: 130vh;                /* Setting the height to 100vh ensures the section spans the entire height of the screen - vh is short for viewport height. */
-    background: whitesmoke;     /* This sets the background colour to whitesmoke*/
+    min-height: 150vh;                /* Setting the height to 100vh ensures the section spans the entire height of the screen - vh is short for viewport height. */
+    background: rgb(255, 251, 237); 
     overflow-y: auto;
 }
 
@@ -77,10 +78,10 @@
 #plumbing-services-section .card {
     width: 300px;                /* Set a width (unchanging) or a maximum-width (more responsive when you minimise the screen size) to the card */
     height: auto;
-    background: #007bff;
-    color: white;              /* Unlike background or background-color, 'color' sets the text-color*/
+    background: white;
+    color: black;              /* Unlike background or background-color, 'color' sets the text-color*/
     text-align: center;          /* Aligns text inside the card to the center */
-    box-shadow: -10px 10px orange;  /* Adds a box-shadow to the card, you can adjust the opacity & shadow size */
+    box-shadow: -7px 7px rgb(253, 200, 100);
     border-radius: 25px;
 }
 
@@ -88,7 +89,7 @@
     display: flex;               /* Turns .col-sm into a flexbox container */
     flex-direction: row;         /* Lays out the items inside the flexbox container (cards) in a horizontal row */
     justify-content: center;     /* Centers the items horizontally */
-    align-items: center;         /* Centers the items vertically */
+    align-items: flex-start;
     gap: 50px;                   /* Adds space (gap) between the items in the flexbox container – i.e. gap between cards. */
     flex-wrap: wrap;
 }

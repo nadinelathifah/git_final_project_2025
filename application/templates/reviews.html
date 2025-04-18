@@ -1,8 +1,38 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<section id="client-reviews">
-    
+<section id="reviews">
+    <div class="container pt-5">
+        <div class="row">
+            <div class="text-content">
+                <hr>
+                <h3>This are what some of our clients had to say</h3>
+                <br>
+                <p id="stars">
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                </p>
+                <hr>
+            </div>
+        </div>
+
+        <img class="review-img img-1" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="">
+        <img class="review-img img-2" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="">
+        <img class="review-img img-3" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="">
+
+        {% for review in reviews %}
+        <div class="col">
+            <div class="card-text">
+                <p><strong>{{ review.full_name}}</strong></p>
+                <p>{{ review.rating }} <span class="material-symbols-outlined">star</span></p>
+                <p>{{ review.comment }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </section>
 
 {% endblock %}

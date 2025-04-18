@@ -6,16 +6,118 @@
 }
 
 #find-tp {
-    min-height: 100vh;
-    background: aliceblue;
+    position: relative;
+    min-height: 120vh;
+    background: whitesmoke;
+    z-index: 0;
 }
 
-select option {
-    color: black !important;
-    background-color: white !important;
+
+#find-tp .container {
+    position: relative;
+    min-height: 120vh;
+}
+
+#find-tp .outer-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+#find-tp .col-md-6 {
+    position: relative;
+    width: 50%;
+    min-height: 80vh;
+}
+
+#find-tp .col-md-6.column-left {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+#find-tp .col-md-6.column-left form {
+    width: 70%;
+}
+
+
+
+.find-img {
+    position: absolute;
+    width: auto;
+}
+
+.find-img.img-1 {
+    max-height: 43.75%;
+    right: 45px;
+    top: 180px;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.find-img.img-2 {
+    max-height: 45vh;
+    right: 320px;
+    top: 170px;
+    opacity: 0.9;
+    z-index: 3;
+}
+
+.find-img.img-3 {
+    max-width: 18vw;
+    right: 310px;
+    top: 150px;
+    z-index: 5;
+}
+
+.find-img.img-4 {
+    max-height: 60vh;
+    right: 80px;
+    top: 80px;
+    z-index: 5;
+}
+
+
+#find-tp .mb-3 select {
+    width: 100%;
+    padding: 8px;
     font-size: 16px;
+    color: #007bff;
+    background: white;
+    border: 2px solid whitesmoke;
+    border-radius: 25px;
+    text-align: center;
 }
 
-select {
-    color: black;
+#find-tp .mb-3 label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 20px;
+    font-weight: bold;
 }
+
+
+#find-card {
+    border-radius: 25px;
+    padding: 15px;
+}
+
+#find-btn {
+    width: 100%;
+    background: #007bff;
+    color: white;
+}
+
+#find-btn:hover {
+    background: white;
+    color: #007bff;
+    border: 1.5px solid #007bff;
+}
+
+
+#book-btn {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
