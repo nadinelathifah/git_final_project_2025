@@ -168,6 +168,14 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Poppy', 'Moore', '2002-02-21', 6, 4, 'poppy@wksolutions.com', 'poppy123', '2024-07-01'),
 ('Olive', 'Bloomfield', '1997-02-16', 6, 4, 'olive@gardenbros.com', 'olive123', '2024-10-01'),
 ('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01');
+('Alice', 'Wonderland', '1987-01-02', 2, 5, 'alice.wonderland@fixitpros.com', 'alice123', '2020-01-01'),
+('Sarah', 'Sky', '2000-09-10', 2, 2, 'sarah.sky@skyhighrepairs.com', 'sarah123', '2021-02-03'),
+('Tina', 'Tape', '1999-08-07', 2, 3, 'tinatape@tapeitright.com', 'tina123', '2022-03-04'),
+('Cindy', 'Saw', '1984-11-14', 2, 4, 'cindy.saw@sawmasters.com', 'cindy123', '2023-04-05'),
+('Danny', 'Drill', '1997-12-12', 2, 5, 'danny.drill@drillworks.com', 'danny123', '2024-06-07'),
+('Ben', 'Brick', '1978-02-23', 2, 1, 'ben.brick@brickbuilders.com', 'ben123', '2025-01-01'),
+('Pat', 'Paint', '1995-05-05', 2, 2, 'pat.paint@paintprodigy.com', 'pat123', '2019-08-07'),
+('Dean', 'Duct', '1990-06-07', 2, 5, 'dean.duct@ductdudes.com', 'dean123', '2018-09-08');
 
 
 INSERT INTO tradesperson_profile (workerID, phone_number, hourly_rate, business, bio)
@@ -203,6 +211,14 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (30, '+44 1324-804102', 22.50, 'Wise Knotweed Solutions', 'I''m Poppy and my work is a national treasure. I’ll turn your outdoor space into a blooming beauty.'),
 (31, '+44 7495-234871', 22.80, 'Garden Bros', 'Bringing lush greenery and blooming beauty to your garden. I’ll help you create a peaceful retreat with vibrant plants.'),
 (32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.');
+(52, '+44 7567 234 567', 45.99, 'Wonder Home Solutions', 'Turning your home repairs into a wonderland of fixes!'),
+(53, '+44 7456 123 456', 20.75, 'Sky High Repairs', 'Bringing your home repairs to new heights'),
+(54, '+44 7890 345 678', 39.20, 'Tape It Right', 'I\'ll stick with you until the job\'s done right!'),
+(55, '+44 7745 890 123', 26.25, 'Saw Masters', 'Cutting through problems, one saw at a time'),
+(56, '+44 7534 789 012', 50.65, 'Drill Works', 'I\'m the drill master, making sure your repairs are on point!'),
+(57, '+44 7412 567 890', 28.99, 'Brick Builders', 'Laying the foundation for a better home, one brick at a time!'),
+(58, '+44 7534 789 012', 35.50, 'Paint Prodigy', 'Fixing more than just the surface — I restore your walls to perfection!'),
+(59, '+44 7823 678 901', 47.80, 'Duct Dudes', 'No duct too tricky — I\'ll seal the deal!');
 
 
 INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password, registration_date)
@@ -221,6 +237,10 @@ VALUES ('Miranda', 'Fanta', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoy
 ('Finlay', 'McArthur', '2000-03-13', 2, 'finlay@gmail.com', '$2b$12$1DT6uvCD9WulCVAheoVtY.hOnDqBD82usbXQ3XtWPOEajBMt90Z6u', '2000-01-13'),
 ('Lachlan', 'Fraser', '1983-11-28', 3, 'lachlan@gmail.com', '$2b$12$5ZXeuWPSCYuvve9UoBuJk.uB.WE/LPJk2IRUGgeCgAzFiIUhmZycu', '2000-01-14'),
 ('Isla', 'Buchanan', '2003-05-13', 4, 'isla@gmail.com', '$2b$12$e74zoQ6WYDCWUkIn5c1teudTpzdbXrSbBfHVqypw0jBAM6uoWn3Mu', '2000-01-15');
+('Spec', 'Saver', 2000-06-14, 4, 'spec@gmail.com', 'Spec123456', '2000-01-16'),
+('Coraline', 'Jones', '1968-03-03', 2, 'coraline@gmail.com', 'Coraline123', '2000-01-17'),
+('Strawberry', 'Shortcake', '2004-08-08', 3, 'strawberry@gmail.com', 'Strawberry123', '2001-01-18'),
+('Will', 'Smith', '1999-09-09', 4, 'wills@gmail.com', 'WillS1234', '2001-01-19');
 
 select * from clients;
 
@@ -296,3 +316,13 @@ VALUES (4, 17, 5, 'Penny turned our dull backyard into a blooming paradise! Her 
 (11, 32, 2, 'We hired Tommy to help with flower bed planning and planting, but the results were underwhelming. Some of the choices didn’t suit the space or season, and it felt a bit rushed overall. He was friendly, but the execution just didn’t deliver what we hoped for.', '2015-04-19'),
 (11, 32, 3, 'Tommy handled our front yard landscaping. He clearly knows his plants, but the overall design felt a bit basic for what we discussed. It looks good now, just not quite as polished as we expected.', '2015-04-20');
 
+-- Reviews for Repair Services --
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+(17, 52, 5, '2024-01-12', 'Alice turned my home repairs into a fairy tale – quick, efficient, and a perfect finish!'),
+(18, 53, 4, '2024-04-09', 'Sarah''s work was out of this world! She took my repairs to new heights and left everything spotless!'),
+(19, 54, 5, '2025-01-02', 'Tina is the real deal – she fixed my home with precision, and I couldn''t be happier with the result!'),
+(20, 55, 5, '2024-08-08', 'Cindy cut through my repair issues like a pro! Her attention to detail was unmatched.'),
+(21, 56, 5, '2024-04-11', 'Danny''s drill work was flawless. He got everything done fast, and it was as if nothing ever needed fixing!'),
+(22, 57, 4, '2023-03-28', 'Ben''s brickwork is top-notch. He built a strong, solid structure that will last for years!'),
+(23, 58, 3, '2023-09-07', 'Pat doesn''t just paint, he repaired and restored my walls to perfect condition – great craftsmanship!'),
+(24, 59, 3, '2022-04-03', 'Dean''s duct work saved me so much trouble – efficient and tidy!');
