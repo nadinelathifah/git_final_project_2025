@@ -36,7 +36,8 @@ task_name VARCHAR(200),
 description VARCHAR(200)
 );
 
-SELECT * FROM tradespeople;
+
+
 
 CREATE TABLE tradespeople (
 workerID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -169,6 +170,25 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Olive', 'Bloomfield', '1997-02-16', 6, 4, 'olive@gardenbros.com', 'olive123', '2024-10-01'),
 ('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01');
 
+-- plumbing tradespeople
+INSERT INTO tradespeople (
+firstname, lastname, date_of_birth, taskID, townID, email, password, registration_date
+) VALUES
+('Pippa', 'Drains', '1976-02-10', 5, 1, 'Pippa.Drains@homeheroes.co.uk', 'Pippa123', '2023-09-01'),
+('Lee Kay', 'Faucet', '1986-03-10', 5, 2, 'Lee Kay.Faucet@homeheroes.co.uk', 'Lee Kay123', '2024-04-29'),
+('Lou', 'Sinkler', '1976-04-02', 5, 3, 'Lou.Sinkler@homeheroes.co.uk', 'Lou123', '2023-08-08'),
+('Luke', 'Shower', '1976-05-02', 5, 4, 'Luke.Shower@homeheroes.co.uk', 'Luke123', '2020-01-01'),
+('Perry', 'Pipe', '1990-06-02', 5, 5, 'Perry.Pipe@homeheroes.co.uk', 'Perry123', '2021-02-03'),
+('Flo', 'Stopcock', '1976-07-05', 5, 6, 'Flo.Stopcock@homeheroes.co.uk', 'Flo123', '2022-03-04'),
+('Mo', 'Taps', '1976-08-10', 5, 7, 'Mo.Taps@homeheroes.co.uk', 'Mo123', '2023-04-05'),
+('Sally', 'Plungerton', '1976-09-10', 5, 8, 'Sally.Plungerton@homeheroes.co.uk', 'Sally123', '2024-06-07'),
+('Ivana', 'Flush', '1979-10-01', 5, 5, 'Ivana.Flush@homeheroes.co.uk', 'Ivana123', '2023-08-22'),
+('Bob', 'Boiler', '1976-11-11', 5, 6, 'Bob.Boiler@homeheroes.co.uk', 'Bob123', '2023-12-08'),
+('Trudy', 'Trap', '2000-12-10', 5, 4, 'Trudy.Trap@homeheroes.co.uk', 'Trudy123', '2023-09-02'),
+('Copper', 'Tubes', '1976-10-13', 5, 3, 'Copper.Tubes@homeheroes.co.uk', 'Copper123', '2024-09-29'),
+('Billy', 'Backflow', '2002-11-10', 5, 2, 'Billy.Backflow@homeheroes.co.uk', 'Billy123', '2024-09-20'),
+('Greta', 'Gasket', '1976-10-15', 5, 8, 'Greta.Gasket@homeheroes.co.uk', 'Greta123', '2024-02-01'),
+('Val V.', 'Pressure', '1976-10-16', 5, 1, 'ValV.Pressure@homeheroes.co.uk', 'ValV123', '2022-12-06')
 
 INSERT INTO tradesperson_profile (workerID, phone_number, hourly_rate, business, bio)
 VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I live for vibrant, flawless finishes. I bring passion and precision to every paint job, transforming your space into a work of art.'),
@@ -204,6 +224,25 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (31, '+44 7495-234871', 22.80, 'Garden Bros', 'Bringing lush greenery and blooming beauty to your garden. I’ll help you create a peaceful retreat with vibrant plants.'),
 (32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.');
 
+-- plumbing profiles
+INSERT INTO tradesperson_profile (		
+workerID, phone_number, hourly_rate, business, bio		
+) VALUES		
+('+44 7712 345678', '£24.99', 'PurePipes by Pippa', 'Plumbing problems? I’m Pippa — precise, practical, and proud to get things flowing again. From leaks to installations, I’ve got it covered.'),		
+('+44 7400 123456', '£27.99', 'Lee Kay’s Quick Fixes', 'Hi, I’m Lee Kay! I thrive on solving the trickiest pipe puzzles. You can count on me for fast fixes and lasting results.'),		
+('+44 7891 234567', '£28.99', 'Lil’ Lou’s Plumbing Crew', 'I’m Lou, and plumbing is my passion. I keep things running smoothly so you don’t have to worry about a drip or a clog again.'),		
+('+44 7384 556677', '£29.99', 'Luxe by Luke Plumbing', 'Hey, I’m Luke. Whether it’s a burst pipe or a boiler on the blink, I bring calm, capable hands to every job.'),		
+('+44 7583 998877', '£26.99', 'Perry Platinum Plumbing', 'Perry here — detail-driven and dependable. I treat every home like my own and every job like a mission.'),		
+('+44 7888 112244', '£24.99', 'EcoFlo Plumbing Solutions', 'I’m Flo — yes, like water! I specialize in seamless plumbing solutions with a splash of care and a whole lot of skill.'),		
+('+44 7956 112233', '£27.99', 'Mo’s Earthwise Plumbing', 'Need a fix? I’m Mo, your go-to for efficient, tidy, and top-notch plumbing. Let’s get your system sorted.'),		
+('+44 7500 667788', '£28.99', 'Sally’s Signature Flow', 'Hey! I’m Sally. I blend expert know-how with a friendly face — no fuss, just flawless plumbing.'),		
+('+44 7432 665544', '£29.99', 'Ivana GreenFlow Co.', 'Hi, I’m Ivana. Pipes, pressure, or problems? I’m all about precision and peace of mind for every customer.'),		
+('+44 7999 223344', '£26.99', 'Bob’s Budget Plumbing', 'I’m Bob — reliable, resourceful, and ready to roll up my sleeves. From start to finish, I make plumbing easy.'),		
+('+44 7822 334455', '£24.99', 'Tru Deal Plumbing', 'Hi, I’m Trudy! I love turning chaos into calm. Got a leak or a loo that won’t flush? I’ll sort it in no time.'),		
+('+44 7777 445566', '£27.99', 'Copper & Co. Plumbing', 'Name’s Copper — like the pipes! I bring old-school skills with modern tools to get your water flowing right.'),		
+('+44 7624 889900', '£28.99', 'Billy the Plumb', 'I’m Billy, and I believe no job is too small for great service. I bring energy, expertise, and elbow grease.'),		
+('+44 7300 998877', '£29.99', 'Green Greta Plumbing', 'Hello! I’m Greta. I combine care and craftsmanship to deliver spotless plumbing work every single time.'),		
+('+44 7409 123456', '£28.99', 'Val V. Prestige Plumbing', 'I’m Val V. — known for cool under pressure and sharp solutions. Leaks beware, I’m on the job!')		
 
 INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password, registration_date)
 VALUES ('Miranda', 'Fanta', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoyy/usxIaevDg5VTtOaoeBcVgoYirqdbMZm16kzi.VVIpU4A2', '2000-01-01'),
@@ -296,3 +335,41 @@ VALUES (4, 17, 5, 'Penny turned our dull backyard into a blooming paradise! Her 
 (11, 32, 2, 'We hired Tommy to help with flower bed planning and planting, but the results were underwhelming. Some of the choices didn’t suit the space or season, and it felt a bit rushed overall. He was friendly, but the execution just didn’t deliver what we hoped for.', '2015-04-19'),
 (11, 32, 3, 'Tommy handled our front yard landscaping. He clearly knows his plants, but the overall design felt a bit basic for what we discussed. It looks good now, just not quite as polished as we expected.', '2015-04-20');
 
+-- Reviews for plumbing
+INSERT INTO reviews (	
+clientID, tp_profileID, rating, comment, review_date	
+) VALUES	
+(14, 82, 5, 'Billy came through in a pinch! Our washing machine flooded the utility room, and Billy arrived within the hour. He was upbeat, fast, and sorted everything out without fuss. Affordable and efficient.', '2024-07-17'),	
+(3, 82, 5, 'Billy fixed a leaking radiator valve in under an hour and was cheerful the whole time, great value and no mess left behind.', '2024-04-18'),	
+(13, 82, 3, 'Billy was alright. He handled our kitchen tap replacement. The job was done well, but he arrived later than scheduled, and there wasn’t much explanation about the process. Not bad, but not great either.', '2024-04-18'),	
+(17, 79, 3, 'Bob left us underwhelmed. He was friendly, but the pipe repair under the sink needed a second visit to get right. Not the worst, but didn’t inspire confidence.', '2023-06-23'),	
+(13, 79, 2, 'Bob’s service was just passable. He repaired a toilet leak for us. The fix held, but he didn’t clean up afterward, and there were a few smudges left on the tiles. Didn’t feel like a very professional experience.', '2023-01-27'),	
+(14, 81, 3, ''Copper’s work was hit and miss. He fixed a clogged toilet, but the bathroom wasn’t cleaned up afterward. It felt rushed, and while it works now, I expected more professionalism.'', '2023-09-03'),	
+(4, 81, 2, ''Copper’s work was rough around the edges. The fix worked, but we weren’t impressed with the attention to detail. Some joints looked rushed, and we had to tidy up after. Not the experience we were hoping for.'', '2024-01-09'),	
+(9, 75, 5, 'Flo lives up to the name! Everything’s flowing perfectly again thanks to her! She sorted a messy bathroom blockage that two others couldn’t crack. Polite, punctual, and skilled.', '2023-12-08'),	
+(8, 75, 5, 'Flo was fantastic—she installed a new eco shower system and explained everything clearly, the water pressure has never been better.', '2024-01-09'),	
+(11, 83, 5, 'Greta was super efficient and friendly, sorted out a tricky drainage issue with minimal fuss and left everything spotless.', '2023-06-22'),	
+(3, 83, 2, 'Greta’s service was not the best. She was polite but seemed unsure about a couple of things. The clog was eventually cleared, but it took longer than expected and left quite a bit of mess behind.', '2023-11-20'),	
+(15, 78, 3, 'Ivana did a fair job. She helped reroute some pipes for our laundry room. There were a couple of small leaks afterward, but she returned quickly and made the fixes without fuss.', '2024-10-09'),	
+(12, 78, 5, 'Ivana installed a water softener system and was incredibly knowledgeable, she made sure everything was working perfectly before she left.', '2023-06-22'),	
+(8, 78, 5, 'Ivana saved the day! We were mid-renovation and hit a plumbing snag. Ivana showed up with a positive attitude, assessed the situation quickly, and had us back on track in no time.', '2023-08-03'),	
+(15, 71, 4, 'Lee Kay did the job, no frills. He fixed a broken outdoor tap. It works fine now, but there wasn’t much communication and he arrived 30 minutes late. Still, he got it done.', '2023-03-03'),	
+(2, 71, 5, 'Lee Kay is a plumbing wizard!He replaced our old boiler and even upgraded the pipework with minimal disruption. The place was left spotless afterward, and the system runs like a dream. Fantastic service from start to finish.', '2023-06-22'),	
+(4, 72, 5, 'Lou handled a whole-house plumbing inspection for us, very thorough and gave clear advice without upselling anything—really appreciated that.', '2024-01-09'),	
+(5, 72, 5, 'Lou was brilliant! She replaced our faulty kitchen mixer tap and installed a water filter system with ease. Friendly, punctual, and clearly knew her stuff. Highly recommend her services.', '2024-10-01'),	
+(7, 72, 5, 'Lou was incredible from start to finish! She identified a hidden leak under our bathtub that had been missed by others. Her work was meticulous, and she even tidied up the mess afterward. Absolute pro!', '2024-04-25'),	
+(8, 73, 5, 'Luke delivered top-notch service when replacing our kitchen plumbing, everything was completed ahead of schedule and with real attention to detail.', '2023-06-22'),	
+(6, 73, 3, 'Luke did a decent job. He fixed our shower pressure issue, and the result is working fine. It did take a little longer than we were told, and communication could’ve been clearer, but overall, we’re satisfied.', '2024-02-11'),	
+(10, 76, 5, 'Mo helped us reroute some piping during our renovation, very professional and the results are flawless, couldn’t ask for better.', '2023-05-19'),	
+(8, 76, 3, 'Mo was okay. He came out to fix a clogged drain. The work got done, but we had to call again two days later for a small follow-up. He did return and sorted it out though.', '2024-07-05'),	
+(7, 74, 2, 'Perry could improve. The job was eventually done, but communication was lacking, and we felt a bit in the dark during the process. Would have appreciated more clarity and updates.', '2023-05-19'),	
+(3, 74, 2, ''Perry’s service was just alright. He helped us with a slow-draining shower. It’s better now, but the issue returned after a week. He did offer to return, but we ended up calling someone else.'', '2023-08-05'),	
+(1, 70, 5, 'Again, Pippa was an absolute lifesaver! We had a major leak under the kitchen sink, and she responded quickly, diagnosed the issue with confidence, and had everything fixed in no time. She’s professional, knowledgeable, and friendly — would 100% recommend!', '2024-03-15'),	
+(1, 70, 5, 'Pippa was brilliant! She installed a new outdoor tap and even gave us tips for winter maintenance—definitely going to use her again.', '2024-01-09'),	
+(10, 77, 5, 'Sally is top-tier! From the initial inspection to the final fix, she was attentive and thorough. She explained everything clearly and gave us options before starting the repair. Super happy with her work!', '2023-09-30'),	
+(5, 77, 5, 'Sally was a lifesaver during our boiler breakdown, she sourced a part the same day and had us warm again that evening.', '2023-05-19'),	
+(13, 80, 3, 'Trudy was decent. She installed a new toilet in our en suite. The finish is clean, but we had to wait a few days longer than expected due to a part delay. Solid work overall.', '2023-08-03'),	
+(6, 80, 2, ''Trudy’s work was fine, but not impressive. She installed a new faucet, but we noticed a slow drip the next day. She came back and addressed it, but it left us a bit uneasy about the initial install.'', '2023-03-14'),	
+(14, 84, 2, 'Val V. left us a bit underwhelmed. She replaced the valves under our sink, but we noticed a slight rattle in the pipes afterward. It’s not a huge deal, but it left us questioning the quality of the finish.', '2023-08-03'),	
+(5, 84, 5, 'Val V. was excellent—she fitted a luxury rainfall shower and the finish is stunning, clearly takes pride in her work.', '2023-05-19'),	
+(6, 84, 3, 'Val V. was good, not great. She handled a full bathroom plumbing install. While the work is neat and everything functions well, the job ran over time and budget a bit. Communication was polite, though.', '2023-08-13')	
