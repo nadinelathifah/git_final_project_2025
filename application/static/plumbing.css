@@ -70,12 +70,11 @@
 #plumbing-services-section {
     min-height: 150vh;                /* Setting the height to 100vh ensures the section spans the entire height of the screen - vh is short for viewport height. */
     background: rgb(255, 251, 237); 
-    overflow-y: auto;
 }
 
 /* To add styling to the card, we have to specify which id or class this card is from (#example-section) */
 /* class="card" -> A class is selected by writing it as .class (full-stop before the class name) */
-#plumbing-services-section .card {
+#plumbing-section .card {
     width: 300px;                /* Set a width (unchanging) or a maximum-width (more responsive when you minimise the screen size) to the card */
     height: auto;
     background: white;
@@ -95,22 +94,25 @@
 }
 
 /* We are specifically targeting the h3 heading of each card */
-#plumbing-services-section .card h3 {
+#plumbing-section .card h3 {
     margin-top: 20px;            /* Adds a margin to the top of the heading */
-    font-size: 1.2rem;           /* 1rem = 16px */
+    font-size: 1.5rem;           /* 1rem = 16px */
     text-transform: capitalize;           /* Capitalises all h3 headings in the card */
 }
 
-#plumbing-services-section .card p {
-    font-size: 0.9rem;
-}
-
 /* Now we're editing the dimensions of the images in each card */
-#plumbing-services-section .card img {
+#plumbing-section .card img {
     border-radius: 25px 25px 0px 0px;     /* Making the top left and top right edges curved */
     width: 100%;                          /* Making the width span the length of the card */
     height: auto;                         /* Setting height to automatic */
 }
+
+/* Editing the button styling */
+/* #example-section .card button {
+    background: yellow;              
+    color: black;          
+    margin-bottom: 20px;                 
+} */
 
 /* Editing the container that contains both the 3 cards and the bottom box. */
 .plumbing-wrapper {
@@ -118,9 +120,77 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px
 }
 
-#plumbing-services-section .text-content {
-    padding: 0 20px 20px 20px;
+/* Editing the outer container of the bottom box */
+#plumbing-bottom-container {
+    height: 40vh;
+    width: 100vw;                        /* Set the width as 100% of the vw - viewport width*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Editing the bottom box styling */
+#plumbing-bottom-container .box {
+    min-height: 30vh;
+    width: 70vw; 
+    background: white;
+    border: 1px solid rgb(0, 21, 116);
+    border-radius: 15px;
+    box-shadow: -10px 10px #96c9ff;
+    padding: 20px;
+    overflow-block: auto;
+}
+
+#plumbing-bottom-container .box h4 {
+    font-size: 1.3rem;
+}
+
+
+
+/* ---------------------------Example 2 Section---------------------------*/
+
+
+#plumbing-2 {
+    height: 100vh;
+    background: aliceblue;
+    z-index: 1;
+}
+
+#plumbing-2 .container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#plumbing-services-2 .card {
+    position: relative;
+    background: linear-gradient(to left, #96c9ff, #90e0ef);
+    height: 80vh;
+    width: 80vw;
+    margin-top: 20px;
+    border: 1px solid aliceblue;
+    border-radius: 25px;
+    z-index: 2;
+}
+
+#plumbing-2 .content {
+    position: absolute;
+    background: whitesmoke;
+    height: 35vh;
+    width: 43vw;
+    border-radius: 25px;
+    padding: 30px;
+    margin-right: 20px;
+    z-index: 5;
+}
+
+#plumbing-2 .container img {
+    position: absolute;
+    left: 55px;
+    width: 50vw;
+    border-radius: 50px;
+    z-index: 3;
 }
