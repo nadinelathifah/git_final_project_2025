@@ -167,7 +167,7 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Cameron', 'Sprinkler', '1998-05-18', 6, 2, 'cameron@acorngardening.com', 'cameron123', '2024-06-01'),
 ('Poppy', 'Moore', '2002-02-21', 6, 4, 'poppy@wksolutions.com', 'poppy123', '2024-07-01'),
 ('Olive', 'Bloomfield', '1997-02-16', 6, 4, 'olive@gardenbros.com', 'olive123', '2024-10-01'),
-('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01');
+('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01'),
 ('Alice', 'Wonderland', '1987-01-02', 2, 5, 'alice.wonderland@fixitpros.com', 'alice123', '2020-01-01'),
 ('Sarah', 'Sky', '2000-09-10', 2, 2, 'sarah.sky@skyhighrepairs.com', 'sarah123', '2021-02-03'),
 ('Tina', 'Tape', '1999-08-07', 2, 3, 'tinatape@tapeitright.com', 'tina123', '2022-03-04'),
@@ -210,7 +210,7 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (29, '+44 7796-624310', 23.60, 'Acorn Garden Services', 'Keeping your greens quenched and blooming. Sprinklers, hoses, or hands-on care—I’ve got watering down to a science.'),
 (30, '+44 1324-804102', 22.50, 'Wise Knotweed Solutions', 'I''m Poppy and my work is a national treasure. I’ll turn your outdoor space into a blooming beauty.'),
 (31, '+44 7495-234871', 22.80, 'Garden Bros', 'Bringing lush greenery and blooming beauty to your garden. I’ll help you create a peaceful retreat with vibrant plants.'),
-(32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.');
+(32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.'),
 (52, '+44 7567 234 567', 45.99, 'Wonder Home Solutions', 'Turning your home repairs into a wonderland of fixes!'),
 (53, '+44 7456 123 456', 20.75, 'Sky High Repairs', 'Bringing your home repairs to new heights'),
 (54, '+44 7890 345 678', 39.20, 'Tape It Right', 'I\'ll stick with you until the job\'s done right!'),
@@ -318,6 +318,7 @@ VALUES (4, 17, 5, 'Penny turned our dull backyard into a blooming paradise! Her 
 
 -- Reviews for Repair Services --
 INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+VALUES
 (17, 52, 5, '2024-01-12', 'Alice turned my home repairs into a fairy tale – quick, efficient, and a perfect finish!'),
 (18, 53, 4, '2024-04-09', 'Sarah''s work was out of this world! She took my repairs to new heights and left everything spotless!'),
 (19, 54, 5, '2025-01-02', 'Tina is the real deal – she fixed my home with precision, and I couldn''t be happier with the result!'),
