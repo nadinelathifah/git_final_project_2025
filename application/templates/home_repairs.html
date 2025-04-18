@@ -3,31 +3,53 @@
 
 <section id="repair-section">
     <div class="container pt-5">
-        <h1>This is a title in the body</h1>
-        <p>This is a paragraph</p>
+        <h1>Home Repairs Services</h1>
+        <p>Book a high-quality, efficient service today!</p>
     </div>
 
     <div class="repair-wrapper">
         <div class="col-sm">
             <div class="card">
-                <img src="{{ url_for('static', filename='images/house.jpg') }}" alt="House Image">
-                <h3>This is a card</h3>
-                <p>Card content</p>
+                <img src="{{ url_for('static', filename='images/roof_repairs.jpg') }}" alt="House Image">
+                <h3>Roof Repairs</h3>
+                <p>Fixing leaks, damaged shingles, and roof structural issues.</p>
             </div>
 
             <div class="card">
                 <img src="{{ url_for('static', filename='images/house4.jpg') }}" alt="House Image">
-                <h3>This is a card</h3>
-                <p>Card content</p>
+                <h3>Foundation Repairs</h3>
+                <p>Addressing foundation cracks, shifting, or settling problems.</p>
             </div>
 
             <div class="card">
                 <img src="{{ url_for('static', filename='images/house3.jpg') }}" alt="House Image">
-                <h3>This is a card</h3>
-                <p>Card content</p>
+                <h3>Drywall Repairs</h3>
+                <p>Seamless patching of holes, dents, and cracks in drywall.</p>
+            </div>
+        </div>
+    </div>
+     <div class="repair-wrapper">
+        <div class="col-sm">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house.jpg') }}" alt="House Image">
+                <h3>Floor Repairs</h3>
+                <p>Repairing damaged flooring, from tiles to hardwood.</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house4.jpg') }}" alt="House Image">
+                <h3>Window Repairs </h3>
+                <p>Fixing broken frames, seals, or glass panes.</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house3.jpg') }}" alt="House Image">
+                <h3>Door Repairs </h3>
+                <p>Repairing misaligned, stuck, or damaged doors and frames.</p>
             </div>
         </div>
     </div>
 </section>
+
 
 {% endblock %}
