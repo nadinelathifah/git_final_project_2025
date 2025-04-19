@@ -7,20 +7,12 @@ if sys.platform == "win32":
 else:
     mysql_password = ""
 
-# mydb = mysql.connector.connect(
-#   host="localhost",
-#   user="root",
-#   password="",
-#   database="homeheroes11"
-# )
-
-
 def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
         password=mysql_password,
-        database="homeheroes11"
+        database="homeheroes12"
     )
     return mydb
 
@@ -85,49 +77,96 @@ def get_tp_by_email(email):
     return tradesperson
 
 
-def get_towns():
+def get_client_by_id(client_id):
     connection = get_db_connection()
-    cursor = connection.cursor()
-    
-    cursor.execute("SELECT town FROM view_tradespeople_by_category")
-    location = cursor.fetchall()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT * FROM clients WHERE clientID = %s"
+    cursor.execute(query, (client_id,))
+    client = cursor.fetchone()
 
     cursor.close()
     connection.close()
-    return location
+    return client
 
 
-
-def find_tradesperson(task, location, price_order, rating_order):
+def get_all_towns():
     connection = get_db_connection()
     cursor = connection.cursor()
+    cursor.execute("SELECT DISTINCT town FROM view_tradespeople_by_category")
+    towns = cursor.fetchall()
 
-    query = "SELECT * FROM view_tradespeople_by_category WHERE 1-1"
+    cursor.close()
+    connection.close()
+    return towns
+
+def get_all_tasks():
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT DISTINCT task_name FROM view_tradespeople_by_category")
+    tasks = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+    return tasks
+
+
+
+def find_matching_tradespeople(task=None, location=None, hourly_rate=None, star_rating=None):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    query = "SELECT * FROM view_tradespeople_by_category WHERE 1=1"
     search_parameters = []
 
     if task:
-        query += "AND task_name = %s"
+        query += " AND task_name = %s"
         search_parameters.append(task)
     
     if location:
-        query += "AND town = %s"
+        query += " AND town = %s"
         search_parameters.append(location)
+    
+    order = []
+    if hourly_rate:
+        order.append(f"hourly_rate {hourly_rate}")
 
+    if star_rating:
+        order.append(f"average_rating {star_rating}")
 
+    if order:
+        order += " ORDER BY " + ", ".join(order)
 
-
-def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):
-    connection = get_db_connection()
-    cursor = connection.cursor()
-
-    cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, townID, task_desc])
-
-    connection.commit()
+    cursor.execute(query, search_parameters)
+    search_results = cursor.fetchall()
     cursor.close()
     connection.close()
+    return search_results
 
-def get_booking():
-    pass
+
+
+def book_job(clientID, workerID, taskID, service_start, service_end, task_desc):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    try:
+        cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, task_desc])
+        connection.commit()
+        print(f"Booking successful: Client {clientID} booked worker {workerID} for task {taskID}.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        cursor.close()
+        connection.close()
+
+
+def get_reviews():
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("SELECT rating, full_name, comment FROM view_reviews")
+    reviews = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return reviews
 
 
 # TO ENCODE THE PASSWORD OF CLIENTS
@@ -193,5 +232,21 @@ def get_booking():
 
 # print("Tradespeople passwords updated successfully.")
 
-if __name__ == "__main__":
+
+def main():
+    clientID = 2
+    workerID = 1
+    taskID = 1
+    service_start = '2025-05-01'
+    service_end = '2025-05-02'
+    task_desc = "Paint the walls"
+
+    book_job(clientID, workerID, taskID, service_start, service_end, task_desc)
+
+if __name__ == '__main__':
     main()
+
+    
+# if __name__ == '__main__':
+#     print("Tasks test:", get_all_tasks())
+#     print("Towns test:", get_all_towns())

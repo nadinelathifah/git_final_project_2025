@@ -184,3 +184,35 @@
         font-size: 1rem;
     }
 }
+
+#lawncare-services {
+    min-height: 150vh;
+    background: rgb(255, 251, 237);
+}
+
+#lawncare-services .col-sm-12 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#lawncare-services .col-sm-12 img {
+    max-width: 25vw;
+}
+
+#lawncare-services .text-body {
+    text-transform: capitalize;
+}
+
+#lawncare-services .text-body p {
+    font-size: 1rem;
+}
+
+#lawncare-services .text-body h4 {
+    font-size: 1.4rem;
+    margin-bottom: 40px;
+}
+
+

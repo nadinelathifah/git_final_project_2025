@@ -1,0 +1,42 @@
+#repair-section {
+    height: 100vh;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#repair-section .card {
+    max-width: 300px;
+    background: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: -10px 10px orange;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+#repair-section .col-sm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#repair-section .card h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+#repair-section .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px 25px 0px 0px;
+}
