@@ -79,11 +79,10 @@
                                 <strong>Rating:</strong> {{ r.average_rating or 'N/A' }} ({{ r.total_reviews }} reviews)<br>
                                 <strong>Bio:</strong> {{ r.bio }}
                             </p>
-                            <form action="{{ url_for('book_service') }}" method="POST">
-                                <input type="hidden" name="worker_id" value="{{ r.workerID }}">
-                                <input type="hidden" name="task_id" value="{{ r.taskID }}">
-                                <input type="hidden" name="town_id" value="{{ r.townID }}">
-                                <button type="submit" id="book-btn" class="btn btn-primary">Book This Tradesperson</button>
+                            <form action="{{ url_for('book_service') }}#booking-form" method="GET">
+                                <input type="hidden" name="workerID" value="{{ r.workerID }}">
+                                <input type="hidden" name="taskID" value="{{ r.taskID }}">
+                                <button type="submit" class="btn btn-primary">Book This Tradesperson</button>
                             </form>
                         </div>
                     </div>

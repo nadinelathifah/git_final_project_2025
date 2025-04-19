@@ -183,3 +183,15 @@
     font-weight: 600;
     transform: translate(10px, 0);
 }
+
+
+/* -------------- Booking Form Styling -------------- */
+
+#booking-form {
+    min-height: 100vh;
+    background: whitesmoke;
+}
+
+#booking-form .container {
+    padding-top: 100px;
+}

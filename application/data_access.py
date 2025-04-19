@@ -77,6 +77,18 @@ def get_tp_by_email(email):
     return tradesperson
 
 
+def get_client_by_id(client_id):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT * FROM clients WHERE clientID = %s"
+    cursor.execute(query, (client_id,))
+    client = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+    return client
+
+
 def get_all_towns():
     connection = get_db_connection()
     cursor = connection.cursor()
@@ -132,17 +144,18 @@ def find_matching_tradespeople(task=None, location=None, hourly_rate=None, star_
 
 
 
-def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):
+def book_job(clientID, workerID, taskID, service_start, service_end, task_desc):
     connection = get_db_connection()
     cursor = connection.cursor()
-    cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, townID, task_desc])
-    connection.commit()
-    cursor.close()
-    connection.close()
-
-
-def get_booking():
-    pass
+    try:
+        cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, task_desc])
+        connection.commit()
+        print(f"Booking successful: Client {clientID} booked worker {workerID} for task {taskID}.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        cursor.close()
+        connection.close()
 
 
 def get_reviews():
@@ -219,6 +232,21 @@ def get_reviews():
 
 # print("Tradespeople passwords updated successfully.")
 
+
+def main():
+    clientID = 2
+    workerID = 1
+    taskID = 1
+    service_start = '2025-05-01'
+    service_end = '2025-05-02'
+    task_desc = "Paint the walls"
+
+    book_job(clientID, workerID, taskID, service_start, service_end, task_desc)
+
 if __name__ == '__main__':
-    print("Tasks test:", get_all_tasks())
-    print("Towns test:", get_all_towns())
+    main()
+
+    
+# if __name__ == '__main__':
+#     print("Tasks test:", get_all_tasks())
+#     print("Towns test:", get_all_towns())

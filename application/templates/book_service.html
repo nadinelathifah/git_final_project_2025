@@ -1,4 +1,38 @@
-{% extends from "layout.html" %}
+{% extends "layout.html" %}
 {% block body_content %}
 
+<section id="booking-form">
+    <div class="container">
+        <h2>Book a Service with {{ tradesperson.full_name }}</h2>
+
+        <p><strong>Worker ID:</strong> {{ worker_id }}</p>
+        <p><strong>Task ID:</strong> {{ task_id }}</p>
+
+        <form action="{{ url_for('book_service') }}#booking-form" method="POST">
+            <input type="hidden" name="client_id" value="{{ client_id }}">
+            <input type="hidden" name="worker_id" value="{{ worker_id }}">
+            <input type="hidden" name="task_id" value="{{ task_id }}">
+
+            <div class="form-group">
+                <label for="service_start">Service Start Date:</label>
+                <input type="date" id="service_start" name="service_start" required class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="service_end">Service End Date:</label>
+                <input type="date" id="service_end" name="service_end" required class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="task_description">Task Description:</label>
+                <textarea id="task_description" name="task_description" required class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Booking</button>
+        </form>
+    </div>
+</section>
+
 {% endblock %}
+
+
