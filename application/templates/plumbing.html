@@ -15,7 +15,7 @@
 <!--    {{ icon if icon else 'plumbing' }}-->
 <!--</span>-->
 <!--            </h3>-->
-            </div>
+</div>
 
 </section>
 
@@ -55,14 +55,14 @@
 
 
 
-<section id="plumbing-services-section" class="pt-5 pb-5">
+<!--<section id="plumbing-services-section" class="pt-5 pb-5">-->
   <div class="container">
 <!--    <h2 class="pb-4 text-center">Plumbing Services</h2>-->
     <div class="row gy-4">
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/plumber_sink.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/plumber_sink.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Leaky Taps and Fixtures</h5>
             <p class="card-text text-center">That constant dripping sound isn't just annoying—it adds up on your water bill...</p>
@@ -72,7 +72,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/01drain.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/01drain.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Blocked Drains</h5>
             <p class="card-text text-center">Whether it’s a slow kitchen sink or a total bathroom backup, blocked drains can get messy fast. We use professional tools (and not just a bent wire hanger) to clear the blockage safely and efficiently.</p>
@@ -82,7 +82,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/plumber_wc3.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/plumber_wc3.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Toilet Repairs</h5>
             <p class="card-text text-center">Running toilets, blockages, or mystery flushes? We’ll investigate, diagnose, and repair all toilet troubles—without judgment (we’ve seen it all, promise).</p>
@@ -92,7 +92,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/06plumber.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/plumber_shower.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Shower Installations</h5>
             <p class="card-text text-center">Whether you're upgrading your bathroom or just replacing a worn-out unit, we install all kinds of showers with an eye for neatness, waterproofing, and water pressure.</p>
@@ -102,7 +102,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/plumber_oncall2.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/plumber_on_call.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Emergency Call-Outs</h5>
             <p class="card-text text-center">Plumbing problems rarely happen at convenient times. That’s why we offer emergency call-outs—so whether it’s 10 AM or 10 PM, you’re not left with a flood and a frantic Google search.</p>
@@ -112,7 +112,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/03plumber_boiler.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/plumber_heating.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Boiler & Water Heater Fixes</h5>
             <p class="card-text text-center">No hot water on a cold morning is a nightmare. We handle boiler servicing, repairs, and replacements so your hot showers stay sacred.</p>
@@ -122,7 +122,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/04plumber.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/04plumber.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Burst Pipes</h5>
             <p class="card-text text-center">A burst pipe is a serious issue. We offer rapid response to stop leaks, replace damaged sections, and help dry things out to prevent long-term damage.</p>
@@ -132,7 +132,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="card h-100 shadow-sm">
-          <img src="{{ url_for('static', filename='images/05plumber.jpg') }}" class="card-img-top service-img" alt="">
+          <img src="{{ url_for('static', filename='images/05plumber.jpg') }}" alt="" class="service-img">
           <div class="card-body">
             <h5 class="card-title text-center">Appliance Installations</h5>
             <p class="card-text text-center">Just got a new dishwasher or washing machine? We’ll install it safely, check the connections, and make sure it’s running properly before we leave.</p>
@@ -142,9 +142,9 @@
 
     </div>
   </div>
+    </div>
 </section>
 
 
-</div>
-</section>
+
 {% endblock %} <!--This closes the body_content block so the content from layout-services template will end here. I.e., end of inheritance.
