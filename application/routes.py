@@ -293,7 +293,7 @@ def plumbing():
                             title='Plumbing services',
                             subheading='Because even the best pipes have bad days',
                             icon='plumbing',
-                            background_image="/static/images/pipes background.jpg")
+                            background_image="/static/images/plumbing_background.png")
 
 
 
