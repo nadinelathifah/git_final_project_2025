@@ -296,3 +296,56 @@ VALUES (4, 17, 5, 'Penny turned our dull backyard into a blooming paradise! Her 
 (11, 32, 2, 'We hired Tommy to help with flower bed planning and planting, but the results were underwhelming. Some of the choices didn’t suit the space or season, and it felt a bit rushed overall. He was friendly, but the execution just didn’t deliver what we hoped for.', '2015-04-19'),
 (11, 32, 3, 'Tommy handled our front yard landscaping. He clearly knows his plants, but the overall design felt a bit basic for what we discussed. It looks good now, just not quite as polished as we expected.', '2015-04-20');
 
+
+-- For Electrician --
+
+INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password, registration_date)
+VALUES ('Alice', 'Johnston', '1980-08-02', '1', 'Alice@gmail.com', 'Alice123', '2010-01-12'),
+('Bob', 'Williams', '1975-03-18', '2','Bob@gmail.com', 'Bob123', '2000-05-12'),
+('Charlie', 'Brown', '1992-09-05', '3', 'Charlie@gmail.com', 'Charlie123', '2001-10-10'),
+('David', 'Jones', '1987-02-14', '4', 'David@gmail.com', 'David123', '2000-01-12'),
+('Emily', 'Sky', '2004-07-21', '2', 'Emily@gmail.com', 'Emily123', '2005-09-11'),
+('Fiona', 'Jones', '1999-12-27', '5', 'Fiona1@gmail.com', 'Fiona123', '2004-06-07'),
+('George', 'Garcia', '1983-04-11', '2', 'George@gmail.com', 'George123', '2003-01-12'),
+('Hannah', 'Miller', '1978-01-06', '1', 'Hannah@gmail.com', 'Hannah123', '2000-03-12'),
+('Isaac', 'Davis', '2000-05-30', '1', 'Isaac@gmail.com', 'Isaac123', '2002-01-10'),
+('Jessica', 'Martinez', '1995-10-19', '1', 'Jessica@gmail.com', 'Jessica123', '2000-05-13');
+
+INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password, registration_date)
+VALUES ('Peter', 'Ampre', '1978-05-04', 42, 'info@clanelectrical.com', 'password!', '2000-11-04'),
+('Sean', 'Coil', '1996-10-15', 42, 'hello@westrigg.com', 'sparkle123', '2007-10-04'),
+('Miranda', 'Spark', '2004-11-05', 41, 'contact@electroservices.com', 'plug4321', '2015-12-04'),
+('Nadine', 'Socket', '1980-06-07', 43, 'info@mcgowanelectrical.com', 'ME890!', '2000-12-04'),
+('Malvina', 'Power', '1999-10-11', 41, 'hello@onedesignelectrical.com', 'Mal99!', '2010-10-04'),
+('Liya', 'Current', '1997-05-08', 47, 'contact@ces.com', 'current452', '2009-11-04'),
+('Ayishat', 'Fuse', '1992-03-16', 41, 'enquiry@BES.com', 'BES765490!', '2002-02-04'),
+('Paul', 'Wireman', '2001-04-09', 42, 'enquiries@elictrical.com', 'yjdyB1!!', '2006-11-04'),
+('Breaker', 'Brookes', '2002-01-14', 41, 'mail@rodz.com', 'business5428', '2007-08-04'),
+('Paige', 'Panel', '2000-12-12', 41, 'hi@calderwoodelectrical.com', 'caldelec12!', '2005-11-14');
+
+INSERT INTO tradesperson_profile (workerID, phone_number, hourly_rate, business, bio)
+VALUES (60, '+44 1506 650135', 35.00, 'Clan Electrical', 'With over fifteen years under my belt, I''m a seasoned electrician known for my meticulous attention to detail and expertise in complex residential and commercial wiring projects. Clients often call on me to troubleshoot tricky electrical issues, and I always ensure everything is up to the highest safety standards.'),
+(61, '+44 1506 632098', 37.50, 'Westrigg Electrical Services', 'Bringing a decade of experience to the team, my specialty lies in modern home automation and energy-efficient installations. I''m passionate about seamlessly integrating smart technology into homes and helping clients reduce their energy consumption.'),
+(62, '+44 1506 665498', 40.00, 'Electro Services LTD', 'As a highly skilled electrician with eight years of experience, I excel in both new construction electrical work and comprehensive rewiring projects. Clients appreciate my clear communication and my dedication to delivering reliable and long-lasting solutions.'),
+(63, '+44 1506 624536', 50.00, 'McGowan Electrical', 'Having been a qualified electrician for five years, I''ve quickly built a reputation for my efficiency and thoroughness in handling a wide range of domestic electrical repairs and installations. I''m committed to providing friendly and dependable service to every customer.'),
+(64, '+44 1506 687623', 60.00, 'One Design Electrical Ltd.', 'With three years of experience, I''m a bright and enthusiastic electrician eager to tackle any residential electrical challenge. I''m particularly adept at diagnosing common household electrical faults and providing swift, effective repairs.'),
+(65, '+44 1506 614564', 55.00, 'Close electrical services', 'As a newly qualified electrician, I have a strong foundation in electrical theory and a keen interest in expanding my practical skills. I''m a valuable asset to the team, bringing a fresh perspective and a commitment to learning best practices on every job.'),
+(66, '+44 1506 609823', 39.00, 'BES Group Electrical', 'Bringing four years of experience to the field, I''m known for my strong problem-solving abilities and my meticulous approach to electrical testing and inspection. I ensure every installation and repair meets rigorous safety regulations.'),
+(67, '+44 1506 657283', 42.00, 'ELECTRIC - AL', 'With over twenty years of experience as a reliable electrician, I''ve gained a wealth of knowledge in industrial and commercial electrical systems. My extensive understanding makes me an invaluable resource for complex machinery wiring and large-scale electrical projects.'),
+(68, '+44 1506 665209', 53.00, 'Rodz Electrical', 'I have an exceptional ability to quickly and safely resolve power outages and other urgent electrical issues. I''m known for my calm demeanor under pressure and efficient troubleshooting skills.'),
+(69, '+44 1506 609820', 39.50, 'Calderwood Electrical Services', 'Bringing seven years of dedicated experience to the electrical trade, I''m known for my calm and methodical approach to every job, ensuring precision and safety in all my work. Clients appreciate my clear communication and my commitment to providing reliable electrical solutions for their homes.');
+
+
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+VALUES
+(65, 21, 4, 'Peter provided solid electrical work. He was thorough and clearly experienced, particularly with the more complex aspects of the job. There were no issues, and I felt confident in his expertise. I would recommend him for most electrical needs.', '2020-08-07'),
+(66, 22, 5, 'Sean was fantastic! He installed our smart home system flawlessly and took the time to explain all the features. His knowledge of modern technology is impressive, and he was very efficient and professional. Highly recommended!', '2016-08-16'),
+(67, 23, 5, 'Miranda did a great job on our house rewiring project. She was communicative throughout the entire process, and the work was completed to a very high standard. We are extremely pleased with the results and would definitely use her services again.', '2013-09-20'),
+(68, 24, 5, 'Nadine was a pleasure to work with. She was efficient, friendly, and handled all our electrical repairs quickly and effectively. Her service was dependable, and the price was very reasonable. I highly recommend her for any domestic electrical work.', '2010-01-01'),
+(69, 25, 5, 'Malvina is a bright and enthusiastic electrician. She quickly diagnosed and fixed our electrical fault, and her work was excellent. She is a great communicator and provided swift, effective service. I was very impressed!', '2007-04-02'),
+(70, 26, 5, 'Liya is a newly qualified electrician, but her strong theoretical knowledge and eagerness to learn impressed me. She was a valuable asset to the team, and I was very pleased with the work she did. She is very promising.', '2004-05-16'),
+(71, 27, 5, 'Ayishat is a very skilled electrician. Her meticulous approach to testing and inspection gave me confidence that the work was done safely and correctly. She is a great problem solver.', '2009-02-14'),
+(72, 28, 3, 'Paul has a lot of experience, particularly with industrial electrical systems. However, I found the service to be adequate but not exceptional. There were a few minor issues that needed to be addressed. He got the job done.', '2013-02-04'),
+(73, 29, 2, 'Breaker resolved the power outage, but the service was not great. I found the communication lacking, and the issue took longer to resolve than I expected. I would consider other electricians in the future.', '2010-10-01'),
+(74, 30, 4, 'Paige was very professional and calm. She was very methodical in her approach and ensured the work was done safely. I would recommend her.', '2014-12-17');
+
