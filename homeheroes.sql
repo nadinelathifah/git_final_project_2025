@@ -1,11 +1,18 @@
 CREATE DATABASE homeheroes12;
 USE homeheroes12;
 
-drop database if exists homeheroes9;
+drop database if exists homeheroes12;
 
 
 SHOW TABLES;
+SELECT * FROM clients;
+SELECT * from tradespeople;
+SELECT * from tradesperson_profile;
+SELECT * from reviews;
+SELECT * FROM job_booking;
+SELECT * FROM job_status;
 SELECT * FROM location;
+SELECT * FROM tasks;
 
 CREATE TABLE location (
 townID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -123,7 +130,6 @@ VALUES ('pending'),
 ('completed'),
 ('cancelled');
 
-
 INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password, registration_date)
 VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsmgvp9pG.6O42z.VEIzosl3whBdB8CkMTTp4l9Bok4RSs2', '2005-03-31'),
 ('Anita', 'Brush', '1985-11-03', 1, 6, 'anita@edc.com', '$2b$12$By9nQmXOVL5al7P5Hym1ceXbBzdCrfFNTau.A9lCLOjVpiQNI1gvO', '2006-09-25'),
@@ -157,11 +163,13 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Poppy', 'Moore', '2002-02-21', 6, 4, 'poppy@wksolutions.com', 'poppy123', '2024-07-01'),
 ('Olive', 'Bloomfield', '1997-02-16', 6, 4, 'olive@gardenbros.com', 'olive123', '2024-10-01'),
 ('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01'),
+('Timmy', 'Tinkleton', '1990-06-07', 5, 8, 'tinkles@flushbros.com', 'timmy123', '2018-11-10'),
+('Peppa', 'Plumbwell', '1990-06-07', 5, 8, 'peppa@flushbros.com', 'peppa123', '2018-11-11'),
 ('David', 'Dunn', '1982-05-06', 3, 7, 'david.dunn@upliftlogistics.com', 'david123', '2024-06-20'),
 ('Sean', 'Hill', '1981-06-01', 3, 8, 'sean.hill@atlashaulers.com', 'sean123', '2023-02-20'),
 ('Sheila', 'Mcintosh', '1999-10-12', 3, 8, 'sheila.mcintosh@packmasters.com', 'sheila123', '2023-08-22'),
 ('Kimberly', 'Martin', '1997-04-19', 3, 1, 'kimberly.martin@titantransit.com', 'kimberly123', '2023-12-08'),
-('Candace', 'Thomas', '1988-11-09', 9, 3, 'candace.thomas@rocketrelocations.com', 'candace123', '2023-09-02'),
+('Candace', 'Thomas', '1988-11-09', 3, 3, 'candace.thomas@rocketrelocations.com', 'candace123', '2023-09-02'),
 ('Nathan', 'Garcia', '1991-04-10', 3, 5, 'nathan.garcia@boldmovehaulers.com', 'nathan123', '2024-09-29'),
 ('Seth', 'Warner', '1987-12-02', 3, 8, 'seth.warner@silverlineshifters.com', 'seth123', '2024-09-20'),
 ('Rebecca', 'Lane', '2000-06-20', 3, 3, 'rebecca.lane@silverlineshifters.com', 'rebecca123', '2024-02-01'),
@@ -181,11 +189,17 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Danny', 'Drill', '1997-12-12', 2, 5, 'danny.drill@drillworks.com', 'danny123', '2024-06-07'),
 ('Ben', 'Brick', '1978-02-23', 2, 1, 'ben.brick@brickbuilders.com', 'ben123', '2025-01-01'),
 ('Pat', 'Paint', '1995-05-05', 2, 2, 'pat.paint@paintprodigy.com', 'pat123', '2019-08-07'),
-('Dean', 'Duct', '1990-06-07', 2, 5, 'dean.duct@ductdudes.com', 'dean123', '2018-09-08');
-
--- Need insert miranda
-
--- plumbing tradespeople
+('Dean', 'Duct', '1990-06-07', 2, 5, 'dean.duct@ductdudes.com', 'dean123', '2018-09-08'),
+('Peter', 'Ampre', '1978-05-04', 4, 2, 'info@clanelectrical.com', 'password!', '2000-11-04'),
+('Sean', 'Coil', '1996-10-15', 4, 2, 'hello@westrigg.com', 'sparkle123', '2007-10-04'),
+('Miranda', 'Spark', '2004-11-05', 4, 1, 'contact@electroservices.com', 'plug4321', '2015-12-04'),
+('Nadine', 'Socket', '1980-06-07', 4, 3, 'info@mcgowanelectrical.com', 'ME890!', '2000-12-04'),
+('Malvina', 'Power', '1999-10-11', 4, 1, 'hello@onedesignelectrical.com', 'Mal99!', '2010-10-04'),
+('Liya', 'Current', '1997-05-08', 4, 7, 'contact@ces.com', 'current452', '2009-11-04'),
+('Ayishat', 'Fuse', '1992-03-16', 4, 1, 'enquiry@BES.com', 'BES765490!', '2002-02-04'),
+('Paul', 'Wireman', '2001-04-09', 4, 2, 'enquiries@elictrical.com', 'yjdyB1!!', '2006-11-04'),
+('Breaker', 'Brookes', '2002-01-14', 4, 1, 'mail@rodz.com', 'business5428', '2007-08-04'),
+('Paige', 'Panel', '2000-12-12', 4, 1, 'hi@calderwoodelectrical.com', 'caldelec12!', '2005-11-14'),
 ('Pippa', 'Drains', '1976-02-10', 5, 1, 'Pippa.Drains@homeheroes.co.uk', 'Pippa123', '2023-09-01'),
 ('Lee Kay', 'Faucet', '1986-03-10', 5, 2, 'Lee Kay.Faucet@homeheroes.co.uk', 'Lee Kay123', '2024-04-29'),
 ('Lou', 'Sinkler', '1976-04-02', 5, 3, 'Lou.Sinkler@homeheroes.co.uk', 'Lou123', '2023-08-08'),
@@ -200,7 +214,7 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Copper', 'Tubes', '1976-10-13', 5, 3, 'Copper.Tubes@homeheroes.co.uk', 'Copper123', '2024-09-29'),
 ('Billy', 'Backflow', '2002-11-10', 5, 2, 'Billy.Backflow@homeheroes.co.uk', 'Billy123', '2024-09-20'),
 ('Greta', 'Gasket', '1976-10-15', 5, 8, 'Greta.Gasket@homeheroes.co.uk', 'Greta123', '2024-02-01'),
-('Val V.', 'Pressure', '1976-10-16', 5, 1, 'ValV.Pressure@homeheroes.co.uk', 'ValV123', '2022-12-06')
+('Val V.', 'Pressure', '1976-10-16', 5, 1, 'ValV.Pressure@homeheroes.co.uk', 'ValV123', '2022-12-06');
 
 
 INSERT INTO tradesperson_profile (workerID, phone_number, hourly_rate, business, bio)
@@ -236,77 +250,93 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (30, '+44 1324-804102', 22.50, 'Wise Knotweed Solutions', 'I''m Poppy and my work is a national treasure. I’ll turn your outdoor space into a blooming beauty.'),
 (31, '+44 7495-234871', 22.80, 'Garden Bros', 'Bringing lush greenery and blooming beauty to your garden. I’ll help you create a peaceful retreat with vibrant plants.'),
 (32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.'),
-(33, "+44 7620 567 890", 28.75, "Uplift Logistics", "Need a move that's fast and flawless? I'm David, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
-(34, "+44 7709 234 567", 24.60, "Atlas Haulers", "Hey there! I'm Sean, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
-(35, "+44 7561 123 987", 26.30, "PackMasters", "Hi! Sheila here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
-(36, "+44 7420 987 654", 23.90, "Titan Transit", "Hi! Kimberly here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
-(37, "+44 7799 876 543", 25.45, "Rocket Relocations", "Hi! Candace here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
-(38, "+44 7623 489 230", 27.10, "BoldMove Haulers", "Hey there! I'm Nathan, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
-(39, "+44 7754 123 987", 29.25, "SilverLine Shifters", "Hey there! I'm Seth, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
-(40, "+44 7609 876 543", 26.80, "SilverLine Shifters", "Ready to roll? I'm Rebecca, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
-(41, "+44 7901 345 678", 25.90, "MetroMax Relocations", "Need a move that's fast and flawless? I'm Monica, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
-(42, "+44 7832 234 567", 25.10, "Rocket Relocations", "Need a move that's fast and flawless? I'm Danielle, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
-(43, "+44 7712 345 678", 22.95, "FirstClass Freight", "Hey there! I'm Nicole, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
-(44, "+44 7654 987 654", 24.10, "AnchorWave Movers", "Looking for a reliable mover? I'm Kaitlyn, and I know how to turn moving day into a smooth and stress-free experience. Let’s make it happen!"),
-(45, "+44 7745 890 123", 22.75, "BoldMove Haulers", "Ready to roll? I'm Anthony, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
-(46, "+44 7534 789 012", 25.00, "Urban Trek Relocations", "Ready to roll? I'm Bryan, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
-(47, "+44 7823 678 901", 23.40, "Summit Hauling", "Need a move that's fast and flawless? I'm Michael, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
-(48, "+44 7412 567 890", 23.95, "Urban Trek Relocations", "Need a move that's fast and flawless? I'm Daniel, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
-(49, "+44 7701 456 789", 24.75, "PeakPoint Movers", "Need a move that's fast and flawless? I'm Matthew, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
-(50, '+44 7567 234 567', 45.99, 'Wonder Home Solutions', 'Turning your home repairs into a wonderland of fixes!'),
-(51, '+44 7456 123 456', 20.75, 'Sky High Repairs', 'Bringing your home repairs to new heights'),
-(52, '+44 7890 345 678', 39.20, 'Tape It Right', "I'll stick with you until the job's done right!"),
-(53, '+44 7745 890 123', 26.25, 'Saw Masters', 'Cutting through problems, one saw at a time'),
-(54, '+44 7534 789 012', 50.65, 'Drill Works', "I'm the drill master, making sure your repairs are on point!"),
-(55, '+44 7412 567 890', 28.99, 'Brick Builders', 'Laying the foundation for a better home, one brick at a time!'),
-(56, '+44 7534 789 012', 35.50, 'Paint Prodigy', 'Fixing more than just the surface — I restore your walls to perfection!'),
-(57, '+44 7823 678 901', 47.80, 'Duct Dudes', "No duct too tricky — I'll seal the deal!"),
+(33, '+44 7015 192 474', 26.80, 'Flush Bros', "Never worry about future tinkles!"),
+(34, '+44 7749 508 641', 27.80, 'Flush Bros', "I'll take your drain worries away!"),
+(35, "+44 7620 567 890", 28.75, "Uplift Logistics", "Need a move that's fast and flawless? I'm David, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(36, "+44 7709 234 567", 24.60, "Atlas Haulers", "Hey there! I'm Sean, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(37, "+44 7561 123 987", 26.30, "PackMasters", "Hi! Sheila here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(38, "+44 7420 987 654", 23.90, "Titan Transit", "Hi! Kimberly here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(39, "+44 7799 876 543", 25.45, "Rocket Relocations", "Hi! Candace here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(40, "+44 7623 489 230", 27.10, "BoldMove Haulers", "Hey there! I'm Nathan, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(41, "+44 7754 123 987", 29.25, "SilverLine Shifters", "Hey there! I'm Seth, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(42, "+44 7609 876 543", 26.80, "SilverLine Shifters", "Ready to roll? I'm Rebecca, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(43, "+44 7901 345 678", 25.90, "MetroMax Relocations", "Need a move that's fast and flawless? I'm Monica, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(44, "+44 7832 234 567", 25.10, "Rocket Relocations", "Need a move that's fast and flawless? I'm Danielle, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(45, "+44 7712 345 678", 22.95, "FirstClass Freight", "Hey there! I'm Nicole, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(46, "+44 7654 987 654", 24.10, "AnchorWave Movers", "Looking for a reliable mover? I'm Kaitlyn, and I know how to turn moving day into a smooth and stress-free experience. Let’s make it happen!"),
+(47, "+44 7745 890 123", 22.75, "BoldMove Haulers", "Ready to roll? I'm Anthony, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(48, "+44 7534 789 012", 25.00, "Urban Trek Relocations", "Ready to roll? I'm Bryan, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(49, "+44 7823 678 901", 23.40, "Summit Hauling", "Need a move that's fast and flawless? I'm Michael, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(50, "+44 7412 567 890", 23.95, "Urban Trek Relocations", "Need a move that's fast and flawless? I'm Daniel, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(51, "+44 7701 456 789", 24.75, "PeakPoint Movers", "Need a move that's fast and flawless? I'm Matthew, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(52, '+44 7567 234 567', 45.99, 'Wonder Home Solutions', 'Turning your home repairs into a wonderland of fixes!'),
+(53, '+44 7456 123 456', 20.75, 'Sky High Repairs', 'Bringing your home repairs to new heights'),
+(54, '+44 7890 345 678', 39.20, 'Tape It Right', "I'll stick with you until the job's done right!"),
+(55, '+44 7745 890 123', 26.25, 'Saw Masters', 'Cutting through problems, one saw at a time'),
+(56, '+44 7534 789 012', 50.65, 'Drill Works', "I'm the drill master, making sure your repairs are on point!"),
+(57, '+44 7412 567 890', 28.99, 'Brick Builders', 'Laying the foundation for a better home, one brick at a time!'),
+(58, '+44 7534 789 012', 35.50, 'Paint Prodigy', 'Fixing more than just the surface — I restore your walls to perfection!'),
+(59, '+44 7823 678 901', 47.80, 'Duct Dudes', "No duct too tricky — I'll seal the deal!"),
+(60, '+44 1506 650135', 35.00, 'Clan Electrical', 'With over fifteen years under my belt, I''m a seasoned electrician known for my meticulous attention to detail and expertise in complex residential and commercial wiring projects. Clients often call on me to troubleshoot tricky electrical issues, and I always ensure everything is up to the highest safety standards.'),
+(61, '+44 1506 632098', 37.50, 'Westrigg Electrical Services', 'Bringing a decade of experience to the team, my specialty lies in modern home automation and energy-efficient installations. I''m passionate about seamlessly integrating smart technology into homes and helping clients reduce their energy consumption.'),
+(62, '+44 1506 665498', 40.00, 'Electro Services LTD', 'As a highly skilled electrician with eight years of experience, I excel in both new construction electrical work and comprehensive rewiring projects. Clients appreciate my clear communication and my dedication to delivering reliable and long-lasting solutions.'),
+(63, '+44 1506 624536', 50.00, 'McGowan Electrical', 'Having been a qualified electrician for five years, I''ve quickly built a reputation for my efficiency and thoroughness in handling a wide range of domestic electrical repairs and installations. I''m committed to providing friendly and dependable service to every customer.'),
+(64, '+44 1506 687623', 60.00, 'One Design Electrical Ltd.', 'With three years of experience, I''m a bright and enthusiastic electrician eager to tackle any residential electrical challenge. I''m particularly adept at diagnosing common household electrical faults and providing swift, effective repairs.'),
+(65, '+44 1506 614564', 55.00, 'Close electrical services', 'As a newly qualified electrician, I have a strong foundation in electrical theory and a keen interest in expanding my practical skills. I''m a valuable asset to the team, bringing a fresh perspective and a commitment to learning best practices on every job.'),
+(66, '+44 1506 609823', 39.00, 'BES Group Electrical', 'Bringing four years of experience to the field, I''m known for my strong problem-solving abilities and my meticulous approach to electrical testing and inspection. I ensure every installation and repair meets rigorous safety regulations.'),
+(67, '+44 1506 657283', 42.00, 'ELECTRIC - AL', 'With over twenty years of experience as a reliable electrician, I''ve gained a wealth of knowledge in industrial and commercial electrical systems. My extensive understanding makes me an invaluable resource for complex machinery wiring and large-scale electrical projects.'),
+(68, '+44 1506 665209', 53.00, 'Rodz Electrical', 'I have an exceptional ability to quickly and safely resolve power outages and other urgent electrical issues. I''m known for my calm demeanor under pressure and efficient troubleshooting skills.'),
+(69, '+44 1506 609820', 39.50, 'Calderwood Electrical Services', 'Bringing seven years of dedicated experience to the electrical trade, I''m known for my calm and methodical approach to every job, ensuring precision and safety in all my work. Clients appreciate my clear communication and my commitment to providing reliable electrical solutions for their homes.'),
+(70, '+44 7712 345678', 24.99, 'PurePipes by Pippa', 'Plumbing problems? I’m Pippa — precise, practical, and proud to get things flowing again. From leaks to installations, I’ve got it covered.'),
+(71, '+44 7400 123456', 27.99, 'Lee Kay’s Quick Fixes', 'Hi, I’m Lee Kay! I thrive on solving the trickiest pipe puzzles. You can count on me for fast fixes and lasting results.'),
+(72, '+44 7891 234567', 28.99, 'Lil’ Lou’s Plumbing Crew', 'I’m Lou, and plumbing is my passion. I keep things running smoothly so you don’t have to worry about a drip or a clog again.'),
+(73, '+44 7384 556677', 29.99, 'Luxe by Luke Plumbing', 'Hey, I’m Luke. Whether it’s a burst pipe or a boiler on the blink, I bring calm, capable hands to every job.'),
+(74, '+44 7583 998877', 26.99, 'Perry Platinum Plumbing', 'Perry here — detail-driven and dependable. I treat every home like my own and every job like a mission.'),
+(75, '+44 7888 112244', 24.99, 'EcoFlo Plumbing Solutions', 'I’m Flo — yes, like water! I specialize in seamless plumbing solutions with a splash of care and a whole lot of skill.'),
+(76, '+44 7956 112233', 27.99, 'Mo’s Earthwise Plumbing', 'Need a fix? I’m Mo, your go-to for efficient, tidy, and top-notch plumbing. Let’s get your system sorted.'),
+(77, '+44 7500 667788', 28.99, 'Sally’s Signature Flow', 'Hey! I’m Sally. I blend expert know-how with a friendly face — no fuss, just flawless plumbing.'),
+(78, '+44 7432 665544', 29.99, 'Ivana GreenFlow Co.', 'Hi, I’m Ivana. Pipes, pressure, or problems? I’m all about precision and peace of mind for every customer.'),
+(79, '+44 7999 223344', 26.99, 'Bob’s Budget Plumbing', 'I’m Bob — reliable, resourceful, and ready to roll up my sleeves. From start to finish, I make plumbing easy.'),
+(80, '+44 7822 334455', 24.99, 'Tru Deal Plumbing', 'Hi, I’m Trudy! I love turning chaos into calm. Got a leak or a loo that won’t flush? I’ll sort it in no time.'),
+(81, '+44 7777 445566', 27.99, 'Copper & Co. Plumbing', 'Name’s Copper — like the pipes! I bring old-school skills with modern tools to get your water flowing right.'),
+(82, '+44 7624 889900', 28.99, 'Billy the Plumb', 'I’m Billy, and I believe no job is too small for great service. I bring energy, expertise, and elbow grease.'),
+(83, '+44 7300 998877', 29.99, 'Green Greta Plumbing', 'Hello! I’m Greta. I combine care and craftsmanship to deliver spotless plumbing work every single time.'),
+(84, '+44 7409 123456', 28.99, 'Val V. Prestige Plumbing', 'I’m Val V. — known for cool under pressure and sharp solutions. Leaks beware, I’m on the job!');
 
-
--- need miranda
-
-
--- plumbing profiles - need to insert WORKERID	
-('+44 7712 345678', '£24.99', 'PurePipes by Pippa', 'Plumbing problems? I’m Pippa — precise, practical, and proud to get things flowing again. From leaks to installations, I’ve got it covered.'),		
-('+44 7400 123456', '£27.99', 'Lee Kay’s Quick Fixes', 'Hi, I’m Lee Kay! I thrive on solving the trickiest pipe puzzles. You can count on me for fast fixes and lasting results.'),		
-('+44 7891 234567', '£28.99', 'Lil’ Lou’s Plumbing Crew', 'I’m Lou, and plumbing is my passion. I keep things running smoothly so you don’t have to worry about a drip or a clog again.'),		
-('+44 7384 556677', '£29.99', 'Luxe by Luke Plumbing', 'Hey, I’m Luke. Whether it’s a burst pipe or a boiler on the blink, I bring calm, capable hands to every job.'),		
-('+44 7583 998877', '£26.99', 'Perry Platinum Plumbing', 'Perry here — detail-driven and dependable. I treat every home like my own and every job like a mission.'),		
-('+44 7888 112244', '£24.99', 'EcoFlo Plumbing Solutions', 'I’m Flo — yes, like water! I specialize in seamless plumbing solutions with a splash of care and a whole lot of skill.'),		
-('+44 7956 112233', '£27.99', 'Mo’s Earthwise Plumbing', 'Need a fix? I’m Mo, your go-to for efficient, tidy, and top-notch plumbing. Let’s get your system sorted.'),		
-('+44 7500 667788', '£28.99', 'Sally’s Signature Flow', 'Hey! I’m Sally. I blend expert know-how with a friendly face — no fuss, just flawless plumbing.'),		
-('+44 7432 665544', '£29.99', 'Ivana GreenFlow Co.', 'Hi, I’m Ivana. Pipes, pressure, or problems? I’m all about precision and peace of mind for every customer.'),		
-('+44 7999 223344', '£26.99', 'Bob’s Budget Plumbing', 'I’m Bob — reliable, resourceful, and ready to roll up my sleeves. From start to finish, I make plumbing easy.'),		
-('+44 7822 334455', '£24.99', 'Tru Deal Plumbing', 'Hi, I’m Trudy! I love turning chaos into calm. Got a leak or a loo that won’t flush? I’ll sort it in no time.'),		
-('+44 7777 445566', '£27.99', 'Copper & Co. Plumbing', 'Name’s Copper — like the pipes! I bring old-school skills with modern tools to get your water flowing right.'),		
-('+44 7624 889900', '£28.99', 'Billy the Plumb', 'I’m Billy, and I believe no job is too small for great service. I bring energy, expertise, and elbow grease.'),		
-('+44 7300 998877', '£29.99', 'Green Greta Plumbing', 'Hello! I’m Greta. I combine care and craftsmanship to deliver spotless plumbing work every single time.'),		
-('+44 7409 123456', '£28.99', 'Val V. Prestige Plumbing', 'I’m Val V. — known for cool under pressure and sharp solutions. Leaks beware, I’m on the job!')		
 
 
 
 INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password, registration_date)
-VALUES ('Miranda', 'Fanta', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoyy/usxIaevDg5VTtOaoeBcVgoYirqdbMZm16kzi.VVIpU4A2', '2000-01-01'),
-('Nadine', 'Vimto', '1997-01-08', 1, 'nadine@gmail.com', '$2b$12$KDLed2NMC6s/1x3kI7CVgu4XM0Mkou7fMePfHUEBM.qRLgsKIVelK', '2000-01-05'),
-('Liya', 'Pepsi', '2002-02-21', 1,  'liya@gmail.com', '$2b$12$lM1OMgQSqiVQWZclujOxGOu20znOzFv3kkk5/jpgAeYBPQOR3HIrq', '2000-01-03'),
-('Malvina', 'Cola', '2001-09-30', 1, 'malvina@gmail.com', '$2b$12$qj2CgpTx4Ub22zUYkhqCgODPg4OtbHR9nLWqd9Qh2llB.nUK9Xlmy', '2000-01-04'),
-('Ayishat', 'Sprite', '1998-06-26', 1, 'ayishat@gmail.com', '$2b$12$k2CNP06eWduhT5zyhEP9ee/OeHt8Qyj3GIIFXxSoPAEyrNhRSWyN2', '2000-01-02'),
+VALUES ('Miranda', 'Sparks', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoyy/usxIaevDg5VTtOaoeBcVgoYirqdbMZm16kzi.VVIpU4A2', '2000-01-01'),
+('Nadine', 'Lawnmoore', '1997-01-08', 1, 'nadine@gmail.com', '$2b$12$KDLed2NMC6s/1x3kI7CVgu4XM0Mkou7fMePfHUEBM.qRLgsKIVelK', '2000-01-05'),
+('Liya', 'Wrenchby', '2002-02-21', 1,  'liya@gmail.com', '$2b$12$lM1OMgQSqiVQWZclujOxGOu20znOzFv3kkk5/jpgAeYBPQOR3HIrq', '2000-01-03'),
+('Malvina', 'Pipewell', '2001-09-30', 1, 'malvina@gmail.com', '$2b$12$qj2CgpTx4Ub22zUYkhqCgODPg4OtbHR9nLWqd9Qh2llB.nUK9Xlmy', '2000-01-04'),
+('Ayishat', 'Boxford', '1998-06-26', 1, 'ayishat@gmail.com', '$2b$12$k2CNP06eWduhT5zyhEP9ee/OeHt8Qyj3GIIFXxSoPAEyrNhRSWyN2', '2000-01-02'),
 ('Ailsa', 'Stewart', '1981-07-22', 2, 'ailsa@gmail.com', '$2b$12$v30ro78rF4NBBy5UM3sklODXRR/jbShVRCoyan0JxDWfMnRfTLaM.', '2000-01-06'),
 ('Angus', 'Murray', '1973-04-29', 3, 'angus@gmail.com', '$2b$12$LODremmPYZehdvW9aEEF6ekajYDvvSlOXxoB8.E5exJJd4A0Vfe7S', '2000-01-07'),
 ('Kirsty', 'Sinclair', '1986-06-20', 4, 'kirsty@gmail.com', '$2b$12$tSvlTi6Q7nkoU/Sy8A.g.utVhCNrAn69kq649UslFzGWxqam3y5wa', '2000-01-08'),
 ('Rory', 'Campbell', '1996-01-08', 5, 'rory@gmail.com', '$2b$12$XoqMtGn5eGu6v6KIJdtY3uOPII810ZcrevswJhkNXhhEum.rwdRKS', '2000-01-09'),
-('Fiona', 'MacLeod', '1994-03-13', 6, 'fiona@gmail.com', '$2b$12$fjBAyW6hlCfRg4MshxTRhOn1H/tktria4f8xCJJL1ijyQV7lOY4gq', '2000-01-10'),
+('Fiona', 'MacLeod', '1994-03-13', 6, 'fiona2@gmail.com', '$2b$12$fjBAyW6hlCfRg4MshxTRhOn1H/tktria4f8xCJJL1ijyQV7lOY4gq', '2000-01-10'),
 ('Iain', 'Wallace', '1970-12-01', 2, 'iain@gmail.com', '$2b$12$ZyFxIlUXBx6gBn7RiKF2xepwth9OKuHs/KjrD8qYfJNiicnfaG.6i', '2000-01-13'),
 ('Skye', 'MacPherson', '1988-07-24', 8, 'skye@gmail.com', '$2b$12$wwsYCsXlPRtD53Bsu89LeeVnAnQTkikJKSmRuXKCHoMohoe4hp4Ha', '2000-01-12'),
 ('Finlay', 'McArthur', '2000-03-13', 2, 'finlay@gmail.com', '$2b$12$1DT6uvCD9WulCVAheoVtY.hOnDqBD82usbXQ3XtWPOEajBMt90Z6u', '2000-01-13'),
 ('Lachlan', 'Fraser', '1983-11-28', 3, 'lachlan@gmail.com', '$2b$12$5ZXeuWPSCYuvve9UoBuJk.uB.WE/LPJk2IRUGgeCgAzFiIUhmZycu', '2000-01-14'),
 ('Isla', 'Buchanan', '2003-05-13', 4, 'isla@gmail.com', '$2b$12$e74zoQ6WYDCWUkIn5c1teudTpzdbXrSbBfHVqypw0jBAM6uoWn3Mu', '2000-01-15'),
-('Spec', 'Saver', '2000-06-14, 4', 'spec@gmail.com', 'Spec123456', '2000-01-16'),
+('Bella', 'Haggerty', '1999-09-12', 8, 'bella@gmail.com', 'bella123', '2000-01-16'),
+('Spec', 'Saver', '2000-06-14', 4, 'spec@gmail.com', 'Spec123', '2000-01-16'),
 ('Coraline', 'Jones', '1968-03-03', 2, 'coraline@gmail.com', 'Coraline123', '2000-01-17'),
-('Strawberry', 'Shortcake', '2004-08-08', 3, 'strawberry@gmail.com', 'Strawberry123', '2001-01-18'),
-('Will', 'Smith', '1999-09-09', 4, 'wills@gmail.com', 'WillS1234', '2001-01-19');
-
-select * from clients;
+('Strawberry', 'Shortcake', '2004-08-08', 3, 'strawberry@gmail.com', 'Strawberry123', '2000-01-18'),
+('Will', 'Smith', '1999-09-09', 5, 'wills@gmail.com', 'Will123', '2000-01-19'),
+('Alice', 'Johnston', '1980-08-02', 1, 'Alice@gmail.com', 'Alice123', '2010-01-12'),
+('Bob', 'Williams', '1975-03-18', 2, 'Bob@gmail.com', 'Bob123', '2000-05-12'),
+('Charlie', 'Brown', '1992-09-05', 2, 'Charlie@gmail.com', 'Charlie123', '2001-10-10'),
+('David', 'Jones', '1987-02-14', 1, 'David@gmail.com', 'David123', '2000-01-12'),
+('Emily', 'Sky', '2004-07-21', 2, 'Emily@gmail.com', 'Emily123', '2005-09-11'),
+('Fiona', 'Jones', '1999-12-27', 1, 'Fiona@gmail.com', 'Fiona123', '2004-06-07'),
+('George', 'Garcia', '1983-04-11', 2, 'George@gmail.com', 'George123', '2003-01-12'),
+('Hannah', 'Miller', '1978-01-06', 4, 'Hannah@gmail.com', 'Hannah123', '2000-03-12'),
+('Isaac', 'Davis', '2000-05-30', 4, 'Isaac@gmail.com', 'Isaac123', '2002-01-10'),
+('Jessica', 'Martinez', '1995-10-19', 5, 'Jessica@gmail.com', 'Jessica123', '2000-05-13');
 
 
 
@@ -430,11 +460,23 @@ VALUES
 (23, 58, 3, 'Pat doesn''t just paint, he repaired and restored my walls to perfect condition – great craftsmanship!', '2023-09-07'),
 (24, 59, 3, 'Dean''s duct work saved me so much trouble – efficient and tidy!', '2022-04-03');
 
+-- Reviews for Electrician 
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+VALUES
+(21, 65, 4, 'Peter provided solid electrical work. He was thorough and clearly experienced, particularly with the more complex aspects of the job. There were no issues, and I felt confident in his expertise. I would recommend him for most electrical needs.', '2020-08-07'),
+(22, 66, 5, 'Sean was fantastic! He installed our smart home system flawlessly and took the time to explain all the features. His knowledge of modern technology is impressive, and he was very efficient and professional. Highly recommended!', '2016-08-16'),
+(23, 67, 5, 'Miranda did a great job on our house rewiring project. She was communicative throughout the entire process, and the work was completed to a very high standard. We are extremely pleased with the results and would definitely use her services again.', '2013-09-20'),
+(24, 68, 5, 'Nadine was a pleasure to work with. She was efficient, friendly, and handled all our electrical repairs quickly and effectively. Her service was dependable, and the price was very reasonable. I highly recommend her for any domestic electrical work.', '2010-01-01'),
+(25, 69, 5, 'Malvina is a bright and enthusiastic electrician. She quickly diagnosed and fixed our electrical fault, and her work was excellent. She is a great communicator and provided swift, effective service. I was very impressed!', '2007-04-02'),
+(26, 70, 5, 'Liya is a newly qualified electrician, but her strong theoretical knowledge and eagerness to learn impressed me. She was a valuable asset to the team, and I was very pleased with the work she did. She is very promising.', '2004-05-16'),
+(27, 71, 5, 'Ayishat is a very skilled electrician. Her meticulous approach to testing and inspection gave me confidence that the work was done safely and correctly. She is a great problem solver.', '2009-02-14'),
+(28, 72, 3, 'Paul has a lot of experience, particularly with industrial electrical systems. However, I found the service to be adequate but not exceptional. There were a few minor issues that needed to be addressed. He got the job done.', '2013-02-04'),
+(29, 73, 2, 'Breaker resolved the power outage, but the service was not great. I found the communication lacking, and the issue took longer to resolve than I expected. I would consider other electricians in the future.', '2010-10-01'),
+(30, 74, 4, 'Paige was very professional and calm. She was very methodical in her approach and ensured the work was done safely. I would recommend her.', '2014-12-17');
 
 -- Reviews for plumbing
-INSERT INTO reviews (	
-clientID, tp_profileID, rating, comment, review_date	
-) VALUES	
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date) 
+VALUES	
 (14, 82, 5, 'Billy came through in a pinch! Our washing machine flooded the utility room, and Billy arrived within the hour. He was upbeat, fast, and sorted everything out without fuss. Affordable and efficient.', '2024-07-17'),	
 (3, 82, 5, 'Billy fixed a leaking radiator valve in under an hour and was cheerful the whole time, great value and no mess left behind.', '2024-04-18'),	
 (13, 82, 3, 'Billy was alright. He handled our kitchen tap replacement. The job was done well, but he arrived later than scheduled, and there wasn’t much explanation about the process. Not bad, but not great either.', '2024-04-18'),	
@@ -468,6 +510,8 @@ clientID, tp_profileID, rating, comment, review_date
 (6, 80, 2, "Trudy’s work was fine, but not impressive. She installed a new faucet, but we noticed a slow drip the next day. She came back and addressed it, but it left us a bit uneasy about the initial install.", '2023-03-14'),	
 (14, 84, 2, 'Val V. left us a bit underwhelmed. She replaced the valves under our sink, but we noticed a slight rattle in the pipes afterward. It’s not a huge deal, but it left us questioning the quality of the finish.', '2023-08-03'),	
 (5, 84, 5, 'Val V. was excellent—she fitted a luxury rainfall shower and the finish is stunning, clearly takes pride in her work.', '2023-05-19'),	
-(6, 84, 3, 'Val V. was good, not great. She handled a full bathroom plumbing install. While the work is neat and everything functions well, the job ran over time and budget a bit. Communication was polite, though.', '2023-08-13')	
+(6, 84, 3, 'Val V. was good, not great. She handled a full bathroom plumbing install. While the work is neat and everything functions well, the job ran over time and budget a bit. Communication was polite, though.', '2023-08-13'),
+(16, 33, 2, "Tim needed a lot of direction even though he's meant to be the expert at pipe attachment. We kept having to search online and he couldn't stop going on about his tinkles! Will hire someone else next time.", '2024-03-29'),
+(16, 34, 1, "This is the second person I've hired and I'm disappointed. Peppa failed to install my faucet and now my living room is flooded. An absolute shocker.", "2024-10-07");
 
 

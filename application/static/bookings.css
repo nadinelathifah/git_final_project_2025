@@ -1,13 +1,8 @@
 /* -------------- Booking Services -------------- */
 
-#make-booking {
-    min-height: 100vh;
-    background: aliceblue;
-}
-
 #find-tp {
     position: relative;
-    min-height: 120vh;
+    min-height: 100vh;
     background: whitesmoke;
     z-index: 0;
 }
@@ -31,7 +26,7 @@
 }
 
 #find-tp .col-md-6.column-left {
-    padding-top: 100px;
+    padding-top: 70px;
     display: flex;
     justify-content: center;
 }
@@ -39,7 +34,6 @@
 #find-tp .col-md-6.column-left form {
     width: 70%;
 }
-
 
 
 .find-img {
@@ -78,17 +72,6 @@
 }
 
 
-#find-tp .mb-3 select {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    color: #007bff;
-    background: white;
-    border: 2px solid whitesmoke;
-    border-radius: 25px;
-    text-align: center;
-}
-
 #find-tp .mb-3 label {
     display: block;
     margin-bottom: 8px;
@@ -106,6 +89,8 @@
     width: 100%;
     background: #007bff;
     color: white;
+    border-radius: 25px;
+    margin-bottom: 20px;
 }
 
 #find-btn:hover {
@@ -117,7 +102,84 @@
 
 #book-btn {
     width: 100%;
+    border-radius: 25px;
     margin-bottom: 20px;
 }
 
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
 
+.select-inner {
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 550;
+    text-align: center;
+    color: #007bff;
+    background: white;
+    border: 1px solid rgb(0, 21, 116);
+    border-radius: 25px;
+    padding: 8px 38px 8px 8px;
+}
+
+.material-symbols-rounded.drop-arrow {
+    color: #007bff;
+    position: absolute;
+    font-variation-settings: 'FILL' 1;
+    font-size: 1.9rem;
+    transform: translate(-36px, 6px);
+}
+
+.find-card {
+    max-width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.273);
+    border-radius: 25px;
+    border: 1px solid rgb(0, 21, 116);
+    box-shadow: -2px 4px 4px rgba(43, 41, 41, 0.196);
+    padding: 10px;
+    z-index: 5;
+}
+
+#find-tp .container h2 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#find-tp h4 {
+    font-size: 1.4rem;
+}
+
+.material-symbols-outlined.search {
+    position: absolute;
+    font-size: 2rem;
+    transform: translateX(-45px);
+}
+
+.bx-border-circle {
+    position: absolute;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transform: translate(-45px, -5px);
+}
+
+.bx-rocket.one {
+    position: absolute;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transform: translate(-45px, 0);
+}
+
+.bx-rocket.two {
+    position: absolute;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transform: translate(10px, 0);
+}

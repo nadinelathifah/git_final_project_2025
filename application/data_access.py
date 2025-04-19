@@ -12,7 +12,7 @@ def get_db_connection():
         host="localhost",
         user="root",
         password=mysql_password,
-        database="homeheroes11"
+        database="homeheroes12"
     )
     return mydb
 

@@ -5,47 +5,53 @@
     <div class="">
         <div class="outer-wrapper">
             <div class="col-md-6 column-left">
-                <form method="POST" action="{{ url_for('find_tradesperson') }}">
-                    <div class="mb-3">
-                        <label class="form-label">What task do you need helping with?</label>
-                        <select name="task">
-                            <option value="">-- Any --</option>
-                            {% for task in tasks %}
-                            <option value="{{ task[0] }}">{{ task[0] }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label class="form-label">Which location?</label>
-                        <select name="location">
-                            <option value="">-- Any --</option>
-                            {% for town in towns %}
-                            <option value="{{ town[0] }}">{{ town[0] }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label class="form-label">Hourly rate:</label>
-                        <select name="hourly_rate">
-                            <option value="">-- No Preference --</option>
-                            <option value="ASC">Lowest to Highest</option>
-                            <option value="DESC">Highest to Lowest</option>
-                        </select>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label class="form-label">Rating:</label>
-                        <select name="star_rating">
-                            <option value="">-- No Preference --</option>
-                            <option value="ASC">Lowest to Highest</option>
-                            <option value="DESC">Highest to Lowest</option>
-                        </select>
-                    </div>
-        
-                    <button type="submit" id="find-btn" class="btn btn-primary btn-block">Find My Tradesperson</button>
-                </form>
+                <div class="card find-card">
+                    <form method="POST" action="{{ url_for('find_tradesperson') }}#results">
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><span class="material-symbols-outlined search">handyman</span><h4>What task do you need helping with?</h4></label>
+                            <select name="task" class="select-inner">
+                                <option value="">Any</option>
+                                {% for task in tasks %}
+                                <option value="{{ task[0] }}">{{ task[0] }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><span class="material-symbols-outlined search">home_pin</span><h4>Which location?</h4></label>
+                            <select name="location" class="select-inner">
+                                <option value="">Any</option>
+                                {% for town in towns %}
+                                <option value="{{ town[0] }}">{{ town[0] }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><h4><i class='bx bx-pound bx-border-circle'></i>Hourly rate:</h4></label>
+                            <select name="hourly_rate" class="select-inner">
+                                <option value="">No Preference</option>
+                                <option value="ASC">Lowest to Highest</option>
+                                <option value="DESC">Highest to Lowest</option>
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><h4><i class='bx bx-star bx-border-circle'></i>Rating:</h4></label>
+                            <select name="star_rating" class="select-inner">
+                                <option value="">No Preference</option>
+                                <option value="ASC">Lowest to Highest</option>
+                                <option value="DESC">Highest to Lowest</option>
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <button type="submit" id="find-btn" class="btn btn-primary btn-block">Find My Tradesperson</button>
+                    </form>
+                </div>
             </div>
 
             <div class="col-md-6 column-right">
@@ -57,13 +63,15 @@
         </div>
         {% if results %}
         <div class="container pt-5">
-            <h2 class="my-4">Choose your hero:</h2>
+            <hr>
+            <h2 id="results" class="my-4"><i class='bx bx-rocket bx-border-circle one'></i>Choose your hero<i class='bx bx-rocket bx-border-circle two'></i></h2>
+            <hr>
             <div class="row row-cols-1 row-cols-md-2 g-4">
             {% for r in results %}
                 <div class="col">
                     <div id="find-card" data-aos="fade-up" class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">{{ r.full_name }} <span class="material-symbols-outlined">verified_user</span></h5>
+                            <h5 class="card-title">{{ r.full_name }} <span class="material-symbols-outlined .verified">verified_user</span></h5>
                             <p class="card-text">
                                 <strong>Task:</strong> {{ r.task_name }}<br>
                                 <strong>Town:</strong> {{ r.town }}<br>

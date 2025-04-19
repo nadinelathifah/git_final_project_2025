@@ -397,7 +397,7 @@ form .input-field input {
     outline: none;
     font-size: 0.95rem;
     border: 1px solid gray;
-    border-radius: 3px;
+    border-radius: 25px;
     padding: 0px 15px;
     box-sizing: border-box;
 }
@@ -430,7 +430,7 @@ form .btn-primary {
     border: 1px solid white !important;
     font-size: 0.95rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
 }
 
@@ -769,7 +769,7 @@ form .btn-primary:hover {
 #logout-button {
     padding: 10px;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 25px;
     border: 1px solid whitesmoke;
     cursor: pointer;
     margin-right: 10px;
@@ -811,10 +811,10 @@ form .btn-primary:hover {
 
 #services-section .card {
     width: 290px;
-    background: #007bff;
+    background: #0089f2;
     color: white;
     text-align: center;     
-    box-shadow: -10px 10px orange; 
+    box-shadow: -10px 10px rgb(255, 173, 86);
     border-radius: 25px;
 }
 
@@ -847,7 +847,7 @@ form .btn-primary:hover {
 }
 
 #services-section .card button:hover {
-    background: rgb(247, 173, 0);
+    background: rgb(247, 189, 0);
 }
 
 .services-wrapper {
@@ -979,6 +979,27 @@ form .btn-primary:hover {
     max-height: 50vh;
     top: 100px;
     left: -600px;
+    opacity: 0.8;
+}
+
+.review-img.img-4 {
+    max-height: 50vh;
+    bottom: 200px;
+    left: -220px;
+    opacity: 0.8;
+}
+
+.review-img.img-5 {
+    max-height: 50vh;
+    bottom: 0;
+    left: -600px;
+    opacity: 0.5;
+}
+
+.review-img.img-6 {
+    max-height: 50vh;
+    bottom: 100px;
+    right: -600px;
     opacity: 0.8;
 }
 
