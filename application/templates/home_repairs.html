@@ -1,10 +1,25 @@
 {% extends "layout.html" %}
 {% block body_content %}
+<!-- main card -->
+<section id="repair-2">
+    <div class="container pt-5">
+        <img src="{{ url_for('static', filename='images/outsidehousenew.jpg') }}" alt="House Image">
+        <div class="card"></div>
+
+        <div class="content">
+         <h3>Home Repairs</h3>
+         <p>Sometimes, all your home needs is a little TLC (tools, laughter, and care).</p>
+             <p>At My Home Hero, we pride ourselves on tackling all those pesky home repairs that sneak up on you. From fixing a door that won’t close to a wall that’s seen better days, we’re your go-to for putting things back together with precision and a touch of humor. Our skilled pros are here to fix everything from top to bottom, making your space work as smoothly as it should, all while keeping things light and easy.
+         </p>
+        </div>
+
+    </div>
+</section>
 
 <section id="repair-section">
     <div class="container pt-5">
-        <h1>Home Repairs Services</h1>
-        <p>Book a high-quality, efficient service today!</p>
+        <h1>Our Services</h1>
+        <p>Book your high-quality, efficient service today!</p>
     </div>
 
     <div class="repair-wrapper">
@@ -56,6 +71,5 @@
         </div>
     </div>
 </section>
-
 
 {% endblock %}

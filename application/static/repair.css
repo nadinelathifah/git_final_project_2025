@@ -44,7 +44,7 @@
 #repair-section .card button {
   background-color: yellow;
   color: black;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border: none;
   border-radius: 5px;
   text-align: center;
@@ -56,4 +56,47 @@
   background-color: orange;
 }
 
+/* part two CSS styling for repairs*/
+#repair-2 {
+    height: 100vh;
+    background: aliceblue;
+    z-index: 1;
+}
+
+#repair-2 .card {
+    position: relative;
+    background: linear-gradient(to left, #96c9ff, #90e0ef, #f0f8ff);
+    height: 80vh;
+    width: 80vw;
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 25px;
+    z-index: 2;
+}
+
+#repair-2 .container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#repair-2 .container img {
+    position: absolute;
+    left: 55px;
+    width: 50vw;
+    border-radius: 50px;
+    z-index: 3;
+}
+
+#repair-2 .content {
+    position: absolute;
+    background: whitesmoke;
+    height: 35vh;
+    width: 43vw;
+    border-radius: 25px;
+    padding: 45px;
+    margin-right: 20px;
+    z-index: 5;
+}
 
