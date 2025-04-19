@@ -1,70 +1,38 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<section id="find-tp">
-    <div class="container pt-5">
-        <form method="POST" action="{{ url_for('find_tradesperson') }}">
-            <div class="mb-3">
-                <label>What task do you need helping with?</label>
-                <select name="task">
-                    <option value="">-- Any --</option>
-                    {% for task in tasks %}
-                     <option value="{{ task[0] }}">{{ task[0] }}</option>
-                    {% endfor %}
-                </select>
+<section id="booking-form">
+    <div class="container">
+        <h2>Book a Service with {{ tradesperson.full_name }}</h2>
+
+        <p><strong>Worker ID:</strong> {{ worker_id }}</p>
+        <p><strong>Task ID:</strong> {{ task_id }}</p>
+
+        <form action="{{ url_for('book_service') }}#booking-form" method="POST">
+            <input type="hidden" name="client_id" value="{{ client_id }}">
+            <input type="hidden" name="worker_id" value="{{ worker_id }}">
+            <input type="hidden" name="task_id" value="{{ task_id }}">
+
+            <div class="form-group">
+                <label for="service_start">Service Start Date:</label>
+                <input type="date" id="service_start" name="service_start" required class="form-control">
             </div>
 
-            <div class="mb-3">
-                <label>Which location?</label>
-                <select name="location">
-                    <option value="">-- Any --</option>
-                    {% for town in towns %}
-                    <option value="{{ town[0] }}">{{ town[0] }}</option>
-                    {% endfor %}
-                </select>
+            <div class="form-group">
+                <label for="service_end">Service End Date:</label>
+                <input type="date" id="service_end" name="service_end" required class="form-control">
             </div>
 
-            <div class="mb-3">
-                <label>Hourly rate:</label>
-                <select name="hourly_rate">
-                    <option value="">-- No Preference --</option>
-                    <option value="ASC">Lowest to Highest</option>
-                    <option value="DESC">Highest to Lowest</option>
-                </select>
+            <div class="form-group">
+                <label for="task_description">Task Description:</label>
+                <textarea id="task_description" name="task_description" required class="form-control"></textarea>
             </div>
 
-            <div class="mb-3">
-                <label>Rating:</label>
-                <select name="star_rating">
-                    <option value="">-- No Preference --</option>
-                    <option value="ASC">Lowest to Highest</option>
-                    <option value="DESC">Highest to Lowest</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Find My Tradesperson</button>
+            <button type="submit" class="btn btn-primary">Submit Booking</button>
         </form>
-        
-        {% if results %}
-            <h2>Results:</h2>
-            <ul>
-                {% for r in results %}
-                    <li>
-                        <strong>{{ r.full_name }}</strong><br>
-                        Task: {{ r.task_name }}<br>Town: {{ r.town }}<br>Rate: £{{ r.hourly_rate }}<br>
-                        Rating: {{ r.average_rating or 'N/A' }} ({{ r.total_reviews }} reviews)<br>
-                        Bio: {{ r.bio }}<br>
-                        <form action="{{ url_for('book_service') }}" method="POST">
-                            <input type="hidden" name="worker_id" value="{{ r.workerID }}">
-                            <input type="hidden" name="task_id" value="{{ r.taskID }}">
-                            <input type="hidden" name="town_id" value="{{ r.townID }}">
-                            <button type="submit">Book This Tradesperson</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
     </div>
 </section>
 
 {% endblock %}
+
+

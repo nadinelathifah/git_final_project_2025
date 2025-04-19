@@ -1,47 +1,55 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<!--<section id="home_repair">-->
-<!--    <div class="container">-->
-<!--        <div class="card"></div>-->
-<!--            <div class="content">-->
-<!--                <h3>Home Repairs</h3>-->
-<!--                <p>From Leaks to Locks, We Handle It All!-->
-<!--                </p>-->
-<!--            </div>-->
-<!--<section id="repairs-section">-->
-<!--    <div class="container pt-6">-->
-<!--        <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/tapfixing.jpg' )}}" alt="">-->
-<!--        <div class="card"></div>-->
-<!--        <div class="content">-->
-<!--            <h3>Repair Services <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>-->
+<section id="repair-section">
+    <div class="container pt-5">
+        <h1>Home Repairs Services</h1>
+        <p>Book a high-quality, efficient service today!</p>
+    </div>
 
+    <div class="repair-wrapper">
+        <div class="col-sm">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/roof_repairs.jpg') }}" alt="House Image">
+                <h3>Roof Repairs</h3>
+                <p>Fixing leaks, damaged shingles, and roof structural issues.</p>
+            </div>
 
-<!--        <section id="Repairs">-->
-<!--    <div class="container pt-5">-->
-<!--        <img src="{{ url_for('static', filename= 'images/tapfixing.jpg' )}}" alt="">-->
-<!--        <div class="card"></div>-->
-<!--        <div class="content">-->
-<!--            <h3>We have all the skills to handle your repairs</h1>-->
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house4.jpg') }}" alt="House Image">
+                <h3>Foundation Repairs</h3>
+                <p>Addressing foundation cracks, shifting, or settling problems.</p>
+            </div>
 
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<section id="repairs-section" style="background: linear-gradient(90deg,rgba(235, 243, 247, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(127, 237, 83, 1) 100%);">
-  <div class="container">
-    <div class="row">
-      <!-- Card 1 -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <img id="repairs-section" src="{{ url_for('static', filename='images/tapfixing.jpg') }}" alt="home_repairs">
-          <div class="container">
-            <h2>Services</h2>
-            <p class="title">We cover all the services you need</p>
-            <p></p>
-            <p><a href="/signup"><button class="button">Book now</button></a></p>
-          </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house3.jpg') }}" alt="House Image">
+                <h3>Drywall Repairs</h3>
+                <p>Seamless patching of holes, dents, and cracks in drywall.</p>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
+     <div class="repair-wrapper">
+        <div class="col-sm">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house.jpg') }}" alt="House Image">
+                <h3>Floor Repairs</h3>
+                <p>Repairing damaged flooring, from tiles to hardwood.</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house4.jpg') }}" alt="House Image">
+                <h3>Window Repairs </h3>
+                <p>Fixing broken frames, seals, or glass panes.</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/house3.jpg') }}" alt="House Image">
+                <h3>Door Repairs </h3>
+                <p>Repairing misaligned, stuck, or damaged doors and frames.</p>
+            </div>
+        </div>
+    </div>
 </section>
+
+
 {% endblock %}

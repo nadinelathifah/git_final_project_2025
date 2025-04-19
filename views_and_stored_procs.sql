@@ -1,5 +1,6 @@
-USE homeheroes10;
+USE homeheroes12;
 
+-- VIEW 1: view_tradespeople_by_category
 -- The purpose of this view is to support the filter function for when a client searches a tradesperson by category and is shown a
 -- list of profiles. And to display general reviews on the reviews webpage.
 CREATE VIEW view_tradespeople_by_category AS
@@ -42,9 +43,79 @@ SELECT * FROM view_tradespeople_by_category
 WHERE task_name = 'Lawn Care' AND town = 'Bathgate'
 ORDER BY hourly_rate ASC;
 
-drop view if exists view_tradespeople_by_category;
 
 
+
+-- STORED PROCEDURE 1: BookJob
+-- The purpose of this proc is to insert a new row in job_booking table when a client books a tradesperson.
+DELIMITER //
+CREATE PROCEDURE BookJob (
+	IN p_clientID BIGINT,
+    IN p_workerID BIGINT,
+    IN p_taskID BIGINT,
+    IN p_service_start DATE,
+    IN p_service_end DATE,
+    IN p_task_description TEXT
+)
+
+BEGIN
+	INSERT INTO job_booking(clientID, workerID, taskID, service_start_date, service_end_date, task_description, statusID)
+    VALUES (p_clientID, p_workerID, p_taskID, p_service_start, p_service_end, p_task_description, 1);
+    
+END //
+
+DELIMITER ;
+
+-- TESTING:
+call BookJob(2, 1, 1, '2026-01-01', '2026-02-01', 'paint wall');
+SELECT * from job_booking;
+
+
+
+
+-- VIEW 2: view_reviews
+-- The purpose of this view is to display some reviews on the 'Reviews' webpage
+CREATE VIEW view_reviews AS
+-- Common Table Expression (CTE) temporary result set to use in final query. 
+-- Inside the CTE, you assign a "rank" to each review within each client’s group. 
+WITH ranked_reviews AS (
+    SELECT
+        r.reviewID,
+        r.rating,
+        c.clientID,
+        CONCAT(c.firstname, ' ', c.lastname) AS full_name,
+        r.comment,
+        -- ROW_NUMBER() assigns a number to each row within a group. 
+        ROW_NUMBER() OVER (
+			-- PARTITION BY c.clientID means group all reviews by the same client. 
+            PARTITION BY c.clientID
+			-- Within each client’s group, sort reviews by rating (highest first) 
+            -- If two are the same, use the smallest reviewID as a tiebreaker. 
+            ORDER BY r.rating DESC, r.reviewID ASC
+		-- Each client’s best-rated review gets rn = 1. 
+        ) AS rn
+    FROM reviews AS r
+    JOIN clients AS c ON r.clientID = c.clientID
+)
+SELECT
+    reviewID,
+    rating,
+    clientID,
+    full_name,
+    comment
+FROM ranked_reviews
+WHERE rn = 1;
+
+-- TESTING:
+SELECT rating, full_name, comment FROM view_reviews;
+
+
+
+
+
+
+
+-- VIEW 2: STILL IN PROGRESS PLEASE DO NOT LIGHTNING BOLT
 CREATE VIEW view_booking_requests AS
 SELECT
     CONCAT(c.firstname, ' ', c.lastname) AS full_name,
@@ -59,30 +130,3 @@ JOIN clients AS c ON jb.clientID = c.clientID
 JOIN tasks AS tk ON jb.taskID = tk.taskID
 JOIN location AS l ON l.townID = jb.townID
 GROUP BY CONCAT(c.firstname, ' ', c.lastname), task_name, booking_date, service_start_date, DATEDIFF(jb.service_start_date, jb.service_end_date), task_description; 
-
-
-DELIMITER //
-CREATE PROCEDURE BookJob (
-	IN p_clientID BIGINT,
-    IN p_workerID BIGINT,
-    IN p_taskID BIGINT,
-    IN p_service_start DATE,
-    IN p_service_end DATE,
-    IN p_townID BIGINT,
-    IN p_task_description TEXT
-)
-
-BEGIN
-	INSERT INTO job_booking(clientID, workerID, taskID, service_start_date, service_end_date, townID, task_description, statusID)
-    VALUES (p_clientID, p_workerID, p_taskID, p_service_start, p_service_end, p_townID, p_task_description, 1);
-    
-END //
-
-DELIMITER ;
-
-
-DELIMITER //
-CREATE PROCEDURE getBooking ()
-
-
-    

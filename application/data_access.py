@@ -7,6 +7,7 @@ if sys.platform == "win32":
 else:
     mysql_password = ""
 
+
 #mydb = mysql.connector.connect(
 #  host="localhost",
 #  user="root",
@@ -21,12 +22,13 @@ mydb = mysql.connector.connect(
   database="homeheroes11")
 
 
+
 def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password",
-        database="homeheroes11"
+        password=mysql_password,
+        database="homeheroes12"
     )
     return mydb
 
@@ -91,6 +93,18 @@ def get_tp_by_email(email):
     return tradesperson
 
 
+def get_client_by_id(client_id):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT * FROM clients WHERE clientID = %s"
+    cursor.execute(query, (client_id,))
+    client = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+    return client
+
+
 def get_all_towns():
     connection = get_db_connection()
     cursor = connection.cursor()
@@ -128,37 +142,47 @@ def find_matching_tradespeople(task=None, location=None, hourly_rate=None, star_
         query += " AND town = %s"
         search_parameters.append(location)
     
-    order_clauses = []
+    order = []
     if hourly_rate:
-        order_clauses.append(f"hourly_rate {hourly_rate}")
+        order.append(f"hourly_rate {hourly_rate}")
 
     if star_rating:
-        order_clauses.append(f"average_rating {star_rating}")
+        order.append(f"average_rating {star_rating}")
 
-    if order_clauses:
-        query += " ORDER BY " + ", ".join(order_clauses)
+    if order:
+        order += " ORDER BY " + ", ".join(order)
 
     cursor.execute(query, search_parameters)
-    results_from_search = cursor.fetchall()
+    search_results = cursor.fetchall()
     cursor.close()
     connection.close()
-
-    return results_from_search
-
+    return search_results
 
 
-def book_job(clientID, workerID, taskID, service_start, service_end, townID, task_desc):
+
+def book_job(clientID, workerID, taskID, service_start, service_end, task_desc):
     connection = get_db_connection()
     cursor = connection.cursor()
+    try:
+        cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, task_desc])
+        connection.commit()
+        print(f"Booking successful: Client {clientID} booked worker {workerID} for task {taskID}.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        cursor.close()
+        connection.close()
 
-    cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, townID, task_desc])
 
-    connection.commit()
+def get_reviews():
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("SELECT rating, full_name, comment FROM view_reviews")
+    reviews = cursor.fetchall()
     cursor.close()
     connection.close()
-
-def get_booking():
-    pass
+    return reviews
 
 
 # TO ENCODE THE PASSWORD OF CLIENTS
@@ -224,6 +248,21 @@ def get_booking():
 
 # print("Tradespeople passwords updated successfully.")
 
+
+def main():
+    clientID = 2
+    workerID = 1
+    taskID = 1
+    service_start = '2025-05-01'
+    service_end = '2025-05-02'
+    task_desc = "Paint the walls"
+
+    book_job(clientID, workerID, taskID, service_start, service_end, task_desc)
+
 if __name__ == '__main__':
-    print("Tasks test:", get_all_tasks())
-    print("Towns test:", get_all_towns())
+    main()
+
+    
+# if __name__ == '__main__':
+#     print("Tasks test:", get_all_tasks())
+#     print("Towns test:", get_all_towns())

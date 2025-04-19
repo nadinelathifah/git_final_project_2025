@@ -1,11 +1,18 @@
-CREATE DATABASE homeheroes11;
-USE homeheroes11;
+CREATE DATABASE homeheroes12;
+USE homeheroes12;
 
-drop database if exists homeheroes9;
+drop database if exists homeheroes12;
 
 
 SHOW TABLES;
+SELECT * FROM clients;
+SELECT * from tradespeople;
+SELECT * from tradesperson_profile;
+SELECT * from reviews;
+SELECT * FROM job_booking;
+SELECT * FROM job_status;
 SELECT * FROM location;
+SELECT * FROM tasks;
 
 CREATE TABLE location (
 townID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -14,7 +21,6 @@ council VARCHAR(200),
 country VARCHAR(150)
 );
 
-SELECT * FROM clients;
 
 CREATE TABLE clients (
 clientID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -28,7 +34,6 @@ registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
 FOREIGN KEY (townID) REFERENCES location(townID)
 );
 
-SELECT * FROM tasks;
 
 CREATE TABLE tasks (
 taskID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -36,7 +41,6 @@ task_name VARCHAR(200),
 description VARCHAR(200)
 );
 
-SELECT * FROM tradespeople;
 
 CREATE TABLE tradespeople (
 workerID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -53,8 +57,6 @@ FOREIGN KEY (townID) REFERENCES location(townID)
 );
 
 
-SELECT * FROM tradesperson_profile;
-
 CREATE TABLE tradesperson_profile (
 tp_profileID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 workerID BIGINT,
@@ -67,15 +69,11 @@ UNIQUE(workerID)
 );
 
 
-SELECT * FROM job_status;
-
 CREATE TABLE job_status (
 statusID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 status VARCHAR(50) NOT NULL
 );
 
-
-SELECT * FROM job_booking;
 
 CREATE TABLE job_booking (
 bookingID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -93,8 +91,6 @@ FOREIGN KEY (workerID) REFERENCES tradespeople(workerID),
 FOREIGN KEY (statusID) REFERENCES job_status(statusID)
 );
 
-
-SELECT * FROM reviews;
 
 CREATE TABLE reviews (
 reviewID BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -134,7 +130,6 @@ VALUES ('pending'),
 ('completed'),
 ('cancelled');
 
-
 INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password, registration_date)
 VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsmgvp9pG.6O42z.VEIzosl3whBdB8CkMTTp4l9Bok4RSs2', '2005-03-31'),
 ('Anita', 'Brush', '1985-11-03', 1, 6, 'anita@edc.com', '$2b$12$By9nQmXOVL5al7P5Hym1ceXbBzdCrfFNTau.A9lCLOjVpiQNI1gvO', '2006-09-25'),
@@ -167,7 +162,59 @@ VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsm
 ('Cameron', 'Sprinkler', '1998-05-18', 6, 2, 'cameron@acorngardening.com', 'cameron123', '2024-06-01'),
 ('Poppy', 'Moore', '2002-02-21', 6, 4, 'poppy@wksolutions.com', 'poppy123', '2024-07-01'),
 ('Olive', 'Bloomfield', '1997-02-16', 6, 4, 'olive@gardenbros.com', 'olive123', '2024-10-01'),
-('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01');
+('Tommy', 'Tulip', '1983-04-29', 6, 7, 'tommy@mwgardening.com', 'tommy123', '2025-04-01'),
+('Timmy', 'Tinkleton', '1990-06-07', 5, 8, 'tinkles@flushbros.com', 'timmy123', '2018-11-10'),
+('Peppa', 'Plumbwell', '1990-06-07', 5, 8, 'peppa@flushbros.com', 'peppa123', '2018-11-11'),
+('David', 'Dunn', '1982-05-06', 3, 7, 'david.dunn@upliftlogistics.com', 'david123', '2024-06-20'),
+('Sean', 'Hill', '1981-06-01', 3, 8, 'sean.hill@atlashaulers.com', 'sean123', '2023-02-20'),
+('Sheila', 'Mcintosh', '1999-10-12', 3, 8, 'sheila.mcintosh@packmasters.com', 'sheila123', '2023-08-22'),
+('Kimberly', 'Martin', '1997-04-19', 3, 1, 'kimberly.martin@titantransit.com', 'kimberly123', '2023-12-08'),
+('Candace', 'Thomas', '1988-11-09', 3, 3, 'candace.thomas@rocketrelocations.com', 'candace123', '2023-09-02'),
+('Nathan', 'Garcia', '1991-04-10', 3, 5, 'nathan.garcia@boldmovehaulers.com', 'nathan123', '2024-09-29'),
+('Seth', 'Warner', '1987-12-02', 3, 8, 'seth.warner@silverlineshifters.com', 'seth123', '2024-09-20'),
+('Rebecca', 'Lane', '2000-06-20', 3, 3, 'rebecca.lane@silverlineshifters.com', 'rebecca123', '2024-02-01'),
+('Monica', 'Wolf', '1998-02-08', 3, 1, 'monica.wolf@metromaxrelocations.com', 'monica123', '2024-07-20'),
+('Danielle', 'Collins', '1996-12-02', 3, 8, 'danielle.collins@rocketrelocations.com', 'danielle123', '2024-12-22'),
+('Nicole', 'West', '1996-10-11', 3, 8, 'nicole.west@firstclassfreight.com', 'nicole123', '2024-04-15'),
+('Kaitlyn', 'Rivera', '1984-10-03', 3, 5, 'kaitlyn.rivera@anchorwavemovers.com', 'kaitlyn123', '2023-04-17'),
+('Anthony', 'Reed', '1994-03-07', 3, 4, 'anthony.reed@boldmovehaulers.com', 'anthony123', '2024-11-13'),
+('Bryan', 'Barrett', '1983-03-02', 3, 2, 'bryan.barrett@urbantrekrelocations.com', 'bryan123', '2024-02-04'),
+('Michael', 'Rice', '1984-09-02', 3, 6, 'michael.rice@summithauling.com', 'michael123', '2023-09-01'),
+('Daniel', 'Deleon', '2002-12-12', 3, 7, 'daniel.deleon@urbantrekrelocations.com', 'daniel123', '2024-04-29'),
+('Matthew', 'Bray', '1994-11-10', 3, 7, 'matthew.bray@peakpointmovers.com', 'matthew123', '2023-08-08'),
+('Alice', 'Wonderland', '1987-01-02', 2, 5, 'alice.wonderland@fixitpros.com', 'alice123', '2020-01-01'),
+('Sarah', 'Sky', '2000-09-10', 2, 2, 'sarah.sky@skyhighrepairs.com', 'sarah123', '2021-02-03'),
+('Tina', 'Tape', '1999-08-07', 2, 3, 'tinatape@tapeitright.com', 'tina123', '2022-03-04'),
+('Cindy', 'Saw', '1984-11-14', 2, 4, 'cindy.saw@sawmasters.com', 'cindy123', '2023-04-05'),
+('Danny', 'Drill', '1997-12-12', 2, 5, 'danny.drill@drillworks.com', 'danny123', '2024-06-07'),
+('Ben', 'Brick', '1978-02-23', 2, 1, 'ben.brick@brickbuilders.com', 'ben123', '2025-01-01'),
+('Pat', 'Paint', '1995-05-05', 2, 2, 'pat.paint@paintprodigy.com', 'pat123', '2019-08-07'),
+('Dean', 'Duct', '1990-06-07', 2, 5, 'dean.duct@ductdudes.com', 'dean123', '2018-09-08'),
+('Peter', 'Ampre', '1978-05-04', 4, 2, 'info@clanelectrical.com', 'password!', '2000-11-04'),
+('Sean', 'Coil', '1996-10-15', 4, 2, 'hello@westrigg.com', 'sparkle123', '2007-10-04'),
+('Miranda', 'Spark', '2004-11-05', 4, 1, 'contact@electroservices.com', 'plug4321', '2015-12-04'),
+('Nadine', 'Socket', '1980-06-07', 4, 3, 'info@mcgowanelectrical.com', 'ME890!', '2000-12-04'),
+('Malvina', 'Power', '1999-10-11', 4, 1, 'hello@onedesignelectrical.com', 'Mal99!', '2010-10-04'),
+('Liya', 'Current', '1997-05-08', 4, 7, 'contact@ces.com', 'current452', '2009-11-04'),
+('Ayishat', 'Fuse', '1992-03-16', 4, 1, 'enquiry@BES.com', 'BES765490!', '2002-02-04'),
+('Paul', 'Wireman', '2001-04-09', 4, 2, 'enquiries@elictrical.com', 'yjdyB1!!', '2006-11-04'),
+('Breaker', 'Brookes', '2002-01-14', 4, 1, 'mail@rodz.com', 'business5428', '2007-08-04'),
+('Paige', 'Panel', '2000-12-12', 4, 1, 'hi@calderwoodelectrical.com', 'caldelec12!', '2005-11-14'),
+('Pippa', 'Drains', '1976-02-10', 5, 1, 'Pippa.Drains@homeheroes.co.uk', 'Pippa123', '2023-09-01'),
+('Lee Kay', 'Faucet', '1986-03-10', 5, 2, 'Lee Kay.Faucet@homeheroes.co.uk', 'Lee Kay123', '2024-04-29'),
+('Lou', 'Sinkler', '1976-04-02', 5, 3, 'Lou.Sinkler@homeheroes.co.uk', 'Lou123', '2023-08-08'),
+('Luke', 'Shower', '1976-05-02', 5, 4, 'Luke.Shower@homeheroes.co.uk', 'Luke123', '2020-01-01'),
+('Perry', 'Pipe', '1990-06-02', 5, 5, 'Perry.Pipe@homeheroes.co.uk', 'Perry123', '2021-02-03'),
+('Flo', 'Stopcock', '1976-07-05', 5, 6, 'Flo.Stopcock@homeheroes.co.uk', 'Flo123', '2022-03-04'),
+('Mo', 'Taps', '1976-08-10', 5, 7, 'Mo.Taps@homeheroes.co.uk', 'Mo123', '2023-04-05'),
+('Sally', 'Plungerton', '1976-09-10', 5, 8, 'Sally.Plungerton@homeheroes.co.uk', 'Sally123', '2024-06-07'),
+('Ivana', 'Flush', '1979-10-01', 5, 5, 'Ivana.Flush@homeheroes.co.uk', 'Ivana123', '2023-08-22'),
+('Bob', 'Boiler', '1976-11-11', 5, 6, 'Bob.Boiler@homeheroes.co.uk', 'Bob123', '2023-12-08'),
+('Trudy', 'Trap', '2000-12-10', 5, 4, 'Trudy.Trap@homeheroes.co.uk', 'Trudy123', '2023-09-02'),
+('Copper', 'Tubes', '1976-10-13', 5, 3, 'Copper.Tubes@homeheroes.co.uk', 'Copper123', '2024-09-29'),
+('Billy', 'Backflow', '2002-11-10', 5, 2, 'Billy.Backflow@homeheroes.co.uk', 'Billy123', '2024-09-20'),
+('Greta', 'Gasket', '1976-10-15', 5, 8, 'Greta.Gasket@homeheroes.co.uk', 'Greta123', '2024-02-01'),
+('Val V.', 'Pressure', '1976-10-16', 5, 1, 'ValV.Pressure@homeheroes.co.uk', 'ValV123', '2022-12-06');
 
 
 INSERT INTO tradesperson_profile (workerID, phone_number, hourly_rate, business, bio)
@@ -202,33 +249,101 @@ VALUES (1, '+44 7392-647595', 28.75, 'EDC Painters', 'Hi there! I''m Lucy, and I
 (29, '+44 7796-624310', 23.60, 'Acorn Garden Services', 'Keeping your greens quenched and blooming. Sprinklers, hoses, or hands-on care—I’ve got watering down to a science.'),
 (30, '+44 1324-804102', 22.50, 'Wise Knotweed Solutions', 'I''m Poppy and my work is a national treasure. I’ll turn your outdoor space into a blooming beauty.'),
 (31, '+44 7495-234871', 22.80, 'Garden Bros', 'Bringing lush greenery and blooming beauty to your garden. I’ll help you create a peaceful retreat with vibrant plants.'),
-(32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.');
+(32, '+44 1506-834109', 23.20, 'Martin Watt Gardens', 'Need a hand with your garden? I’ll get it looking sharp and organized—strong, reliable care that lets your space shine.'),
+(33, '+44 7015 192 474', 26.80, 'Flush Bros', "Never worry about future tinkles!"),
+(34, '+44 7749 508 641', 27.80, 'Flush Bros', "I'll take your drain worries away!"),
+(35, "+44 7620 567 890", 28.75, "Uplift Logistics", "Need a move that's fast and flawless? I'm David, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(36, "+44 7709 234 567", 24.60, "Atlas Haulers", "Hey there! I'm Sean, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(37, "+44 7561 123 987", 26.30, "PackMasters", "Hi! Sheila here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(38, "+44 7420 987 654", 23.90, "Titan Transit", "Hi! Kimberly here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(39, "+44 7799 876 543", 25.45, "Rocket Relocations", "Hi! Candace here — moving isn’t just a job; it's my passion. I make transitions easy, treating every item as if it’s my own."),
+(40, "+44 7623 489 230", 27.10, "BoldMove Haulers", "Hey there! I'm Nathan, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(41, "+44 7754 123 987", 29.25, "SilverLine Shifters", "Hey there! I'm Seth, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(42, "+44 7609 876 543", 26.80, "SilverLine Shifters", "Ready to roll? I'm Rebecca, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(43, "+44 7901 345 678", 25.90, "MetroMax Relocations", "Need a move that's fast and flawless? I'm Monica, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(44, "+44 7832 234 567", 25.10, "Rocket Relocations", "Need a move that's fast and flawless? I'm Danielle, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(45, "+44 7712 345 678", 22.95, "FirstClass Freight", "Hey there! I'm Nicole, your go-to for stress-free moves. I make relocating smooth, swift, and simple — your belongings are in expert hands!"),
+(46, "+44 7654 987 654", 24.10, "AnchorWave Movers", "Looking for a reliable mover? I'm Kaitlyn, and I know how to turn moving day into a smooth and stress-free experience. Let’s make it happen!"),
+(47, "+44 7745 890 123", 22.75, "BoldMove Haulers", "Ready to roll? I'm Anthony, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(48, "+44 7534 789 012", 25.00, "Urban Trek Relocations", "Ready to roll? I'm Bryan, and moving day is my specialty. From packing to unpacking, I’ll get your treasures safely to their new home."),
+(49, "+44 7823 678 901", 23.40, "Summit Hauling", "Need a move that's fast and flawless? I'm Michael, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(50, "+44 7412 567 890", 23.95, "Urban Trek Relocations", "Need a move that's fast and flawless? I'm Daniel, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(51, "+44 7701 456 789", 24.75, "PeakPoint Movers", "Need a move that's fast and flawless? I'm Matthew, and I’ll handle your relocation with the care and energy it deserves. Let’s get you moving!"),
+(52, '+44 7567 234 567', 45.99, 'Wonder Home Solutions', 'Turning your home repairs into a wonderland of fixes!'),
+(53, '+44 7456 123 456', 20.75, 'Sky High Repairs', 'Bringing your home repairs to new heights'),
+(54, '+44 7890 345 678', 39.20, 'Tape It Right', "I'll stick with you until the job's done right!"),
+(55, '+44 7745 890 123', 26.25, 'Saw Masters', 'Cutting through problems, one saw at a time'),
+(56, '+44 7534 789 012', 50.65, 'Drill Works', "I'm the drill master, making sure your repairs are on point!"),
+(57, '+44 7412 567 890', 28.99, 'Brick Builders', 'Laying the foundation for a better home, one brick at a time!'),
+(58, '+44 7534 789 012', 35.50, 'Paint Prodigy', 'Fixing more than just the surface — I restore your walls to perfection!'),
+(59, '+44 7823 678 901', 47.80, 'Duct Dudes', "No duct too tricky — I'll seal the deal!"),
+(60, '+44 1506 650135', 35.00, 'Clan Electrical', 'With over fifteen years under my belt, I''m a seasoned electrician known for my meticulous attention to detail and expertise in complex residential and commercial wiring projects. Clients often call on me to troubleshoot tricky electrical issues, and I always ensure everything is up to the highest safety standards.'),
+(61, '+44 1506 632098', 37.50, 'Westrigg Electrical Services', 'Bringing a decade of experience to the team, my specialty lies in modern home automation and energy-efficient installations. I''m passionate about seamlessly integrating smart technology into homes and helping clients reduce their energy consumption.'),
+(62, '+44 1506 665498', 40.00, 'Electro Services LTD', 'As a highly skilled electrician with eight years of experience, I excel in both new construction electrical work and comprehensive rewiring projects. Clients appreciate my clear communication and my dedication to delivering reliable and long-lasting solutions.'),
+(63, '+44 1506 624536', 50.00, 'McGowan Electrical', 'Having been a qualified electrician for five years, I''ve quickly built a reputation for my efficiency and thoroughness in handling a wide range of domestic electrical repairs and installations. I''m committed to providing friendly and dependable service to every customer.'),
+(64, '+44 1506 687623', 60.00, 'One Design Electrical Ltd.', 'With three years of experience, I''m a bright and enthusiastic electrician eager to tackle any residential electrical challenge. I''m particularly adept at diagnosing common household electrical faults and providing swift, effective repairs.'),
+(65, '+44 1506 614564', 55.00, 'Close electrical services', 'As a newly qualified electrician, I have a strong foundation in electrical theory and a keen interest in expanding my practical skills. I''m a valuable asset to the team, bringing a fresh perspective and a commitment to learning best practices on every job.'),
+(66, '+44 1506 609823', 39.00, 'BES Group Electrical', 'Bringing four years of experience to the field, I''m known for my strong problem-solving abilities and my meticulous approach to electrical testing and inspection. I ensure every installation and repair meets rigorous safety regulations.'),
+(67, '+44 1506 657283', 42.00, 'ELECTRIC - AL', 'With over twenty years of experience as a reliable electrician, I''ve gained a wealth of knowledge in industrial and commercial electrical systems. My extensive understanding makes me an invaluable resource for complex machinery wiring and large-scale electrical projects.'),
+(68, '+44 1506 665209', 53.00, 'Rodz Electrical', 'I have an exceptional ability to quickly and safely resolve power outages and other urgent electrical issues. I''m known for my calm demeanor under pressure and efficient troubleshooting skills.'),
+(69, '+44 1506 609820', 39.50, 'Calderwood Electrical Services', 'Bringing seven years of dedicated experience to the electrical trade, I''m known for my calm and methodical approach to every job, ensuring precision and safety in all my work. Clients appreciate my clear communication and my commitment to providing reliable electrical solutions for their homes.'),
+(70, '+44 7712 345678', 24.99, 'PurePipes by Pippa', 'Plumbing problems? I’m Pippa — precise, practical, and proud to get things flowing again. From leaks to installations, I’ve got it covered.'),
+(71, '+44 7400 123456', 27.99, 'Lee Kay’s Quick Fixes', 'Hi, I’m Lee Kay! I thrive on solving the trickiest pipe puzzles. You can count on me for fast fixes and lasting results.'),
+(72, '+44 7891 234567', 28.99, 'Lil’ Lou’s Plumbing Crew', 'I’m Lou, and plumbing is my passion. I keep things running smoothly so you don’t have to worry about a drip or a clog again.'),
+(73, '+44 7384 556677', 29.99, 'Luxe by Luke Plumbing', 'Hey, I’m Luke. Whether it’s a burst pipe or a boiler on the blink, I bring calm, capable hands to every job.'),
+(74, '+44 7583 998877', 26.99, 'Perry Platinum Plumbing', 'Perry here — detail-driven and dependable. I treat every home like my own and every job like a mission.'),
+(75, '+44 7888 112244', 24.99, 'EcoFlo Plumbing Solutions', 'I’m Flo — yes, like water! I specialize in seamless plumbing solutions with a splash of care and a whole lot of skill.'),
+(76, '+44 7956 112233', 27.99, 'Mo’s Earthwise Plumbing', 'Need a fix? I’m Mo, your go-to for efficient, tidy, and top-notch plumbing. Let’s get your system sorted.'),
+(77, '+44 7500 667788', 28.99, 'Sally’s Signature Flow', 'Hey! I’m Sally. I blend expert know-how with a friendly face — no fuss, just flawless plumbing.'),
+(78, '+44 7432 665544', 29.99, 'Ivana GreenFlow Co.', 'Hi, I’m Ivana. Pipes, pressure, or problems? I’m all about precision and peace of mind for every customer.'),
+(79, '+44 7999 223344', 26.99, 'Bob’s Budget Plumbing', 'I’m Bob — reliable, resourceful, and ready to roll up my sleeves. From start to finish, I make plumbing easy.'),
+(80, '+44 7822 334455', 24.99, 'Tru Deal Plumbing', 'Hi, I’m Trudy! I love turning chaos into calm. Got a leak or a loo that won’t flush? I’ll sort it in no time.'),
+(81, '+44 7777 445566', 27.99, 'Copper & Co. Plumbing', 'Name’s Copper — like the pipes! I bring old-school skills with modern tools to get your water flowing right.'),
+(82, '+44 7624 889900', 28.99, 'Billy the Plumb', 'I’m Billy, and I believe no job is too small for great service. I bring energy, expertise, and elbow grease.'),
+(83, '+44 7300 998877', 29.99, 'Green Greta Plumbing', 'Hello! I’m Greta. I combine care and craftsmanship to deliver spotless plumbing work every single time.'),
+(84, '+44 7409 123456', 28.99, 'Val V. Prestige Plumbing', 'I’m Val V. — known for cool under pressure and sharp solutions. Leaks beware, I’m on the job!');
+
+
 
 
 INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password, registration_date)
-VALUES ('Miranda', 'Fanta', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoyy/usxIaevDg5VTtOaoeBcVgoYirqdbMZm16kzi.VVIpU4A2', '2000-01-01'),
-('Nadine', 'Vimto', '1997-01-08', 1, 'nadine@gmail.com', '$2b$12$KDLed2NMC6s/1x3kI7CVgu4XM0Mkou7fMePfHUEBM.qRLgsKIVelK', '2000-01-05'),
-('Liya', 'Pepsi', '2002-02-21', 1,  'liya@gmail.com', '$2b$12$lM1OMgQSqiVQWZclujOxGOu20znOzFv3kkk5/jpgAeYBPQOR3HIrq', '2000-01-03'),
-('Malvina', 'Cola', '2001-09-30', 1, 'malvina@gmail.com', '$2b$12$qj2CgpTx4Ub22zUYkhqCgODPg4OtbHR9nLWqd9Qh2llB.nUK9Xlmy', '2000-01-04'),
-('Ayishat', 'Sprite', '1998-06-26', 1, 'ayishat@gmail.com', '$2b$12$k2CNP06eWduhT5zyhEP9ee/OeHt8Qyj3GIIFXxSoPAEyrNhRSWyN2', '2000-01-02'),
+VALUES ('Miranda', 'Sparks', '1999-04-22', 1, 'miranda@gmail.com', '$2b$12$oLZGoyy/usxIaevDg5VTtOaoeBcVgoYirqdbMZm16kzi.VVIpU4A2', '2000-01-01'),
+('Nadine', 'Lawnmoore', '1997-01-08', 1, 'nadine@gmail.com', '$2b$12$KDLed2NMC6s/1x3kI7CVgu4XM0Mkou7fMePfHUEBM.qRLgsKIVelK', '2000-01-05'),
+('Liya', 'Wrenchby', '2002-02-21', 1,  'liya@gmail.com', '$2b$12$lM1OMgQSqiVQWZclujOxGOu20znOzFv3kkk5/jpgAeYBPQOR3HIrq', '2000-01-03'),
+('Malvina', 'Pipewell', '2001-09-30', 1, 'malvina@gmail.com', '$2b$12$qj2CgpTx4Ub22zUYkhqCgODPg4OtbHR9nLWqd9Qh2llB.nUK9Xlmy', '2000-01-04'),
+('Ayishat', 'Boxford', '1998-06-26', 1, 'ayishat@gmail.com', '$2b$12$k2CNP06eWduhT5zyhEP9ee/OeHt8Qyj3GIIFXxSoPAEyrNhRSWyN2', '2000-01-02'),
 ('Ailsa', 'Stewart', '1981-07-22', 2, 'ailsa@gmail.com', '$2b$12$v30ro78rF4NBBy5UM3sklODXRR/jbShVRCoyan0JxDWfMnRfTLaM.', '2000-01-06'),
 ('Angus', 'Murray', '1973-04-29', 3, 'angus@gmail.com', '$2b$12$LODremmPYZehdvW9aEEF6ekajYDvvSlOXxoB8.E5exJJd4A0Vfe7S', '2000-01-07'),
 ('Kirsty', 'Sinclair', '1986-06-20', 4, 'kirsty@gmail.com', '$2b$12$tSvlTi6Q7nkoU/Sy8A.g.utVhCNrAn69kq649UslFzGWxqam3y5wa', '2000-01-08'),
 ('Rory', 'Campbell', '1996-01-08', 5, 'rory@gmail.com', '$2b$12$XoqMtGn5eGu6v6KIJdtY3uOPII810ZcrevswJhkNXhhEum.rwdRKS', '2000-01-09'),
-('Fiona', 'MacLeod', '1994-03-13', 6, 'fiona@gmail.com', '$2b$12$fjBAyW6hlCfRg4MshxTRhOn1H/tktria4f8xCJJL1ijyQV7lOY4gq', '2000-01-10'),
+('Fiona', 'MacLeod', '1994-03-13', 6, 'fiona2@gmail.com', '$2b$12$fjBAyW6hlCfRg4MshxTRhOn1H/tktria4f8xCJJL1ijyQV7lOY4gq', '2000-01-10'),
 ('Iain', 'Wallace', '1970-12-01', 2, 'iain@gmail.com', '$2b$12$ZyFxIlUXBx6gBn7RiKF2xepwth9OKuHs/KjrD8qYfJNiicnfaG.6i', '2000-01-13'),
 ('Skye', 'MacPherson', '1988-07-24', 8, 'skye@gmail.com', '$2b$12$wwsYCsXlPRtD53Bsu89LeeVnAnQTkikJKSmRuXKCHoMohoe4hp4Ha', '2000-01-12'),
 ('Finlay', 'McArthur', '2000-03-13', 2, 'finlay@gmail.com', '$2b$12$1DT6uvCD9WulCVAheoVtY.hOnDqBD82usbXQ3XtWPOEajBMt90Z6u', '2000-01-13'),
 ('Lachlan', 'Fraser', '1983-11-28', 3, 'lachlan@gmail.com', '$2b$12$5ZXeuWPSCYuvve9UoBuJk.uB.WE/LPJk2IRUGgeCgAzFiIUhmZycu', '2000-01-14'),
-('Isla', 'Buchanan', '2003-05-13', 4, 'isla@gmail.com', '$2b$12$e74zoQ6WYDCWUkIn5c1teudTpzdbXrSbBfHVqypw0jBAM6uoWn3Mu', '2000-01-15');
+('Isla', 'Buchanan', '2003-05-13', 4, 'isla@gmail.com', '$2b$12$e74zoQ6WYDCWUkIn5c1teudTpzdbXrSbBfHVqypw0jBAM6uoWn3Mu', '2000-01-15'),
+('Bella', 'Haggerty', '1999-09-12', 8, 'bella@gmail.com', 'bella123', '2000-01-16'),
+('Spec', 'Saver', '2000-06-14', 4, 'spec@gmail.com', 'Spec123', '2000-01-16'),
+('Coraline', 'Jones', '1968-03-03', 2, 'coraline@gmail.com', 'Coraline123', '2000-01-17'),
+('Strawberry', 'Shortcake', '2004-08-08', 3, 'strawberry@gmail.com', 'Strawberry123', '2000-01-18'),
+('Will', 'Smith', '1999-09-09', 5, 'wills@gmail.com', 'Will123', '2000-01-19'),
+('Alice', 'Johnston', '1980-08-02', 1, 'Alice@gmail.com', 'Alice123', '2010-01-12'),
+('Bob', 'Williams', '1975-03-18', 2, 'Bob@gmail.com', 'Bob123', '2000-05-12'),
+('Charlie', 'Brown', '1992-09-05', 2, 'Charlie@gmail.com', 'Charlie123', '2001-10-10'),
+('David', 'Jones', '1987-02-14', 1, 'David@gmail.com', 'David123', '2000-01-12'),
+('Emily', 'Sky', '2004-07-21', 2, 'Emily@gmail.com', 'Emily123', '2005-09-11'),
+('Fiona', 'Jones', '1999-12-27', 1, 'Fiona@gmail.com', 'Fiona123', '2004-06-07'),
+('George', 'Garcia', '1983-04-11', 2, 'George@gmail.com', 'George123', '2003-01-12'),
+('Hannah', 'Miller', '1978-01-06', 4, 'Hannah@gmail.com', 'Hannah123', '2000-03-12'),
+('Isaac', 'Davis', '2000-05-30', 4, 'Isaac@gmail.com', 'Isaac123', '2002-01-10'),
+('Jessica', 'Martinez', '1995-10-19', 5, 'Jessica@gmail.com', 'Jessica123', '2000-05-13');
 
-select * from clients;
 
 
 -- Reviews for Painting Services -- 
 INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date) 
 VALUES (1, 1, 5, "Lucy did an amazing job with our interior painting. She has such an eye for detail, and the finish was flawless. Our living room looks like a brand new space! Highly recommend!", '2008-03-15'),
-(2, 1, 5, "Lucy helped us with a color consultation, and we couldn’t be happier with her recommendations! She really listened to our preferences and guided us toward the perfect shades for our home. The space looks incredible, and the atmosphere is so much warmer and inviting now.", '2008-06-22'),
+(2, 1, 5, "Lucy helped us with a color consultation, and we couldn’t be happier with her recommendations! She really listened to our preferences and guided us toward the perfect shades for our home.", '2008-06-22'),
 (10, 2, 5, "Anita was fantastic with the wallpaper removal in our bedroom. She worked efficiently, and there wasn’t a speck of mess left behind. Very professional and easy to communicate with. Thank you, Anita!", '2008-09-30'),
 (10, 2, 4, "Anita recently assisted us with recoating the walls in our hallway, and the result is fantastic! She made sure every corner was covered, and the walls look smooth and flawless. We were impressed with her professionalism and care, and will definitely hire her again!", '2008-12-08'),
 (6, 3, 5, "Matt really transformed our kitchen with his drywall repair and fresh coat of paint. The quality of work is top-notch, and the entire process was smooth from start to finish. Extremely satisfied!", '2009-02-11'),
@@ -348,4 +463,266 @@ VALUES
 (72, 28, 3, 'Paul has a lot of experience, particularly with industrial electrical systems. However, I found the service to be adequate but not exceptional. There were a few minor issues that needed to be addressed. He got the job done.', '2013-02-04'),
 (73, 29, 2, 'Breaker resolved the power outage, but the service was not great. I found the communication lacking, and the issue took longer to resolve than I expected. I would consider other electricians in the future.', '2010-10-01'),
 (74, 30, 4, 'Paige was very professional and calm. She was very methodical in her approach and ensured the work was done safely. I would recommend her.', '2014-12-17');
+=======
+-- Reviews for Moving Services --
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+VALUES (5, 35, 5, 'David Dunn communicated well and completed the move quicker than expected.', '2024-08-02'),
+(11, 35, 5, 'David Dunn took great care with our belongings. Very professional service.', '2024-11-22'),
+(7, 36, 4, 'Sean Hill took great care with our belongings. Very professional service.', '2025-01-31'),
+(12, 36, 5, 'Sean Hill provided excellent packing and delivery services.', '2024-05-27'),
+(13, 37, 5, 'Sheila Mcintosh provided excellent packing and delivery services.', '2024-01-18'),
+(7, 37, 5, 'Sheila Mcintosh provided excellent packing and delivery services.', '2024-01-02'),
+(12, 38, 4, 'Kimberly Martin took great care with our belongings. Very professional service.', '2024-02-23'),
+(5, 38, 5, 'Kimberly Martin communicated well and completed the move quicker than expected.', '2024-11-28'),
+(14, 39, 1, 'Candace Thomas delivered incomplete service, leaving many items behind.', '2024-03-20'),
+(6, 39, 2, 'Candace Thomas communication was poor, and the move was stressful and chaotic.', '2025-02-11'),
+(9, 40, 5, 'Nathan Garcia handled our move flawlessly! Everything arrived safely and on time.', '2024-04-03'),
+(11, 40, 4, 'Nathan Garcia communicated well and completed the move quicker than expected.', '2024-05-02'),
+(13, 41, 5, 'Seth Warner took great care with our belongings. Very professional service.', '2024-02-28'),
+(1, 41, 4, 'Seth Warner took great care with our belongings. Very professional service.', '2024-01-29'),
+(10, 42, 5, 'Rebecca Lane communicated well and completed the move quicker than expected.', '2024-02-09'),
+(8, 42, 4, 'Rebecca Lane took great care with our belongings. Very professional service.', '2024-05-23'),
+(1, 43, 5, 'Monica Wolf made our relocation smooth and stress-free. Highly recommended!', '2024-08-08'),
+(13, 43, 4, 'Monica Wolf took great care with our belongings. Very professional service.', '2024-06-08'),
+(6, 44, 5, 'Danielle Collins communicated well and completed the move quicker than expected.', '2024-12-01'),
+(6, 44, 5, 'Danielle Collins provided excellent packing and delivery services.', '2024-05-02'),
+(12, 45, 4, 'Nicole West communicated well and completed the move quicker than expected.', '2024-06-29'),
+(4, 45, 5, 'Nicole West took great care with our belongings. Very professional service.', '2024-09-23'),
+(15, 46, 5, 'Kaitlyn Rivera communicated well and completed the move quicker than expected.', '2024-04-20'),
+(10, 46, 5, 'Kaitlyn Rivera took great care with our belongings. Very professional service.', '2025-02-10'),
+(7, 47, 3, 'Anthony Reed was polite and professional, though the move took longer than planned.', '2024-04-03'),
+(9, 47, 4, 'Anthony Reed took great care with our belongings. Very professional service.', '2024-02-18'),
+(3, 48, 4, 'Bryan Barrett provided excellent packing and delivery services.', '2025-01-30'),
+(9, 48, 5, 'Bryan Barrett communicated well and completed the move quicker than expected.', '2025-03-22'),
+(10, 49, 4, 'Michael Rice took great care with our belongings. Very professional service.', '2024-10-24'),
+(15, 49, 4, 'Michael Rice made our relocation smooth and stress-free. Highly recommended!', '2024-02-02'),
+(4, 50, 4, 'Daniel Deleon handled our move flawlessly! Everything arrived safely and on time.', '2024-07-02'),
+(4, 50, 5, 'Daniel Deleon handled our move flawlessly! Everything arrived safely and on time.', '2024-05-01'),
+(8, 51, 5, 'Matthew Bray provided excellent packing and delivery services.', '2024-07-10'),
+(2, 51, 4, 'Matthew Bray handled our move flawlessly! Everything arrived safely and on time.', '2025-02-05');
+
+-- Reviews for Repair Services --
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+VALUES
+(17, 52, 5, 'Alice turned my home repairs into a fairy tale – quick, efficient, and a perfect finish!', '2024-01-12'),
+(18, 53, 4, 'Sarah''s work was out of this world! She took my repairs to new heights and left everything spotless!', '2024-04-09'),
+(19, 54, 5, 'Tina is the real deal – she fixed my home with precision, and I couldn''t be happier with the result!', '2025-01-02'),
+(20, 55, 5, 'Cindy cut through my repair issues like a pro! Her attention to detail was unmatched.', '2024-08-08'),
+(21, 56, 5, 'Danny''s drill work was flawless. He got everything done fast, and it was as if nothing ever needed fixing!', '2024-04-11'),
+(22, 57, 4, 'Ben''s brickwork is top-notch. He built a strong, solid structure that will last for years!', '2023-03-28'),
+(23, 58, 3, 'Pat doesn''t just paint, he repaired and restored my walls to perfect condition – great craftsmanship!', '2023-09-07'),
+(24, 59, 3, 'Dean''s duct work saved me so much trouble – efficient and tidy!', '2022-04-03');
+
+-- Reviews for Electrician 
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date)
+VALUES
+(21, 65, 4, 'Peter provided solid electrical work. He was thorough and clearly experienced, particularly with the more complex aspects of the job. There were no issues, and I felt confident in his expertise. I would recommend him for most electrical needs.', '2020-08-07'),
+(22, 66, 5, 'Sean was fantastic! He installed our smart home system flawlessly and took the time to explain all the features. His knowledge of modern technology is impressive, and he was very efficient and professional. Highly recommended!', '2016-08-16'),
+(23, 67, 5, 'Miranda did a great job on our house rewiring project. She was communicative throughout the entire process, and the work was completed to a very high standard. We are extremely pleased with the results and would definitely use her services again.', '2013-09-20'),
+(24, 68, 5, 'Nadine was a pleasure to work with. She was efficient, friendly, and handled all our electrical repairs quickly and effectively. Her service was dependable, and the price was very reasonable. I highly recommend her for any domestic electrical work.', '2010-01-01'),
+(25, 69, 5, 'Malvina is a bright and enthusiastic electrician. She quickly diagnosed and fixed our electrical fault, and her work was excellent. She is a great communicator and provided swift, effective service. I was very impressed!', '2007-04-02'),
+(26, 70, 5, 'Liya is a newly qualified electrician, but her strong theoretical knowledge and eagerness to learn impressed me. She was a valuable asset to the team, and I was very pleased with the work she did. She is very promising.', '2004-05-16'),
+(27, 71, 5, 'Ayishat is a very skilled electrician. Her meticulous approach to testing and inspection gave me confidence that the work was done safely and correctly. She is a great problem solver.', '2009-02-14'),
+(28, 72, 3, 'Paul has a lot of experience, particularly with industrial electrical systems. However, I found the service to be adequate but not exceptional. There were a few minor issues that needed to be addressed. He got the job done.', '2013-02-04'),
+(29, 73, 2, 'Breaker resolved the power outage, but the service was not great. I found the communication lacking, and the issue took longer to resolve than I expected. I would consider other electricians in the future.', '2010-10-01'),
+(30, 74, 4, 'Paige was very professional and calm. She was very methodical in her approach and ensured the work was done safely. I would recommend her.', '2014-12-17');
+
+-- Reviews for plumbing
+INSERT INTO reviews (clientID, tp_profileID, rating, comment, review_date) 
+VALUES	
+(14, 82, 5, 'Billy came through in a pinch! Our washing machine flooded the utility room, and Billy arrived within the hour. He was upbeat, fast, and sorted everything out without fuss. Affordable and efficient.', '2024-07-17'),	
+(3, 82, 5, 'Billy fixed a leaking radiator valve in under an hour and was cheerful the whole time, great value and no mess left behind.', '2024-04-18'),	
+(13, 82, 3, 'Billy was alright. He handled our kitchen tap replacement. The job was done well, but he arrived later than scheduled, and there wasn’t much explanation about the process. Not bad, but not great either.', '2024-04-18'),	
+(17, 79, 3, 'Bob left us underwhelmed. He was friendly, but the pipe repair under the sink needed a second visit to get right. Not the worst, but didn’t inspire confidence.', '2023-06-23'),	
+(13, 79, 2, 'Bob’s service was just passable. He repaired a toilet leak for us. The fix held, but he didn’t clean up afterward, and there were a few smudges left on the tiles. Didn’t feel like a very professional experience.', '2023-01-27'),	
+(14, 81, 3, "Copper’s work was hit and miss. He fixed a clogged toilet, but the bathroom wasn’t cleaned up afterward. It felt rushed, and while it works now, I expected more professionalism.", '2023-09-03'),	
+(4, 81, 2, "Copper’s work was rough around the edges. The fix worked, but we weren’t impressed with the attention to detail. Some joints looked rushed, and we had to tidy up after. Not the experience we were hoping for.", '2024-01-09'),	
+(9, 75, 5, 'Flo lives up to the name! Everything’s flowing perfectly again thanks to her! She sorted a messy bathroom blockage that two others couldn’t crack. Polite, punctual, and skilled.', '2023-12-08'),	
+(8, 75, 5, 'Flo was fantastic—she installed a new eco shower system and explained everything clearly, the water pressure has never been better.', '2024-01-09'),	
+(11, 83, 5, 'Greta was super efficient and friendly, sorted out a tricky drainage issue with minimal fuss and left everything spotless.', '2023-06-22'),	
+(3, 83, 2, 'Greta’s service was not the best. She was polite but seemed unsure about a couple of things. The clog was eventually cleared, but it took longer than expected and left quite a bit of mess behind.', '2023-11-20'),	
+(15, 78, 3, 'Ivana did a fair job. She helped reroute some pipes for our laundry room. There were a couple of small leaks afterward, but she returned quickly and made the fixes without fuss.', '2024-10-09'),	
+(12, 78, 5, 'Ivana installed a water softener system and was incredibly knowledgeable, she made sure everything was working perfectly before she left.', '2023-06-22'),	
+(8, 78, 5, 'Ivana saved the day! We were mid-renovation and hit a plumbing snag. Ivana showed up with a positive attitude, assessed the situation quickly, and had us back on track in no time.', '2023-08-03'),	
+(15, 71, 4, 'Lee Kay did the job, no frills. He fixed a broken outdoor tap. It works fine now, but there wasn’t much communication and he arrived 30 minutes late. Still, he got it done.', '2023-03-03'),	
+(2, 71, 5, 'Lee Kay is a plumbing wizard!He replaced our old boiler and even upgraded the pipework with minimal disruption. The place was left spotless afterward, and the system runs like a dream. Fantastic service from start to finish.', '2023-06-22'),	
+(4, 72, 5, 'Lou handled a whole-house plumbing inspection for us, very thorough and gave clear advice without upselling anything—really appreciated that.', '2024-01-09'),	
+(5, 72, 5, 'Lou was brilliant! She replaced our faulty kitchen mixer tap and installed a water filter system with ease. Friendly, punctual, and clearly knew her stuff. Highly recommend her services.', '2024-10-01'),	
+(7, 72, 5, 'Lou was incredible from start to finish! She identified a hidden leak under our bathtub that had been missed by others. Her work was meticulous, and she even tidied up the mess afterward. Absolute pro!', '2024-04-25'),	
+(8, 73, 5, 'Luke delivered top-notch service when replacing our kitchen plumbing, everything was completed ahead of schedule and with real attention to detail.', '2023-06-22'),	
+(6, 73, 3, 'Luke did a decent job. He fixed our shower pressure issue, and the result is working fine. It did take a little longer than we were told, and communication could’ve been clearer, but overall, we’re satisfied.', '2024-02-11'),	
+(10, 76, 5, 'Mo helped us reroute some piping during our renovation, very professional and the results are flawless, couldn’t ask for better.', '2023-05-19'),	
+(8, 76, 3, 'Mo was okay. He came out to fix a clogged drain. The work got done, but we had to call again two days later for a small follow-up. He did return and sorted it out though.', '2024-07-05'),	
+(7, 74, 2, 'Perry could improve. The job was eventually done, but communication was lacking, and we felt a bit in the dark during the process. Would have appreciated more clarity and updates.', '2023-05-19'),	
+(3, 74, 2, "Perry’s service was just alright. He helped us with a slow-draining shower. It’s better now, but the issue returned after a week. He did offer to return, but we ended up calling someone else.", '2023-08-05'),	
+(1, 70, 5, 'Again, Pippa was an absolute lifesaver! We had a major leak under the kitchen sink, and she responded quickly, diagnosed the issue with confidence, and had everything fixed in no time. She’s professional, knowledgeable, and friendly — would 100% recommend!', '2024-03-15'),	
+(1, 70, 5, 'Pippa was brilliant! She installed a new outdoor tap and even gave us tips for winter maintenance—definitely going to use her again.', '2024-01-09'),	
+(10, 77, 5, 'Sally is top-tier! From the initial inspection to the final fix, she was attentive and thorough. She explained everything clearly and gave us options before starting the repair. Super happy with her work!', '2023-09-30'),	
+(5, 77, 5, 'Sally was a lifesaver during our boiler breakdown, she sourced a part the same day and had us warm again that evening.', '2023-05-19'),	
+(13, 80, 3, 'Trudy was decent. She installed a new toilet in our en suite. The finish is clean, but we had to wait a few days longer than expected due to a part delay. Solid work overall.', '2023-08-03'),	
+(6, 80, 2, "Trudy’s work was fine, but not impressive. She installed a new faucet, but we noticed a slow drip the next day. She came back and addressed it, but it left us a bit uneasy about the initial install.", '2023-03-14'),	
+(14, 84, 2, 'Val V. left us a bit underwhelmed. She replaced the valves under our sink, but we noticed a slight rattle in the pipes afterward. It’s not a huge deal, but it left us questioning the quality of the finish.', '2023-08-03'),	
+(5, 84, 5, 'Val V. was excellent—she fitted a luxury rainfall shower and the finish is stunning, clearly takes pride in her work.', '2023-05-19'),	
+(6, 84, 3, 'Val V. was good, not great. She handled a full bathroom plumbing install. While the work is neat and everything functions well, the job ran over time and budget a bit. Communication was polite, though.', '2023-08-13'),
+(16, 33, 2, "Tim needed a lot of direction even though he's meant to be the expert at pipe attachment. We kept having to search online and he couldn't stop going on about his tinkles! Will hire someone else next time.", '2024-03-29'),
+(16, 34, 1, "This is the second person I've hired and I'm disappointed. Peppa failed to install my faucet and now my living room is flooded. An absolute shocker.", "2024-10-07");
+
+
+INSERT INTO job_booking (clientID, workerID, taskID, booking_date, service_start_date, service_end_date, task_description, statusID)
+VALUES
+(1, 1, 1, '2008-03-01', '2008-03-01', '2008-03-15', 'Interior painting of living room with flawless finish', 4),
+(2, 1, 1, '2008-06-15', '2008-06-22', '2008-06-22', 'Color consultation and recommendations for home interior', 4),
+(10, 2, 1, '2008-09-15', '2008-09-15', '2008-09-30', 'Wallpaper removal in bedroom, professional and thorough', 4),
+(10, 2, 1, '2008-12-01', '2008-12-01', '2008-12-08', 'Recoating of hallway walls, smooth finish and attention to detail', 4),
+(6, 3, 1, '2009-02-01', '2009-02-01', '2009-02-11', 'Drywall repair and fresh coat of paint in kitchen', 4),
+(13, 3, 1, '2009-04-01', '2009-04-01', '2009-04-18', 'Exterior painting with top-notch attention to detail', 4),
+(8, 4, 1, '2009-06-01', '2009-06-01', '2009-07-05', 'Exterior painting of house, professional and punctual', 4),
+(15, 4, 1, '2009-09-01', '2009-09-01', '2009-10-09', 'Fence painting with meticulous attention to detail', 4),
+(13, 5, 1, '2010-01-15', '2010-01-15', '2010-01-27', 'Re-coating of living room walls, vibrant transformation', 4),
+(6, 5, 1, '2010-03-01', '2010-03-01', '2010-03-14', 'Color consultation for office space, stunning results', 4),
+(7, 6, 1, '2010-05-01', '2010-05-01', '2010-05-19', 'Concrete wall painting with great results', 4),
+(14, 6, 1, '2010-07-01', '2010-07-01', '2010-08-03', 'Wooden deck staining, beautiful finish', 4),
+(3, 7, 1, '2010-11-01', '2010-11-01', '2010-11-20', 'Wallpaper installation in dining room, seamless work', 4),
+(4, 7, 1, '2010-12-01', '2010-12-01', '2011-01-09', 'Custom wallpaper installation in living room, perfect match', 4),
+(7, 8, 1, '2011-04-01', '2011-04-01', '2011-04-25', 'Uneven exterior painting roller application, multiple touch-ups', 4),
+(14, 8, 1, '2011-07-01', '2011-07-01', '2011-07-17', 'Kitchen paint rolling, efficient and thorough coverage', 4),
+(5, 9, 1, '2011-09-15', '2011-09-15', '2011-10-01', 'Color consultation for home, excellent results', 4),
+(1, 9, 1, '2011-12-01', '2011-12-01', '2011-12-16', 'Concrete and brick painting, longer than expected, but fantastic finish', 4),
+(8, 10, 1, '2012-02-01', '2012-02-01', '2012-02-22', 'Bedroom walls repaint, took longer than expected, but solid result', 4),
+(15, 10, 1, '2012-03-01', '2012-03-01', '2012-04-10', 'Living room painting, good work with minor extra attention', 4),
+(10, 11, 1, '2012-06-01', '2012-06-01', '2012-06-26', 'Drywall repair and texturing, took more time, but overall good result', 4),
+(10, 11, 1, '2012-08-01', '2012-08-01', '2012-09-08', 'Premium wallpaper design, flawless installation', 4),
+(8, 12, 1, '2012-11-01', '2012-11-01', '2012-11-14', 'Tinting of walls, minor touch-up spots', 4),
+(8, 12, 1, '2012-12-01', '2012-12-01', '2013-01-30', 'Wallpaper removal, careful but took longer than expected', 4),
+(8, 13, 1, '2013-04-01', '2013-04-01', '2013-04-12', 'Varnishing wooden trim, good finish but took longer', 4),
+(8, 13, 1, '2013-07-01', '2013-07-01', '2013-07-19', 'Exterior house painting, great finish but a bit slow', 4),
+(9, 14, 1, '2013-09-01', '2013-09-01', '2013-10-05', 'Wallpaper installation, some timing issues but good results', 4),
+(9, 14, 1, '2013-11-01', '2013-11-01', '2013-12-09', 'Living room recoating, smooth finish and great color', 4),
+(11, 15, 1, '2014-02-01', '2014-02-01', '2014-03-02', 'Wallpaper removal, wall damage and longer process than expected', 4),
+(11, 15, 1, '2014-05-01', '2014-05-01', '2014-05-22', 'Color consultation, some wallpaper installation issues', 4),
+(9, 16, 1, '2014-07-01', '2014-07-01', '2014-08-15', 'Pattern placement issues, not the best finish', 4),
+(9, 16, 1, '2014-10-01', '2014-10-01', '2014-11-28', 'Exterior and concrete painting, decent but not thorough', 4),
+(4, 17, 6, '2015-03-20', '2015-03-20', '2015-03-21', 'Flower and garden maintenance', 4),
+(5, 17, 6, '2015-03-21', '2015-03-21', '2015-03-22', 'Lawn care and weed removal', 4),
+(13, 18, 6, '2015-03-22', '2015-03-22', '2015-03-23', 'Weed control and garden care', 4),
+(6, 18, 6, '2015-03-23', '2015-03-23', '2015-03-24', 'Lawn mowing and edging', 4),
+(7, 19, 6, '2015-03-24', '2015-03-24', '2015-03-25', 'Landscape maintenance and hedge trimming', 4),
+(14, 19, 6, '2015-03-25', '2015-03-25', '2015-03-26', 'Herb garden replanting', 4),
+(9, 20, 6, '2015-03-26', '2015-03-26', '2015-03-27', 'Hedge trimming and yard cleanup', 4),
+(9, 20, 6, '2015-03-27', '2015-03-27', '2015-03-28', 'Hedge shaping and waste removal', 4),
+(1, 21, 6, '2015-03-28', '2015-03-28', '2015-03-29', 'Weed removal and general garden care', 4),
+(2, 21, 6, '2015-03-29', '2015-03-29', '2015-03-30', 'Garden planting and lawn care', 4),
+(11, 22, 6, '2015-03-30', '2015-03-30', '2015-03-31', 'Garden revamp and planting', 4),
+(11, 22, 6, '2015-03-31', '2015-03-31', '2015-04-01', 'Backyard design and planting', 4),
+(12, 23, 6, '2015-04-01', '2015-04-01', '2015-04-02', 'Landscaping and pond cleanup', 4),
+(12, 23, 6, '2015-04-02', '2015-04-02', '2015-04-03', 'Yard clean up and plant care', 4),
+(10, 24, 6, '2015-04-03', '2015-04-03', '2015-04-04', 'Climbing plant care and vine trimming', 4),
+(10, 24, 6, '2015-04-04', '2015-04-04', '2015-04-05', 'Vine and climbing plant trimming', 4),
+(10, 25, 6, '2015-04-05', '2015-04-05', '2015-04-06', 'Bush shaping and yard cleanup', 4),
+(10, 25, 6, '2015-04-06', '2015-04-06', '2015-04-07', 'Lawn cleanup and maintenance', 4),
+(14, 26, 6, '2015-04-07', '2015-04-07', '2015-04-08', 'Lawn mowing and watering', 4),
+(7, 26, 6, '2015-04-08', '2015-04-08', '2015-04-09', 'General lawn care and mowing', 4),
+(9, 27, 6, '2015-04-09', '2015-04-09', '2015-04-10', 'Weed clearance and pond maintenance', 4),
+(9, 27, 6, '2015-04-10', '2015-04-10', '2015-04-11', 'Pond cleanup and weed removal', 4),
+(3, 28, 6, '2015-04-11', '2015-04-11', '2015-04-12', 'Lawn aeration and reseeding', 4),
+(5, 28, 6, '2015-04-12', '2015-04-12', '2015-04-13', 'Lawn dethatching and maintenance', 4),
+(6, 29, 6, '2015-04-13', '2015-04-13', '2015-04-14', 'Sprinkler system repair and lawn mowing', 4),
+(13, 29, 6, '2015-04-14', '2015-04-14', '2015-04-15', 'Sprinkler system setup and maintenance', 4),
+(8, 30, 6, '2015-04-15', '2015-04-15', '2015-04-16', 'Flower bed and garden care', 4),
+(15, 30, 6, '2015-04-16', '2015-04-16', '2015-04-17', 'Garden design and planting', 4),
+(8, 31, 6, '2015-04-17', '2015-04-17', '2015-04-18', 'Landscaping and plant care', 4),
+(15, 31, 6, '2015-04-18', '2015-04-18', '2015-04-19', 'Landscaping and garden design', 4),
+(11, 32, 6, '2015-04-19', '2015-04-19', '2015-04-20', 'Flower bed planning and planting', 4),
+(11, 32, 6, '2015-04-20', '2015-04-20', '2015-04-21', 'Front yard landscaping and planting', 4),
+(16, 33, 5, '2024-03-29', '2024-03-30', '2024-03-31', 'Pipe attachment and installation', 4),
+(16, 34, 5, '2024-10-07', '2024-10-08', '2024-10-09', 'Faucet installation and plumbing', 4),
+(5, 35, 3, '2024-08-02', '2024-08-03', '2024-08-04', 'Full relocation and moving service', 4),
+(11, 35, 3, '2024-11-22', '2024-11-23', '2024-11-24', 'Full relocation and moving service', 4),
+(7, 36, 3, '2025-01-31', '2025-02-01', '2025-02-02', 'Full relocation and moving service', 4),
+(12, 36, 3, '2024-05-27', '2024-05-28', '2024-05-29', 'Full relocation and moving service', 4),
+(13, 37, 3, '2024-01-18', '2024-01-19', '2024-01-20', 'Full relocation and moving service', 4),
+(7, 37, 3, '2024-01-02', '2024-01-03', '2024-01-04', 'Full relocation and moving service', 4),
+(12, 38, 3, '2024-02-23', '2024-02-24', '2024-02-25', 'Full relocation and moving service', 4),
+(5, 38, 3, '2024-11-28', '2024-11-29', '2024-11-30', 'Full relocation and moving service', 4),
+(14, 39, 3, '2024-03-20', '2024-03-21', '2024-03-22', 'Full relocation and moving service', 4),
+(6, 39, 3, '2025-02-11', '2025-02-12', '2025-02-13', 'Full relocation and moving service', 4),
+(9, 40, 3, '2024-04-03', '2024-04-04', '2024-04-05', 'Full relocation and moving service', 4),
+(11, 40, 3, '2024-05-02', '2024-05-03', '2024-05-04', 'Full relocation and moving service', 4),
+(13, 41, 3, '2024-02-28', '2024-02-29', '2024-03-01', 'Full relocation and moving service', 4),
+(1, 41, 3, '2024-01-29', '2024-01-30', '2024-01-31', 'Full relocation and moving service', 4),
+(10, 42, 3, '2024-02-09', '2024-02-10', '2024-02-11', 'Full relocation and moving service', 4),
+(8, 42, 3, '2024-05-23', '2024-05-24', '2024-05-25', 'Full relocation and moving service', 4),
+(1, 43, 3, '2024-08-08', '2024-08-09', '2024-08-10', 'Full relocation and moving service', 4),
+(13, 43, 3, '2024-06-08', '2024-06-09', '2024-06-10', 'Full relocation and moving service', 4),
+(6, 44, 3, '2024-12-01', '2024-12-02', '2024-12-03', 'Full relocation and moving service', 4),
+(6, 44, 3, '2024-05-02', '2024-05-03', '2024-05-04', 'Full relocation and moving service', 4),
+(12, 45, 3, '2024-06-29', '2024-06-30', '2024-07-01', 'Full relocation and moving service', 4),
+(4, 45, 3, '2024-09-23', '2024-09-24', '2024-09-25', 'Full relocation and moving service', 4),
+(15, 46, 3, '2024-04-20', '2024-04-21', '2024-04-22', 'Full relocation and moving service', 4),
+(10, 46, 3, '2025-02-10', '2025-02-11', '2025-02-12', 'Full relocation and moving service', 4),
+(7, 47, 3, '2024-04-03', '2024-04-04', '2024-04-05', 'Full relocation and moving service', 4),
+(9, 47, 3, '2024-02-18', '2024-02-19', '2024-02-20', 'Full relocation and moving service', 4),
+(3, 48, 3, '2025-01-30', '2025-01-31', '2025-02-01', 'Full relocation and moving service', 4),
+(9, 48, 3, '2025-03-22', '2025-03-23', '2025-03-24', 'Full relocation and moving service', 4),
+(10, 49, 3, '2024-10-24', '2024-10-25', '2024-10-26', 'Full relocation and moving service', 4),
+(15, 49, 3, '2024-02-02', '2024-02-03', '2024-02-04', 'Full relocation and moving service', 4),
+(4, 50, 3, '2024-07-02', '2024-07-03', '2024-07-04', 'Full relocation and moving service', 4),
+(4, 50, 3, '2024-05-01', '2024-05-02', '2024-05-03', 'Full relocation and moving service', 4),
+(8, 51, 3, '2024-07-10', '2024-07-11', '2024-07-12', 'Full relocation and moving service', 4),
+(2, 51, 3, '2025-02-05', '2025-02-06', '2025-02-07', 'Full relocation and moving service', 4),
+(17, 18, 2, '2023-12-20', '2024-01-12', '2024-01-12', 'General home repairs and finishing', 4),
+(18, 19, 2, '2024-03-15', '2024-04-09', '2024-04-09', 'Roof repairs and leak prevention', 4),
+(19, 20, 2, '2024-12-15', '2025-01-02', '2025-01-02', 'Precision wall repairs and adhesive fixture support', 4),
+(20, 21, 2, '2024-07-20', '2024-08-08', '2024-08-08', 'Cutting and fitting carpentry adjustments', 4),
+(21, 22, 2, '2024-03-25', '2024-04-11', '2024-04-11', 'Drilling and structural fixing jobs', 4),
+(22, 23, 2, '2023-02-10', '2023-03-28', '2023-03-28', 'Bricklaying and external structure support', 4),
+(23, 24, 2, '2023-08-15', '2023-09-07', '2023-09-07', 'Wall painting and damage restoration', 4),
+(24, 25, 2, '2022-03-01', '2022-04-03', '2022-04-03', 'Duct sealing and ventilation repair', 4),
+(21, 30, 3, '2020-07-15', '2020-08-07', '2020-08-07', 'Complex residential wiring and troubleshooting', 4),
+(22, 31, 3, '2016-07-10', '2016-08-16', '2016-08-16', 'Smart home system installation and setup', 4),
+(23, 32, 3, '2013-08-01', '2013-09-20', '2013-09-20', 'Full house rewiring project', 4),
+(24, 33, 3, '2009-11-20', '2010-01-01', '2010-01-01', 'General domestic electrical repairs', 4),
+(25, 34, 3, '2007-02-28', '2007-04-02', '2007-04-02', 'Household fault diagnosis and repair', 4),
+(26, 35, 3, '2004-04-01', '2004-05-16', '2004-05-16', 'Basic electrical installation and testing', 4),
+(27, 36, 3, '2009-01-10', '2009-02-14', '2009-02-14', 'Electrical inspection and safety checks', 4),
+(28, 37, 3, '2013-01-01', '2013-02-04', '2013-02-04', 'Industrial electrical system maintenance', 4),
+(29, 38, 3, '2010-08-20', '2010-10-01', '2010-10-01', 'Emergency power outage troubleshooting', 4),
+(30, 39, 3, '2014-11-10', '2014-12-17', '2014-12-17', 'Residential electrical repairs and safety check', 4),
+(14, 82, 5, '2024-07-12', '2024-07-15', '2024-07-17', 'Emergency utility room flood repair', 4),
+(3, 82, 5, '2024-04-13', '2024-04-16', '2024-04-18', 'Radiator valve leak repair', 4),
+(13, 82, 5, '2024-04-13', '2024-04-16', '2024-04-18', 'Kitchen tap replacement', 4),
+(17, 79, 5, '2023-06-18', '2023-06-21', '2023-06-23', 'Under-sink pipe repair', 4),
+(13, 79, 5, '2023-01-22', '2023-01-25', '2023-01-27', 'Toilet leak repair', 4),
+(14, 81, 5, '2023-08-29', '2023-09-01', '2023-09-03', 'Clogged toilet repair', 4),
+(4, 81, 5, '2024-01-04', '2024-01-07', '2024-01-09', 'Pipe joint sealing', 4),
+(9, 75, 5, '2023-12-03', '2023-12-06', '2023-12-08', 'Bathroom blockage fix', 4),
+(8, 75, 5, '2024-01-04', '2024-01-07', '2024-01-09', 'Eco shower system install', 4),
+(11, 83, 5, '2023-06-19', '2023-06-20', '2023-06-22', 'Drainage system repair', 4),
+(3, 83, 5, '2023-11-15', '2023-11-18', '2023-11-20', 'Clog clearance', 4),
+(15, 78, 5, '2024-10-04', '2024-10-07', '2024-10-09', 'Pipe rerouting', 4),
+(12, 78, 5, '2023-06-17', '2023-06-20', '2023-06-22', 'Water softener install', 4),
+(8, 78, 5, '2023-07-31', '2023-08-01', '2023-08-03', 'Renovation plumbing fix', 4),
+(15, 71, 5, '2023-02-28', '2023-03-01', '2023-03-03', 'Outdoor tap repair', 4),
+(2, 71, 5, '2023-06-17', '2023-06-20', '2023-06-22', 'Boiler and pipe upgrade', 4),
+(4, 72, 5, '2024-01-04', '2024-01-07', '2024-01-09', 'Full-house plumbing inspection', 4),
+(5, 72, 5, '2024-09-26', '2024-09-29', '2024-10-01', 'Kitchen tap + water filter install', 4),
+(7, 72, 5, '2024-04-20', '2024-04-23', '2024-04-25', 'Hidden bathtub leak fix', 4),
+(8, 73, 5, '2023-06-17', '2023-06-20', '2023-06-22', 'Kitchen plumbing replacement', 4),
+(6, 73, 5, '2024-02-06', '2024-02-09', '2024-02-11', 'Shower pressure repair', 4),
+(10, 76, 5, '2023-05-14', '2023-05-17', '2023-05-19', 'Piping reroute during renovation', 4),
+(8, 76, 5, '2024-07-02', '2024-07-05', '2024-07-05', 'Drain unclogging and follow-up fix', 4),
+(7, 74, 5, '2023-05-16', '2023-05-19', '2023-05-19', 'General plumbing repair with communication issues', 4),
+(3, 74, 5, '2023-08-02', '2023-08-05', '2023-08-05', 'Shower drainage issue resolution', 4),
+(1, 70, 5, '2024-03-12', '2024-03-15', '2024-03-15', 'Emergency kitchen leak repair', 4),
+(1, 70, 5, '2024-01-06', '2024-01-09', '2024-01-09', 'Outdoor tap installation with winter tips', 4),
+(10, 77, 5, '2023-09-27', '2023-09-30', '2023-09-30', 'Full plumbing inspection and repair explanation', 4),
+(5, 77, 5, '2023-05-16', '2023-05-19', '2023-05-19', 'Emergency boiler part replacement', 4),
+(13, 80, 5, '2023-07-31', '2023-08-03', '2023-08-03', 'Toilet installation with part delay', 4),
+(6, 80, 5, '2023-03-11', '2023-03-14', '2023-03-14', 'Faucet installation with drip issue follow-up', 4),
+(14, 84, 5, '2023-07-31', '2023-08-03', '2023-08-03', 'Valve replacement under sink', 4),
+(5, 84, 5, '2023-05-16', '2023-05-19', '2023-05-19', 'Luxury rainfall shower fitting', 4),
+(6, 84, 5, '2023-08-10', '2023-08-13', '2023-08-13', 'Full bathroom plumbing install', 4),
+(16, 33, 5, '2024-03-26', '2024-03-29', '2024-03-29', 'Pipe attachment job with supervision needed', 4),
+(16, 34, 5, '2024-10-04', '2024-10-07', '2024-10-07', 'Failed faucet installation leading to flooding', 4);
+
 
