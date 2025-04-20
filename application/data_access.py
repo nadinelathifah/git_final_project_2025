@@ -7,27 +7,19 @@ if sys.platform == "win32":
 else:
     mysql_password = ""
 
-<<<<<<< HEAD
-#mydb = mysql.connector.connect(
-#  host="localhost",
-#  user="root",
-#  password="",
-#  database="homeheroes6"
-#)
-
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password= "password",
-  database="homeheroes11")
+  password= mysql_password,
+  database="homeheroes")
 
 
 def get_db_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password",
-        database="homeheroes11"
+        password=mysql_password,
+        database="homeheroes"
     )
     return mydb
 
