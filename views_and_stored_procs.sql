@@ -1,4 +1,4 @@
-USE homeheroes12;
+USE homeheroes;
 
 -- VIEW 1: view_tradespeople_by_category
 -- The purpose of this view is to support the filter function for when a client searches a tradesperson by category and is shown a
@@ -24,7 +24,6 @@ JOIN location AS l ON t.townID = l.townID
 LEFT JOIN reviews AS r ON tp.tp_profileID = r.tp_profileID
 GROUP BY t.workerID, t.taskID, t.townID, CONCAT(t.firstname, ' ', t.lastname), tk.task_name, l.town, tp.phone_number, tp.hourly_rate, tp.bio;
 
-
 -- Display all
 SELECT * FROM view_tradespeople_by_category;
 
@@ -47,34 +46,28 @@ ORDER BY hourly_rate ASC;
 
 
 
--- STORED PROCEDURE 1: BookJob
--- The purpose of this proc is to insert a new row in job_booking table when a client books a tradesperson.
-DELIMITER //
-CREATE PROCEDURE BookJob (
-	IN p_clientID BIGINT,
-    IN p_workerID BIGINT,
-    IN p_taskID BIGINT,
-    IN p_service_start DATE,
-    IN p_service_end DATE,
-    IN p_task_description TEXT
-)
-
-BEGIN
-	INSERT INTO job_booking(clientID, workerID, taskID, service_start_date, service_end_date, task_description, statusID)
-    VALUES (p_clientID, p_workerID, p_taskID, p_service_start, p_service_end, p_task_description, 1);
+-- VIEW 2: view_client_info
+-- The purpose of this view is to display client's personal information in profile settings
+CREATE VIEW view_client_info AS
+SELECT
+	c.clientID,
+    c.firstname,
+    c.lastname,
+    CONCAT(c.firstname, ' ', c.lastname) AS 'full_name',
+    l.townID,
+    l.town,
+    c.email
+FROM clients AS c
+JOIN location AS l ON c.townID = l.townID
+GROUP BY c.clientID;
     
-END //
-
-DELIMITER ;
-
--- TESTING:
-call BookJob(2, 1, 1, '2026-01-01', '2026-02-01', 'paint wall');
-SELECT * from job_booking;
+-- Display client info
+SELECT * FROM view_client_info;
 
 
 
 
--- VIEW 2: view_reviews
+-- VIEW 3: view_reviews
 -- The purpose of this view is to display some reviews on the 'Reviews' webpage
 CREATE VIEW view_reviews AS
 -- Common Table Expression (CTE) temporary result set to use in final query. 
@@ -107,15 +100,16 @@ SELECT
 FROM ranked_reviews
 WHERE rn = 1;
 
--- TESTING:
+-- Display reviews:
 SELECT rating, full_name, comment FROM view_reviews;
 
 
 
--- VIEW 2: view_client_bookings
+
+-- VIEW 4: view_past_bookings
 -- The purpose of this view is to display the client booking history on the dashboard.
 -- Also helpful for when they make a new booking.
-CREATE VIEW view_client_bookings AS
+CREATE VIEW view_past_bookings AS
 SELECT
 	jb.bookingID,
     c.clientID,
@@ -124,9 +118,10 @@ SELECT
     CONCAT(t.firstname, ' ', t.lastname) AS 'tp_full_name',
     tk.taskID,
     tk.task_name,
-    jb.booking_date,
+    DATE_FORMAT(jb.booking_date, '%D %M %Y') AS booking_date,
+    DATE_FORMAT(jb.service_start_date, '%D %M %Y') AS ss_date,
+    DATE_FORMAT(jb.service_end_date, '%D %M %Y') AS se_date,
     jb.service_start_date,
-    jb.service_end_date,
     jb.task_description,
     s.statusID,
     s.status
@@ -135,15 +130,65 @@ JOIN clients AS c ON c.clientID = jb.clientID
 JOIN tradespeople AS t ON t.workerID = jb.workerID
 JOIN tasks AS tk ON tk.taskID = jb.taskID
 JOIN job_status AS s ON s.statusID = jb.statusID
-ORDER BY jb.bookingID, c.clientID, CONCAT(c.firstname, ' ', c.lastname), t.workerID, CONCAT(t.firstname, ' ', t.lastname), tk.taskID, tk.task_name, jb.booking_date, jb.service_start_date, jb.service_end_date, jb.task_description, s.statusID, s.status;
+ORDER BY jb.service_start_date DESC;
 
 -- Display full info
-SELECT * FROM view_client_bookings;
+SELECT * FROM view_past_bookings;
 
 -- Display info to be shown on client dashboard
-SELECT tp_full_name, task_name, booking_date, service_start_date, service_end_date, task_description, status FROM view_client_bookings;
+SELECT booking_date, tp_full_name, task_name, service_start_date, service_end_date, task_description, status FROM view_past_bookings WHERE clientID = 1 ORDER BY booking_date;
+
+SELECT booking_date, tp_full_name, task_name, ss_date, se_date FROM view_past_bookings WHERE clientID = 1;
 
 
+
+-- VIEW 5: STILL IN PROGRESS PLEASE DO NOT LIGHTNING BOLT
+CREATE VIEW view_booking_requests AS
+SELECT
+    CONCAT(c.firstname, ' ', c.lastname) AS full_name,
+    tk.task_name,
+    l.town,
+    jb.booking_date,
+    jb.service_start_date,
+    DATEDIFF(jb.service_start_date, jb.service_end_date) AS working_days,
+    jb.task_description
+FROM job_booking AS jb 
+JOIN clients AS c ON jb.clientID = c.clientID
+JOIN tasks AS tk ON jb.taskID = tk.taskID
+JOIN location AS l ON l.townID = jb.townID
+GROUP BY CONCAT(c.firstname, ' ', c.lastname), task_name, booking_date, service_start_date, DATEDIFF(jb.service_start_date, jb.service_end_date), task_description; 
+
+
+
+
+-- STORED PROCEDURE 1: BookJob
+-- The purpose of this proc is to insert a new row in job_booking table when a client books a tradesperson.
+DELIMITER //
+CREATE PROCEDURE BookJob (
+	IN p_clientID BIGINT,
+    IN p_workerID BIGINT,
+    IN p_taskID BIGINT,
+    IN p_service_start DATE,
+    IN p_service_end DATE,
+    IN p_task_description TEXT
+)
+
+BEGIN
+	INSERT INTO job_booking(clientID, workerID, taskID, service_start_date, service_end_date, task_description, statusID)
+    VALUES (p_clientID, p_workerID, p_taskID, p_service_start, p_service_end, p_task_description, 1);
+    
+END //
+
+DELIMITER ;
+
+-- TESTING:
+call BookJob(2, 1, 1, '2026-01-01', '2026-02-01', 'paint wall');
+SELECT * from job_booking;
+
+
+
+-- STORED PROCEDURE 2: set_tp_profile_info
+-- The purpose of this proc is to insert a new row in tradesperson_profile table when a tradesperson sets up their account.
 DELIMITER //
 CREATE PROCEDURE set_tp_profile_info (
 	IN p_workerID BIGINT,
@@ -164,20 +209,3 @@ DELIMITER ;
 call set_tp_profile_info(85, '+44 1001 100001', 20.50, 'lovely lawnmowers', 'lush lush gardens');
 SELECT * FROM tradesperson_profile;
 
-
-
--- VIEW 3: STILL IN PROGRESS PLEASE DO NOT LIGHTNING BOLT
-CREATE VIEW view_booking_requests AS
-SELECT
-    CONCAT(c.firstname, ' ', c.lastname) AS full_name,
-    tk.task_name,
-    l.town,
-    jb.booking_date,
-    jb.service_start_date,
-    DATEDIFF(jb.service_start_date, jb.service_end_date) AS working_days,
-    jb.task_description
-FROM job_booking AS jb 
-JOIN clients AS c ON jb.clientID = c.clientID
-JOIN tasks AS tk ON jb.taskID = tk.taskID
-JOIN location AS l ON l.townID = jb.townID
-GROUP BY CONCAT(c.firstname, ' ', c.lastname), task_name, booking_date, service_start_date, DATEDIFF(jb.service_start_date, jb.service_end_date), task_description; 

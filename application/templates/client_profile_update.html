@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<section id="client-profile">
+    <img class="bg-img-3" src="{{ url_for('static', filename='decoration/blue.png')}}" alt="Decorative abstract shape">
+    <div id="update-client-profile" class="container">
+        <img class="profile-icon" src="{{ url_for('static', filename='decoration/lightblue.png') }}" alt="Decorative abstract shape">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="profile-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="Decorative abstract shape">
+            </div>
+            <div class="col-md-8">
+                <div class="text-content">
+                    <hr>
+                    <h2>update your profile</h2>
+                    <h5>Provide us with your latest details to ease your hero search</h5>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="form-wrapper">
+            <form action="{{ url_for('update_client_profile') }}" method="POST">
+                <input type="hidden" name="client_id" value="{{ client_id }}">
+    
+                <div class="form-group">
+                    <label for="firstname"><h5><span class="material-symbols-outlined search">person</span>Update your firstname:</h5></label>
+                    <input type="text" name="firstname" value="{{ firstname }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastname"><h5><span class="material-symbols-outlined search">person</span>Update your surname:</h5></label>
+                    <input type="text" name="lastname" value="{{ lastname }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="townID"><h5><span class="material-symbols-outlined search">home_pin</span>Update your location:</h5></label>
+                    <select name="townID" class="form-control">
+                        <option value="">Select Town</option>
+                        {% for town in towns %}
+                            <option value="{{ town[0] }}" {% if profile.townID == town[0] %} selected {% endif %}>{{ town[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <button type="submit" class="btn btn-primary" style="font-size: 1.13rem; font-weight: 500;">Save Changes</button>
+            </form>
+            <div id="back-button">
+                <a href="{{ url_for('client_profile') }}#client-profile"><button class="btn btn-primary btn-block back-btn">Back to Profile Menu</button></a>
+            </div>
+        </div>
+
+        <br>
+    </div>
+</section>
+
+{% endblock %}

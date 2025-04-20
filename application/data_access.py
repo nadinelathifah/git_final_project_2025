@@ -12,7 +12,7 @@ def get_db_connection():
         host="localhost",
         user="root",
         password=mysql_password,
-        database="homeheroes12"
+        database="homeheroes"
     )
     return mydb
 
@@ -182,10 +182,11 @@ def book_job(clientID, workerID, taskID, service_start, service_end, task_desc):
         connection.close()
 
 
-def get_client_bookings():
+def get_client_bookings(clientID):
     connection = get_db_connection()
-    cursor = connection.cursor()
-    cursor.execute("SELECT tp_full_name, task_name, booking_date, service_start_date, service_end_date, task_description, status FROM view_client_bookings WHERE clientID = %s")
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT tp_full_name, task_name, booking_date, ss_date, se_date, task_description, status FROM view_past_bookings WHERE clientID = %s"
+    cursor.execute(query, (clientID,))
     booking_list = cursor.fetchall()
     cursor.close()
     connection.close()
@@ -289,6 +290,58 @@ def display_tp_profile(workerID):
     cursor = connection.cursor()
     query = "SELECT full_name, task_name, town, hourly_rate, average_rating, total_reviews, bio, phone_number, business FROM view_tradespeople_by_category WHERE workerID = %s"
     cursor.execute(query, (workerID,))
+    profile = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return profile
+
+
+def update_client_info(clientID, firstname=None, lastname=None, townID=None):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    update_fields = []
+    values = []
+
+    if firstname:
+        update_fields.append("firstname = %s")
+        values.append(firstname)
+
+    if lastname:
+        update_fields.append("lastname = %s")
+        values.append(lastname)
+    
+    if townID:
+        update_fields.append("townID = %s")
+        values.append(townID)
+    
+    if update_fields:
+        query = f"""
+            UPDATE clients
+            SET {', '.join(update_fields)}
+            WHERE clientID = %s
+        """
+        values.append(clientID)
+        print("Executing:", query)
+        print("With values:", values)
+        
+        try:
+            cursor.execute(query, tuple(values))
+            connection.commit()
+        except Exception as e:
+            print("Database error:", e)
+    else:
+        print("No fields to update.")
+    
+    cursor.close()
+    connection.close()
+
+
+def display_client_profile(clientID):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    query = "SELECT firstname, lastname, town, email FROM view_client_info WHERE clientID = %s"
+    cursor.execute(query, (clientID,))
     profile = cursor.fetchone()
     cursor.close()
     connection.close()

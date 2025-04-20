@@ -114,6 +114,7 @@
     border: 1px solid black;
     color: white;
     font-weight: 500;
+    font-size: 1.13rem;
 }
 
 .back-btn:hover {
@@ -143,6 +144,7 @@
     margin: 20px;
     padding: 5px 20px 5px 20px;
     font-weight: 500;
+    font-size: 1.13rem;
 }
 
 .profile-btn:hover {
@@ -160,4 +162,192 @@
 
 .form-wrapper select {
     width: 100%;
+}
+
+
+/* -------------- Client Profile Styling -------------- */
+
+#client-profile {
+    min-height: 100vh;
+    background: whitesmoke;
+    overflow-y: hidden;
+    z-index: 0;
+}
+
+#client-profile h3 {
+    text-transform: capitalize;
+}
+
+#client-profile h6 {
+    font-size: 1.2rem;
+}
+
+#client-profile .card {
+    border: 1px solid #96c9ff;
+    border-radius: 25px;
+    padding: 30px;
+}
+
+#client-profile .text-content {
+    margin-left: 40px;
+}
+
+#update-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.update-btn {
+    background: #007bff;
+    color: white;
+    border: 1px solid white;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 1.13rem;
+    width: 50vw;
+    z-index: 2;
+}
+
+.update-btn:hover {
+    background: white;
+    border: 1px solid #007bff;
+    color: #007bff;
+}
+
+#client-profile {
+    position: relative;
+    min-height: 110vh;
+    background: whitesmoke;
+    overflow-x: hidden;
+    z-index: 0;
+}
+
+#client-profile .container {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 50px;
+    z-index: 0;
+}
+
+#client-profile .row {
+    width: 100%;
+    z-index: 1;
+}
+
+#client-profile .col-md-4 {
+    width: 20%;
+}
+
+#client-profile .text-content {
+    z-index: 5;
+}
+
+#client-profile .col-md-8 {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 2;
+}
+
+#client-profile .profile-icon {
+    max-width: 40vw;
+    position: absolute;
+    right: -240px;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+#client-profile .profile-img {
+    max-width: 12vw;
+}
+
+#client-profile .container h2 {
+    text-transform: capitalize;
+}
+
+#client-profile label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#client-profile .form-group {
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+#client-profile .form-group input {
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid #96c9ff;
+    border-radius: 25px;
+    padding: 5px 15px 5px 15px;
+    z-index: 5;
+}
+
+#client-profile .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#client-profile form {
+    width: 70%;
+}
+
+#client-profile .display-profile {
+    margin-top: 50px;
+}
+
+#client-profile .display-profile h4 {
+    text-transform: capitalize;
+}
+
+#client-profile .display-profile .card {
+    padding: 40px;
+    border-radius: 25px;
+    border: 1px solid #96c9ff;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-content .card {
+    width: 100%;
+}
+
+#client-profile .bg-img-1 {
+    position: absolute;
+    max-width: 40vw;
+    top: 100px;
+    right: -200px;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+#client-profile .bg-img-2 {
+    position: absolute;
+    max-width: 40vw;
+    bottom: -150px;
+    left: -300px;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+#client-profile .bg-img-3 {
+    position: absolute;
+    max-width: 40vw;
+    bottom: -150px;
+    left: -300px;
+    opacity: 0.5;
+    z-index: -1;
 }

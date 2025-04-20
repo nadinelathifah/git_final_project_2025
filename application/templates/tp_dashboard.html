@@ -1,9 +1,41 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<section id="welcome-tradesperson">
-    <h2>Welcome back, {{ name }}!</h2>
-    <p>Let's see what we have for you today!</p>
+<section id="tp-dashboard">
+    <div class="container pt-5">
+        <div class="title-text">
+            <hr>
+            <h2>{{ name }}'s Dashboard</h2>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Tips on how you can get more bookings!</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5><span class="material-symbols-outlined">counter_1</span><strong>Set up your profile</strong></h5>
+                        <p>Customers are way more likely to book someone with a complete profile. Showcase your skills, certifications & potential — it helps build trust right away.</p>
+                        <h5><span class="material-symbols-outlined">counter_2</span><strong>Update your status with an enthusiastic message!</strong></h5>
+                        <p>Let customers know you're active and ready to go! A dynamic message shows you're engaged, approachable, and open for business. A little personality goes a long way!</p>
+                        <h5><span class="material-symbols-outlined">counter_3</span><strong>Collect reviews from happy customers :)</strong></h5>
+                        <p>A couple of five-star reviews can go a long way. After a job well done, kindly ask your client to leave a quick review. It’s one of the best ways to build credibility fast.</p>
+                        <h5><span class="material-symbols-outlined">counter_4</span><strong>Respond Quickly to Messages & Booking Requests</strong></h5>
+                        <p>Speed matters! The faster you reply, the more likely you are to secure the booking. Even a short “Hi! Thanks for getting in touch, I’ll follow up shortly” shows professionalism.</p>
+                        <h5><span class="material-symbols-outlined">counter_5</span><strong>Be Friendly & Professional On the Job</strong></h5>
+                        <p>Word of mouth is powerful. Great customer experiences lead to repeat work and referrals — and you never know who they’ll recommend you to next!</p>
+                        <h5><span class="material-symbols-outlined">counter_6</span><strong>Keep Learning & Improving</strong></h5>
+                        <p>Stay sharp! Whether it’s picking up a new skill, investing in better tools, or improving customer service, small improvements can lead to big growth.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img class="tp-db-img img-1" src="{{ url_for('static', filename='logo/bookingicon.svg' )}}" alt="Booking icon">
+                <img class="tp-db-img img-2" src="{{ url_for('static', filename='logo/gears.svg' )}}" alt="Gears icon">
+            </div>
+        </div>
+    </div>
 </section>
 
 {% endblock %}

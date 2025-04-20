@@ -2,7 +2,7 @@
 {% block body_content %}
 
 <section id="find-tp">
-    <div class="">
+    <div class="container-fluid">
         <div class="outer-wrapper">
             <div class="col-md-6 column-left">
                 <div class="card find-card">
@@ -55,10 +55,12 @@
             </div>
 
             <div class="col-md-6 column-right">
-                <img class="find-img img-1" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="">
-                <img class="find-img img-2" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="">
-                <img class="find-img img-3" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="">
-                <img class="find-img img-4" src="{{ url_for('static', filename='images/handywoman2.png')}}" alt="">
+                <!-- <img class="find-img img-1" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape"> -->
+                <img class="find-img img-2" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="Decorative abstract shape">
+                <!-- <img class="find-img img-3" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="Standalone image of a handywoman"> -->
+                <!-- <img class="find-img img-4" src="{{ url_for('static', filename='images/handywoman2.png')}}" alt="Standalone image of a handywoman"> -->
+                <img class="booking-img img-1" src="{{ url_for('static', filename='logo/bookingicon.svg') }}" alt="Booking icon">
+                <img class="booking-img img-2" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="Standalone image of a handywoman">
             </div>
         </div>
         {% if results %}

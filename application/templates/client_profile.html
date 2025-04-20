@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<section id="client-profile">
+    <img class="bg-img-1" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
+    <div id="current-client-profile" class="container pt-5">
+        <div class="display-profile">
+            <div class="title-text">
+                <hr>
+                <h3>your profile</h3>
+                <h5>Below are your current personal details</h5>
+                <hr>
+            </div>
+            <div class="profile-content">
+                <div class="card">
+                    <div class="text-content">
+                        <h6><span class="material-symbols-outlined search">person</span><strong>Firstname:</strong> {{ profile[0] }}</h6><br>
+                        <h6><span class="material-symbols-outlined search">person</span><strong>Lastname:</strong> {{ profile[1] }}</h6><br>
+                        <h6><span class="material-symbols-outlined search">home_pin</span><strong>Location:</strong> {{ profile[2] }}</h6><br>
+                        <h6><span class="material-symbols-outlined search">mail</span><strong>Email Address:</strong> {{ profile[3] }}</h6>
+                    </div>
+                </div>
+                <br>
+                <img class="bg-img-2" src="{{ url_for('static', filename='decoration/blue.png')}}" alt="Decorative abstract shape">
+                <div id="update-button">
+                    <a href="{{ url_for('update_client_profile') }}#update-client-profile"><button class="btn btn-primary btn-block update-btn">Update Profile</button></a>
+                </div>
+            </div>
+            <div id="back-button">
+                <a href="{{ url_for('client_dashboard') }}"><button class="btn btn-primary btn-block back-btn">Back to Dashboard</button></a>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</section>
+
+{% endblock %}

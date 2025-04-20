@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, get_towns_with_ids, get_tasks_with_ids
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings
 from application import app
 import bcrypt
 
@@ -136,7 +136,7 @@ def welcome_client():
 
     return render_template('welcome_client.html',
                            name=name,
-                           head='Welcome',
+                           head=welcome_message,
                            title=welcome_message,
                            subheading='Account Successfully Created! Explore and browse our services',
                            img1='decoration/squiggleblue.png',
@@ -147,12 +147,12 @@ def welcome_client():
 # Tradesperson Reg Confirmation and Welcome Message
 @app.route('/welcome/tradesperson', methods=['GET'])
 def welcome_tradesperson():
-    tradesperson_email = session.get('user')
+    tradesperson_id = session.get('workerID')
 
-    if not tradesperson_email:
+    if not tradesperson_id:
         return redirect(url_for('login_tradesperson'))
     
-    tradesperson = get_tp_by_email(tradesperson_email)
+    tradesperson = get_tp_by_id(tradesperson_id)
     
     if tradesperson:
         name = tradesperson['firstname']
@@ -163,7 +163,7 @@ def welcome_tradesperson():
 
     return render_template('welcome_tradesperson.html',
                            name=name,
-                           head='Welcome',
+                           head=welcome_message,
                            title=welcome_message,
                            subheading='Account Successfully Created! Let\'s get started!',
                            img1='decoration/squiggleblue.png',
@@ -222,24 +222,45 @@ def logout():
 # --------------- Dashboards --------------- #
 @app.route('/client/dashboard')
 def client_dashboard():
+    client_id = session.get('client_id')
+    client = get_client_by_id(client_id)
+
+    firstname = client['firstname'] if client else 'Client'
+    greeting = f"Welcome Back, {firstname}!"
+
+    head = f"{firstname}'s Dashboard"
+
+    bookings = get_client_bookings(client_id)
+
     return render_template('client_dashboard.html',
-                           head='Client Dashboard',
-                           title='Your Dashboard',
-                           subheading='Explore our services',
+                           name=firstname,
+                           bookings=bookings,
+                           head=head,
+                           title=greeting,
+                           subheading='Explore your dashboard',
                            background_image='/static/images/interior.png')
 
 
 @app.route('/task/dashboard')
 def task_dashboard():
+    worker_id = session.get('worker_id')
+    tradesperson = get_tp_by_id(worker_id)
+
+    firstname = tradesperson['firstname'] if tradesperson else 'Tasker'
+    greeting = f"Welcome Back, {firstname}!"
+
+    head = f"{firstname}'s Dashboard"
+
     return render_template('tp_dashboard.html',
-                           head='Task Dashboard',
-                           title='Your Dashboard',
-                           subheading='View your profile', 
+                           head=head,
+                           name=firstname,
+                           title=greeting,
+                           subheading='View your dashboard', 
                            background_image='/static/images/wideshot3.jpeg')
 
 
 
-# --------------- Booking Pages --------------- #
+# --------------- Client Booking Pages --------------- #
 
 # Client - Search for a tradesperson to choose.
 @app.route('/find_tradesperson', methods=['GET', 'POST'])
@@ -266,7 +287,7 @@ def find_tradesperson():
                            head="find a tradesperson",
                            title="find & book your home hero!",
                            subheading="get your task done now",
-                           background_image='/static/images/houses.jpg')
+                           background_image='/static/images/mansion.png')
 
 
 # Client - after choosing the tradesperson, book them.
@@ -288,29 +309,29 @@ def book_service():
             return "Error: Invalid workerID or taskID", 400
 
         # Redirect to a confirmation page or back to the tradesperson's page
-        return redirect(url_for('client_dashboard'))
+        return redirect('/client_dashboard')
 
     # Handle the GET request: this is where the user will be directed after clicking "Book This Tradesperson"
     # Handle GET request to display the form and passed values
-    tradesperson_id = request.args.get('workerID')
+    worker_id = request.args.get('workerID')
     task_id = request.args.get('taskID')
 
     # For debugging
-    print(f"workerID: {tradesperson_id}, taskID: {task_id}") 
+    print(f"workerID: {worker_id}, taskID: {task_id}") 
 
     # Retrieve the tradesperson's workerID and full name via get_tp_by_id() function.
-    tradesperson = get_tp_by_id(tradesperson_id)
+    tradesperson = get_tp_by_id(worker_id)
     name = tradesperson['firstname'] + " " + tradesperson['lastname']
 
     return render_template('book_service.html',
                            tradesperson=tradesperson, 
                            task_id=task_id,
-                           worker_id=tradesperson_id,
+                           worker_id=worker_id,
                            name = name,
                            head="Book a tradesperson",
                            title='Book a tradesperson!',
                            subheading='Your home rescue, just a click away',
-                           background_image='/static/images/houses.jpg')
+                           background_image='/static/images/mansion.png')
 
 
 @app.route('/booking_confirmation')
@@ -319,10 +340,57 @@ def booking_confirmation():
                            head="booking confirmed",
                            title="You have successfully booked!",
                            subheading="Please wait for confirmation from the tradesperson.",
-                           background_image='/static/images/housess.jpeg')
+                           background_image='/static/images/houses.jpeg')
 
 
-# --------------- Tp Profile --------------- #
+
+# --------------- Client Profile --------------- #
+
+@app.route('/client_profile', methods=['GET'])
+def client_profile():
+
+    client_id = session.get('client_id')
+    client = get_client_by_id(client_id)
+    firstname = client['firstname'] if client else 'Client'
+
+    head = f"{firstname}'s profile"
+
+    profile = display_client_profile(client_id)
+
+    return render_template('client_profile.html',
+                           head=head,
+                           name = firstname,
+                           profile=profile,
+                           title="Your profile",
+                           subheading="View or update your personal details",
+                           background_image='/static/images/interior.png')
+
+
+@app.route('/client_profile/update', methods=['GET', 'POST'])
+def update_client_profile():
+    towns = get_towns_with_ids()
+    client_id = session.get('client_id')
+    profile = display_client_profile(client_id)
+
+    if request.method == 'POST':
+        client_id = session.get('client_id')
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        townID = request.form.get('townID')
+
+        update_client_info(client_id, firstname, lastname, townID)
+        return redirect('/client_profile#client-profile')
+    return render_template('client_profile_update.html',
+                           towns=towns,
+                           profile=profile,
+                           head='update profile',
+                           title="Your profile",
+                           subheading="View or update your personal details",
+                           background_image='/static/images/interior.png')
+
+
+
+# --------------- Tradesperson Profile --------------- #
 
 @app.route('/tradesperson_profile', methods=['GET'])
 def tradesperson_profile():
@@ -410,6 +478,7 @@ def update_tp_info():
                            title='profile setup',
                            subheading='enable clients to see your details',
                            background_image='/static/images/wideshot3.jpeg')
+
 
 
 # --------------- Services --------------- #
