@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, get_towns_with_ids, get_tasks_with_ids
 from application import app
 import bcrypt
 
@@ -288,7 +288,7 @@ def book_service():
             return "Error: Invalid workerID or taskID", 400
 
         # Redirect to a confirmation page or back to the tradesperson's page
-        return redirect(url_for('client_dashboard'))  # Or you can redirect to a different route
+        return redirect(url_for('client_dashboard'))
 
     # Handle the GET request: this is where the user will be directed after clicking "Book This Tradesperson"
     # Handle GET request to display the form and passed values
@@ -298,13 +298,15 @@ def book_service():
     # For debugging
     print(f"workerID: {tradesperson_id}, taskID: {task_id}") 
 
-    # Retrieve the tradesperson's workerID via get_tp_by_email() function.
-    tradesperson = get_tp_by_email(tradesperson_id)
+    # Retrieve the tradesperson's workerID and full name via get_tp_by_id() function.
+    tradesperson = get_tp_by_id(tradesperson_id)
+    name = tradesperson['firstname'] + " " + tradesperson['lastname']
 
     return render_template('book_service.html',
                            tradesperson=tradesperson, 
                            task_id=task_id,
                            worker_id=tradesperson_id,
+                           name = name,
                            head="Book a tradesperson",
                            title='Book a tradesperson!',
                            subheading='Your home rescue, just a click away',
@@ -319,6 +321,98 @@ def booking_confirmation():
                            subheading="Please wait for confirmation from the tradesperson.",
                            background_image='/static/images/housess.jpeg')
 
+
+# --------------- Tp Profile --------------- #
+
+@app.route('/tradesperson_profile', methods=['GET'])
+def tradesperson_profile():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+    return render_template('tp_profile.html',
+                           head='profile information',
+                           profile=profile,
+                           title='your profile',
+                           subheading='choose from the following options below',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+@app.route('/tradesperson_profile/setup', methods=['GET', 'POST'])
+def setup_tp_profile():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+
+    if request.method == 'POST':
+        workerID = session.get('worker_id')
+        phone_number = request.form.get('phone_number')
+        hourly_rate = request.form.get('hourly_rate')
+        business = request.form.get('business')
+        bio = request.form.get('bio')
+
+        set_tp_profile(workerID, phone_number, hourly_rate, business, bio)
+        profile = display_tp_profile(workerID)
+    print("profile: ", profile)
+
+    return render_template('tp_profile_setup.html',
+                           profile = profile,
+                           head='profile setup',
+                           title='profile setup',
+                           subheading='enable clients to see your details',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+@app.route('/tradesperson_profile/update/profile', methods=['GET', 'POST'])
+def update_tp_profile():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+
+    if request.method == 'POST':
+        workerID = session.get('worker_id')
+        phone_number = request.form.get('phone_number')
+        hourly_rate = request.form.get('hourly_rate')
+        business = request.form.get('business')
+        bio = request.form.get('bio')
+
+        update_tradesperson_profile(workerID, phone_number, hourly_rate, business, bio)
+        profile = display_tp_profile(workerID)
+    print("profile: ", profile)
+
+    return render_template('tp_profile_update.html',
+                           profile = profile,
+                           head='profile setup',
+                           title='profile setup',
+                           subheading='enable clients to see your details',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+@app.route('/tradesperson_profile/update/personal', methods=['GET', 'POST'])
+def update_tp_info():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+    tasks = get_tasks_with_ids()
+    towns = get_towns_with_ids()
+
+    if request.method == 'POST':
+        workerID = session.get('worker_id')
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        taskID = request.form.get('taskID')
+        townID = request.form.get('townID')
+
+        update_tp_personal_info(workerID, firstname, lastname, taskID, townID)
+        profile = display_tp_profile(workerID)
+    print("profile: ", profile)
+
+    return render_template('tp_update_personal_info.html',
+                           profile = profile,
+                           tasks=tasks,
+                           towns=towns,
+                           head='profile setup',
+                           title='profile setup',
+                           subheading='enable clients to see your details',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+# --------------- Services --------------- #
 @app.route('/services/electrician')
 def electrician():
         return render_template('electrician.html',

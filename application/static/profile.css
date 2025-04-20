@@ -1,0 +1,163 @@
+/* -------------- Tradesperson Profile Styling -------------- */
+
+#tp-profile {
+    position: relative;
+    min-height: 110vh;
+    background: whitesmoke;
+    overflow-x: hidden;
+    z-index: 0;
+}
+
+#tp-profile .container {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 50px;
+    z-index: 0;
+}
+
+#tp-profile .row {
+    width: 100%;
+    z-index: 1;
+}
+
+#tp-profile .col-md-4 {
+    width: 20%;
+}
+
+#tp-profile .text-content {
+    z-index: 5;
+}
+
+#tp-profile .col-md-8 {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 2;
+}
+
+#tp-profile .profile-icon {
+    max-width: 25vw;
+    position: absolute;
+    right: -240px;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+#tp-profile .profile-img {
+    max-width: 12vw;
+}
+
+#tp-profile .container h2 {
+    text-transform: capitalize;
+}
+
+#tp-profile label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#tp-profile .form-group {
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+#tp-profile .form-group input {
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid rgb(255, 173, 86);
+    border-radius: 25px;
+    padding: 5px 15px 5px 15px;
+    z-index: 5;
+}
+
+#tp-profile .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#tp-profile form {
+    width: 70%;
+}
+
+#tp-profile .display-profile {
+    margin-top: 50px;
+}
+
+#tp-profile .display-profile h4 {
+    text-transform: capitalize;
+}
+
+#tp-profile .display-profile .card {
+    padding: 40px;
+    border-radius: 25px;
+    border: 1px solid rgb(0, 21, 116);
+}
+
+#back-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.back-btn {
+    border-radius: 25px;
+    padding: 5px 15px 5px 15px;
+    background: rgb(255, 128, 2);
+    border: 1px solid black;
+    color: white;
+    font-weight: 500;
+}
+
+.back-btn:hover {
+    background: white;
+    color: rgb(255, 128, 2);
+}
+
+#tradesperson-profile {
+    min-height: 50vh;
+    width: 100vw;
+    background: whitesmoke;
+}
+
+#tradesperson-profile .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-btn {
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    background: rgb(255, 128, 2);
+    border: 1px solid rgb(0, 21, 116);;
+    border-radius: 25px;
+    margin: 20px;
+    padding: 5px 20px 5px 20px;
+    font-weight: 500;
+}
+
+.profile-btn:hover {
+    background: white;
+    color: rgb(255, 128, 2);
+}
+
+#tradesperson-profile .text-content {
+    width: 100%;
+}
+
+#tradesperson-profile h2{
+    text-transform: capitalize;
+}
+
+.form-wrapper select {
+    width: 100%;
+}

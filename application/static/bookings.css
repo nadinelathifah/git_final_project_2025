@@ -1,4 +1,4 @@
-/* -------------- Booking Services -------------- */
+/* -------------- Search Tradesperson Form Styling -------------- */
 
 #find-tp {
     position: relative;
@@ -35,6 +35,7 @@
     width: 70%;
 }
 
+/* -------------- Images -------------- */
 
 .find-img {
     position: absolute;
@@ -71,6 +72,7 @@
     z-index: 5;
 }
 
+/* -------------- Form Card -------------- */
 
 #find-tp .mb-3 label {
     display: block;
@@ -98,7 +100,6 @@
     color: #007bff;
     border: 1.5px solid #007bff;
 }
-
 
 #book-btn {
     width: 100%;
@@ -189,9 +190,36 @@
 
 #booking-form {
     min-height: 100vh;
+    width: 100vw;
     background: whitesmoke;
 }
 
 #booking-form .container {
-    padding-top: 100px;
+    min-height: 100vh;
+    width: 100vw;
+    padding-top: 70px;
+}
+
+.booking-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#booking-form form {
+    width: 70%;
+}
+
+#booking-form .form-group {
+    margin-bottom: 30px;
+}
+
+#booking-form input {
+    border: 1px solid #96c9ff;;
+    border-radius: 25px;
+}
+
+#booking-form textarea {
+    height: 20vh;
+    border: 1px solid #96c9ff;;
+    border-radius: 5px;
 }
