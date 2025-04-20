@@ -65,6 +65,7 @@
 #tp-dashboard .card-body p {
     font-size: 1.13rem;
     font-weight: 500;
+    margin-bottom: 30px;
 }
 
 #tp-dashboard .material-symbols-outlined {
