@@ -184,7 +184,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
+}
+
+#painting-services .text-body {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#painting-services .text-body p {
+    font-size: 1rem;
+}
+
+#painting-services .text-body h4 {
+    font-size: 1.4rem;
+    margin-bottom: 40px;
 }
 
 

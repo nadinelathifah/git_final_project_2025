@@ -61,3 +61,54 @@
     border-radius: 50px;
     z-index: 3;
 }
+
+
+#moving-services-section .col-sm {
+    display: flex;               /* Turns .col-sm into a flexbox container */
+    flex-direction: row;         /* Lays out the items inside the flexbox container (cards) in a horizontal row */
+    justify-content: center;     /* Centers the items horizontally */
+    align-items: flex-start;         /* Changed from center to flex-start for cleaner top alignment */
+    gap: 50px;                   /* Adds space (gap) between the items in the flexbox container – i.e. gap between cards. */
+    flex-wrap: wrap;
+}
+
+.moving-wrapper {
+    height: auto; /* Set auto, not 60vh, to avoid strange resizing on mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px
+}
+
+#moving-services-section .text-content {
+    padding: 0 20px 20px 20px;
+}
+
+#moving-services-section .card img {
+    width: 100%;
+    height: 200px; /* FIXED height for all images */
+    object-fit: cover; /* Makes images fill without stretching */
+    border-radius: 25px 25px 0 0;
+}
+
+
+#moving-services-section .card {
+    width: 300px;
+    background: #007bff;
+    color: white;
+    text-align: center;
+    box-shadow: -10px 10px orange;
+    border-radius: 25px;
+    overflow: hidden; /* Important: keeps the image inside rounded corners */
+    display: flex;
+    flex-direction: column;
+    height: 500px; /* Fix card height to keep all same */
+}
+
+@media (max-width: 768px) {
+    #moving-services-section .col-sm {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
