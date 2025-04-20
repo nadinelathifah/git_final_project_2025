@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename= 'plumbing.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'example.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'bookings.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'repair.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <script src="{{ url_for('static', filename= 'script.js') }}" defer></script>
         <title>{{ head|title }}</title>
@@ -67,7 +68,7 @@
                                 {% else %}
                                     <li><a href="/services/moving" class="dropdown-item nav-link disabled">Moving</a></li>
                                 {% endif %}
-                                {% if request.path != '/example' %}
+                                {% if request.path != '/services/home_repairs' %}
                                     <li><a href="/services/home_repairs" class="dropdown-item">Home Repairs</a></li>
                                 {% else %}
                                     <li><a href="/services/home_repairs" class="dropdown-item nav-link disabled">Home Repairs</a></li>

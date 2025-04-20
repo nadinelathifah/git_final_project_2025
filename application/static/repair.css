@@ -1,0 +1,115 @@
+#repair-section {
+    height: 100vh;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#repair-section .card {
+    max-width: 300px;
+    background: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: -10px 10px orange;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+#repair-section .col-sm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#repair-section .card h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+#repair-section .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#repair-section .card button {
+  background-color: yellow;
+  color: black;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#repair-section .card button:hover {
+  background-color: orange;
+}
+
+/* part two CSS styling for repairs*/
+#repair-2 {
+    height: 100vh;
+    background: aliceblue;
+    z-index: 1;
+}
+
+#repair-2 .card {
+    position: relative;
+    background: linear-gradient(to left, #96c9ff, #90e0ef, #f0f8ff);
+    height: 80vh;
+    width: 80vw;
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 25px;
+    z-index: 2;
+}
+
+#repair-2 .container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#repair-2 .container img {
+    position: absolute;
+    left: 55px;
+    width: 50vw;
+    border-radius: 50px;
+    z-index: 3;
+}
+
+#repair-2 .content {
+    position: absolute;
+    background: whitesmoke;
+    height: 35vh;
+    width: 43vw;
+    border-radius: 25px;
+    padding: 45px;
+    margin-right: 20px;
+    z-index: 5;
+}
+
+/*.navbar {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+} this is the frosted panel appearance 
+
+
