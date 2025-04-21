@@ -3,33 +3,38 @@
 
 <section id="booking-form">
     <div class="container">
-        <h2>Book a Service with {{ tradesperson.full_name }}</h2>
+        <div class="text-content">
+            <hr>
+            <h2>Book {{ task }} with {{ name }}</h2>
+            <hr>
+        </div>
 
-        <p><strong>Worker ID:</strong> {{ worker_id }}</p>
-        <p><strong>Task ID:</strong> {{ task_id }}</p>
+        <br>
 
-        <form action="{{ url_for('book_service') }}#booking-form" method="POST">
-            <input type="hidden" name="client_id" value="{{ client_id }}">
-            <input type="hidden" name="worker_id" value="{{ worker_id }}">
-            <input type="hidden" name="task_id" value="{{ task_id }}">
-
-            <div class="form-group">
-                <label for="service_start">Service Start Date:</label>
-                <input type="date" id="service_start" name="service_start" required class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="service_end">Service End Date:</label>
-                <input type="date" id="service_end" name="service_end" required class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="task_description">Task Description:</label>
-                <textarea id="task_description" name="task_description" required class="form-control"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit Booking</button>
-        </form>
+        <div class="booking-wrapper">
+            <form action="{{ url_for('book_service') }}#booking-form" method="POST">
+                <input type="hidden" name="client_id" value="{{ client_id }}">
+                <input type="hidden" name="worker_id" value="{{ worker_id }}">
+                <input type="hidden" name="task_id" value="{{ task_id }}">
+    
+                <div class="form-group">
+                    <label for="service_start"><h5><span class="material-symbols-outlined search">calendar_clock</span> When would you like {{ name }} to start?</h5></label>
+                    <input type="date" id="service_start" name="service_start" required class="form-control">
+                </div>
+    
+                <div class="form-group">
+                    <label for="service_end"><span class="material-symbols-outlined search">task_alt</span><h5>When would you like the job done?</h5></label>
+                    <input type="date" id="service_end" name="service_end" required class="form-control">
+                </div>
+    
+                <div class="form-group">
+                    <label for="task_description"><span class="material-symbols-outlined search">person_edit</span><h5>Tell us more about what you need help with:</h5></label>
+                    <textarea id="task_description" name="task_description" placeholder="add a comment..." required class="form-control"></textarea>
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Submit Booking</button>
+            </form>
+        </div>
     </div>
 </section>
 

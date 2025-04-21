@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<section id="tp-profile">
+    <div id="personal-info" class="container">
+        <img class="profile-icon" src="{{ url_for('static', filename='decoration/circle_orange.png') }}" alt="">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="profile-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="">
+            </div>
+            <div class="col-md-8">
+                <div class="text-content">
+                    <hr>
+                    <h2>update your personal information</h2>
+                    <h5>Provide your clients with your latest personal details</h5>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="form-wrapper">
+            <form action="{{ url_for('update_tp_info') }}" method="POST">
+                <input type="hidden" name="worker_id" value="{{ worker_id }}">
+    
+                <div class="form-group">
+                    <label for="firstname"><h5><span class="material-symbols-outlined search">person</span>Update your firstname:</h5></label>
+                    <input type="text" name="firstname" value="{{ firstname }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastname"><h5><span class="material-symbols-outlined search">person</span>Update your surname:</h5></label>
+                    <input type="text" name="lastname" value="{{ lastname }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskID"><h5><span class="material-symbols-outlined search">handyman</span>Update your trade specialisation:</h5></label>
+                    <select name="taskID" class="form-control">
+                        <option value="">Select Trade</option>
+                        {% for task in tasks %}
+                            <option value="{{ task[0] }}" {% if profile.taskID == task[0] %} selected {% endif %}>{{ task[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="townID"><h5><span class="material-symbols-outlined search">home_pin</span>Update your location:</h5></label>
+                    <select name="townID" class="form-control">
+                        <option value="">Select Town</option>
+                        {% for town in towns %}
+                            <option value="{{ town[0] }}" {% if profile.townID == town[0] %} selected {% endif %}>{{ town[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <button type="submit" class="btn btn-primary" style="font-size: 1.13rem; font-weight: 500;">Update Personal Info</button>
+            </form>
+            <div id="back-button">
+                <a href="/tradesperson_profile#tradesperson-profile"><button class="btn btn-primary btn-block back-btn">Back to Profile Menu</button></a>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="display-profile">
+            <div class="text-content">
+                <hr>
+                <h4>your profile</h4>
+                <h6>This is how your profile currently looks during the client search</h6>
+                <hr>
+            </div>
+            <div class="profile-content">
+                <div class="card">
+                    <h5 class="card-title">{{ profile[0] }} <span class="material-symbols-outlined .verified">verified_user</span></h5>
+                    <p class="card-text">
+                        <strong>Specialisation:</strong> {{ profile[1] }}<br>
+                        <strong>Based in:</strong> {{ profile[2] }}<br>
+                        <strong>Per Hour:</strong> £{{ profile[3] }}<br><br>
+                        <strong>Rating:</strong> {{ profile[4] or 'N/A' }} ({{ profile[5] }} reviews) <br><br>
+                        <strong>" {{ profile[6] }} "</strong><br><br>
+                        <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">phone</span> Phone Number:</strong> {{ profile[7] }} <br>
+                        <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">business</span> Company:</strong> {{ profile[8] }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</section>
+
+{% endblock %}

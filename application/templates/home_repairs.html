@@ -1,55 +1,75 @@
 {% extends "layout.html" %}
 {% block body_content %}
+<!-- main card -->
+<section id="repair-2">
+    <div class="container pt-5">
+        <img src="{{ url_for('static', filename='images/outsidehousenew.jpg') }}" alt="House Image">
+        <div class="card"></div>
+
+        <div class="content">
+         <h3>Home Repairs</h3>
+         <p>Sometimes, all your home needs is a little TLC (tools, laughter, and care).</p>
+             <p>At My Home Heros, we pride ourselves on tackling all those pesky home repairs that sneak up on you. From fixing a door that won’t close to a wall that’s seen better days, we’re your go-to for putting things back together with precision and a touch of humor. Our skilled pros are here to fix everything from top to bottom, making your space work as smoothly as it should, all while keeping things light and easy.
+             </p>
+        </div>
+
+    </div>
+</section>
 
 <section id="repair-section">
     <div class="container pt-5">
-        <h1>Home Repairs Services</h1>
-        <p>Book a high-quality, efficient service today!</p>
+        <h1>Our Services</h1>
+        <p>Book your high-quality, efficient service today!</p>
     </div>
 
     <div class="repair-wrapper">
         <div class="col-sm">
             <div class="card">
                 <img src="{{ url_for('static', filename='images/roof_repairs.jpg') }}" alt="House Image">
-                <h3>Roof Repairs</h3>
+                <h3>Roof</h3>
                 <p>Fixing leaks, damaged shingles, and roof structural issues.</p>
+                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename='images/house4.jpg') }}" alt="House Image">
-                <h3>Foundation Repairs</h3>
+                <img src="{{ url_for('static', filename='images/foundationnew.png') }}" alt="House Image">
+                <h3>Foundation</h3>
                 <p>Addressing foundation cracks, shifting, or settling problems.</p>
+                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename='images/house3.jpg') }}" alt="House Image">
-                <h3>Drywall Repairs</h3>
-                <p>Seamless patching of holes, dents, and cracks in drywall.</p>
+                <img src="{{ url_for('static', filename='images/drywallnew.jpg') }}" alt="House Image">
+                <h3>Drywall</h3>
+                <p>Seamless patching of holes, dents, and cracks in drywalls.</p>
+                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
             </div>
         </div>
     </div>
      <div class="repair-wrapper">
         <div class="col-sm">
             <div class="card">
-                <img src="{{ url_for('static', filename='images/house.jpg') }}" alt="House Image">
-                <h3>Floor Repairs</h3>
+                <img src="{{ url_for('static', filename='images/floor.jpg') }}" alt="House Image">
+                <h3>Floor</h3>
                 <p>Repairing damaged flooring, from tiles to hardwood.</p>
+                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename='images/house4.jpg') }}" alt="House Image">
-                <h3>Window Repairs </h3>
+                <img src="{{ url_for('static', filename='images/windownew.jpg') }}" alt="House Image">
+                <h3>Windows</h3>
                 <p>Fixing broken frames, seals, or glass panes.</p>
+                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename='images/house3.jpg') }}" alt="House Image">
-                <h3>Door Repairs </h3>
+                <img src="{{ url_for('static', filename='images/door.jpg') }}" alt="House Image">
+                <h3>Doors</h3>
                 <p>Repairing misaligned, stuck, or damaged doors and frames.</p>
+                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
             </div>
         </div>
     </div>
 </section>
-
 
 {% endblock %}

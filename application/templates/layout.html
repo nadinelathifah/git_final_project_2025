@@ -17,8 +17,9 @@
         <link rel="stylesheet" href="{{ url_for('static', filename= 'welcome.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'plumbing.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'example.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename= 'repairs.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'profile.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'bookings.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'dashboard.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename= 'repair.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <script src="{{ url_for('static', filename= 'script.js') }}" defer></script>
@@ -28,9 +29,14 @@
     <body>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container-fluid">
-                {% if session['loggedIn'] %}
-                <a href="#" class="navbar-brand">
-                    <i id="profile-icon" class="bx bx-user-circle bx-burst-hover"></i>
+                {% if session['loggedIn'] and session['role'] == 'tradesperson' %}
+                <a href="{{ url_for('tradesperson_profile') }}#tradesperson-profile" class="navbar-brand">
+                    <i id="profile-icon" class="bx bx-user-circle bx-tada-hover"></i>
+                    <h2>Profile</h2>
+                </a>
+                {% elif session['loggedIn'] and session['role'] == 'client' %}
+                <a href="{{ url_for('client_profile') }}#client-profile" class="navbar-brand">
+                    <i id="profile-icon" class="bx bx-user-circle bx-tada-hover"></i>
                     <h2>Profile</h2>
                 </a>
                 {% else %}
@@ -45,8 +51,8 @@
                 <div id="navbarNav" class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         {% if session['loggedIn'] and session['role'] == 'client' %}
-                        <li class="nav-item"><a href="/client/dashboard" id="dashboard" class="nav-link" aria-current="page">Client Dashboard</a></li>
-                        <li class="nav-item"><a href="/find_tradesperson" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
+                        <li class="nav-item"><a href="{{ url_for('client_dashboard' )}}" id="dashboard" class="nav-link" aria-current="page">Client Dashboard</a></li>
+                        <li class="nav-item"><a href="{{ url_for('find_tradesperson') }}#find-tp" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
                         {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
                         <li class="nav-item"><a href="/task/dashboard" id="dashboard" class="nav-link" aria-current="page">Task Dashboard</a></li>
                         <li class="nav-item"><a href="/see_bookings" id="dashboard" class="nav-link" aria-current="page">See Bookings</a></li>

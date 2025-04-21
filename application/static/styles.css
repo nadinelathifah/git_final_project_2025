@@ -50,6 +50,7 @@ footer {
     color: rgb(0, 21, 116);
     font-family: 'Bungee', sans-serif;
     text-transform: capitalize;
+    text-shadow: 0 4px 8px rgba(0,0,0, 0.2);
     -webkit-text-stroke: 1px rgb(255, 255, 255);
 }
 
