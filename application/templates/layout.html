@@ -54,8 +54,8 @@
                         <li class="nav-item"><a href="{{ url_for('client_dashboard' )}}" id="dashboard" class="nav-link" aria-current="page">Client Dashboard</a></li>
                         <li class="nav-item"><a href="{{ url_for('find_tradesperson') }}#find-tp" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
                         {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
-                        <li class="nav-item"><a href="/task/dashboard" id="dashboard" class="nav-link" aria-current="page">Task Dashboard</a></li>
-                        <li class="nav-item"><a href="/see_bookings" id="dashboard" class="nav-link" aria-current="page">See Bookings</a></li>
+                        <li class="nav-item"><a href="{{ url_for('task_dashboard') }}" id="dashboard" class="nav-link" aria-current="page">Task Dashboard</a></li>
+                        <li class="nav-item"><a href="{{ url_for('see_bookings' )}}" id="dashboard" class="nav-link" aria-current="page">See Bookings</a></li>
                         {% else %}
                         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
                         <li class="nav-item dropdown">

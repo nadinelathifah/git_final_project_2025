@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
 from wtforms.fields import DateField
 from wtforms.fields.choices import SelectField
-from wtforms.validators import ValidationError, InputRequired, Length, Email
+from wtforms.validators import ValidationError, InputRequired, Length, Email, DataRequired
 
     
 def password_validation(form, field):
@@ -16,9 +16,9 @@ def password_validation(form, field):
     
 
 class ClientRegistrationForm(FlaskForm):
-    first_name = StringField('Firstname', validators=[InputRequired('Please fill in your first name.'), Length(max=100)], render_kw={'class':'form-control'})
-    last_name = StringField('Lastname', validators=[InputRequired('Please fill in your surname.'), Length(max=150)], render_kw={'class':'form-control'})
-    dob = DateField('Date of Birth', format='%Y-%m-%d', validators=[InputRequired('Please fill in your date of birth.')], render_kw={'class': 'form-control', 'type': 'date'})
+    first_name = StringField('Firstname', validators=[InputRequired(message='Please fill in your first name.'), Length(max=100)], render_kw={'class':'form-control'})
+    last_name = StringField('Lastname', validators=[InputRequired(message='Please fill in your surname.'), Length(max=150)], render_kw={'class':'form-control'})
+    dob = DateField('Date of Birth', format='%Y-%m-%d', validators=[InputRequired(message='Please fill in your date of birth.')], render_kw={'class': 'form-control', 'type': 'date'})
     town = SelectField('Town', choices=[('', 'Choose your location'),
                                         ('1','Livingston'),
                                         ('2', 'Bathgate'),
@@ -27,16 +27,16 @@ class ClientRegistrationForm(FlaskForm):
                                         ('5', 'Whitburn'),
                                         ('6', 'East Calder'),
                                         ('7', 'West Calder'),
-                                        ('8', 'Uphall')], render_kw={'class':'form-control'})
-    email = StringField('Email', validators=[InputRequired('Please fill in your email address.'), Email('Please enter a valid email address.'), Length(max=150)], render_kw={'class':'form-control'})
-    password = PasswordField('Password', validators=[InputRequired('Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
+                                        ('8', 'Uphall')], validators=[DataRequired(message="Please select the town you are based in to aid the hero search.")], render_kw={'class':'form-control'})
+    email = StringField('Email', validators=[InputRequired(message='Please fill in your email address.'), Email('Please enter a valid email address.'), Length(max=150)], render_kw={'class':'form-control'})
+    password = PasswordField('Password', validators=[InputRequired(message='Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
     submit = SubmitField('SIGN UP', render_kw={"class": "btn btn-primary btn-lg btn-block"})
 
 
 class WorkerRegistrationForm(FlaskForm):
-    first_name = StringField('Firstname', validators=[InputRequired('Please fill in your first name.'), Length(max=100)], render_kw={'class':'form-control'})
-    last_name = StringField('Lastname', validators=[InputRequired('Please fill in your surname.'), Length(max=150)], render_kw={'class':'form-control'})
-    dob = DateField('Date of Birth', format='%Y-%m-%d', validators=[InputRequired('Please fill in your date of birth.')], render_kw={'class': 'form-control', 'type': 'date'})
+    first_name = StringField('Firstname', validators=[InputRequired(message='Please fill in your first name.'), Length(max=100)], render_kw={'class':'form-control'})
+    last_name = StringField('Lastname', validators=[InputRequired(message='Please fill in your surname.'), Length(max=150)], render_kw={'class':'form-control'})
+    dob = DateField('Date of Birth', format='%Y-%m-%d', validators=[InputRequired(message='Please fill in your date of birth.')], render_kw={'class': 'form-control', 'type': 'date'})
     profession = SelectField('Task', choices=[('', 'Choose your specialisation: '),
                                                     ('1', 'Painting'),
                                                     ('2', 'Home Repair'),
@@ -44,7 +44,7 @@ class WorkerRegistrationForm(FlaskForm):
                                                     ('4', 'Electrician'),
                                                     ('5', 'Plumbing'),
                                                     ('6', 'Lawn Care')
-                                                    ], render_kw={'class':'form-control'})
+                                                    ], validators=[DataRequired(message="Please select your expertise.")], render_kw={'class':'form-control'})
     town = SelectField('Town', choices=[('', 'Choose your location'),
                                         ('1','Livingston'),
                                         ('2', 'Bathgate'),
@@ -53,7 +53,7 @@ class WorkerRegistrationForm(FlaskForm):
                                         ('5', 'Whitburn'),
                                         ('6', 'East Calder'),
                                         ('7', 'West Calder'),
-                                        ('8', 'Uphall')], render_kw={'class':'form-control'})
-    email = StringField('Email', validators=[InputRequired('Please fill in your email address.'), Email('Please enter a valid email address.'), Length(max=150)], render_kw={'class':'form-control'})
-    password = PasswordField('Password', validators=[InputRequired('Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
+                                        ('8', 'Uphall')], validators=[DataRequired(message="Please select the town you are based in to aid the hero search.")], render_kw={'class':'form-control'})
+    email = StringField('Email', validators=[InputRequired(message='Please fill in your email address.'), Email('Please enter a valid email address.'), Length(max=150)], render_kw={'class':'form-control'})
+    password = PasswordField('Password', validators=[InputRequired(message='Please fill in a password for your account.'), password_validation], render_kw={'class':'form-control'})
     submit = SubmitField('SIGN UP', render_kw={"class": "btn btn-primary btn-lg btn-block"})

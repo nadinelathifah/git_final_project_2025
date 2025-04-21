@@ -67,7 +67,7 @@ def register_client():
             # Append the extracted data into a list so that you can render the list onto the page and show data.
             clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Town': town, 'Email': email, 'Password': password})
             # Use the add_client() function (check data_access.py) to insert that data into the clients table in the SQL database.
-            add_client(first_name, last_name, date_of_birth, town, email, password)
+            client_id = add_client(first_name, last_name, date_of_birth, town, email, password)
         except ValueError as valueError:
             flash(str(valueError), "error") 
         except Exception:
@@ -91,9 +91,10 @@ def register_client():
         session['user'] = email
         # Makes it known that the user that just registered is a client.
         session['role'] = 'client'
+        session['client_id'] = client_id
 
         # Here once the form is submitted, and user clicks 'Sign up', it redirects them to a welcome page where their first name is passed through.
-        return redirect(url_for('welcome_client', name=first_name))
+        return redirect(url_for('welcome_client'))
         
     return render_template('register_client.html', 
                             form=client_register, 
@@ -138,7 +139,7 @@ def register_tradesperson():
 
         try:
             tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
-            add_tradesperson(first_name, last_name, date_of_birth, profession, town, email, password)
+            worker_id = add_tradesperson(first_name, last_name, date_of_birth, profession, town, email, password)
         except ValueError as valueError:
             flash(str(valueError), "error") 
         except Exception:
@@ -158,8 +159,8 @@ def register_tradesperson():
         session['user'] = email
         # Makes it known that the user that just registered is a tradesperson.
         session['role'] = 'tradesperson'
-        
-        return redirect(url_for('welcome_tradesperson', name=first_name))
+        session['worker_id'] = worker_id
+        return redirect(url_for('welcome_tradesperson'))
     
     return render_template('register_tradesperson.html', 
                             form=worker_register, 
@@ -174,80 +175,103 @@ def register_tradesperson():
 
 
 
+
 # --------------- Welcome Pages --------------- #
+
 # Client Reg Confirmation and Welcome Message
 @app.route('/welcome/client', methods=['GET'])
 def welcome_client():
+    # Get the clientID from the session and use get_client_by_id() (check data_access.py) to retrieve their ID from the database clients table.
+    # Purpose: retrieve the client's name to show welcome message but also ensure that only people who have logged in can access this page.
     client_id = session.get('client_id')
+    # Get 'loggedIn' from the session. But if 'loggedIn' doesn't exist, default to 'False'.
+    logged_in = session.get('loggedIn', False)
 
-    if not client_id:
+    # If it's not the correct client and this person is not logged in, redirect them to the login page.
+    if not client_id and not logged_in:
         return redirect(url_for('login_client')) 
     
     client = get_client_by_id(client_id)
-    
+
+    # If it is the correct client, retrieve their firstname from the clients table in DB.
     if client:
         name = client['firstname']
-    else:
-        name = 'Guest'
+        welcome_message = f"Welcome, {name}!" 
 
-    welcome_message = f"Welcome, {name}!" 
-
-    return render_template('welcome_client.html',
-                           name=name,
-                           head=welcome_message,
-                           title=welcome_message,
-                           subheading='Account Successfully Created! Please explore your dashboard',
-                           img1='decoration/squiggleblue.png',
-                           img2='decoration/squiggleblue2.png',
-                           background_image='/static/images/houses.jpg')
+        return render_template('welcome_client.html',
+                            name=name,
+                            head=welcome_message,
+                            title=welcome_message,
+                            subheading='Account Successfully Created! Please explore your dashboard',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
+                            background_image='/static/images/houses.jpg')
+    
+    return redirect(url_for('login_client'))
 
 
 # Tradesperson Reg Confirmation and Welcome Message
 @app.route('/welcome/tradesperson', methods=['GET'])
 def welcome_tradesperson():
-    tradesperson_id = session.get('workerID')
+    worker_id = session.get('worker_id')
+    logged_in = session.get('loggedIn', False)
 
-    if not tradesperson_id:
+    if not worker_id and not logged_in:
         return redirect(url_for('login_tradesperson'))
     
-    tradesperson = get_tp_by_id(tradesperson_id)
+    tradesperson = get_tp_by_id(worker_id)
     
     if tradesperson:
         name = tradesperson['firstname']
-    else:
-        name = 'Guest'
+        welcome_message = f"Welcome, {name}!"
+        return render_template('welcome_tradesperson.html',
+                            name=name,
+                            head=welcome_message,
+                            title=welcome_message,
+                            subheading='Let''s get started. Please explore your dashboard',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
+                            background_image='/static/images/wideshotb.jpeg')
+    
+    return redirect(url_for('login_tradesperson'))
 
-    welcome_message = f"Welcome, {name}!"
 
-    return render_template('welcome_tradesperson.html',
-                           name=name,
-                           head=welcome_message,
-                           title=welcome_message,
-                           subheading='Let''s get started. Please explore your dashboard',
-                           img1='decoration/squiggleblue.png',
-                           img2='decoration/squiggleblue2.png',
-                           background_image='/static/images/wideshotb.jpeg')
 
 
 # --------------- Login Routes --------------- #
+
+# Client
+# This route defines the client login endpoint which handles GET and POST HTTP requests.
+# This route is triggered when the user navigates to the login page for clients. 
 @app.route('/login/client', methods=['GET','POST'])
 def login_client():
+    # Get the values that the user entered into the login form.
+    # This retrieves the email that the user has inputted in the form field with name="client_email" (check layout.html on the client-login section)
     email = request.form.get('client_email')
+    # This retrieves the password inputted in form field with name="client_password"
     password = request.form.get('client_password')
 
+    # get_client_by_email() function (check data_access.py) queries the DB to check if there's a record of a client with the given email.
+    # If a client with that email exists in the DB, it returns the client's details; if not, returns none (you can check this by running the data_access.py file & looking at the terminal).
     client = get_client_by_email(email)
+
+    # Next step checks whether the password they've entered matches the one that's in the DB for that email.
+    # if client - checks if the client was returned by get_client_by_email() query.
+    # bcrypt.checkpw() - checks if the password entered by the user matches the hashed password stored in the DB. If it does, returns True.
+    # client['password'].encode('UTF-8') retrieves hashed password stored in DB & converts it into bytes.
     if client and bcrypt.checkpw(password.encode('UTF-8'), client['password'].encode('UTF-8')):
         session['loggedIn'] = True
         session['user'] = email
         session['role'] = 'client'
         session['client_id'] = client['clientID']
-        return redirect(url_for('client_dashboard', name=client['firstname']))
+        return redirect(url_for('client_dashboard'))
     else:
         flash("Invalid email or password", "error")
         return redirect(url_for('home'))
+    
 
 
-
+# Tradesperson login route
 @app.route('/login/tradesperson', methods=['GET', 'POST'])
 def login_tradesperson():
     email = request.form.get('tp_email')
@@ -258,9 +282,8 @@ def login_tradesperson():
         session['loggedIn'] = True
         session['user'] = email
         session['role'] = 'tradesperson'
-        session['name'] = 'firstname'
         session['worker_id'] = tradesperson['workerID']
-        return redirect(url_for('task_dashboard', name=tradesperson['firstname']))
+        return redirect(url_for('task_dashboard'))
     else:
         flash("Invalid email or password", "error")
         return redirect(url_for('home'))
@@ -545,6 +568,7 @@ def update_tp_info():
                            title='profile setup',
                            subheading='enable clients to see your details',
                            background_image='/static/images/wideshot3.jpeg')
+
 
 
 

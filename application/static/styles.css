@@ -49,8 +49,9 @@ footer {
 #hero-section h1 {
     color: rgb(0, 21, 116);
     font-family: 'Bungee', sans-serif;
+    font-size: 2.5rem;
     text-transform: capitalize;
-    text-shadow: 0 4px 8px rgba(0,0,0, 0.2);
+    text-shadow: 0 5px 10px rgba(0,0,0, 0.3);
     -webkit-text-stroke: 1px rgb(255, 255, 255);
 }
 
@@ -60,7 +61,7 @@ footer {
     font-size: 1.3rem;
     text-transform: capitalize;
     background: rgb(253, 222, 98);
-    box-shadow: 0 4px 8px rgba(0,0,0, 0.2);
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.3);
     box-sizing: border-box;
     border-radius: 20px;
     border: 3px solid rgb(0, 21, 116);

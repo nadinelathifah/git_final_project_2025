@@ -36,6 +36,8 @@ def add_client(firstname, lastname, date_of_birth, town, email, password):
         cursor.execute(insert, values)
         connection.commit()
         print(f"Client, {firstname} {lastname}, was added.")
+        client_id = cursor.lastrowid
+        return client_id
     except ValueError as valueError:
         raise valueError
     except Exception as error:
@@ -67,6 +69,8 @@ def add_tradesperson(firstname, lastname, date_of_birth, task, town, email, pass
         cursor.execute(insert, values)
         connection.commit()
         print(f"Tradesperson, {firstname} {lastname}, was added.")
+        worker_id = cursor.lastrowid
+        return worker_id
     except ValueError as valueError:
         raise valueError
     except Exception as error:
@@ -101,7 +105,6 @@ def get_client_by_email(email):
     query = "SELECT * FROM clients WHERE email = %s"
     cursor.execute(query, (email,))
     client = cursor.fetchone()
-
     cursor.close()
     connection.close()
     return client
@@ -124,7 +127,6 @@ def get_tp_by_email(email):
     query = "SELECT * FROM tradespeople WHERE email = %s"
     cursor.execute(query, (email,))
     tradesperson = cursor.fetchone()
-
     cursor.close()
     connection.close()
     return tradesperson
@@ -473,3 +475,4 @@ if __name__ == '__main__':
 if __name__ == '__main__':
     print("Tasks test:", get_tasks_with_ids())
     print("Towns test:", get_towns_with_ids())
+    print(get_client_by_email("nadine@gmail.com"))
