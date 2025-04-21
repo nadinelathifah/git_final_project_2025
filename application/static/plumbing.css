@@ -1,0 +1,275 @@
+			
+/* ---------------------------Example 1 Section---------------------------*/			
+			
+/* Selecting the id="example-section" allows us to add styling to the entire section */			
+/* The # (hash) before the id name lets CSS know that you are selecting the element with id="example-section"*/
+
+
+
+/*.service-img {
+    border: 2px solid red;  it is for testing purposesto check whether the .service.img has been applied to all images*/
+
+
+
+#plumbing-section {			
+    min-height: auto;
+    width: 100vw;			
+    background: rgb(255, 249, 229);			
+    z-index: 0;
+    padding-bottom: 100px;
+    }
+			
+#plumbing-section .container {			
+    position: relative;			
+    height: 100%;			
+    width: 100%;			
+    display: flex;			
+    justify-content: flex-end;			
+    align-items: center;			
+	z-index: 1;
+	}
+			
+/* To add styling to the card, we have to specify which id or class this card is from (#example-section) */			
+/* class="card" -> A class is selected by writing it as .class (full-stop before the class name) */			
+			
+#plumbing-section .card {			
+    position: relative;			
+    height: 80vh;			
+    width: 80vw;			
+    background: linear-gradient(to left, #FFF9DB, #FFF3B0, #FFE66D); /* Creamy to buttery pastel yellows */
+    border: none;			
+    border-radius: 25px;			
+    margin-top: 80px;
+    z-index: 2;			
+}			
+
+.service-img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 25px; /* ✅ Rounds all four corners */
+    display: block;
+}
+
+
+			
+#plumbing-section .content {			
+     position: absolute;
+    bottom: 120px;
+    right: 50px;
+    background: #F5F5F5;
+    height: 45vh;
+    width: 47vw;
+    border-radius: 25px;
+    padding: 30px;
+    overflow-y: auto;
+    z-index: 5;
+}			
+			
+#plumbing-section .content h3 {			
+    margin-top: 10px;			
+    margin-bottom: 10px;			
+    font-size: 1.75rem;			
+}
+			
+#plumbing-section .content p {			
+    font-size: 1rem;			
+    font-weight: 420;			
+}			
+			
+/*
+#plumbing-section .container img {
+    position: absolute;
+    left: 80px;
+    bottom: 60px;
+    max-height: 50vh;
+    height: auto;
+    border-radius: 50px;
+    z-index: 3;
+}
+*/
+
+
+
+#plumbing-services-section {
+    margin-top: 50px; /* Adjust margin-top as necessary */
+    background: white;
+    padding: 2rem 1rem;
+    overflow: visible;
+}
+
+#plumbing-services-section .card {
+    position: relative;
+    background: linear-gradient(to left, #FFF9DB, #FFF3B0, #FFE66D); /* Creamy to buttery pastel yellows */
+    border: none;
+    border-radius: 25px;
+    margin-top: 30px;
+    padding: 20px;
+    z-index: 2;
+}
+
+#plumbing-services-section .content {
+    position: relative;
+    background: #F5F5F5;
+    height: auto;
+    width: 100%;
+    border-radius: 25px;
+    padding: 30px;
+    overflow-y: auto;
+    z-index: 5;
+}
+
+#plumbing-services-section .content h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.75rem;
+}
+
+#plumbing-services-section .content p {
+    font-size: 1rem;
+    font-weight: 420;
+}
+
+}
+
+.service2-img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    display: block;
+}
+
+
+
+/*
+#plumbing-services-section .row img {
+    max-height: 65vh;
+    height: auto;
+    border-radius: 50px;
+    z-index: 3;
+}
+*/
+
+
+/* iPad Pro */
+@media (max-width: 1024px) {
+    #plumbing-section .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #plumbing-section .card {
+        width: 90vw;
+        height: 90vh;
+        margin-top: 10px;
+    }
+
+    #plumbing-section .content {
+        width: 75%;
+        height: 40%;
+        bottom: 100px;
+        left: 150px;
+        margin-bottom: 20px;
+        padding: 40px;
+    }
+
+    #plumbing-section .content h3 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.7rem;
+    }
+
+    #plumbing-section .content p {
+        font-size: 1.4rem;
+    }
+
+    #plumbing-section .container img {
+        width: 70%;
+        height: auto;
+        border-radius: 15px;
+        top: 180px;
+        left: 150px;
+    }
+}
+
+/* iPad Mini */
+@media (max-width: 768px) {
+    #plumbing-section .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #plumbing-section .card {
+        width: 90vw;
+        height: 90vh;
+        margin-top: 10px;
+    }
+
+    #plumbing-section .content {
+        width: 80%;
+        height: 40%;
+        bottom: 75px;
+        left: 100px;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    #plumbing-section .container img {
+        width: 70%;
+        height: auto;
+        border-radius: 15px;
+        top: 150px;
+        left: 100px;
+    }
+
+    #plumbing-section .content h3 {
+        font-size: 1.5rem;
+    }
+
+    #plumbing-section .content p {
+        font-size: 1.1rem;
+    }
+}
+
+/* iPhone */
+@media (max-width: 390px) {
+    #plumbing-section .container {
+        height: auto;
+        width: auto;
+    }
+
+    #plumbing-section .card {
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;
+    }
+
+    #plumbing-section .content {
+        width: 100%;
+        height: 50%;
+        bottom: 60px;
+        left: 30px;
+        border-radius: 0;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    #plumbing-section .container img {
+        width: 100%;
+        top: 100px;
+        left: 0;
+        border-radius: 0;
+        height: auto;
+    }
+
+    #plumbing-section .content h3 {
+        font-size: 1.35rem;
+    }
+
+    #plumbing-section .content p {
+        font-size: 1rem;
+    }

@@ -1,0 +1,408 @@
+/* -------------- Imported Google Fonts -------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+/* -------------- General Styling -------------- */
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+    padding: 15px;
+    color: rgb(0, 21, 116);
+    font-weight: 500;
+    background: wheat;
+    border-top: 1px solid rgba(30, 29, 29, 0.489);
+}
+
+.footer-item {
+    list-style: none;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: rgb(0, 21, 116);
+}
+
+
+/* -------------- Hero-Section Styling -------------- */
+#hero-section {
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow-y: hidden;
+}
+
+#hero-section h1 {
+    color: rgb(0, 21, 116);
+    font-family: 'Bungee', sans-serif;
+    text-transform: capitalize;
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+}
+
+#hero-section h4 {
+    color: rgb(0, 21, 116);
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    background: rgb(253, 222, 98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 3px solid rgb(0, 21, 116);
+    padding: 6px 21px 6px 21px;
+    display: inline-block;
+}
+
+#hero-section i {
+    color: #158fd1;
+    font-size: 2.9rem;
+    padding-right: 15px;
+}
+
+.hero-img {
+    position: absolute;
+    width: 200px;
+    height: auto;
+}
+
+.hero-img.img-1 {
+    top: 80px;
+    right: 630px;
+    z-index: 3;
+}
+
+.hero-img.img-2 {
+    top: 82px;
+    right: 632px;
+    z-index: 2;
+}
+
+.hero-img.img-3 {
+    bottom: 120px;
+    right: 635px;
+    opacity: 0.95;
+    z-index: 3;
+}
+
+.hero-img.img-4 {
+    bottom: 118px;
+    right: 633px;
+    z-index: 2;
+}
+
+
+/* -------------- Navbar Styling -------------- */
+/* --- Logo --- */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+}
+
+.navbar-brand h2 {
+    font-family: 'Bungee', sans-serif;
+    font-size: 1.5rem;
+    color: #fcc332;
+    text-shadow: 3px 3px 8px rgba(38, 28, 0, 0.43);
+    -webkit-text-stroke: 1.5px rgb(0, 21, 116);
+
+}
+
+@media (min-width: 992px) {
+    #navbarNav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+.navbar {
+    align-items: center;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse.collapsing,
+    .navbar-collapse.show {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+    }
+  
+    .navbar-nav .nav-link {
+      color: #000;
+    }
+
+    .navbar-nav {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+}
+
+.navbar-collapse.show {
+opacity: 1;
+transform: translateY(0);
+}
+
+.sticky-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-nav {
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding-right: 40px;
+}
+
+.nav-item {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.nav-link {
+    background-color: rgb(253, 222, 98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: rgb(0, 21, 116);
+    transition: background 0.3s border-radius 0.3s;
+    border-radius: 20px;
+}
+
+.navbar-nav .nav-link:hover {
+    background: rgb(255, 247, 199);
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .login-button,
+    .signup-button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+.bxs-rocket {
+    margin-right: 3px;
+}
+
+.bxs-chevron-down-circle {
+    margin-right: 3px;
+}
+
+.drop-down {
+    list-style: none;
+    background: rgb(255, 247, 199);
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.2);
+    border-radius: 20px;
+    padding: 8px 30px;
+    cursor: pointer;
+    position: absolute;
+    display: none;
+    overflow-y: visible;
+    z-index: 1050;
+}
+
+.dropdown-item {
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown:hover .drop-down {
+    display: block;
+}
+
+.dropdown-item:hover {
+    background: rgba(251, 142, 0, 0.517);
+}
+
+#navbarNav .login-btn {
+    border-radius: 20px;
+    padding: 4px 20px 5px 20px;
+    background: linear-gradient(to bottom, rgb(244, 167, 0), rgb(247, 185, 0));
+    color: white;
+    border-color: white;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+#navbarNav .login-btn:hover {
+    background: linear-gradient(to bottom, rgb(251, 142, 0), rgb(255, 108, 45));
+}
+
+.login-btn i {
+    margin-right: 4px;
+    font-size: 1.1rem;
+}
+
+
+/* ------ Registration Forms Styling ------- */
+/* Outermost container */
+.outer-wrapper {
+    position: relative;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+.inner-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.col-sm {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 30px 0 30px;
+}
+
+.col-sm.column-left {
+    justify-content: center;
+    transform: translateX(-50px);
+}
+
+.col-sm.column-right {
+    justify-content: center;
+    transform: translate(-20px, 40px);
+}
+
+@media (max-width: 1110px) {
+    .col-sm.column-left {
+        transform: translateX(0);
+    }
+
+    .col-sm.column-right {
+        transform: translate(0, 40px);
+    }
+}
+
+@media (max-width: 800px) {
+    .inner-wrapper {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .col-sm.column-left {
+        justify-content: center;
+    }
+
+    .col-sm.column-right {
+        transform: translate(0, 0);
+    }
+
+    #client-signup {
+        margin-bottom: 0;
+    }
+
+    #tradesperson-signup {
+        margin-bottom: 0;
+    }
+}
+
+/* Signup form box */
+#client-signup {
+    position: relative;
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    background: white;
+    border-radius: 35px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 6px solid rgb(255, 238, 124);
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 40px;
+    text-align: center;
+}
+
+#tradesperson-signup h2,
+#client-signup h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+form .input-field {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+form .input-field input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 0.95rem;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+}
+
+
+.input-field input:focus {
+    border-color:rgb(0, 170, 255);
+}
+
+form .input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    color: gray;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.2s ease;
+}
+
+form .btn-primary {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+#tradesperson-signup {
+    position: relative;
+    max-width: 450px;
+    width: 100%;
+    background: white;
+    border: 6px solid #fcc027;
+    border-radius: 35px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    height: auto;
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 40px;
+    text-align: center;
+}
+

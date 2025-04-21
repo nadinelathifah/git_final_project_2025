@@ -1,0 +1,21 @@
+/* -------------- Booking Services -------------- */
+
+#make-booking {
+    min-height: 100vh;
+    background: aliceblue;
+}
+
+#find-tp {
+    min-height: 100vh;
+    background: aliceblue;
+}
+
+select option {
+    color: black !important;
+    background-color: white !important;
+    font-size: 16px;
+}
+
+select {
+    color: black;
+}
