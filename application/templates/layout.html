@@ -128,7 +128,7 @@
                 </div>
                 <div class="form-content">
                     <h2>Log in</h2>
-                    <form action="/login/client" method="POST">
+                    <form action="{{ url_for('login_client' )}}" method="POST">
                         <div class="input-field">
                             <input type="text" name="client_email" placeholder="Email" required>
                         </div>
@@ -140,7 +140,7 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block" value='Login'>LOGIN</button>
                     </form>
                     <br>
-                    <p>New customer? <a href="/register/client">Create an account here</a></p>
+                    <p>New customer? <a href="{{ url_for('register_client') }}">Create an account here</a></p>
                 </div>
             </div>
         </div>
@@ -155,7 +155,7 @@
                 </div>
                 <div class="form-content">
                     <h2>Log in</h2>
-                    <form action="/login/tradesperson" method="POST">
+                    <form action="{{ url_for('login_tradesperson' )}}" method="POST">
                         <div class="input-field">
                             <input type="text" name="tp_email" placeholder="Email">
                         </div>
@@ -167,7 +167,7 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
                     </form>
                     <br>
-                    <p>Join our heroes! <a href="/register/tradesperson">Create an account here</a></p>
+                    <p>Join our heroes! <a href="{{ url_for('register_tradesperson') }}">Create an account here</a></p>
                 </div>
             </div>
         </div>

@@ -21,28 +21,61 @@ def add_client(firstname, lastname, date_of_birth, town, email, password):
     connection = get_db_connection()
     cursor = connection.cursor()
 
-    encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
+    try:
+        cursor.execute("SELECT COUNT(*) FROM clients where email = %s", (email,))
+        if cursor.fetchone()[0] > 0:
+            raise ValueError("Email already exists")
+        
+        cursor.execute("SELECT COUNT(*) FROM tradespeople where email = %s", (email,))
+        if cursor.fetchone()[0] > 0:
+            raise ValueError("Email already exists on the tradesperson side. Please login using the tradesperson route or Sign up with a different email.")
+        
+        encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
+        insert = "INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
+        values = (firstname, lastname, date_of_birth, town, email, encoded_password)
+        cursor.execute(insert, values)
+        connection.commit()
+        print(f"Client, {firstname} {lastname}, was added.")
+    except ValueError as valueError:
+        raise valueError
+    except Exception as error:
+        print(f"There was an error when adding the new client: {error}")
+        connection.rollback()
+        raise Exception('Registration failed')
+    finally:
+        cursor.close()
+        connection.close()
 
-    insert = "INSERT INTO clients (firstname, lastname, date_of_birth, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
-    values = (firstname, lastname, date_of_birth, town, email, encoded_password)
-    cursor.execute(insert, values)
-    connection.commit()
-
-    print(f"Client, {firstname} {lastname}, was added.")
 
 
 def add_tradesperson(firstname, lastname, date_of_birth, task, town, email, password):
     connection = get_db_connection()
     cursor = connection.cursor()
 
-    encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
+    try:
+        cursor.execute("SELECT COUNT(*) FROM clients where email = %s", (email,))
+        if cursor.fetchone()[0] > 0:
+            raise ValueError("Email already exists on the client side. Please login using the client route or Sign up with a different email.")
 
-    insert = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    values = (firstname, lastname, date_of_birth, task, town, email, encoded_password)
-    cursor.execute(insert, values)
-    connection.commit()
-
-    print(f"Tradesperson, {firstname} {lastname}, was added.")
+        cursor.execute("SELECT COUNT(*) FROM tradespeople where email = %s", (email,))
+        if cursor.fetchone()[0] > 0:
+            raise ValueError("Email already exists")
+        
+        encoded_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt(12))
+        insert = "INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        values = (firstname, lastname, date_of_birth, task, town, email, encoded_password)
+        cursor.execute(insert, values)
+        connection.commit()
+        print(f"Tradesperson, {firstname} {lastname}, was added.")
+    except ValueError as valueError:
+        raise valueError
+    except Exception as error:
+        print(f"There was an error when adding the new tradesperson: {error}")
+        connection.rollback()
+        raise Exception('Registration failed')
+    finally:
+        cursor.close()
+        connection.close()
 
 
 def get_all_tradespeople():
@@ -175,8 +208,8 @@ def book_job(clientID, workerID, taskID, service_start, service_end, task_desc):
         cursor.callproc('BookJob', [clientID, workerID, taskID, service_start, service_end, task_desc])
         connection.commit()
         print(f"Booking successful: Client {clientID} booked worker {workerID} for task {taskID}.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    except Exception as error:
+        print(f"An error occurred: {error}")
     finally:
         cursor.close()
         connection.close()
@@ -201,8 +234,8 @@ def set_tp_profile(workerID, phone_number, hourly_rate, business, bio):
         cursor.callproc('set_tp_profile_info', [workerID, phone_number, hourly_rate, business, bio])
         connection.commit()
         print(f"Profile update was successful: Tradesperson {workerID} just updated their settings.")
-    except Exception as e:
-        print(f"An error occurredL: {e}")
+    except Exception as error:
+        print(f"An error occurredL: {error}")
     finally:
         cursor.close()
         connection.close()
@@ -276,8 +309,8 @@ def update_tp_personal_info(workerID, firstname=None, lastname=None, taskID=None
         try:
             cursor.execute(query, tuple(values))
             connection.commit()
-        except Exception as e:
-            print("Database error:", e)
+        except Exception as error:
+            print("Database error:", error)
     else:
         print("No fields to update.")
     
@@ -328,8 +361,8 @@ def update_client_info(clientID, firstname=None, lastname=None, townID=None):
         try:
             cursor.execute(query, tuple(values))
             connection.commit()
-        except Exception as e:
-            print("Database error:", e)
+        except Exception as error:
+            print("Database error:", error)
     else:
         print("No fields to update.")
     

@@ -49,10 +49,39 @@ def register_client():
         email = client_register.email.data
         password = client_register.password.data
 
-        # Append the extracted data into a list so that you can render the list onto the page and show data.
-        clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Town': town, 'Email': email, 'Password': password})
-        # Use the add_client() function (check data_access.py) to insert that data into the clients table in the SQL database.
-        add_client(first_name, last_name, date_of_birth, town, email, password)
+        check_existing_email = get_client_by_email(email)
+        if check_existing_email:
+            flash("Email already exists. Please use a different email address to sign up, or if an account exists, please login.", "error")
+            return render_template('register_client.html', 
+                            form=client_register, 
+                            head='client sign up', 
+                            title='Connect with us', 
+                            subheading='Get in touch with our skilled team',
+                            img1='decoration/arrowyellow.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowupyellow.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image = '/static/images/wideshot2.jpeg')
+
+        try:
+            # Append the extracted data into a list so that you can render the list onto the page and show data.
+            clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Town': town, 'Email': email, 'Password': password})
+            # Use the add_client() function (check data_access.py) to insert that data into the clients table in the SQL database.
+            add_client(first_name, last_name, date_of_birth, town, email, password)
+        except ValueError as valueError:
+            flash(str(valueError), "error") 
+        except Exception:
+            flash("Something went wrong during registration. Please try again.", "error")
+            return render_template('register_client.html', 
+                            form=client_register, 
+                            head='client sign up', 
+                            title='Connect with us', 
+                            subheading='Get in touch with our skilled team',
+                            img1='decoration/arrowyellow.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowupyellow.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image = '/static/images/wideshot2.jpeg')
 
         # Session variables (in Flask), are temporary data stored on the server-side to identify who the user is, keep track of user requests and login status. 
         # They act like a dictionary, session['key'] = value, that stores info specific to a user during their visit (i.e. their "session").
@@ -93,8 +122,37 @@ def register_tradesperson():
         email = worker_register.email.data
         password = worker_register.password.data
 
-        tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
-        add_tradesperson(first_name, last_name, date_of_birth, profession, town, email, password)
+        check_existing_email = get_tp_by_email(email)
+        if check_existing_email:
+            flash("Email already exists. Please use a different email address to sign up, or if an account exists, please login.", "error")
+            return render_template('register_tradesperson.html', 
+                            form=worker_register, 
+                            head='tradesperson sign up', 
+                            title='Get Bookings Now!', 
+                            subheading='Sign up and join our team of heroes',
+                            img1='decoration/arroworange.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowuporange.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image='/static/images/wideshot6.jpeg')
+
+        try:
+            tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
+            add_tradesperson(first_name, last_name, date_of_birth, profession, town, email, password)
+        except ValueError as valueError:
+            flash(str(valueError), "error") 
+        except Exception:
+            flash("Something went wrong during registration. Please try again.", "error")
+            return render_template('register_tradesperson.html', 
+                            form=worker_register, 
+                            head='tradesperson sign up', 
+                            title='Get Bookings Now!', 
+                            subheading='Sign up and join our team of heroes',
+                            img1='decoration/arroworange.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowuporange.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image='/static/images/wideshot6.jpeg')
 
         session['loggedIn'] = True
         session['user'] = email
@@ -138,10 +196,10 @@ def welcome_client():
                            name=name,
                            head=welcome_message,
                            title=welcome_message,
-                           subheading='Account Successfully Created! Explore and browse our services',
+                           subheading='Account Successfully Created! Please explore your dashboard',
                            img1='decoration/squiggleblue.png',
                            img2='decoration/squiggleblue2.png',
-                           background_image='/static/images/wideshot5.jpeg')
+                           background_image='/static/images/houses.jpg')
 
 
 # Tradesperson Reg Confirmation and Welcome Message
@@ -165,7 +223,7 @@ def welcome_tradesperson():
                            name=name,
                            head=welcome_message,
                            title=welcome_message,
-                           subheading='Account Successfully Created! Let\'s get started!',
+                           subheading='Let''s get started. Please explore your dashboard',
                            img1='decoration/squiggleblue.png',
                            img2='decoration/squiggleblue2.png',
                            background_image='/static/images/wideshotb.jpeg')
@@ -174,8 +232,8 @@ def welcome_tradesperson():
 # --------------- Login Routes --------------- #
 @app.route('/login/client', methods=['GET','POST'])
 def login_client():
-    email = request.form['client_email']
-    password = request.form['client_password']
+    email = request.form.get('client_email')
+    password = request.form.get('client_password')
 
     client = get_client_by_email(email)
     if client and bcrypt.checkpw(password.encode('UTF-8'), client['password'].encode('UTF-8')):
@@ -192,8 +250,8 @@ def login_client():
 
 @app.route('/login/tradesperson', methods=['GET', 'POST'])
 def login_tradesperson():
-    email = request.form['tp_email']
-    password = request.form['tp_password']
+    email = request.form.get('tp_email')
+    password = request.form.get('tp_password')
 
     tradesperson = get_tp_by_email(email)
     if tradesperson and bcrypt.checkpw(password.encode('UTF-8'), tradesperson['password'].encode('UTF-8')):
@@ -341,6 +399,15 @@ def booking_confirmation():
                            title="You have successfully booked!",
                            subheading="Please wait for confirmation from the tradesperson.",
                            background_image='/static/images/houses.jpeg')
+
+
+
+# --------------- Tradesperson Booking Pages --------------- #
+
+@app.route('/see_bookings')
+def see_bookings():
+    pass
+
 
 
 
