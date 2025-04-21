@@ -129,6 +129,18 @@
     font-size: 1rem;
     font-weight: 420;
 }
+
+}
+
+.service2-img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    display: block;
+}
+
+
+
 /*
 #plumbing-services-section .row img {
     max-height: 65vh;
