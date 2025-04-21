@@ -3,10 +3,13 @@
 
 <section id="tp-profile">
     <div id="profile-setup" class="container">
-        <img class="profile-icon" src="{{ url_for('static', filename='decoration/circle_orange.png') }}" alt="">
+        <img class="bg-img img-1" src="{{ url_for('static', filename='decoration/lightblue.png') }}" alt="Decorative abstract shape">
+        <img class="bg-img img-2" src="{{ url_for('static', filename='decoration/blue.png') }}" alt="Decorative abstract shape">
+        <img class="bg-img img-3" src="{{ url_for('static', filename='decoration/yellow.png') }}" alt="Decorative abstract shape">
+        <!-- <img class="bg-img img-4" src="{{ url_for('static', filename='decoration/circle_orange.png') }}" alt="Decorative abstract shape"> -->
         <div class="row">
             <div class="col-md-4">
-                <img class="profile-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="">
+                <img class="profile-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="Task Profile Icon">
             </div>
             <div class="col-md-8">
                 <div class="text-content">
@@ -67,7 +70,7 @@
                         <strong>Based in:</strong> {{ profile[2] }}<br>
                         <strong>Per Hour:</strong> £{{ profile[3] }}<br><br>
                         <strong>Rating:</strong> {{ profile[4] or 'N/A' }} ({{ profile[5] }} reviews) <br><br>
-                        <strong>" {{ profile[6] }} "</strong><br><br>
+                        <strong><i class='bx bxs-quote-left bx-tada-hover'></i> {{ profile[6] }} <i class='bx bxs-quote-right bx-tada-hover'></i></strong><br><br>
                         <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">phone</span> Phone Number:</strong> {{ profile[7] }} <br>
                         <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">business</span> Company:</strong> {{ profile[8] }}
                     </p>

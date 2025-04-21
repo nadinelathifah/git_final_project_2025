@@ -1,18 +1,86 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<section id="client-dashboard">
+<section id="c-db">
     <div class="container pt-5">
         <div class="title-text">
-            <hr>
             <h2>{{ name }}'s Dashboard</h2>
-            <hr>
         </div>
         <br>
+        <div class="row">
+            <div class="col-md-4">
+                <img class="house-img" src="{{ url_for('static', filename='logo/housie2.png') }}" alt="House character icon">
+            </div>
+            <div data-aos="fade-left" class="col-md-8">
+                <div class="speech-bubble">
+                    <h5><i class='bx bxs-quote-left bx-tada-hover'></i> <strong>Hi, it's me, Bricksie!</strong> 
+                        Your friendly house-shaped helper. As part of My Home Heroes, 
+                        I'm here to connect you with trusted professionals who can take care of all your home needs – 
+                        from painting and plumbing to lawn care and repairs. Whether you're fixing up your space or making it shine, 
+                        I'm always here to help you find the right hero for the job!
+                        <i class='bx bxs-quote-right bx-tada-hover'></i> 
+                    </h5>
+                </div>
+                <br>
+                <div class="speech-bubble">
+                    <h5><i class='bx bxs-quote-left bx-tada-hover'></i>
+                        Taking care of your home is not easy, sometimes all we need is someone to help us take a step forward. 
+                        <strong>You've come to the right place, {{ name }}!</strong>
+                        <i class='bx bxs-quote-right bx-tada-hover'></i> 
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</section>
+
+<section id="client-instructions">
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>How to find your hero & make a booking <span class="material-symbols-outlined" style="color: #0092e1; font-variation-settings: 'FILL' 0;">data_loss_prevention</span></h4>
+                    </div>
+                    <div class="row">
+                        <div class="card-body">
+                            <h5><span class="material-symbols-outlined">counter_1</span><strong>Click on 'Make Booking'</strong></h5>
+                            <p>On the menu bar at the top of the webpage, you'll see a button which says 
+                                <br>'Make Booking'. Click on this and embark on your home-fixing journey!
+                            </p>
+                            <h5><span class="material-symbols-outlined">counter_2</span><strong>Find your hero</strong></h5>
+                            <p>You'll be directed to a dropdown form to refine your search. After you're done choosing your options, click on 'Find Your Hero' to find your hero!</p>
+                            <h5><span class="material-symbols-outlined">counter_3</span><strong>Click on 'Book This Tradesperson'</strong></h5>
+                            <p>After you've chosen a marvelous hero, click on 'Book This Tradesperson'. 
+                                <br>Select a service start date to let our hero know when you'd 
+                                like them to begin their mission, as well as when you'd like them to finish.
+                            </p>
+                            <h5><span class="material-symbols-outlined">counter_4</span><strong>Wait For Confirmation</strong></h5>
+                            <p>Once our hero has accepted your booking, we can start preparing for them to leave their hero hub.</p>
+                            <h5><span class="material-symbols-outlined">counter_5</span><strong>Check your Booking History</strong></h5>
+                            <p>Below is where all your bookings will be recorded for you to see!
+                                Don't forget to write a review to let our hero know you appreciated their work!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img data-aos="fade-left" class="ins-img img-1" src="{{ url_for('static', filename='logo/bookingicon.svg') }}" alt="Booking icon"> 
+                <img class="ins-img img-2" src="{{ url_for('static', filename='logo/gears.svg' )}}" alt="Gears icon">
+            </div>
+        </div>
+    </div>
+    <br><br>
+</section>
+
+<section id="client-dashboard">
+    <div class="container pt-5">
         <div class="card">
+            <br>
             <div class="card-title">
                 <h4><span class="material-symbols-outlined">check_box</span> Booking History</h4>
-                <hr>
             </div>
             <div class="card-body">
                 {% for booking in bookings %}

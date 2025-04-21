@@ -49,7 +49,7 @@
                             <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
                         </div>
             
-                        <button type="submit" id="find-btn" class="btn btn-primary btn-block">Find My Tradesperson</button>
+                        <button type="submit" id="find-btn" class="btn btn-primary btn-block">Find My Hero</button>
                     </form>
                 </div>
             </div>
@@ -59,8 +59,8 @@
                 <img class="find-img img-2" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="Decorative abstract shape">
                 <!-- <img class="find-img img-3" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="Standalone image of a handywoman"> -->
                 <!-- <img class="find-img img-4" src="{{ url_for('static', filename='images/handywoman2.png')}}" alt="Standalone image of a handywoman"> -->
-                <img class="booking-img img-1" src="{{ url_for('static', filename='logo/bookingicon.svg') }}" alt="Booking icon">
-                <img class="booking-img img-2" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="Standalone image of a handywoman">
+                <img data-aos="fade-left" class="booking-img img-1" src="{{ url_for('static', filename='logo/bookingicon.svg') }}" alt="Booking icon">
+                <img data-aos="fade-right" class="booking-img img-2" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="Standalone image of a handywoman">
             </div>
         </div>
         {% if results %}
@@ -79,7 +79,7 @@
                                 <strong>Based in:</strong> {{ r.town }}<br>
                                 <strong>Per Hour:</strong> £{{ r.hourly_rate }}<br><br>
                                 <strong>Rating:</strong> {{ r.average_rating or 'N/A' }} ({{ r.total_reviews }} reviews) <br><br>
-                                <strong>" {{ r.bio }} "</strong><br><br>
+                                <strong><i class='bx bxs-quote-left bx-tada-hover'></i> {{ r.bio }} <i class='bx bxs-quote-right bx-tada-hover'></i></strong><br><br>
                                 <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">phone</span> Phone Number:</strong> {{ r.phone_number }} <br>
                                 <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">business</span> Company:</strong> {{ r.business }}
                             </p>
