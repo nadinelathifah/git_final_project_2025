@@ -329,11 +329,7 @@ def update_tp_personal_info(workerID, firstname=None, lastname=None, taskID=None
         values.append(townID)
     
     if update_fields:
-        query = f"""
-            UPDATE tradespeople
-            SET {', '.join(update_fields)}
-            WHERE workerID = %s
-        """
+        query = "UPDATE tradespeople SET {', '.join(update_fields)} WHERE workerID = %s"
         values.append(workerID)
         print("Executing:", query)
         print("With values:", values)
@@ -416,7 +412,7 @@ def display_client_profile(clientID):
 def get_reviews():
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
-    cursor.execute("SELECT rating, full_name, comment FROM view_reviews")
+    cursor.execute("SELECT full_name, task_name, rating, comment, town, rv_date FROM view_reviews")
     reviews = cursor.fetchall()
     cursor.close()
     connection.close()
@@ -443,6 +439,34 @@ def get_tp_reviews(workerID):
     connection.close()
     return tp_reviews
 
+
+def post_review(clientID, tp_profileID, rating, comment):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    try:
+        cursor.callproc('post_review', [clientID, tp_profileID, rating, comment])
+        connection.commit()
+        print(f"Review by Client {clientID} for {tp_profileID} successfully posted!")
+    except Exception as error:
+        print(f"An error occurred: {error}")
+    finally:
+        cursor.close()
+        connection.close()
+
+
+def get_tp_profile():
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    try:
+        cursor.execute("SELECT tp_profileID, tp_full_name FROM view_tp_profile ORDER BY firstname")
+        tp_profile = cursor.fetchall()
+        return tp_profile
+    except Exception as error:
+        print(f"Error fetching tradespeople: {error}")
+        return []
+    finally:
+        cursor.close()
+        connection.close()
 
 # TO ENCODE THE PASSWORD OF CLIENTS
 # client_passwords = [
@@ -611,3 +635,4 @@ if __name__ == '__main__':
     print("Tasks test:", get_tasks_with_ids())
     print("Towns test:", get_towns_with_ids())
     print(get_client_by_email("nadine@gmail.com"))
+    print(get_tp_profile())

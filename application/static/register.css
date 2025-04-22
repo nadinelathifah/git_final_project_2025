@@ -13,6 +13,20 @@ footer {
     font-weight: 500;
     background: wheat;
     border-top: 1px solid rgba(30, 29, 29, 0.489);
+    box-shadow: 0 -2px 5px rgba(87, 86, 86, 0.193);
+    z-index: 50;
+}
+
+footer .col-md-6.social-icon-stack {
+    font-size: 2.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+footer .col-md-6 .bx-tada-hover {
+    margin-right: 20px;
 }
 
 .footer-item {

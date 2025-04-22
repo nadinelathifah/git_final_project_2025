@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request, get_client_reviews, get_tp_reviews
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request, get_client_reviews, get_tp_reviews, post_review, get_tp_profile
 from application import app
 import bcrypt
 
@@ -303,17 +303,16 @@ def logout():
 
 
 # --------------- Dashboards --------------- #
-@app.route('/client/dashboard')
+@app.route('/client/dashboard', methods=['GET', 'POST'])
 def client_dashboard():
     client_id = session.get('client_id')
     client = get_client_by_id(client_id)
+    bookings = get_client_bookings(client_id)
 
     firstname = client['firstname'] if client else 'Client'
     greeting = f"Welcome Back, {firstname}!"
 
     head = f"{firstname}'s Dashboard"
-
-    bookings = get_client_bookings(client_id)
 
     return render_template('client_dashboard.html',
                            name=firstname,
@@ -672,19 +671,32 @@ def plumbing():
 
 # --------------- Reviews --------------- #
 
-@app.route('/reviews')
+@app.route('/reviews', methods=['GET', 'POST'])
 def reviews():
-    show_review = get_reviews()
     client_id = session.get('client_id')
     worker_id = session.get('worker_id')
+    
+    show_review = get_reviews()
     client_reviews = get_client_reviews(client_id)
     tradesperson_reviews = get_tp_reviews(worker_id)
+
+    tp_profile = get_tp_profile()
+
+    if request.method == 'POST':
+        tp_profile_id = request.form.get('tp_profileID')
+        rating = request.form.get('rating')
+        comment = request.form.get('comment')
+
+        post_review(client_id, tp_profile_id, rating, comment)
+
+        return redirect(url_for('reviews'))
 
     return render_template('reviews.html',
                            head='reviews',
                            reviews = show_review,
                            client_reviews=client_reviews,
                            tradesperson_reviews=tradesperson_reviews,
+                           tradespeople = tp_profile,
                            title='customer experiences',
                            subheading='review our work',
                            icon='star',
