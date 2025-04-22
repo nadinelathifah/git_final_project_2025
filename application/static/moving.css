@@ -80,8 +80,12 @@
     gap: 50px
 }
 
+#moving-services-section {
+    min-height: 80vh;
+}
+
 #moving-services-section .text-content {
-    padding: 0 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
 }
 
 #moving-services-section .card img {

@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request, get_client_reviews, get_tp_reviews
 from application import app
 import bcrypt
 
@@ -29,6 +29,7 @@ def example():
 
 
 
+
 # --------------- Sign up Pages --------------- #
 
 # This route directs you to the client sign up page.
@@ -49,10 +50,39 @@ def register_client():
         email = client_register.email.data
         password = client_register.password.data
 
-        # Append the extracted data into a list so that you can render the list onto the page and show data.
-        clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Town': town, 'Email': email, 'Password': password})
-        # Use the add_client() function (check data_access.py) to insert that data into the clients table in the SQL database.
-        add_client(first_name, last_name, date_of_birth, town, email, password)
+        check_existing_email = get_client_by_email(email)
+        if check_existing_email:
+            flash("Email already exists. Please use a different email address to sign up, or if an account exists, please login.", "error")
+            return render_template('register_client.html', 
+                            form=client_register, 
+                            head='client sign up', 
+                            title='Connect with us', 
+                            subheading='Get in touch with our skilled team',
+                            img1='decoration/arrowyellow.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowupyellow.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image = '/static/images/wideshot2.jpeg')
+
+        try:
+            # Append the extracted data into a list so that you can render the list onto the page and show data.
+            clients.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Town': town, 'Email': email, 'Password': password})
+            # Use the add_client() function (check data_access.py) to insert that data into the clients table in the SQL database.
+            client_id = add_client(first_name, last_name, date_of_birth, town, email, password)
+        except ValueError as valueError:
+            flash(str(valueError), "error") 
+        except Exception:
+            flash("Something went wrong during registration. Please try again.", "error")
+            return render_template('register_client.html', 
+                            form=client_register, 
+                            head='client sign up', 
+                            title='Connect with us', 
+                            subheading='Get in touch with our skilled team',
+                            img1='decoration/arrowyellow.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowupyellow.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image = '/static/images/wideshot2.jpeg')
 
         # Session variables (in Flask), are temporary data stored on the server-side to identify who the user is, keep track of user requests and login status. 
         # They act like a dictionary, session['key'] = value, that stores info specific to a user during their visit (i.e. their "session").
@@ -62,9 +92,10 @@ def register_client():
         session['user'] = email
         # Makes it known that the user that just registered is a client.
         session['role'] = 'client'
+        session['client_id'] = client_id
 
         # Here once the form is submitted, and user clicks 'Sign up', it redirects them to a welcome page where their first name is passed through.
-        return redirect(url_for('welcome_client', name=first_name))
+        return redirect(url_for('welcome_client'))
         
     return render_template('register_client.html', 
                             form=client_register, 
@@ -93,15 +124,44 @@ def register_tradesperson():
         email = worker_register.email.data
         password = worker_register.password.data
 
-        tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
-        add_tradesperson(first_name, last_name, date_of_birth, profession, town, email, password)
+        check_existing_email = get_tp_by_email(email)
+        if check_existing_email:
+            flash("Email already exists. Please use a different email address to sign up, or if an account exists, please login.", "error")
+            return render_template('register_tradesperson.html', 
+                            form=worker_register, 
+                            head='tradesperson sign up', 
+                            title='Get Bookings Now!', 
+                            subheading='Sign up and join our team of heroes',
+                            img1='decoration/arroworange.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowuporange.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image='/static/images/wideshot6.jpeg')
+
+        try:
+            tradespeople.append({'Firstname': first_name, 'Lastname': last_name, 'Date of Birth': date_of_birth, 'Profession': profession, 'Town': town, 'Email': email, 'Password': password})
+            worker_id = add_tradesperson(first_name, last_name, date_of_birth, profession, town, email, password)
+        except ValueError as valueError:
+            flash(str(valueError), "error") 
+        except Exception:
+            flash("Something went wrong during registration. Please try again.", "error")
+            return render_template('register_tradesperson.html', 
+                            form=worker_register, 
+                            head='tradesperson sign up', 
+                            title='Get Bookings Now!', 
+                            subheading='Sign up and join our team of heroes',
+                            img1='decoration/arroworange.png',
+                            img2='decoration/arrow.png',
+                            img3='decoration/arrowuporange.png',
+                            img4='decoration/arrowupblack.png',
+                            background_image='/static/images/wideshot6.jpeg')
 
         session['loggedIn'] = True
         session['user'] = email
         # Makes it known that the user that just registered is a tradesperson.
         session['role'] = 'tradesperson'
-        
-        return redirect(url_for('welcome_tradesperson', name=first_name))
+        session['worker_id'] = worker_id
+        return redirect(url_for('welcome_tradesperson'))
     
     return render_template('register_tradesperson.html', 
                             form=worker_register, 
@@ -116,93 +176,115 @@ def register_tradesperson():
 
 
 
+
 # --------------- Welcome Pages --------------- #
+
 # Client Reg Confirmation and Welcome Message
 @app.route('/welcome/client', methods=['GET'])
 def welcome_client():
+    # Get the clientID from the session and use get_client_by_id() (check data_access.py) to retrieve their ID from the database clients table.
+    # Purpose: retrieve the client's name to show welcome message but also ensure that only people who have logged in can access this page.
     client_id = session.get('client_id')
+    # Get 'loggedIn' from the session. But if 'loggedIn' doesn't exist, default to 'False'.
+    logged_in = session.get('loggedIn', False)
 
-    if not client_id:
+    # If it's not the correct client and this person is not logged in, redirect them to the login page.
+    if not client_id and not logged_in:
         return redirect(url_for('login_client')) 
     
     client = get_client_by_id(client_id)
-    
+
+    # If it is the correct client, retrieve their firstname from the clients table in DB.
     if client:
         name = client['firstname']
-    else:
-        name = 'Guest'
+        welcome_message = f"Welcome, {name}!" 
 
-    welcome_message = f"Welcome, {name}!" 
-
-    return render_template('welcome_client.html',
-                           name=name,
-                           head='Welcome',
-                           title=welcome_message,
-                           subheading='Account Successfully Created! Explore and browse our services',
-                           img1='decoration/squiggleblue.png',
-                           img2='decoration/squiggleblue2.png',
-                           background_image='/static/images/wideshot5.jpeg')
+        return render_template('welcome_client.html',
+                            name=name,
+                            head=welcome_message,
+                            title=welcome_message,
+                            subheading='Account Successfully Created! Please explore your dashboard',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
+                            background_image='/static/images/houses.jpg')
+    
+    return redirect(url_for('login_client'))
 
 
 # Tradesperson Reg Confirmation and Welcome Message
 @app.route('/welcome/tradesperson', methods=['GET'])
 def welcome_tradesperson():
-    tradesperson_email = session.get('user')
+    worker_id = session.get('worker_id')
+    logged_in = session.get('loggedIn', False)
 
-    if not tradesperson_email:
+    if not worker_id and not logged_in:
         return redirect(url_for('login_tradesperson'))
     
-    tradesperson = get_tp_by_email(tradesperson_email)
+    tradesperson = get_tp_by_id(worker_id)
     
     if tradesperson:
         name = tradesperson['firstname']
-    else:
-        name = 'Guest'
+        welcome_message = f"Welcome, {name}!"
+        return render_template('welcome_tradesperson.html',
+                            name=name,
+                            head=welcome_message,
+                            title=welcome_message,
+                            subheading='Let''s get started. Please explore your dashboard',
+                            img1='decoration/squiggleblue.png',
+                            img2='decoration/squiggleblue2.png',
+                            background_image='/static/images/wideshotb.jpeg')
+    
+    return redirect(url_for('login_tradesperson'))
 
-    welcome_message = f"Welcome, {name}!"
 
-    return render_template('welcome_tradesperson.html',
-                           name=name,
-                           head='Welcome',
-                           title=welcome_message,
-                           subheading='Account Successfully Created! Let\'s get started!',
-                           img1='decoration/squiggleblue.png',
-                           img2='decoration/squiggleblue2.png',
-                           background_image='/static/images/wideshotb.jpeg')
 
 
 # --------------- Login Routes --------------- #
+
+# Client
+# This route defines the client login endpoint which handles GET and POST HTTP requests.
+# This route is triggered when the user navigates to the login page for clients. 
 @app.route('/login/client', methods=['GET','POST'])
 def login_client():
-    email = request.form['client_email']
-    password = request.form['client_password']
+    # Get the values that the user entered into the login form.
+    # This retrieves the email that the user has inputted in the form field with name="client_email" (check layout.html on the client-login section)
+    email = request.form.get('client_email')
+    # This retrieves the password inputted in form field with name="client_password"
+    password = request.form.get('client_password')
 
+    # get_client_by_email() function (check data_access.py) queries the DB to check if there's a record of a client with the given email.
+    # If a client with that email exists in the DB, it returns the client's details; if not, returns none (you can check this by running the data_access.py file & looking at the terminal).
     client = get_client_by_email(email)
+
+    # Next step checks whether the password they've entered matches the one that's in the DB for that email.
+    # if client - checks if the client was returned by get_client_by_email() query.
+    # bcrypt.checkpw() - checks if the password entered by the user matches the hashed password stored in the DB. If it does, returns True.
+    # client['password'].encode('UTF-8') retrieves hashed password stored in DB & converts it into bytes.
     if client and bcrypt.checkpw(password.encode('UTF-8'), client['password'].encode('UTF-8')):
         session['loggedIn'] = True
         session['user'] = email
         session['role'] = 'client'
         session['client_id'] = client['clientID']
-        return redirect(url_for('client_dashboard', name=client['firstname']))
+        return redirect(url_for('client_dashboard'))
     else:
         flash("Invalid email or password", "error")
         return redirect(url_for('home'))
+    
 
 
-
+# Tradesperson login route
 @app.route('/login/tradesperson', methods=['GET', 'POST'])
 def login_tradesperson():
-    email = request.form['tp_email']
-    password = request.form['tp_password']
+    email = request.form.get('tp_email')
+    password = request.form.get('tp_password')
 
     tradesperson = get_tp_by_email(email)
     if tradesperson and bcrypt.checkpw(password.encode('UTF-8'), tradesperson['password'].encode('UTF-8')):
         session['loggedIn'] = True
         session['user'] = email
         session['role'] = 'tradesperson'
-        session['name'] = 'firstname'
         session['worker_id'] = tradesperson['workerID']
-        return redirect(url_for('task_dashboard', name=tradesperson['firstname']))
+        return redirect(url_for('task_dashboard'))
     else:
         flash("Invalid email or password", "error")
         return redirect(url_for('home'))
@@ -219,27 +301,52 @@ def logout():
 
 
 
+
 # --------------- Dashboards --------------- #
 @app.route('/client/dashboard')
 def client_dashboard():
+    client_id = session.get('client_id')
+    client = get_client_by_id(client_id)
+
+    firstname = client['firstname'] if client else 'Client'
+    greeting = f"Welcome Back, {firstname}!"
+
+    head = f"{firstname}'s Dashboard"
+
+    bookings = get_client_bookings(client_id)
+
     return render_template('client_dashboard.html',
-                           head='Client Dashboard',
-                           title='Your Dashboard',
-                           subheading='Explore our services',
+                           name=firstname,
+                           bookings=bookings,
+                           head=head,
+                           title=greeting,
+                           subheading='Explore your dashboard',
+                           icon='real_estate_agent',
                            background_image='/static/images/interior.png')
 
 
 @app.route('/task/dashboard')
 def task_dashboard():
+    worker_id = session.get('worker_id')
+    tradesperson = get_tp_by_id(worker_id)
+
+    firstname = tradesperson['firstname'] if tradesperson else 'Tasker'
+    greeting = f"Welcome Back, {firstname}!"
+
+    head = f"{firstname}'s Dashboard"
+
     return render_template('tp_dashboard.html',
-                           head='Task Dashboard',
-                           title='Your Dashboard',
-                           subheading='View your profile', 
+                           head=head,
+                           name=firstname,
+                           title=greeting,
+                           subheading='View your dashboard',
+                           icon='build_circle',
                            background_image='/static/images/wideshot3.jpeg')
 
 
 
-# --------------- Booking Pages --------------- #
+
+# --------------- Client Booking Pages --------------- #
 
 # Client - Search for a tradesperson to choose.
 @app.route('/find_tradesperson', methods=['GET', 'POST'])
@@ -252,10 +359,10 @@ def find_tradesperson():
     results = []
 
     if request.method == 'POST':
-        location = request.form['location']
-        task = request.form['task']
-        hourly_rate = request.form['hourly_rate']
-        star_rating = request.form['star_rating']
+        location = request.form.get('location')
+        task = request.form.get('task')
+        hourly_rate = request.form.get('hourly_rate')
+        star_rating = request.form.get('star_rating')
 
         results = find_matching_tradespeople(task, location, hourly_rate, star_rating)
 
@@ -266,7 +373,8 @@ def find_tradesperson():
                            head="find a tradesperson",
                            title="find & book your home hero!",
                            subheading="get your task done now",
-                           background_image='/static/images/houses.jpg')
+                           icon='conditions',
+                           background_image='/static/images/mansion.png')
 
 
 # Client - after choosing the tradesperson, book them.
@@ -277,9 +385,9 @@ def book_service():
         clientID = session.get('client_id')  # Get the logged-in client's ID from the session
         workerID = request.form.get('worker_id')
         taskID = request.form.get('task_id')
-        service_start = request.form['service_start']
-        service_end = request.form['service_end']
-        task_description = request.form['task_description']
+        service_start = request.form.get('service_start')
+        service_end = request.form.get('service_end')
+        task_description = request.form.get('task_description')
 
         # Call the function to book the job and insert into the database
         book_job(clientID, workerID, taskID, service_start, service_end, task_description)
@@ -288,27 +396,30 @@ def book_service():
             return "Error: Invalid workerID or taskID", 400
 
         # Redirect to a confirmation page or back to the tradesperson's page
-        return redirect(url_for('client_dashboard'))  # Or you can redirect to a different route
+        return redirect(url_for('client_dashboard'))
 
     # Handle the GET request: this is where the user will be directed after clicking "Book This Tradesperson"
     # Handle GET request to display the form and passed values
-    tradesperson_id = request.args.get('workerID')
+    worker_id = request.args.get('workerID')
     task_id = request.args.get('taskID')
 
     # For debugging
-    print(f"workerID: {tradesperson_id}, taskID: {task_id}") 
+    print(f"workerID: {worker_id}, taskID: {task_id}") 
 
-    # Retrieve the tradesperson's workerID via get_tp_by_email() function.
-    tradesperson = get_tp_by_email(tradesperson_id)
+    # Retrieve the tradesperson's workerID and full name via get_tp_by_id() function.
+    tradesperson = get_tp_by_id(worker_id)
+    name = tradesperson['firstname'] + " " + tradesperson['lastname']
 
     return render_template('book_service.html',
                            tradesperson=tradesperson, 
                            task_id=task_id,
-                           worker_id=tradesperson_id,
+                           worker_id=worker_id,
+                           name = name,
                            head="Book a tradesperson",
                            title='Book a tradesperson!',
                            subheading='Your home rescue, just a click away',
-                           background_image='/static/images/houses.jpg')
+                           icon='task_alt',
+                           background_image='/static/images/mansion.png')
 
 
 @app.route('/booking_confirmation')
@@ -317,8 +428,192 @@ def booking_confirmation():
                            head="booking confirmed",
                            title="You have successfully booked!",
                            subheading="Please wait for confirmation from the tradesperson.",
-                           background_image='/static/images/housess.jpeg')
+                           icon='task_alt',
+                           background_image='/static/images/houses.jpeg')
 
+
+
+
+# --------------- Tradesperson Booking Pages --------------- #
+
+@app.route('/see_bookings', methods=['GET', 'POST'])
+def see_bookings():
+    if 'user' not in session:
+        return redirect(url_for('home'))
+    
+    worker_id = session.get('worker_id')
+
+    if request.method == 'POST':
+        booking_id = request.form.get('booking_id')
+        worker_id = session.get('worker_id')
+        action = request.form.get('action')
+        
+        if action == 'accept':
+            accept_booking_request(worker_id, booking_id)
+        elif action == 'reject':
+            reject_booking_request(worker_id, booking_id)
+        
+    tradesperson = get_tp_by_id(worker_id)
+    firstname = tradesperson['firstname']
+    bookings = get_booking_requests(worker_id)
+
+    return render_template('see_bookings.html',
+                           bookings=bookings,
+                           name=firstname,
+                           head="see bookings",
+                           title="See your bookings",
+                           subheading="description",
+                           icon='task_alt',
+                           background_image='/static/images/greetclient.jpg')
+
+
+
+
+# --------------- Client Profile --------------- #
+
+@app.route('/client_profile', methods=['GET'])
+def client_profile():
+
+    client_id = session.get('client_id')
+    client = get_client_by_id(client_id)
+    firstname = client['firstname'] if client else 'Client'
+
+    head = f"{firstname}'s profile"
+
+    profile = display_client_profile(client_id)
+
+    return render_template('client_profile.html',
+                           head=head,
+                           name = firstname,
+                           profile=profile,
+                           title="Your profile",
+                           subheading="View or update your personal details",
+                           icon='settings',
+                           background_image='/static/images/interior.png')
+
+
+@app.route('/client_profile/update', methods=['GET', 'POST'])
+def update_client_profile():
+    towns = get_towns_with_ids()
+    client_id = session.get('client_id')
+    profile = display_client_profile(client_id)
+
+    if request.method == 'POST':
+        client_id = session.get('client_id')
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        townID = request.form.get('townID')
+
+        update_client_info(client_id, firstname, lastname, townID)
+        return redirect('/client_profile#client-profile')
+    return render_template('client_profile_update.html',
+                           towns=towns,
+                           profile=profile,
+                           head='update profile',
+                           title="Your profile",
+                           subheading="View or update your personal details",
+                           icon='settings',
+                           background_image='/static/images/interior.png')
+
+
+
+# --------------- Tradesperson Profile --------------- #
+
+@app.route('/tradesperson_profile', methods=['GET'])
+def tradesperson_profile():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+    return render_template('tp_profile.html',
+                           head='profile information',
+                           profile=profile,
+                           title='your profile',
+                           subheading='choose from the following options below',
+                           icon='settings',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+@app.route('/tradesperson_profile/setup', methods=['GET', 'POST'])
+def setup_tp_profile():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+
+    if request.method == 'POST':
+        workerID = session.get('worker_id')
+        phone_number = request.form.get('phone_number')
+        hourly_rate = request.form.get('hourly_rate')
+        business = request.form.get('business')
+        bio = request.form.get('bio')
+
+        set_tp_profile(workerID, phone_number, hourly_rate, business, bio)
+        profile = display_tp_profile(workerID)
+    print("profile: ", profile)
+
+    return render_template('tp_profile_setup.html',
+                           profile = profile,
+                           head='profile setup',
+                           title='profile setup',
+                           subheading='enable clients to see your details',
+                           icon='settings',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+@app.route('/tradesperson_profile/update/profile', methods=['GET', 'POST'])
+def update_tp_profile():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+
+    if request.method == 'POST':
+        workerID = session.get('worker_id')
+        phone_number = request.form.get('phone_number')
+        hourly_rate = request.form.get('hourly_rate')
+        business = request.form.get('business')
+        bio = request.form.get('bio')
+
+        update_tradesperson_profile(workerID, phone_number, hourly_rate, business, bio)
+        profile = display_tp_profile(workerID)
+    print("profile: ", profile)
+
+    return render_template('tp_profile_update.html',
+                           profile = profile,
+                           head='profile setup',
+                           title='profile setup',
+                           subheading='enable clients to see your details',
+                           icon='settings',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+@app.route('/tradesperson_profile/update/personal', methods=['GET', 'POST'])
+def update_tp_info():
+    workerID = session.get('worker_id')
+    profile = display_tp_profile(workerID)
+    tasks = get_tasks_with_ids()
+    towns = get_towns_with_ids()
+
+    if request.method == 'POST':
+        workerID = session.get('worker_id')
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        taskID = request.form.get('taskID')
+        townID = request.form.get('townID')
+
+        update_tp_personal_info(workerID, firstname, lastname, taskID, townID)
+        profile = display_tp_profile(workerID)
+    print("profile: ", profile)
+
+    return render_template('tp_update_personal_info.html',
+                           profile = profile,
+                           tasks=tasks,
+                           towns=towns,
+                           head='profile setup',
+                           title='profile setup',
+                           subheading='enable clients to see your details',
+                           icon='settings',
+                           background_image='/static/images/wideshot3.jpeg')
+
+
+
+
+# --------------- Services --------------- #
 @app.route('/services/electrician')
 def electrician():
         return render_template('electrician.html',
@@ -361,6 +656,7 @@ def home_repairs():
                            head='Home Repairs',
                            title='Home Repair Services',
                            subheading='From Leaks to Locks, We Handle It All!',
+                           icon='cottage',
                            background_image='/static/images/repairstwo.jpg')
 
 
@@ -374,14 +670,21 @@ def plumbing():
                             background_image="/static/images/pipes background.jpg")
 
 
+# --------------- Reviews --------------- #
 
 @app.route('/reviews')
 def reviews():
     show_review = get_reviews()
-    print(show_review)
+    client_id = session.get('client_id')
+    worker_id = session.get('worker_id')
+    client_reviews = get_client_reviews(client_id)
+    tradesperson_reviews = get_tp_reviews(worker_id)
+
     return render_template('reviews.html',
                            head='reviews',
                            reviews = show_review,
+                           client_reviews=client_reviews,
+                           tradesperson_reviews=tradesperson_reviews,
                            title='customer experiences',
                            subheading='review our work',
                            icon='star',

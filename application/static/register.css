@@ -30,7 +30,7 @@ footer {
     min-height: 100vh;
     width: 100vw;
     position: relative;
-    overflow-y: hidden;
+    overflow-y: visible;
 }
 
 #hero-section h1 {

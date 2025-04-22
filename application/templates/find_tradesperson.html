@@ -2,13 +2,18 @@
 {% block body_content %}
 
 <section id="find-tp">
-    <div class="">
+    <div class="container-fluid">
+        <div class="title-text">
+            <hr>
+            <h2>find a home hero</h2>
+            <hr>
+        </div>
         <div class="outer-wrapper">
             <div class="col-md-6 column-left">
                 <div class="card find-card">
                     <form method="POST" action="{{ url_for('find_tradesperson') }}#results">
                         <div class="mb-3 select-wrapper">
-                            <label class="form-label"><span class="material-symbols-outlined search">handyman</span><h4>What task do you need helping with?</h4></label>
+                            <label class="form-label"><span class="material-symbols-outlined search">handyman</span><h5>What task do you need helping with?</h5></label>
                             <select name="task" class="select-inner">
                                 <option value="">Any</option>
                                 {% for task in tasks %}
@@ -19,7 +24,7 @@
                         </div>
             
                         <div class="mb-3 select-wrapper">
-                            <label class="form-label"><span class="material-symbols-outlined search">home_pin</span><h4>Which location?</h4></label>
+                            <label class="form-label"><span class="material-symbols-outlined search">home_pin</span><h5>Which location?</h5></label>
                             <select name="location" class="select-inner">
                                 <option value="">Any</option>
                                 {% for town in towns %}
@@ -30,7 +35,7 @@
                         </div>
             
                         <div class="mb-3 select-wrapper">
-                            <label class="form-label"><h4><i class='bx bx-pound bx-border-circle'></i>Hourly rate:</h4></label>
+                            <label class="form-label"><h5><i class='bx bx-pound bx-border-circle'></i>Hourly rate:</h5></label>
                             <select name="hourly_rate" class="select-inner">
                                 <option value="">No Preference</option>
                                 <option value="ASC">Lowest to Highest</option>
@@ -40,7 +45,7 @@
                         </div>
             
                         <div class="mb-3 select-wrapper">
-                            <label class="form-label"><h4><i class='bx bx-star bx-border-circle'></i>Rating:</h4></label>
+                            <label class="form-label"><h5><i class='bx bx-star bx-border-circle'></i>Rating:</h5></label>
                             <select name="star_rating" class="select-inner">
                                 <option value="">No Preference</option>
                                 <option value="ASC">Lowest to Highest</option>
@@ -49,16 +54,15 @@
                             <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
                         </div>
             
-                        <button type="submit" id="find-btn" class="btn btn-primary btn-block">Find My Tradesperson</button>
+                        <button type="submit" id="find-btn" class="btn btn-primary btn-block">Find My Hero</button>
                     </form>
                 </div>
             </div>
 
             <div class="col-md-6 column-right">
-                <img class="find-img img-1" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="">
-                <img class="find-img img-2" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="">
-                <img class="find-img img-3" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="">
-                <img class="find-img img-4" src="{{ url_for('static', filename='images/handywoman2.png')}}" alt="">
+                <img data-aos="fade-left" class="booking-img img-1" src="{{ url_for('static', filename='logo/bookingicon.svg') }}" alt="Booking icon">
+                <img data-aos="fade-right" class="booking-img img-2" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="Standalone image of a handywoman">
+                <img class="booking-img img-3" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="Decorative abstract shape">
             </div>
         </div>
         {% if results %}
@@ -73,11 +77,13 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ r.full_name }} <span class="material-symbols-outlined .verified">verified_user</span></h5>
                             <p class="card-text">
-                                <strong>Task:</strong> {{ r.task_name }}<br>
-                                <strong>Town:</strong> {{ r.town }}<br>
-                                <strong>Rate:</strong> £{{ r.hourly_rate }}<br>
-                                <strong>Rating:</strong> {{ r.average_rating or 'N/A' }} ({{ r.total_reviews }} reviews)<br>
-                                <strong>Bio:</strong> {{ r.bio }}
+                                <strong>Specialisation:</strong> {{ r.task_name }}<br>
+                                <strong>Based in:</strong> {{ r.town }}<br>
+                                <strong>Per Hour:</strong> £{{ r.hourly_rate }}<br><br>
+                                <strong>Rating:</strong> {{ r.average_rating or 'N/A' }} ({{ r.total_reviews }} reviews) <br><br>
+                                <strong><i class='bx bxs-quote-alt-left bx-tada-hover'></i> {{ r.bio }} <i class='bx bxs-quote-alt-right bx-tada-hover'></i></strong><br><br>
+                                <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">phone</span> Phone Number:</strong> {{ r.phone_number }} <br>
+                                <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">business</span> Company:</strong> {{ r.business }}
                             </p>
                             <form action="{{ url_for('book_service') }}#booking-form" method="GET">
                                 <input type="hidden" name="workerID" value="{{ r.workerID }}">

@@ -49,7 +49,9 @@ footer {
 #hero-section h1 {
     color: rgb(0, 21, 116);
     font-family: 'Bungee', sans-serif;
+    font-size: 2.5rem;
     text-transform: capitalize;
+    text-shadow: 0 5px 10px rgba(0,0,0, 0.3);
     -webkit-text-stroke: 1px rgb(255, 255, 255);
 }
 
@@ -59,7 +61,7 @@ footer {
     font-size: 1.3rem;
     text-transform: capitalize;
     background: rgb(253, 222, 98);
-    box-shadow: 0 4px 8px rgba(0,0,0, 0.2);
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.3);
     box-sizing: border-box;
     border-radius: 20px;
     border: 3px solid rgb(0, 21, 116);
@@ -288,6 +290,10 @@ transform: translateY(0);
     background: rgba(251, 142, 0, 0.517);
 }
 
+.home-btn:hover {
+    background: rgb(0, 21, 116) !important;
+    color: rgb(255, 247, 199) !important;
+}
 
 
 /* -------------- Login Form Styling -------------- */
@@ -925,121 +931,4 @@ form .btn-primary:hover {
     max-width: 43vw;
     border-radius: 50px;
     z-index: 3;
-}
-
-
-/* -------------- Reviews Section -------------- */
-
-#reviews {
-    min-height: 100vh;
-    width: 100vw;
-    background: whitesmoke;
-    overflow-x: hidden;
-    z-index: 0;
-}
-
-#reviews .container {
-    position: relative;
-    min-height: 100vh;
-    width: 100vw;
-}
-
-#reviews .text-content {
-    position: relative;
-    padding-top: 30px;
-    text-align: center;
-    width: 60%;
-    z-index: 2;
-}
-
-#reviews .text-content h3 {
-    text-transform: capitalize;
-}
-
-.review-img {
-    position: absolute;
-    z-index: 1;
-}
-
-.review-img.img-1 {
-    max-height: 50vh;
-    top: 0;
-    right: -220px;
-    opacity: 0.8;
-}
-
-.review-img.img-2 {
-    max-height: 50vh;
-    top: 100px;
-    right: -600px;
-    opacity: 0.5;
-}
-
-.review-img.img-3 {
-    max-height: 50vh;
-    top: 100px;
-    left: -600px;
-    opacity: 0.8;
-}
-
-.review-img.img-4 {
-    max-height: 50vh;
-    bottom: 200px;
-    left: -220px;
-    opacity: 0.8;
-}
-
-.review-img.img-5 {
-    max-height: 50vh;
-    bottom: 0;
-    left: -600px;
-    opacity: 0.5;
-}
-
-.review-img.img-6 {
-    max-height: 50vh;
-    bottom: 100px;
-    right: -600px;
-    opacity: 0.8;
-}
-
-
-#reviews .text-content span {
-    font-size: 2rem;
-}
-
-#stars .material-symbols-outlined {
-    font-variation-settings: 'FILL' 1;
-}
-
-.review-wrapper {
-    display: flex;
-    justify-content: center;
-}
-
-.reviewcard-img {
-    max-width: 9.5vw;
-    /* border-radius: 50%; */
-    height: auto;
-}
-
-#reviews .card {
-    width: 100%;
-    padding: 20px;
-    border-radius: 25px;
-    border: 1px solid white;
-    box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.137);
-    z-index: 5;
-}
-
-#reviews .card-text {
-    margin-top: 20px;
-}
-
-#reviews .col-sm.col-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
 }

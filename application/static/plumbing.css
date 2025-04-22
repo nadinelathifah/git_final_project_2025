@@ -77,10 +77,10 @@
 #plumbing-services-section .card {
     width: 300px;                /* Set a width (unchanging) or a maximum-width (more responsive when you minimise the screen size) to the card */
     height: auto;
-    background: white;
-    color: black;              /* Unlike background or background-color, 'color' sets the text-color*/
+    background: #007bff;;
+    color: white;              /* Unlike background or background-color, 'color' sets the text-color*/
     text-align: center;          /* Aligns text inside the card to the center */
-    box-shadow: -7px 7px rgb(253, 200, 100);
+    box-shadow: -10px 10px orange;
     border-radius: 25px;
 }
 
@@ -96,7 +96,7 @@
 /* We are specifically targeting the h3 heading of each card */
 #plumbing-services-section .card h3 {
     margin-top: 20px;            /* Adds a margin to the top of the heading */
-    font-size: 1.5rem;           /* 1rem = 16px */
+    font-size: 1.3rem;           /* 1rem = 16px */
     text-transform: capitalize;           /* Capitalises all h3 headings in the card */
 }
 
@@ -145,6 +145,12 @@
 
 #plumbing-bottom-container .box h4 {
     font-size: 1.3rem;
+}
+
+#plumbing-services-section .text-content {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 
