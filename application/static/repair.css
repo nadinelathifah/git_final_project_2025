@@ -27,6 +27,7 @@
     gap: 50px;
     flex-wrap: wrap;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #repair-section .card h3 {
@@ -98,7 +99,6 @@
     padding: 45px;
     margin-right: 20px;
     z-index: 5;
-}
 
 /*.navbar {
   background: rgba(255, 255, 255, 0.15);
@@ -110,6 +110,7 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
-} this is the frosted panel appearance 
+}
+/* frosted panel appearance
 
 
