@@ -158,32 +158,41 @@
     max-width: 900px;
 }
 .carousel-1 {
-    background: url(images/greetclient2.jpg) no-repeat center center/cover;
+    background: url(images/greetclient4.jpg) no-repeat center center/cover;
 }
 .carousel-2 {
     background: url(images/gardening5.jpg) no-repeat center center/cover;
 }
 .carousel-3 {
-    background: url(images/greetclient4.jpg) no-repeat center center/cover;
+    background: url(images/movingreview.jpeg) no-repeat center center/cover;
 }
 .carousel-4 {
-    background: url(images/movingreview.jpeg) no-repeat center center/cover;
+    background: url(images/greetclient2.jpg) no-repeat center center/cover;
 }
 .carousel-5 {
     background: url(images/reviewfix.jpg) no-repeat center center/cover;
 }
 .carousel-6 {
+    background: url(images/reviewspeedy.jpg) no-repeat center center/cover;
+}
+.carousel-7 {
     background: url(images/foundationnew.png) no-repeat center center/cover;
 }
 
 .carousel-caption {
-    background-color: rgba(127, 117, 101, 0.23);
+    background: rgba(0, 0, 0, 0.23);
     border-radius: 50px;
+    max-width: 40%;
     padding: 5px;
-    padding-bottom: 20px;
-    max-width: 80%;
     text-transform: capitalize;
+    transform: translate(-100px, -10px);
+    margin-bottom: 20px;
 }
+
+.carousel-caption h5 {
+    font-size: 1.5rem;
+}
+
 .carousel-control-prev, .carousel-control-next {
     top: 50%;
     transform: translateY(-50%);
