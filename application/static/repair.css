@@ -1,5 +1,5 @@
 #repair-section {
-    height: 100vh;
+    min-height: 100vh;
     background: whitesmoke;
     display: flex;
     justify-content: center;
@@ -93,7 +93,7 @@
 #repair-2 .content {
     position: absolute;
     background: whitesmoke;
-    height: 35vh;
+    min-height: 35vh;
     width: 43vw;
     border-radius: 25px;
     padding: 45px;

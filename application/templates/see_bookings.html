@@ -1,5 +1,87 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
+<section id="see-bookings">
+    <div class="container pt-5">
+        <div class="title-text">
+            <h2>See {{ name }}'s Bookings</h2>
+        </div>
+        <br>
+        <div class="card">
+            <br>
+            <div class="card-title">
+                <h4><span class="material-symbols-outlined">check_box</span> Booking History</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm title">
+                        <p><strong>Date of Booking</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Name of Tradesperson</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Task</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Start Date</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>End Date</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Working Days</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Task Description</strong></p>
+                    </div>
+                    <div class="col-sm title" style="border-right: none; text-transform: capitalize;">
+                        <p><strong>Status</strong></p>
+                    </div>
+                </div>
+                {% for booking in bookings %}
+                <div class="row">
+                    <div class="col-sm">
+                        <p><strong>{{ booking.booking_date }}<br><br>Booking ID: {{ booking.bookingID }}</strong></p>
+                    </div>
+                    <div class="col-sm">
+                        <p>{{ booking.client_full_name }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>{{ booking.task_name }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>{{ booking.ss_date }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>{{ booking.se_date }}</p>
+                    </div>
+                    <div class="col-sm" style="justify-content: center;">
+                        <p>{{ booking.working_days }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>{{ booking.task_description }}</p>
+                    </div>
+                    <div class="col-sm" style="border-right: none; text-transform: capitalize; display: flex; flex-direction: column;">
+                        <p><strong>{{ booking.status }}</strong></p>
+                        {% if booking.status == 'pending' %}
+                            <form method="POST">
+                                <input type="hidden" name="booking_id" value="{{ booking.bookingID }}">
+                                <button class="accept-btn" type="submit" name="action" value="accept"><span class="material-symbols-outlined requests">add_task</span> Accept</button>
+                            </form>
+                        
+                            <form method="POST" style="display:inline;">
+                                <input type="hidden" name="booking_id" value="{{ booking.bookingID }}">
+                                <button class="reject-btn" type="submit" name="action" value="reject"><span class="material-symbols-outlined requests">block</span> Reject</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <br><br>
+</section>
 
 {% endblock %}

@@ -19,7 +19,16 @@
         <div class="col-sm column-right">
             <div data-aos="fade-up" id="tradesperson-signup">
                 <h2>Sign Up</h2>
-                <form action="" method="POST">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div style="color: red;" class="flash-messages">
+                        {% for category, message in messages %}
+                            <div style="color: red;" class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <form action="{{ url_for('register_tradesperson') }}" method="POST">
                     {{ form.hidden_tag() }}
                     <div class="input-field">
                         {{ form.first_name(class="form-control", placeholder="Firstname") }}

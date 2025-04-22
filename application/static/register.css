@@ -13,6 +13,20 @@ footer {
     font-weight: 500;
     background: wheat;
     border-top: 1px solid rgba(30, 29, 29, 0.489);
+    box-shadow: 0 -2px 5px rgba(87, 86, 86, 0.193);
+    z-index: 50;
+}
+
+footer .col-md-6.social-icon-stack {
+    font-size: 2.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+footer .col-md-6 .bx-tada-hover {
+    margin-right: 20px;
 }
 
 .footer-item {
@@ -30,7 +44,7 @@ footer {
     min-height: 100vh;
     width: 100vw;
     position: relative;
-    overflow-y: hidden;
+    overflow-y: visible;
 }
 
 #hero-section h1 {
@@ -357,7 +371,7 @@ form .input-field input {
     outline: none;
     font-size: 0.95rem;
     border: 1px solid gray;
-    border-radius: 3px;
+    border-radius: 25px;
     padding: 0px 15px;
     box-sizing: border-box;
 }
@@ -385,11 +399,9 @@ form .btn-primary {
     color: white;
     font-size: 0.95rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
 }
-
-
 
 #tradesperson-signup {
     position: relative;
@@ -405,4 +417,3 @@ form .btn-primary {
     padding: 40px;
     text-align: center;
 }
-
