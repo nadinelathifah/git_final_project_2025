@@ -130,7 +130,6 @@ VALUES ('pending'),
 ('completed'),
 ('cancelled');
 
-SELECT * FROM tradespeople;
 
 INSERT INTO tradespeople (firstname, lastname, date_of_birth, taskID, townID, email, password, registration_date)
 VALUES ('Lucy', 'Lacquer', '1991-06-12', 1, 1, 'lucy@edc.com', '$2b$12$l4GKZcdsmgvp9pG.6O42z.VEIzosl3whBdB8CkMTTp4l9Bok4RSs2', '2005-03-31'),

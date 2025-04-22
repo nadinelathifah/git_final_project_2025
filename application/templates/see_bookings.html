@@ -62,8 +62,19 @@
                     <div class="col-sm">
                         <p>{{ booking.task_description }}</p>
                     </div>
-                    <div class="col-sm" style="border-right: none; text-transform: capitalize;">
+                    <div class="col-sm" style="border-right: none; text-transform: capitalize; display: flex; flex-direction: column;">
                         <p><strong>{{ booking.status }}</strong></p>
+                        {% if booking.status == 'pending' %}
+                            <form method="POST">
+                                <input type="hidden" name="booking_id" value="{{ booking.bookingID }}">
+                                <button class="accept-btn" type="submit" name="action" value="accept"><span class="material-symbols-outlined requests">add_task</span> Accept</button>
+                            </form>
+                        
+                            <form method="POST" style="display:inline;">
+                                <input type="hidden" name="booking_id" value="{{ booking.bookingID }}">
+                                <button class="reject-btn" type="submit" name="action" value="reject"><span class="material-symbols-outlined requests">block</span> Reject</button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}

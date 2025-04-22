@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request
 from application import app
 import bcrypt
 
@@ -359,10 +359,10 @@ def find_tradesperson():
     results = []
 
     if request.method == 'POST':
-        location = request.form['location']
-        task = request.form['task']
-        hourly_rate = request.form['hourly_rate']
-        star_rating = request.form['star_rating']
+        location = request.form.get('location')
+        task = request.form.get('task')
+        hourly_rate = request.form.get('hourly_rate')
+        star_rating = request.form.get('star_rating')
 
         results = find_matching_tradespeople(task, location, hourly_rate, star_rating)
 
@@ -385,9 +385,9 @@ def book_service():
         clientID = session.get('client_id')  # Get the logged-in client's ID from the session
         workerID = request.form.get('worker_id')
         taskID = request.form.get('task_id')
-        service_start = request.form['service_start']
-        service_end = request.form['service_end']
-        task_description = request.form['task_description']
+        service_start = request.form.get('service_start')
+        service_end = request.form.get('service_end')
+        task_description = request.form.get('task_description')
 
         # Call the function to book the job and insert into the database
         book_job(clientID, workerID, taskID, service_start, service_end, task_description)
@@ -436,15 +436,25 @@ def booking_confirmation():
 
 # --------------- Tradesperson Booking Pages --------------- #
 
-@app.route('/see_bookings')
+@app.route('/see_bookings', methods=['GET', 'POST'])
 def see_bookings():
     if 'user' not in session:
         return redirect(url_for('home'))
+    
     worker_id = session.get('worker_id')
 
+    if request.method == 'POST':
+        booking_id = request.form.get('booking_id')
+        worker_id = session.get('worker_id')
+        action = request.form.get('action')
+        
+        if action == 'accept':
+            accept_booking_request(worker_id, booking_id)
+        elif action == 'reject':
+            reject_booking_request(worker_id, booking_id)
+        
     tradesperson = get_tp_by_id(worker_id)
     firstname = tradesperson['firstname']
-
     bookings = get_booking_requests(worker_id)
 
     return render_template('see_bookings.html',
@@ -660,6 +670,7 @@ def plumbing():
                             background_image="/static/images/pipes background.jpg")
 
 
+# --------------- Reviews --------------- #
 
 @app.route('/reviews')
 def reviews():

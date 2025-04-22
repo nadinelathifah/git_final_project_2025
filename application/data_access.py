@@ -231,12 +231,32 @@ def get_client_bookings(clientID):
 def get_booking_requests(workerID):
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
-    query = "SELECT bookingID, booking_date, client_full_name, task_name, ss_date, se_date, working_days, task_description, status FROM view_booking_requests where workerID = %s"
+    query = "SELECT bookingID, booking_date, client_full_name, task_name, ss_date, se_date, working_days, task_description, status FROM view_booking_requests WHERE workerID = %s"
     cursor.execute(query, (workerID,))
     booking = cursor.fetchall()
     cursor.close()
     connection.close()
     return booking
+
+
+def accept_booking_request(workerID, bookingID):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    update = "UPDATE job_booking SET statusID = 2 WHERE workerID = %s AND bookingID = %s"
+    cursor.execute(update, (workerID, bookingID))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+def reject_booking_request(workerID, bookingID):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    update = "UPDATE job_booking SET statusID = 5 WHERE workerID = %s AND bookingID = %s"
+    cursor.execute(update, (workerID, bookingID))
+    connection.commit()
+    cursor.close()
+    connection.close()
 
 
 def set_tp_profile(workerID, phone_number, hourly_rate, business, bio):

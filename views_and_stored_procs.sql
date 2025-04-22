@@ -43,7 +43,9 @@ SELECT * FROM view_tradespeople_by_category
 WHERE task_name = 'Lawn Care' AND town = 'Bathgate'
 ORDER BY hourly_rate ASC;
 
-
+SELECT * FROM job_booking;
+SELECT * FROM job_booking WHERE clientID = 2 AND workerID = 1 AND statusID = 1;
+UPDATE job_booking SET statusID = 2 WHERE workerID = 1 AND bookingID = 155;
 
 
 -- VIEW 2: view_client_info
