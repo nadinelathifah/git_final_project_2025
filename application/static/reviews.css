@@ -2,10 +2,11 @@
 /* -------------- Reviews Section -------------- */
 
 #reviews {
-    min-height: 100vh;
+    min-height: 142vh;
     width: 100vw;
     background: whitesmoke;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     z-index: 0;
 }
 
@@ -37,6 +38,7 @@
     top: 0;
     right: -220px;
     opacity: 0.8;
+    z-index: 0;
 }
 
 .review-img.img-2 {
@@ -44,6 +46,7 @@
     top: 100px;
     right: -600px;
     opacity: 0.5;
+    z-index: 0;
 }
 
 .review-img.img-3 {
@@ -51,6 +54,7 @@
     top: 100px;
     left: -600px;
     opacity: 0.8;
+    z-index: 0;
 }
 
 .review-img.img-4 {
@@ -58,6 +62,7 @@
     bottom: 200px;
     left: -220px;
     opacity: 0.8;
+    z-index: 0;
 }
 
 .review-img.img-5 {
@@ -65,6 +70,7 @@
     bottom: 0;
     left: -600px;
     opacity: 0.5;
+    z-index: 0;
 }
 
 .review-img.img-6 {
@@ -72,6 +78,7 @@
     bottom: 100px;
     right: -600px;
     opacity: 0.8;
+    z-index: 0;
 }
 
 #reviews .text-content span {
@@ -95,11 +102,20 @@
 
 #reviews .card {
     width: 100%;
+    min-width: 60%;
     padding: 20px;
     border-radius: 25px;
     border: 1px solid white;
     box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.137);
     z-index: 5;
+}
+
+@media (max-width: 1024) {
+    #reviews .row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    }
 }
 
 #reviews .card-text {
@@ -116,7 +132,6 @@
 
 
 
-
 /* ------------- Carousel ------------- */
 
 #review-carousel {
@@ -124,13 +139,15 @@
     max-width: 900px;       
     max-height: 520px;         
     margin: 0 auto;   
-    border: 10px solid #ffffff;
-    border-radius: 25px;
-    box-sizing: border-box;                 
+    box-sizing: border-box;
+    z-index: 3;               
 }
 
 #reviewCarousel {
+    border: 10px solid #ffffff;
+    border-radius: 25px;
     height: 500px;
+    z-index: 3;
 }
 
 #reviewCarousel .carousel-inner {
@@ -204,4 +221,48 @@
 }
 .carousel-item h5, .carousel-item p {
     text-shadow: 6px 6px 12px black;
+}
+
+
+/* ------------- Carousel ------------- */
+
+
+#opening-quote {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#closing-quote {
+    display: flex;
+    justify-content: flex-end;
+}
+
+p .firstline {
+    font-weight: 600; 
+}
+
+p .secondline {
+    text-align: right;
+    display: block;
+    font-style: italic;
+}
+
+#quote .col {
+    width: 25%;
+}
+
+#quote .col-6 {
+    width: 50%;
+}
+
+.quote-img {
+    position: absolute;
+    max-width: 100%;
+}
+.quote-img.img-1 {
+    max-height: 15%;
+}
+
+.quote-img.img-2 {
+    max-height: 20%;
 }

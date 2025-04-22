@@ -396,12 +396,13 @@ def display_client_profile(clientID):
 def get_reviews():
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
-
     cursor.execute("SELECT rating, full_name, comment FROM view_reviews")
     reviews = cursor.fetchall()
     cursor.close()
     connection.close()
     return reviews
+
+
 
 
 # TO ENCODE THE PASSWORD OF CLIENTS
@@ -445,7 +446,89 @@ def get_reviews():
 # TO ENCODE THE PASSWORD OF TRADESPEOPLE
 # tradespeople_passwords = [
 #     ('lucy@edc.com', 'lucylack123'),
-#     ('anita@edc.com', 'anita123')
+#     ('anita@edc.com', 'anita123'),
+#     ('matt@nuwalls.com', 'mattfinish123'),
+#     ('rick-@nuwalls.com', 'rickie123'),
+#     ('annie@nodram.com', 'annie123'),
+#     ('wett@nodram.com', 'stains123'),
+#     ('wally@brushandhammer.com', 'wally123'),
+#     ('paige@caseydecorating.com', 'paige123'),
+#     ('hue@gtipainting.com', 'huehue123'),
+#     ('dusty@dunbarpanting.com', 'dusty123'),
+#     ('tessa@caseydecorating.com', 'tessa123'),
+#     ('daisy@wcdecorators.com', 'daisy123'),
+#     ('vinny@prodec.com', 'vinny123'),
+#     ('gloria@grayandsons.com', 'gloria123'),
+#     ('paula@swishdecorators.com', 'paula123'),
+#     ('manny@grayandsons.com', 'manny123'),
+#     ('penny@kingsburylawncare.com', 'penny123'),
+#     ('chloe@acorngardening.com', 'chloe123'),
+#     ('rosemary@bilawncare.com', 'rosemary123'),
+#     ('chris@stewartgardening.com', 'chris123'),
+#     ('jack@kingsburylawncare.com', 'jackie123'),
+#     ('faye@edengardening.com', 'ferns123'),
+#     ('hank@lieverlandscapes.com', 'hankie123'),
+#     ('vera@bcstrees.com', 'vines123'),
+#     ('luke@bcstrees.com', 'bushie123'),
+#     ('Pat@greenthumbcarlisle.com', 'lawnie123'),
+#     ('misty@humbiefencing.com', 'misty123'),
+#     ('charlotte@groundcare.com', 'charlotte123'),
+#     ('cameron@acorngardening.com', 'cameron123'),
+#     ('poppy@wksolutions.com', 'poppy123'),
+#     ('olive@gardenbros.com', 'olive123'),
+#     ('tommy@mwgardening.com', 'tommy123'),
+#     ('tinkles@flushbros.com', 'timmy123'),
+#     ('peppa@flushbros.com', 'peppa123'),
+#     ('david.dunn@upliftlogistics.com', 'david123'),
+#     ('sean.hill@atlashaulers.com', 'sean123'),
+#     ('sheila.mcintosh@packmasters.com', 'sheila123'),
+#     ('kimberly.martin@titantransit.com', 'kimberly123'),
+#     ('candace.thomas@rocketrelocations.com', 'candace123'),
+#     ('nathan.garcia@boldmovehaulers.com', 'nathan123'),
+#     ('seth.warner@silverlineshifters.com', 'seth123'),
+#     ('rebecca.lane@silverlineshifters.com', 'rebecca123'),
+#     ('monica.wolf@metromaxrelocations.com', 'monica123'),
+#     ('danielle.collins@rocketrelocations.com', 'danielle123'),
+#     ('nicole.west@firstclassfreight.com', 'nicole123'),
+#     ('kaitlyn.rivera@anchorwavemovers.com', 'kaitlyn123'),
+#     ('anthony.reed@boldmovehaulers.com', 'anthony123'),
+#     ('bryan.barrett@urbantrekrelocations.com', 'bryan123'),
+#     ('michael.rice@summithauling.com', 'michael123'),
+#     ('daniel.deleon@urbantrekrelocations.com', 'daniel123'),
+#     ('matthew.bray@peakpointmovers.com', 'matthew123'),
+#     ('alice.wonderland@fixitpros.com', 'alice123'),
+#     ('sarah.sky@skyhighrepairs.com', 'sarah123'),
+#     ('tinatape@tapeitright.com', 'tina123'),
+#     ('cindy.saw@sawmasters.com', 'cindy123'),
+#     ('danny.drill@drillworks.com', 'danny123'),
+#     ('ben.brick@brickbuilders.com', 'ben123'),
+#     ('pat.paint@paintprodigy.com', 'pat123'),
+#     ('dean.duct@ductdudes.com', 'dean123'),
+#     ('info@clanelectrical.com', 'password!'),
+#     ('hello@westrigg.com', 'sparkle123'),
+#     ('contact@electroservices.com', 'plug4321'),
+#     ('info@mcgowanelectrical.com', 'ME890!'),
+#     ('hello@onedesignelectrical.com', 'Mal99!'),
+#     ('contact@ces.com', 'current452'),
+#     ('enquiry@BES.com', 'BES765490!'),
+#     ('enquiries@elictrical.com', 'yjdyB1!!'),
+#     ('mail@rodz.com', 'business5428'),
+#     ('hi@calderwoodelectrical.com', 'caldelec12!'),
+#     ('Pippa.Drains@homeheroes.co.uk', 'Pippa123'),
+#     ('Lee Kay.Faucet@homeheroes.co.uk', 'Lee Kay123'),
+#     ('Lou.Sinkler@homeheroes.co.uk', 'Lou123'),
+#     ('Luke.Shower@homeheroes.co.uk', 'Luke123'),
+#     ('Perry.Pipe@homeheroes.co.uk', 'Perry123'),
+#     ('Flo.Stopcock@homeheroes.co.uk', 'Flo123'),
+#     ('Mo.Taps@homeheroes.co.uk', 'Mo123'),
+#     ('Sally.Plungerton@homeheroes.co.uk', 'Sally123'),
+#     ('Ivana.Flush@homeheroes.co.uk', 'Ivana123'),
+#     ('Bob.Boiler@homeheroes.co.uk', 'Bob123'),
+#     ('Trudy.Trap@homeheroes.co.uk', 'Trudy123'),
+#     ('Copper.Tubes@homeheroes.co.uk', 'Copper123'),
+#     ('Billy.Backflow@homeheroes.co.uk', 'Billy123'),
+#     ('Greta.Gasket@homeheroes.co.uk', 'Greta123'),
+#     ('ValV.Pressure@homeheroes.co.uk', 'ValV123')
 # ]
 
 # mydb = get_db_connection()

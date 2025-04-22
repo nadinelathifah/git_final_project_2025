@@ -2,9 +2,9 @@
 
 #find-tp {
     position: relative;
-    min-height: 100vh;
+    min-height: 120vh;
     background: whitesmoke;
-    overflow: hidden;
+    overflow-x: hidden;
     z-index: 0;
 }
 
