@@ -1,0 +1,287 @@
+
+/* -------------- Reviews Section -------------- */
+
+#reviews {
+    min-height: 142vh;
+    width: 100vw;
+    background: whitesmoke;
+    overflow-x: hidden;
+    overflow-y: visible;
+    z-index: 0;
+}
+
+#reviews .container {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+#reviews .text-content {
+    position: relative;
+    padding-top: 30px;
+    text-align: center;
+    width: 60%;
+    z-index: 2;
+}
+
+#reviews .text-content h3 {
+    text-transform: capitalize;
+}
+
+.review-img {
+    position: absolute;
+    z-index: 1;
+}
+
+.review-img.img-1 {
+    max-height: 50vh;
+    top: 0;
+    right: -220px;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.review-img.img-2 {
+    max-height: 50vh;
+    top: 100px;
+    right: -600px;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.review-img.img-3 {
+    max-height: 50vh;
+    top: 100px;
+    left: -600px;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.review-img.img-4 {
+    max-height: 50vh;
+    bottom: 200px;
+    left: -220px;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.review-img.img-5 {
+    max-height: 50vh;
+    bottom: 0;
+    left: -600px;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.review-img.img-6 {
+    max-height: 50vh;
+    bottom: 100px;
+    right: -600px;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+#reviews .text-content span {
+    font-size: 2rem;
+}
+
+#stars .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;
+}
+
+.review-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.reviewcard-img {
+    max-width: 9.5vw;
+    /* border-radius: 50%; */
+    height: auto;
+}
+
+#reviews .card {
+    width: 100%;
+    min-width: 60%;
+    padding: 20px;
+    border-radius: 25px;
+    border: 1px solid white;
+    box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.137);
+    z-index: 5;
+}
+
+@media (max-width: 1024) {
+    #reviews .row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    }
+}
+
+#reviews .card-text {
+    margin-top: 20px;
+}
+
+#reviews .col-sm.col-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.review-btn {
+    background: #007bff;
+    color: white;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+
+.review-btn:hover {
+    background: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+
+/* ------------- Carousel ------------- */
+
+#review-carousel {
+    width: 100%;            
+    max-width: 900px;       
+    max-height: 520px;         
+    margin: 0 auto;   
+    box-sizing: border-box;
+    z-index: 3;               
+}
+
+#reviewCarousel {
+    border: 10px solid #ffffff;
+    border-radius: 25px;
+    height: 500px;
+    z-index: 3;
+}
+
+#reviewCarousel .carousel-inner {
+    position: relative;
+    width: 100%;    
+    height: 100%;
+    align-items: center;
+    padding-top: 56.25%;
+    border-radius: 25px;
+}
+#review-carousel .carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    object-fit: cover; 
+}
+#review-carousel {
+    max-width: 900px;
+}
+.carousel-1 {
+    background: url(images/greetclient4.jpg) no-repeat center center/cover;
+}
+.carousel-2 {
+    background: url(images/gardening5.jpg) no-repeat center center/cover;
+}
+.carousel-3 {
+    background: url(images/movingreview.jpeg) no-repeat center center/cover;
+}
+.carousel-4 {
+    background: url(images/greetclient2.jpg) no-repeat center center/cover;
+}
+.carousel-5 {
+    background: url(images/reviewfix.jpg) no-repeat center center/cover;
+}
+.carousel-6 {
+    background: url(images/reviewspeedy.jpg) no-repeat center center/cover;
+}
+.carousel-7 {
+    background: url(images/foundationnew.png) no-repeat center center/cover;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.23);
+    border-radius: 50px;
+    max-width: 40%;
+    padding: 5px;
+    text-transform: capitalize;
+    transform: translate(-100px, -10px);
+    margin-bottom: 20px;
+}
+
+.carousel-caption h5 {
+    font-size: 1.5rem;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
+    width: auto;
+    background: rgba(0, 0, 0, 0.831);
+    border-radius: 50%;
+    padding: 15px;
+}
+.carousel-item h5, .carousel-item p {
+    text-shadow: 6px 6px 12px black;
+}
+
+/* #reviewCarousel .carousel-indicators button {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    border: 2px solid white;
+    background: white;
+} */
+
+/* ------------- Carousel ------------- */
+
+
+#opening-quote {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#closing-quote {
+    display: flex;
+    justify-content: flex-end;
+}
+
+p .firstline {
+    font-weight: 600; 
+}
+
+p .secondline {
+    text-align: right;
+    display: block;
+    font-style: italic;
+}
+
+#quote .col {
+    width: 25%;
+}
+
+#quote .col-6 {
+    width: 50%;
+}
+
+.quote-img {
+    position: absolute;
+    max-width: 100%;
+}
+.quote-img.img-1 {
+    max-height: 15%;
+}
+
+.quote-img.img-2 {
+    max-height: 20%;
+}

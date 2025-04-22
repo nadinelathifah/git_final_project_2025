@@ -1,8 +1,252 @@
 {% extends "layout.html" %}
 {% block body_content %}
 
-<section id="client-reviews">
+<section id="reviews">
+    <div class="container pt-5">
+        <div class="review-wrapper">
+            <div class="text-content">
+                <hr>
+                {% if session['loggedIn'] %}
+                <h3>your personal reviews</h3>
+                {% else %}
+                <h3>this is what some of our clients had to say</h3>
+                {% endif %}
+                <br>
+                <p id="stars">
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                </p>
+                <hr>
+            </div>
+        </div>
+        <br>
+
+{% if session['loggedIn'] and session['role'] == 'client' %}
+        <div class="card" style="padding: 30px;">
+            <h3>Post a Review</h3>
+            <form action="{{ url_for('reviews') }}" method="POST">
+                <div class="form-group">
+                    <label for="tradesperson">Select a Tradesperson:</label>
+                    <select name="tp_profileID" id="tradesperson" class="form-control" required>
+                        <option value="" disabled selected>Options</option>
+                        {% for tradesperson in tradespeople %}
+                            <option value="{{ tradesperson[0] }}">{{ tradesperson[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select name="rating" id="rating" class="form-control" required>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Describe your experience:</label>
+                    <textarea name="comment" id="comment" class="form-control" rows="4" required style="border: 1px solid #96c9ff;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        </div>
+
+        <br><br>
+
+        <div class="row">
+            {% for review in client_reviews %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img class="reviewcard-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="">
+                            </div>
+                            <div class="col-sm col-right">
+                                <h5><strong>{{ review.tp_full_name }}</strong></h5>
+                                <p><strong>{{ review.task_name }}</strong></p>
+                            </div>
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                {% for i in range(review.rating|int) %}
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                {% endfor %}
+                            </p>
+                            <p>"{{ review.comment }}"</p>
+                            <p><strong>{{ review.rv_date }}</strong></p>
+                            <p style="font-style: italic;"><strong>{{ review.town }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
+        <div class="row">
+            {% for review in tradesperson_reviews %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img class="reviewcard-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="">
+                            </div>
+                            <div class="col-sm col-right">
+                                <h5><strong>{{ review.client_full_name }}</strong></h5>
+                                <p><strong>{{ review.task_name }}</strong></p>
+                            </div>
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                {% for i in range(review.rating|int) %}
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                {% endfor %}
+                            </p>
+                            <p>"{{ review.comment }}"</p>
+                            <p><strong>{{ review.rv_date }}</strong></p>
+                            <p style="font-style: italic;"><strong>{{ review.town }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% else %}
+
+        <div id="review-carousel">
+            <div id="reviewCarousel" class="carousel carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="6" aria-label="Slide 6"></button>
+                </div>
+                <div class="carousel-inner">
     
+                    <div class="active carousel-item carousel-1" data-bs-interval="3000">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> reliable service <i class='bx bxs-quote-alt-right bx-tada-hover'></i></h5>
+                        </div>
+                    </div>
+    
+                    <div class="carousel-item carousel-2" data-bs-interval="3000">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> friendly attitude <i class='bx bxs-quote-alt-right bx-tada-hover'></i></h5>
+                        </div>
+                    </div>
+    
+                    <div class="carousel-item carousel-3" data-bs-interval="3000">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> helpful & dependable <i class='bx bxs-quote-alt-right bx-tada-hover'></i></h5>
+                        </div>
+                    </div>
+    
+                    <div class="carousel-item carousel-4" data-bs-interval="3000">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> trustworthy <i class='bx bxs-quote-alt-right bx-tada-hover'></i></h5>
+                        </div>
+                    </div>
+    
+                    <div class="carousel-item carousel-5" data-bs-interval="3000">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> patient <i class='bx bxs-quote-alt-right bx-tada-hover'></i></h5>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item carousel-6" data-bs-interval="3000">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> speedy & handles with care <i class='bx bxs-quote-alt-right bx-tada-hover'></i></h5>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item carousel-7" data-bs-interval="3000">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> effective, strong work ethic <i class='bx bxs-quote-alt-right bx-tada-hover'></i></h5>
+                        </div>
+                    </div>
+    
+                <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div id="quote">
+            <div class="row">
+                <div class="col" id="opening-quote">
+                    <img class="quote-img img-1" src="{{ url_for('static', filename='decoration/openingquote.png') }}" alt="opening quote">
+                </div>
+                <div class="col-6">
+                    <p>
+                        <span class="firstline">
+                            My Home Heroes sets a new standard for connecting homeowners with qualified, trustworthy tradespeople. 
+                            With a streamlined interface, verified professionals, clear reviews, fair pricing, and a strong commitment to service quality, 
+                            this platform takes the guesswork out of finding reliable help for home projects. 
+                            We highly recommend it to anyone seeking dependable home services.</span>
+                        <span class="secondline"><br>Scotland Trades & Homeowners Association, 2025</span>
+                    </p>
+                </div>
+                <div class="col" id="closing-quote">
+                    <img class="quote-img img-2" src="{{ url_for('static', filename='decoration/closingquote.png') }}" alt="closing quote">
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <img class="review-img img-1" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="Decorative abstract shape">
+        <img class="review-img img-2" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
+        <img class="review-img img-3" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
+
+    </div>
+    <br>
 </section>
+
+<section id="reviews">
+    <div class="container pt-5">
+        <div class="row">
+            {% for review in reviews %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img class="reviewcard-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="">
+                            </div>
+                            <div class="col-sm col-right">
+                                <p><strong>{{ review.full_name }}</strong></p>
+                                <p>
+                                {% for i in range(review.rating|int) %}
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-text">
+                            <p>"{{ review.comment }}"</p>
+                            <p style="font-style: italic;"><strong>{{ review.town }}</strong></p>
+                            <p><strong>{{ review.rv_date }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <img class="review-img img-4" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="Decorative abstract shape">
+        <img class="review-img img-5" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
+        <img class="review-img img-6" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
+    </div>
+    <br><br>
+{% endif %}
+</section>
+
 
 {% endblock %}

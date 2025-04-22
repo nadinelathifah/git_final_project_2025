@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<section id="tp-profile">
+    <div id="profile-setup" class="container">
+        <img class="bg-img img-1" src="{{ url_for('static', filename='decoration/lightblue.png') }}" alt="Decorative abstract shape">
+        <img class="bg-img img-2" src="{{ url_for('static', filename='decoration/blue.png') }}" alt="Decorative abstract shape">
+        <img class="bg-img img-3" src="{{ url_for('static', filename='decoration/yellow.png') }}" alt="Decorative abstract shape">
+        <!-- <img class="bg-img img-4" src="{{ url_for('static', filename='decoration/circle_orange.png') }}" alt="Decorative abstract shape"> -->
+        <div class="row">
+            <div class="col-md-4">
+                <img class="profile-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="Task Profile Icon">
+            </div>
+            <div class="col-md-8">
+                <div class="text-content">
+                    <hr>
+                    <h2>set up your profile</h2>
+                    <h5>Fill in your profile with more information to be included in clients' task search</h5>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="form-wrapper">
+            <form action="{{ url_for('setup_tp_profile') }}" method="POST">
+                <input type="hidden" name="worker_id" value="{{ worker_id }}">
+    
+                <div class="form-group">
+                    <label for="phone_number"><h5><span class="material-symbols-outlined search">call</span>Tell us the phone number you'd like clients to contact you on:</h5></label>
+                    <input type="tel" name="phone_number" pattern="^\+44\s[0-9]{4}-[0-9]{6}$" placeholder="Format: +44 1234-567890" value="{{ phone_number }}" required/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hourly_rate"><h5><i class='bx bx-pound bx-border-circle'></i>What is your hourly rate?</h5></label>
+                    <input type="number" step="0.01" min="0" placeholder="£ 0.00" name="hourly_rate" value="{{ hourly_rate }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="business"><h5><span class="material-symbols-outlined search">add_business</span>Are you part of a company?</h5></label>
+                    <input type="text" name="business" minlength="1" maxlength="300" placeholder="e.g. Handy Helpers Ltd" value="{{ business }}">
+                </div>
+    
+                <div class="form-group">
+                    <label for="bio"><h5><span class="material-symbols-outlined search">engineering</span>What would you like our clients to know about you?</h5></label>
+                    <input type="text" name="bio" minlength="0" placeholder="e.g. I'm here to save your home!" value="{{ bio }}">
+                </div>
+    
+                <button type="submit" class="btn btn-primary" style="font-size: 1.13rem; font-weight: 500;">Post Profile</button>
+            </form>
+            <div id="back-button">
+                <a href="/tradesperson_profile#tradesperson-profile"><button class="btn btn-primary btn-block back-btn">Back to Profile Menu</button></a>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="display-profile">
+            <div class="text-content">
+                <hr>
+                <h4>your profile</h4>
+                <h6>This is how your profile currently looks during the client search</h6>
+                <hr>
+            </div>
+            <div class="profile-content">
+                <div class="card">
+                    <h5 class="card-title">{{ profile[0] }} <span class="material-symbols-outlined .verified">verified_user</span></h5>
+                    <p class="card-text">
+                        <strong>Specialisation:</strong> {{ profile[1] }}<br>
+                        <strong>Based in:</strong> {{ profile[2] }}<br>
+                        <strong>Per Hour:</strong> £{{ profile[3] }}<br><br>
+                        <strong>Rating:</strong> {{ profile[4] or 'N/A' }} ({{ profile[5] }} reviews) <br><br>
+                        <strong><i class='bx bxs-quote-alt-left bx-tada-hover'></i> {{ profile[6] }} <i class='bx bxs-quote-alt-right bx-tada-hover'></i></strong><br><br>
+                        <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">phone</span> Phone Number:</strong> {{ profile[7] }} <br>
+                        <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">business</span> Company:</strong> {{ profile[8] }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</section>
+
+{% endblock %}

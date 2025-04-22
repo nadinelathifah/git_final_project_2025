@@ -1,21 +1,292 @@
-/* -------------- Booking Services -------------- */
-
-#make-booking {
-    min-height: 100vh;
-    background: aliceblue;
-}
+/* -------------- Search Tradesperson Form Styling -------------- */
 
 #find-tp {
+    position: relative;
+    min-height: 120vh;
+    background: whitesmoke;
+    overflow-x: hidden;
+    z-index: 0;
+}
+
+#find-tp .container {
+    position: relative;
+    min-height: 120vh;
+}
+
+#find-tp .title-text {
+    padding: 2rem 3.5rem 0 3.5rem;
+}
+
+#find-tp .title-text h2 {
+    text-transform: capitalize;
+}
+
+#find-tp .outer-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+#find-tp .col-md-6 {
+    position: relative;
+    width: 50%;
+    min-height: 80vh;
+}
+
+#find-tp .col-md-6.column-left {
+    display: flex;
+    justify-content: center;
+}
+
+#find-tp .col-md-6.column-left form {
+    width: 70%;
+}
+
+/* -------------- Images -------------- */
+
+.booking-img {
+    position: absolute;
+}
+
+.booking-img.img-1 {
+    max-width: 70%;
+    top: 100px;
+    right: -120px;
+    z-index: 6;
+}
+
+.booking-img.img-2 {
+    max-width: 34%;
+    right: 350px;
+    top: 150px;
+    z-index: 7;
+}
+
+.booking-img.img-3 {
+    max-width: 50%;
+    right: 330px;
+    top: 160px;
+    opacity: 0.8;
+    z-index: 3;
+}
+
+
+/* -------------- Form Card -------------- */
+
+#find-tp .mb-3 label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+
+#find-card {
+    border-radius: 25px;
+    padding: 15px;
+}
+
+#find-btn {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+#find-btn:hover {
+    background: white;
+    color: #007bff;
+    border: 1.5px solid #007bff;
+}
+
+#book-btn {
+    width: 100%;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-inner {
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 550;
+    text-align: center;
+    color: #007bff;
+    background: white;
+    border: 1px solid rgb(0, 21, 116);
+    border-radius: 25px;
+    padding: 8px 38px 8px 8px;
+}
+
+.material-symbols-rounded.drop-arrow {
+    color: #007bff;
+    position: absolute;
+    font-variation-settings: 'FILL' 1;
+    font-size: 1.9rem;
+    transform: translate(-36px, 6px);
+}
+
+.find-card {
+    max-width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.273);
+    border-radius: 25px;
+    border: 1px solid rgb(0, 21, 116);
+    box-shadow: -2px 4px 4px rgba(43, 41, 41, 0.196);
+    padding: 10px;
+    z-index: 5;
+}
+
+#find-tp .container h2 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#find-tp h4 {
+    font-size: 1.4rem;
+}
+
+.material-symbols-outlined.search {
+    position: absolute;
+    font-size: 2rem;
+    transform: translateX(-45px);
+}
+
+.bx-border-circle {
+    position: absolute;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transform: translate(-45px, -5px);
+}
+
+.bx-rocket.one {
+    position: absolute;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transform: translate(-45px, 0);
+}
+
+.bx-rocket.two {
+    position: absolute;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transform: translate(10px, 0);
+}
+
+
+/* -------------- Booking Form Styling -------------- */
+
+#booking-form {
     min-height: 100vh;
-    background: aliceblue;
+    width: 100vw;
+    background: whitesmoke;
 }
 
-select option {
-    color: black !important;
-    background-color: white !important;
-    font-size: 16px;
+#booking-form .container {
+    min-height: 100vh;
+    width: 100vw;
+    padding-top: 70px;
 }
 
-select {
+.booking-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#booking-form form {
+    width: 70%;
+}
+
+#booking-form .form-group {
+    margin-bottom: 30px;
+}
+
+#booking-form input {
+    border: 1px solid #96c9ff;
+    border-radius: 25px;
+}
+
+#booking-form textarea {
+    height: 20vh;
+    border: 1px solid #96c9ff;
+    border-radius: 5px;
+}
+
+
+/* -------------- See Bookings -------------- */
+
+#see-bookings {
+    min-height: 100vh;
+    width: 100vw;
+    background: rgb(255, 251, 239);
+}
+
+#see-bookings .title-text h2 {
+    font-family: 'Bungee', sans-serif;
+    font-size: 2.3rem;
+    color: rgb(251, 142, 0);
+    -webkit-text-stroke: 2px white;
+    background: wheat;
+    width: 500px;
+}
+
+#see-bookings .card {
+    background: white;
+    border: 2.5px solid #ffd066;
+    border-radius: 25px;
+    padding: 30px;
+}
+
+#see-bookings .card-title h4 {
+    color: rgb(229, 156, 0);
+}
+
+#see-bookings .col-sm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 1px solid rgb(247, 173, 0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#see-bookings .col-sm.title {
+    color: rgb(229, 156, 0);
+    background: whitesmoke;
+}
+
+#see-bookings button {
+    margin-bottom: 5px;
+}
+
+.accept-btn {
+    background: rgb(4, 220, 33);
     color: black;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+.reject-btn {
+    background: red;
+    color: black;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+.material-symbols-outlined.requests {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 5px;
+
 }

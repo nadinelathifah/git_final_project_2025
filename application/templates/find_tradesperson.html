@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<section id="find-tp">
+    <div class="container-fluid">
+        <div class="title-text">
+            <hr>
+            <h2>find a home hero</h2>
+            <hr>
+        </div>
+        <div class="outer-wrapper">
+            <div class="col-md-6 column-left">
+                <div class="card find-card">
+                    <form method="POST" action="{{ url_for('find_tradesperson') }}#results">
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><span class="material-symbols-outlined search">handyman</span><h5>What task do you need helping with?</h5></label>
+                            <select name="task" class="select-inner">
+                                <option value="">Any</option>
+                                {% for task in tasks %}
+                                <option value="{{ task[0] }}">{{ task[0] }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><span class="material-symbols-outlined search">home_pin</span><h5>Which location?</h5></label>
+                            <select name="location" class="select-inner">
+                                <option value="">Any</option>
+                                {% for town in towns %}
+                                <option value="{{ town[0] }}">{{ town[0] }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><h5><i class='bx bx-pound bx-border-circle'></i>Hourly rate:</h5></label>
+                            <select name="hourly_rate" class="select-inner">
+                                <option value="">No Preference</option>
+                                <option value="ASC">Lowest to Highest</option>
+                                <option value="DESC">Highest to Lowest</option>
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <div class="mb-3 select-wrapper">
+                            <label class="form-label"><h5><i class='bx bx-star bx-border-circle'></i>Rating:</h5></label>
+                            <select name="star_rating" class="select-inner">
+                                <option value="">No Preference</option>
+                                <option value="ASC">Lowest to Highest</option>
+                                <option value="DESC">Highest to Lowest</option>
+                            </select>
+                            <span class="material-symbols-rounded drop-arrow">expand_circle_down</span>
+                        </div>
+            
+                        <button type="submit" id="find-btn" class="btn btn-primary btn-block">Find My Hero</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6 column-right">
+                <img data-aos="fade-left" class="booking-img img-1" src="{{ url_for('static', filename='logo/bookingicon.svg') }}" alt="Booking icon">
+                <img data-aos="fade-right" class="booking-img img-2" src="{{ url_for('static', filename='images/handywoman.png')}}" alt="Standalone image of a handywoman">
+                <img class="booking-img img-3" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="Decorative abstract shape">
+            </div>
+        </div>
+        {% if results %}
+        <div class="container pt-5">
+            <hr>
+            <h2 id="results" class="my-4"><i class='bx bx-rocket bx-border-circle one'></i>Choose your hero<i class='bx bx-rocket bx-border-circle two'></i></h2>
+            <hr>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for r in results %}
+                <div class="col">
+                    <div id="find-card" data-aos="fade-up" class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ r.full_name }} <span class="material-symbols-outlined .verified">verified_user</span></h5>
+                            <p class="card-text">
+                                <strong>Specialisation:</strong> {{ r.task_name }}<br>
+                                <strong>Based in:</strong> {{ r.town }}<br>
+                                <strong>Per Hour:</strong> £{{ r.hourly_rate }}<br><br>
+                                <strong>Rating:</strong> {{ r.average_rating or 'N/A' }} ({{ r.total_reviews }} reviews) <br><br>
+                                <strong><i class='bx bxs-quote-alt-left bx-tada-hover'></i> {{ r.bio }} <i class='bx bxs-quote-alt-right bx-tada-hover'></i></strong><br><br>
+                                <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">phone</span> Phone Number:</strong> {{ r.phone_number }} <br>
+                                <strong><span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle;">business</span> Company:</strong> {{ r.business }}
+                            </p>
+                            <form action="{{ url_for('book_service') }}#booking-form" method="GET">
+                                <input type="hidden" name="workerID" value="{{ r.workerID }}">
+                                <input type="hidden" name="taskID" value="{{ r.taskID }}">
+                                <button type="submit" class="btn btn-primary">Book This Tradesperson</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</section>
+
+{% endblock %}
