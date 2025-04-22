@@ -290,6 +290,10 @@ transform: translateY(0);
     background: rgba(251, 142, 0, 0.517);
 }
 
+.home-btn:hover {
+    background: rgb(0, 21, 116) !important;
+    color: rgb(255, 247, 199) !important;
+}
 
 
 /* -------------- Login Form Styling -------------- */

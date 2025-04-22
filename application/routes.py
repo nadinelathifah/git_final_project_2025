@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request, get_client_reviews, get_tp_reviews
 from application import app
 import bcrypt
 
@@ -675,10 +675,16 @@ def plumbing():
 @app.route('/reviews')
 def reviews():
     show_review = get_reviews()
-    print(show_review)
+    client_id = session.get('client_id')
+    worker_id = session.get('worker_id')
+    client_reviews = get_client_reviews(client_id)
+    tradesperson_reviews = get_tp_reviews(worker_id)
+
     return render_template('reviews.html',
                            head='reviews',
                            reviews = show_review,
+                           client_reviews=client_reviews,
+                           tradesperson_reviews=tradesperson_reviews,
                            title='customer experiences',
                            subheading='review our work',
                            icon='star',

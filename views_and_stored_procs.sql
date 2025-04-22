@@ -144,7 +144,8 @@ SELECT booking_date, tp_full_name, task_name, ss_date, se_date FROM view_past_bo
 
 
 
--- VIEW 5: STILL IN PROGRESS PLEASE DO NOT LIGHTNING BOLT
+-- VIEW 5: vuew_booking_requests
+-- The purpose of this view is to display client booking requests (showing tradesperson's booking request history) via see_bookings URL
 CREATE VIEW view_booking_requests AS
 SELECT
 	jb.bookingID,
@@ -177,6 +178,39 @@ SELECT * FROM view_booking_requests;
 
 -- Display specific columns for see_booking tradesperson page
 SELECT booking_date, client_full_name, task_name, ss_date, se_date, working_days, task_description, status FROM view_booking_requests WHERE workerID = 1;
+
+
+-- VIEW 6: view_personal_reviews
+-- Display only the personal reviews 
+CREATE VIEW view_personal_reviews AS
+SELECT
+    r.reviewID,
+    c.clientID,
+    CONCAT(c.firstname, ' ', c.lastname) AS client_full_name,
+    r.tp_profileID,
+    t.workerID,
+    CONCAT(t.firstname, ' ', t.lastname) AS tp_full_name,
+    tk.task_name,
+    l.town,
+    r.rating,
+    r.comment,
+    DATE_FORMAT(r.review_date, '%D-%M-%Y') AS rv_date,
+    r.review_date
+FROM reviews AS r
+JOIN clients AS c ON r.clientID = c.clientID
+JOIN tradesperson_profile AS tp ON r.tp_profileID = tp.tp_profileID
+JOIN tradespeople AS t ON tp.workerID = t.workerID
+JOIN tasks AS tk ON t.taskID = tk.taskID
+JOIN location AS l ON t.townID = l.townID;
+
+-- Display all:
+SELECT * FROM view_personal_reviews;
+
+-- Display client personal reviews
+SELECT rv_date, tp_full_name, task_name, town, rating, comment FROM view_personal_reviews WHERE clientID = 13;
+
+-- Display tradesperson personal reviews
+SELECT rv_date, client_full_name, task_name, town, rating, comment FROM view_personal_reviews WHERE workerID = 14;
 
 
 

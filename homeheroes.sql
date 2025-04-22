@@ -1,7 +1,7 @@
 CREATE DATABASE homeheroes;
 USE homeheroes;
 
-drop database if exists homeheroes12;
+drop database if exists homeheroes;
 
 
 SHOW TABLES;

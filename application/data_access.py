@@ -423,6 +423,25 @@ def get_reviews():
     return reviews
 
 
+def get_client_reviews(clientID):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT rv_date, tp_full_name, task_name, town, rating, comment FROM view_personal_reviews WHERE clientID = %s"
+    cursor.execute(query, (clientID,))
+    client_reviews = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return client_reviews
+
+def get_tp_reviews(workerID):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT rv_date, client_full_name, task_name, town, rating, comment FROM view_personal_reviews WHERE workerID = %s"
+    cursor.execute(query, (workerID,))
+    tp_reviews = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return tp_reviews
 
 
 # TO ENCODE THE PASSWORD OF CLIENTS
