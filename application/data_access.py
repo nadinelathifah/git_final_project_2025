@@ -220,13 +220,23 @@ def book_job(clientID, workerID, taskID, service_start, service_end, task_desc):
 def get_client_bookings(clientID):
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
-    query = "SELECT tp_full_name, task_name, booking_date, ss_date, se_date, task_description, status FROM view_past_bookings WHERE clientID = %s"
+    query = "SELECT bookingID, tp_full_name, task_name, booking_date, ss_date, se_date, task_description, status FROM view_past_bookings WHERE clientID = %s"
     cursor.execute(query, (clientID,))
     booking_list = cursor.fetchall()
     cursor.close()
     connection.close()
     return booking_list
 
+
+def get_booking_requests(workerID):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    query = "SELECT bookingID, booking_date, client_full_name, task_name, ss_date, se_date, working_days, task_description, status FROM view_booking_requests where workerID = %s"
+    cursor.execute(query, (workerID,))
+    booking = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return booking
 
 
 def set_tp_profile(workerID, phone_number, hourly_rate, business, bio):
@@ -467,6 +477,9 @@ def main():
     task_desc = "Paint the walls"
 
     book_job(clientID, workerID, taskID, service_start, service_end, task_desc)
+    
+    workerID = 5
+    get_booking_requests(workerID)
 
 if __name__ == '__main__':
     main()

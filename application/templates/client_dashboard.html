@@ -83,10 +83,33 @@
                 <h4><span class="material-symbols-outlined">check_box</span> Booking History</h4>
             </div>
             <div class="card-body">
+                <div class="row">
+                    <div class="col-sm title">
+                        <p><strong>Date of Booking</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Name of Tradesperson</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Task</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Start Date</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>End Date</strong></p>
+                    </div>
+                    <div class="col-sm title">
+                        <p><strong>Task Description</strong></p>
+                    </div>
+                    <div class="col-sm title" style="border-right: none; text-transform: capitalize;">
+                        <p><strong>Status</strong></p>
+                    </div>
+                </div>
                 {% for booking in bookings %}
                 <div class="row">
                     <div class="col-sm">
-                        <p>{{ booking.booking_date }}</p>
+                        <p><strong>{{ booking.booking_date }}<br><br>Booking ID: {{ booking.bookingID }}</strong></p>
                     </div>
                     <div class="col-sm">
                         <p>{{ booking.tp_full_name }}</p>

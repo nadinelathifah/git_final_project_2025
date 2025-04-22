@@ -145,18 +145,36 @@ SELECT booking_date, tp_full_name, task_name, ss_date, se_date FROM view_past_bo
 -- VIEW 5: STILL IN PROGRESS PLEASE DO NOT LIGHTNING BOLT
 CREATE VIEW view_booking_requests AS
 SELECT
-    CONCAT(c.firstname, ' ', c.lastname) AS full_name,
+	jb.bookingID,
+    c.clientID,
+    CONCAT(c.firstname, ' ', c.lastname) AS 'client_full_name',
+    t.workerID,
+    CONCAT(t.firstname, ' ', t.lastname) AS 'tp_full_name',
+    tk.taskID,
     tk.task_name,
-    l.town,
-    jb.booking_date,
+    DATE_FORMAT(jb.booking_date, '%D %M %Y') AS booking_date,
+    DATE_FORMAT(jb.service_start_date, '%D %M %Y') AS ss_date,
+    DATE_FORMAT(jb.service_end_date, '%D %M %Y') AS se_date,
+    TIMEDIFF(jb.service_end_date, jb.service_start_date) AS 'total_hours',
+    IF(jb.service_start_date = jb.service_end_date, TIMEDIFF(jb.service_end_date, jb.service_start_date), NULL) AS 'same_day_hours',
+    IF(DATEDIFF(jb.service_end_date, jb.service_start_date) = 0, 'same day',
+       DATEDIFF(jb.service_end_date, jb.service_start_date)) AS 'working_days',
     jb.service_start_date,
-    DATEDIFF(jb.service_start_date, jb.service_end_date) AS working_days,
-    jb.task_description
-FROM job_booking AS jb 
-JOIN clients AS c ON jb.clientID = c.clientID
-JOIN tasks AS tk ON jb.taskID = tk.taskID
-JOIN location AS l ON l.townID = jb.townID
-GROUP BY CONCAT(c.firstname, ' ', c.lastname), task_name, booking_date, service_start_date, DATEDIFF(jb.service_start_date, jb.service_end_date), task_description; 
+    jb.task_description,
+    s.statusID,
+    s.status
+FROM job_booking AS jb
+JOIN clients AS c ON c.clientID = jb.clientID
+JOIN tradespeople AS t ON t.workerID = jb.workerID
+JOIN tasks AS tk ON tk.taskID = jb.taskID
+JOIN job_status AS s ON s.statusID = jb.statusID
+ORDER BY jb.service_start_date DESC;
+
+-- Display all
+SELECT * FROM view_booking_requests;
+
+-- Display specific columns for see_booking tradesperson page
+SELECT booking_date, client_full_name, task_name, ss_date, se_date, working_days, task_description, status FROM view_booking_requests WHERE workerID = 1;
 
 
 

@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests
 from application import app
 import bcrypt
 
@@ -26,6 +26,7 @@ def example():
                             img1='decoration/squiggle2.png',
                             img2='decoration/squiggle.png',
                             background_image="/static/images/example.jpg")
+
 
 
 
@@ -300,6 +301,7 @@ def logout():
 
 
 
+
 # --------------- Dashboards --------------- #
 @app.route('/client/dashboard')
 def client_dashboard():
@@ -319,6 +321,7 @@ def client_dashboard():
                            head=head,
                            title=greeting,
                            subheading='Explore your dashboard',
+                           icon='real_estate_agent',
                            background_image='/static/images/interior.png')
 
 
@@ -336,8 +339,10 @@ def task_dashboard():
                            head=head,
                            name=firstname,
                            title=greeting,
-                           subheading='View your dashboard', 
+                           subheading='View your dashboard',
+                           icon='build_circle',
                            background_image='/static/images/wideshot3.jpeg')
+
 
 
 
@@ -368,6 +373,7 @@ def find_tradesperson():
                            head="find a tradesperson",
                            title="find & book your home hero!",
                            subheading="get your task done now",
+                           icon='conditions',
                            background_image='/static/images/mansion.png')
 
 
@@ -390,7 +396,7 @@ def book_service():
             return "Error: Invalid workerID or taskID", 400
 
         # Redirect to a confirmation page or back to the tradesperson's page
-        return redirect('/client_dashboard')
+        return redirect(url_for('client_dashboard'))
 
     # Handle the GET request: this is where the user will be directed after clicking "Book This Tradesperson"
     # Handle GET request to display the form and passed values
@@ -412,6 +418,7 @@ def book_service():
                            head="Book a tradesperson",
                            title='Book a tradesperson!',
                            subheading='Your home rescue, just a click away',
+                           icon='task_alt',
                            background_image='/static/images/mansion.png')
 
 
@@ -421,7 +428,9 @@ def booking_confirmation():
                            head="booking confirmed",
                            title="You have successfully booked!",
                            subheading="Please wait for confirmation from the tradesperson.",
+                           icon='task_alt',
                            background_image='/static/images/houses.jpeg')
+
 
 
 
@@ -429,7 +438,23 @@ def booking_confirmation():
 
 @app.route('/see_bookings')
 def see_bookings():
-    pass
+    if 'user' not in session:
+        return redirect(url_for('home'))
+    worker_id = session.get('worker_id')
+
+    tradesperson = get_tp_by_id(worker_id)
+    firstname = tradesperson['firstname']
+
+    bookings = get_booking_requests(worker_id)
+
+    return render_template('see_bookings.html',
+                           bookings=bookings,
+                           name=firstname,
+                           head="see bookings",
+                           title="See your bookings",
+                           subheading="description",
+                           icon='task_alt',
+                           background_image='/static/images/greetclient.jpg')
 
 
 
@@ -453,6 +478,7 @@ def client_profile():
                            profile=profile,
                            title="Your profile",
                            subheading="View or update your personal details",
+                           icon='settings',
                            background_image='/static/images/interior.png')
 
 
@@ -476,6 +502,7 @@ def update_client_profile():
                            head='update profile',
                            title="Your profile",
                            subheading="View or update your personal details",
+                           icon='settings',
                            background_image='/static/images/interior.png')
 
 
@@ -491,6 +518,7 @@ def tradesperson_profile():
                            profile=profile,
                            title='your profile',
                            subheading='choose from the following options below',
+                           icon='settings',
                            background_image='/static/images/wideshot3.jpeg')
 
 
@@ -515,6 +543,7 @@ def setup_tp_profile():
                            head='profile setup',
                            title='profile setup',
                            subheading='enable clients to see your details',
+                           icon='settings',
                            background_image='/static/images/wideshot3.jpeg')
 
 
@@ -539,6 +568,7 @@ def update_tp_profile():
                            head='profile setup',
                            title='profile setup',
                            subheading='enable clients to see your details',
+                           icon='settings',
                            background_image='/static/images/wideshot3.jpeg')
 
 
@@ -567,6 +597,7 @@ def update_tp_info():
                            head='profile setup',
                            title='profile setup',
                            subheading='enable clients to see your details',
+                           icon='settings',
                            background_image='/static/images/wideshot3.jpeg')
 
 
@@ -615,6 +646,7 @@ def home_repairs():
                            head='Home Repairs',
                            title='Home Repair Services',
                            subheading='From Leaks to Locks, We Handle It All!',
+                           icon='cottage',
                            background_image='/static/images/repairstwo.jpg')
 
 

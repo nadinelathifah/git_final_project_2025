@@ -234,12 +234,45 @@
 }
 
 #booking-form input {
-    border: 1px solid #96c9ff;;
+    border: 1px solid #96c9ff;
     border-radius: 25px;
 }
 
 #booking-form textarea {
     height: 20vh;
-    border: 1px solid #96c9ff;;
+    border: 1px solid #96c9ff;
     border-radius: 5px;
+}
+
+
+/* -------------- See Bookings -------------- */
+
+#see-bookings {
+    min-height: 100vh;
+    width: 100vw;
+    background: rgb(255, 251, 239);
+}
+
+#see-bookings .card {
+    border: 2.5px solid #ffd066;
+    border-radius: 25px;
+    padding: 30px;
+}
+
+#see-bookings .card-title h4 {
+    color: rgb(229, 156, 0);
+}
+
+#see-bookings .col-sm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 1px solid rgb(247, 173, 0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+#see-bookings .col-sm.title {
+    color: rgb(229, 156, 0);
 }

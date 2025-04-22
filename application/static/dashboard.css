@@ -55,6 +55,7 @@
 }
 
 #client-dashboard .card {
+    border: 2.5px solid #96c9ff;
     border-radius: 25px;
     padding: 30px;
     z-index: 2;
@@ -62,9 +63,19 @@
 
 #client-dashboard .col-sm {
     border-top: 1px solid #96c9ff;
-    border-right: 1px solid #96c9ff;
     padding-top: 10px;
     padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#client-dashboard .col-sm.title {
+    color: rgb(0, 21, 116);
+}
+
+#client-dashboard .card-title h4 {
+    color: rgb(0, 21, 116);
 }
 
 #client-dashboard .material-symbols-outlined {
