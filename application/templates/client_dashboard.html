@@ -130,8 +130,13 @@
                     <div class="col-sm">
                         <p>{{ booking.task_description }}</p>
                     </div>
-                    <div class="col-sm" style="border-right: none; text-transform: capitalize;">
+                    <div class="col-sm" style="border-right: none; text-transform: capitalize; display: flex; flex-direction: column;">
                         <p><strong>{{ booking.status }}</strong></p>
+                        {% if booking.status == 'completed' %}
+                            <a href="{{ url_for('reviews')}}">
+                                <button class="review-btn" type="button"><span class="material-symbols-outlined">star_half</span> Post Review </button>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}

@@ -130,6 +130,18 @@
     align-items: center;
 }
 
+.review-btn {
+    background: #007bff;
+    color: white;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+
+.review-btn:hover {
+    background: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
 
 
 /* ------------- Carousel ------------- */
@@ -223,6 +235,13 @@
     text-shadow: 6px 6px 12px black;
 }
 
+/* #reviewCarousel .carousel-indicators button {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    border: 2px solid white;
+    background: white;
+} */
 
 /* ------------- Carousel ------------- */
 

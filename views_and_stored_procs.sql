@@ -1,5 +1,6 @@
 USE homeheroes;
 
+
 -- VIEW 1: view_tradespeople_by_category
 -- The purpose of this view is to support the filter function for when a client searches a tradesperson by category and is shown a
 -- list of profiles. And to display general reviews on the reviews webpage.
@@ -78,8 +79,12 @@ WITH ranked_reviews AS (
     SELECT
         r.reviewID,
         r.rating,
+        DATE_FORMAT(r.review_date, "%D %M %Y") AS rv_date,
+        r.review_date,
         c.clientID,
         CONCAT(c.firstname, ' ', c.lastname) AS full_name,
+        tk.task_name,
+		l.town,
         r.comment,
         -- ROW_NUMBER() assigns a number to each row within a group. 
         ROW_NUMBER() OVER (
@@ -91,19 +96,27 @@ WITH ranked_reviews AS (
 		-- Each client’s best-rated review gets rn = 1. 
         ) AS rn
     FROM reviews AS r
-    JOIN clients AS c ON r.clientID = c.clientID
+	JOIN clients AS c ON r.clientID = c.clientID
+	JOIN tradesperson_profile AS tp ON r.tp_profileID = tp.tp_profileID
+	JOIN tradespeople AS t ON tp.workerID = t.workerID
+	JOIN tasks AS tk ON t.taskID = tk.taskID
+	JOIN location AS l ON t.townID = l.townID
 )
 SELECT
     reviewID,
+    rv_date,
+    review_date,
     rating,
     clientID,
     full_name,
+    task_name,
+    town,
     comment
 FROM ranked_reviews
 WHERE rn = 1;
 
 -- Display reviews:
-SELECT rating, full_name, comment FROM view_reviews;
+SELECT full_name, task_name, rating, comment, town, rv_date FROM view_reviews;
 
 
 
@@ -144,6 +157,7 @@ SELECT booking_date, tp_full_name, task_name, ss_date, se_date FROM view_past_bo
 
 
 
+
 -- VIEW 5: vuew_booking_requests
 -- The purpose of this view is to display client booking requests (showing tradesperson's booking request history) via see_bookings URL
 CREATE VIEW view_booking_requests AS
@@ -180,6 +194,8 @@ SELECT * FROM view_booking_requests;
 SELECT booking_date, client_full_name, task_name, ss_date, se_date, working_days, task_description, status FROM view_booking_requests WHERE workerID = 1;
 
 
+
+
 -- VIEW 6: view_personal_reviews
 -- Display only the personal reviews 
 CREATE VIEW view_personal_reviews AS
@@ -194,7 +210,7 @@ SELECT
     l.town,
     r.rating,
     r.comment,
-    DATE_FORMAT(r.review_date, '%D-%M-%Y') AS rv_date,
+    DATE_FORMAT(r.review_date, '%D %M %Y') AS rv_date,
     r.review_date
 FROM reviews AS r
 JOIN clients AS c ON r.clientID = c.clientID
@@ -211,6 +227,23 @@ SELECT rv_date, tp_full_name, task_name, town, rating, comment FROM view_persona
 
 -- Display tradesperson personal reviews
 SELECT rv_date, client_full_name, task_name, town, rating, comment FROM view_personal_reviews WHERE workerID = 14;
+
+
+
+
+-- VIEW 7: view_tp_profile
+CREATE VIEW view_tp_profile AS
+SELECT
+	tp.tp_profileID,
+    t.workerID,
+    CONCAT(t.firstname, ' ', t.lastname) AS tp_full_name,
+    t.firstname,
+    t.lastname
+FROM tradesperson_profile AS tp
+JOIN tradespeople AS t ON t.workerID = tp.workerID;
+
+-- Display All
+SELECT * FROM view_tp_profile ORDER BY firstname;
 
 
 
@@ -263,3 +296,26 @@ DELIMITER ;
 call set_tp_profile_info(85, '+44 1001 100001', 20.50, 'lovely lawnmowers', 'lush lush gardens');
 SELECT * FROM tradesperson_profile;
 
+
+
+
+-- STORED PROCEDURE 3: post_review
+-- The purpose of this proc is to insert a new row in tradesperson_profile table when a tradesperson sets up their account.
+DELIMITER //
+CREATE PROCEDURE post_review (
+	IN p_clientID BIGINT,
+    IN p_tp_profileID BIGINT,
+    IN p_rating INT,
+    IN p_comment TEXT
+)
+BEGIN
+	INSERT INTO reviews(clientID, tp_profileID, rating, comment, review_date)
+    VALUES (p_clientID, p_tp_profileID, p_rating, p_comment, CURRENT_TIMESTAMP());
+    
+END //
+
+DELIMITER ;
+
+-- TESTING:
+call post_review(1, 1, 5, 'Penny has been a reliable regular of mine. Always manages to complete her work with the best of her abilities. Would hire again.');
+SELECT * FROM reviews;
