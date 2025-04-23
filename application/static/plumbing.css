@@ -76,7 +76,7 @@
 /* class="card" -> A class is selected by writing it as .class (full-stop before the class name) */
 #plumbing-services-section .card {
     width: 300px;                /* Set a width (unchanging) or a maximum-width (more responsive when you minimise the screen size) to the card */
-    height: 85%;
+    height: 60vh;
     background: linear-gradient(to left, #479df9, #52d7ee);
     color: white;              /* Unlike background or background-color, 'color' sets the text-color*/
     text-align: center;          /* Aligns text inside the card to the center */

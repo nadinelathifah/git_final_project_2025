@@ -669,8 +669,7 @@ def home_repairs():
                            head='Home Repairs',
                            title='Home Repair Services',
                            subheading='From Leaks to Locks, We Handle It All!',
-                           icon='cottage',
-                           background_image='/static/images/repairstwo.jpg')
+                           icon='cottage') # background_image='/static/images/repairstwo.jpg'
 
 
 @app.route('/services/plumbing')
@@ -679,8 +678,7 @@ def plumbing():
                             head='Plumbing',
                             title='Plumbing services',
                             subheading='Because even the best pipes have bad days',
-                            icon='plumbing',
-                            background_image="/static/images/pipes background.jpg")
+                            icon='plumbing') # background_image="/static/images/pipes background.jpg"
 
 
 # --------------- Reviews --------------- #
