@@ -2,6 +2,7 @@
 {% block body_content %}
 
 <section id="tp-db">
+    <img class="house-bg-2" src="{{ url_for('static', filename='images/house.jpg') }}" alt="House character icon">
     <div class="container pt-5">
         <div class="title-text">
             <br>
@@ -13,21 +14,20 @@
                 <img class="tool-img" src="{{ url_for('static', filename='logo/tooly2.png') }}" alt="Toolbox character">
             </div>
             <div class="col-md-8">
-                <div data-aos="fade-left" class="speech-bubble">
-                    <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> <strong>Hi, it's me, Toolie!</strong>
-                        Your friendly toolbox sidekick! As part of the My Home Heroes crew, 
-                        I'm here to help you connect with homeowners who need your skills — 
-                        whether you're fixing faucets, mowing lawns, painting walls, or wiring lights. 
-                        Let's team up and make homes happier, one job at a time! 
-                        <i class='bx bxs-quote-alt-right bx-tada-hover'></i> 
+                <div data-aos="fade-left" class="speech-bubble typing-text">
+                    <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> 
+                        <span class="line-1"><strong>Hi, it's me, Toolie!</strong> Your friendly toolbox sidekick!</span><br>
+                        <span class="line-2">As part of the My Home Heroes crew, I'm here to help you connect with home-</span><br>
+                        <span class="line-3">owners who need your skills — whether you're moving boxes, fixing faucets,</span><br>
+                        <span class="line-4">painting walls, or wiring lights. Let's team up and make homes happier,</span><br> 
+                        <span class="line-5">one honest job at a time! <i class='bx bxs-quote-alt-right bx-tada-hover'></i> </span>
                     </h5>
                 </div>
                 <br>
-                <div data-aos="fade-left" class="speech-bubble">
+                <div class="speech-bubble typing-text delay-2">
                     <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> 
-                        With your work, homes run smoothly and families feel at ease.
-                        You’re not just a tradesperson, {{ name }} — <strong>you’re a home hero</strong> making real-life super fixes.
-                        <i class='bx bxs-quote-alt-right bx-tada-hover'></i> 
+                        <span class="line-6">With your work, homes run smoothly and families feel at ease. You’re not just a</span><br>
+                        <span class="line-7">tradesperson, {{ name }} — <strong>you’re a home hero</strong> making real-life super fixes. <i class='bx bxs-quote-alt-right bx-tada-hover'></i></span><br> 
                     </h5>
                 </div>
             </div>

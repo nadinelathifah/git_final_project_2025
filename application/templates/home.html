@@ -65,14 +65,18 @@
 
 <section id="how-section">
     <div class="container pt-5">
-        <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/drill2.png' )}}" alt="">
+        <video autoplay muted loop class="video-tp">
+            <source src="{{ url_for('static', filename='videos/wit.mp4' )}}" type="video/mp4">
+        </video>
+        <!-- <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/drill2.png' )}}" alt=""> -->
         <div class="card"></div>
         <div class="content">
             <h3>How it works</h1>
             <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.5;">counter_1</span>Create an account.</p>
-            <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.69;">counter_2</span>Choose a tradesperson by task & location.</p>
+            <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.69;">counter_2</span>Choose a tradesperson by task, hourly rate, average</p>
+            <p data-aos="fade-up" style="margin-left: 40px; margin-top: -20px;">ratings & location.</p>
             <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon" style="opacity: 0.85;">counter_3</span>Schedule a service date.</p>
-            <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon">counter_4</span>Chat, pay and leave a review.</p>
+            <p data-aos="fade-up"><span class="material-symbols-outlined filled-icon">counter_4</span>Confirm your booking, get connected & leave a review.</p>
         </div>
     </div>
 </section>
@@ -90,40 +94,64 @@
     <div class="services-wrapper">
         <div class="col-sm">
             <div class="card">
-                <img src="{{ url_for('static', filename= 'images/Moving_background.png' )}}" alt="">
-                <h3>Moving</h3>
-               <a href="/services/moving"><button class="btn btn-primary">Learn More</button></a>
+                <a href="/services/moving">
+                    <img src="{{ url_for('static', filename= 'images/movingg.jpeg' )}}" alt="">
+                </a>
+                <div class="card-content">
+                    <h3>Moving</h3>
+                    <p>packing, unpacking, moving boxes, hauling furniture & more</p>
+                </div>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename= 'images/fix.jpeg' )}}" alt="">
-                <h3>Home Repairs</h3>
-                <a href="/services/home_repairs"><button class="btn btn-primary">Learn More</button></a>
+                <a href="/services/home_repairs">
+                    <img src="{{ url_for('static', filename= 'images/fix.jpeg' )}}" alt="">
+                </a>
+                <div class="card-content">
+                    <h3>Home Repairs</h3>
+                    <p>Fixing roof, foundation, drywall, floors, windows & doors</p>
+                </div>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename= 'images/et.jpeg' )}}" alt="">
-                <h3>Electrician</h3>
-                <a href="/services/electrician"><button class="btn btn-primary">Learn More</button></a>
+                <a href="/services/electrician">
+                    <img src="{{ url_for('static', filename= 'images/et.jpeg' )}}" alt="">
+                </a>
+                <div class="card-content">
+                    <h3>Electrician</h3>
+                    <p>Rewiring, fixing sockets, Smoke alarm installation & more</p>
+                </div>
             </div>
         </div>
         <div class="col-sm">
             <div class="card">
-                <img src="{{ url_for('static', filename= 'images/plumber7.jpeg' )}}" alt="">
-                <h3>Plumbing</h3>
-               <a href="/services/plumbing"><button class="btn btn-primary">Learn More</button></a>
+                <a href="/services/plumbing">
+                    <img src="{{ url_for('static', filename= 'images/plumber7.jpeg' )}}" alt="">
+                </a>
+                <div class="card-content">
+                    <h3>Plumbing</h3>
+                    <p>shower installations, toilet repairs, fixing leaks, burst pipes & more</p>
+                </div>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename= 'paints/rollers.jpeg' )}}" alt="">
-                <h3>Painting</h3>
-                <a href="/services/painting"><button class="btn btn-primary">Learn More</button></a>
+                <a href="/services/painting">
+                    <img src="{{ url_for('static', filename= 'paints/rollers.jpeg' )}}" alt="">
+                </a>
+                <div class="card-content">
+                    <h3>Painting</h3>
+                    <p>interior & exterior painting, wallpaper removal, recoating & more</p>
+                </div>
             </div>
 
             <div class="card">
-                <img src="{{ url_for('static', filename= 'images/lawn.jpg' )}}" alt="">
-                <h3>Lawn Care</h3>
-                <a href="/services/lawn_care"><button class="btn btn-primary">Learn More</button></a>
+                <a href="/services/lawn_care">
+                    <img src="{{ url_for('static', filename= 'images/lawn.jpg' )}}" alt="">
+                </a>
+                <div class="card-content">
+                    <h3>Lawn Care</h3>
+                    <p>lawnmowing, weed removal, hedge trimming, landscaping & more</p>
+                </div>
             </div>
         </div>
 

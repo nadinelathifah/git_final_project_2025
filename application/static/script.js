@@ -39,3 +39,55 @@ AOS.init({
     duration: 800,
     easing: 'ease-in-out',
   });
+
+
+const swiper = new Swiper('.mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  });
+
+
+  var swipercontainer = new Swiper('.swiper-container', {
+    slidesPerView: 4,
+    spaceBetween: 0,
+    loop: false,
+    grabCursor: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true
+    },
+    breakpoints: {
+        1024: {
+            slidesPerView: 4,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        480: {
+            slidesPerView: 1,
+        },
+    }
+});

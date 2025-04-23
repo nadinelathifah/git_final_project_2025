@@ -38,7 +38,6 @@
     width: 47vw;
     border-radius: 25px;
     padding: 30px;
-    overflow-y: auto;
     z-index: 5;
 }
 
@@ -61,6 +60,10 @@
     height: auto;
     border-radius: 50px;
     z-index: 3;
+}
+
+#electrician-services-section img:hover {
+    transform: scale(1.05);
 }
 
 #electrician-services-section {
@@ -168,4 +171,12 @@
         border-radius: 20px;
     }
 
+}
+
+.cable-img {
+    position: absolute;
+    bottom: -105px;
+    right: -50px;
+    width: 50vw;
+    height: 40vh;
 }

@@ -59,7 +59,7 @@
 
 .review-img.img-4 {
     max-height: 50vh;
-    bottom: 200px;
+    bottom: 400px;
     left: -220px;
     opacity: 0.8;
     z-index: 0;
@@ -67,7 +67,7 @@
 
 .review-img.img-5 {
     max-height: 50vh;
-    bottom: 0;
+    bottom: 200px;
     left: -600px;
     opacity: 0.5;
     z-index: 0;
@@ -75,7 +75,7 @@
 
 .review-img.img-6 {
     max-height: 50vh;
-    bottom: 100px;
+    bottom: 300px;
     right: -600px;
     opacity: 0.8;
     z-index: 0;
@@ -100,7 +100,25 @@
     height: auto;
 }
 
-#reviews .card {
+
+/* ------------- Cards + Swiper ------------- */
+
+#review-cards {
+    min-height: 90vh;
+    width: 100vw;
+    background: whitesmoke;
+    overflow-x: hidden;
+    overflow-y: visible;
+    z-index: 0;
+}
+
+#review-cards .container {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+#review-cards .card {
     width: 100%;
     min-width: 60%;
     padding: 20px;
@@ -118,11 +136,11 @@
     }
 }
 
-#reviews .card-text {
+#review-cards .card-text {
     margin-top: 20px;
 }
 
-#reviews .col-sm.col-right {
+#review-cards .col-sm.col-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,6 +160,18 @@
     color: #007bff;
     border: 1px solid #007bff;
 }
+
+.swiper {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
 
 
 /* ------------- Carousel ------------- */
@@ -284,4 +314,9 @@ p .secondline {
 
 .quote-img.img-2 {
     max-height: 20%;
+}
+
+#reviews .pr-card {
+    border-radius: 25px;
+    padding: 35px;
 }

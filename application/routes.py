@@ -14,8 +14,7 @@ def home():
                            title="My Home Heroes",
                            subheading="need a hand? call our heroes!",
                            img1='decoration/squiggleblue.png',
-                           img2='decoration/squiggleblue2.png',
-                           background_image='static/images/wideshot44.jpeg')
+                           img2='decoration/squiggleblue2.png')
 
 @app.route('/example')
 def example():
@@ -307,7 +306,6 @@ def logout():
 def client_dashboard():
     client_id = session.get('client_id')
     client = get_client_by_id(client_id)
-    bookings = get_client_bookings(client_id)
 
     firstname = client['firstname'] if client else 'Client'
     greeting = f"Welcome Back, {firstname}!"
@@ -316,7 +314,6 @@ def client_dashboard():
 
     return render_template('client_dashboard.html',
                            name=firstname,
-                           bookings=bookings,
                            head=head,
                            title=greeting,
                            subheading='Explore your dashboard',
@@ -432,6 +429,25 @@ def booking_confirmation():
 
 
 
+@app.route('/client_bookings', methods=['GET', 'POST'])
+def client_bookings():
+    client_id = session.get('client_id')
+    client = get_client_by_id(client_id)
+    bookings = get_client_bookings(client_id)
+
+    firstname = client['firstname'] if client else 'Client'
+
+    head = f"{firstname}'s Bookings"
+
+    return render_template('client_bookings.html',
+                           name=firstname,
+                           bookings=bookings,
+                           head=head,
+                           title='see your bookings',
+                           subheading='Another day, another home rescue away!',
+                           icon='task_alt',
+                           background_image='/static/images/greetclient.jpg')
+
 
 # --------------- Tradesperson Booking Pages --------------- #
 
@@ -459,9 +475,9 @@ def see_bookings():
     return render_template('see_bookings.html',
                            bookings=bookings,
                            name=firstname,
-                           head="see bookings",
-                           title="See your bookings",
-                           subheading="description",
+                           head="see booking requests",
+                           title="See your booking requests",
+                           subheading="Another day, another client away!",
                            icon='task_alt',
                            background_image='/static/images/greetclient.jpg')
 
@@ -617,10 +633,9 @@ def update_tp_info():
 def electrician():
         return render_template('electrician.html',
                                head='Electrician',
-                               title='Your Local Electrical Home Heroes Are Here!',
+                               title='Electrical Services',
                                subheading='Flickering light, faulty socket, or need an electrical overhaul? Home Heroes are on call!',
-                               icon='electrical_services',
-                               background_image="/static/images/electrician1.jpg")
+                               icon='electrical_services') #background_image="/static/images/electrician1.jpg"
 
 @app.route('/services/painting')
 def painting():
@@ -646,8 +661,7 @@ def moving():
                            head='Moving Services',
                            title='Moving Services',
                            subheading='need help moving items or houses? look no further...',
-                           icon='deployed_code',
-                           background_image='/static/images/Moving_background.png')
+                           icon='deployed_code') # background_image='/static/images/Moving_background.png'
 
 @app.route('/services/home_repairs')
 def home_repairs():
@@ -699,5 +713,4 @@ def reviews():
                            tradespeople = tp_profile,
                            title='customer experiences',
                            subheading='review our work',
-                           icon='star',
-                           background_image='/static/images/gardening.jpg')
+                           icon='star') # background_image='/static/images/gardening.jpg'

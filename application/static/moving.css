@@ -20,7 +20,7 @@
     position: relative;
     height: 80vh;
     width: 80vw;
-    background: linear-gradient(to left, rgb(255, 220, 78), rgb(250, 234, 130), rgb(255, 249, 229));
+    background: linear-gradient(to left, rgb(252, 196, 128), rgb(249, 234, 133), rgb(255, 249, 229));
     border: none;
     border-radius: 25px;
     margin-top: 40px;
@@ -98,15 +98,19 @@
 
 #moving-services-section .card {
     width: 300px;
-    background: #007bff;
+    background: linear-gradient(to left, #479df9, #52d7ee);
     color: white;
     text-align: center;
-    box-shadow: -10px 10px orange;
+    box-shadow: -10px 10px rgb(249, 210, 133);
     border-radius: 25px;
     overflow: hidden; /* Important: keeps the image inside rounded corners */
     display: flex;
     flex-direction: column;
     height: 500px; /* Fix card height to keep all same */
+}
+
+#moving-services-section .card:hover {
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

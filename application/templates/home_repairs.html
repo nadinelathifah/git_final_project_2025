@@ -16,10 +16,55 @@
     </div>
 </section>
 
+<section id="interior-section">
+    <div class="container-fluid">
+        <!-- <img class="arrow-img img-1" src="{{ url_for('static', filename='decoration/arrowblue.png') }}" alt="Arrow icon"> -->
+        <img class="arrow-img img-2" src="{{ url_for('static', filename='decoration/arrowblue2.png') }}" alt="Arrow icon">
+        <img class="arrow-img img-3" src="{{ url_for('static', filename='decoration/arrowblue4.png') }}" alt="Arrow icon">
+        <img class="arrow-img img-4" src="{{ url_for('static', filename='decoration/arrowblue5.png') }}" alt="Arrow icon">
+        <img class="int-img" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
+        <div class="row">
+            <div class="col">
+                <div class="col-sm">
+                    <h4 data-aos="fade-up">Leaky roof? Don’t wait for the drip — we’ll stop it before the storm hits.</h4>
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                </div>
+                <div class="col-sm">
+                    <h4 data-aos="fade-up">Drafty windows? Let’s seal the deal on energy savings.</h4>
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                </div>
+                <div class="col-sm">
+                    <h4 data-aos="fade-up">Noisy floorboards? Your sanctuary is our rescue mission.</h4>
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                </div>
+            </div>
+            <div class="col-5">
+                <img class="interior-img" src="{{ url_for('static', filename='images/interior.jpg') }}" alt="Image of the interior of a home">
+            </div>
+            <div class="col">
+                <div class="col-sm">
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                    <h4 data-aos="fade-up">Cold indoors? The heater's not lazy — it needs a professional.</h4>
+                </div>
+                <div class="col-sm">
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                    <h4 data-aos="fade-up">Wobbly chairs, busted drawers, or sagging shelves? Don’t toss it — we’ll fix it fast.</h4>
+                </div>
+                <div class="col-sm">
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                    <h4 data-aos="fade-up">Sticky hinges or damaged frames? Smooth entry starts with us.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="repair-section">
     <div class="container pt-5">
+        <hr>
         <h1>Our Services</h1>
         <p>Book your high-quality, efficient service today!</p>
+        <hr>
     </div>
 
     <div class="repair-wrapper">
@@ -28,21 +73,21 @@
                 <img src="{{ url_for('static', filename='images/roof_repairs.jpg') }}" alt="House Image">
                 <h3>Roof</h3>
                 <p>Fixing leaks, damaged shingles, and roof structural issues.</p>
-                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
+                <a href="{{ url_for('register_client')}}" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
                 <img src="{{ url_for('static', filename='images/foundationnew.png') }}" alt="House Image">
                 <h3>Foundation</h3>
                 <p>Addressing foundation cracks, shifting, or settling problems.</p>
-                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
+                <a href="{{ url_for('register_client')}}" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
                 <img src="{{ url_for('static', filename='images/drywallnew.jpg') }}" alt="House Image">
                 <h3>Drywall</h3>
                 <p>Seamless patching of holes, dents, and cracks in drywalls.</p>
-                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
+                <a href="{{ url_for('register_client')}}" class="button"><button>Find out more</button></a>
             </div>
         </div>
     </div>
@@ -52,21 +97,21 @@
                 <img src="{{ url_for('static', filename='images/floor.jpg') }}" alt="House Image">
                 <h3>Floor</h3>
                 <p>Repairing damaged flooring, from tiles to hardwood.</p>
-                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
+                <a href="{{ url_for('register_client')}}" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
                 <img src="{{ url_for('static', filename='images/windownew.jpg') }}" alt="House Image">
                 <h3>Windows</h3>
                 <p>Fixing broken frames, seals, or glass panes.</p>
-                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
+                <a href="{{ url_for('register_client')}}" class="button"><button>Find out more</button></a>
             </div>
 
             <div class="card">
                 <img src="{{ url_for('static', filename='images/door.jpg') }}" alt="House Image">
                 <h3>Doors</h3>
                 <p>Repairing misaligned, stuck, or damaged doors and frames.</p>
-                <a href="/services/home_repairs" class="button"><button>Find out more</button></a>
+                <a href="{{ url_for('register_client')}}" class="button"><button>Find out more</button></a>
             </div>
         </div>
     </div>

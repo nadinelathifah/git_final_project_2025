@@ -2,6 +2,7 @@
 {% block body_content %}
 
 <section id="c-db">
+    <img class="house-bg-1" src="{{ url_for('static', filename='images/houses.jpg') }}" alt="House character icon">
     <div class="container pt-5">
         <div class="title-text">
             <h2>{{ name }}'s Dashboard</h2>
@@ -9,30 +10,73 @@
         <br>
         <div class="row">
             <div class="col-md-4">
+                <br>
                 <img class="house-img" src="{{ url_for('static', filename='logo/housie2.png') }}" alt="House character icon">
             </div>
             <div data-aos="fade-left" class="col-md-8">
-                <div class="speech-bubble">
-                    <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> <strong>Hi, it's me, Bricksie!</strong> 
-                        Your friendly neighbourly helper. As part of My Home Heroes, 
-                        I'm here to connect you with trusted professionals who can take care of all your home needs – 
-                        from painting and plumbing to lawn care and repairs. Whether you're fixing up your space or making it shine, 
-                        I'm always here to help you find the right hero for the job!
-                        <i class='bx bxs-quote-alt-right bx-tada-hover'></i> 
+                <div class="speech-bubble typing-text">
+                    <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i> 
+                        <span class="line-1"><strong>Hi, it's me, Bricksie!</strong> Your friendly neighbourly helper :)</span><br>
+                        <span class="line-2">As part of My Home Heroes, I'm here to connect you with trusted professionals</span><br>
+                        <span class="line-3">who can take care of all your home needs – from painting and plumbing to</span><br>
+                        <span class="line-4">lawn care and repairs. Whether you're fixing up your space or making it shine,</span><br>
+                        <span class="line-5">I'm always here to help you find the right hero for the job! <i class='bx bxs-quote-alt-right bx-tada-hover'></i> </span>
                     </h5>
                 </div>
                 <br>
-                <div class="speech-bubble">
+                <div class="speech-bubble typing-text delay-1">
                     <h5><i class='bx bxs-quote-alt-left bx-tada-hover'></i>
-                        Taking care of your home is not easy, sometimes all we need is someone to help us take a step forward. 
-                        <strong>You've come to the right place, {{ name }}!</strong>
-                        <i class='bx bxs-quote-alt-right bx-tada-hover'></i> 
+                        <span class="line-6">Taking care of your home is not easy, sometimes all we need is someone to</span><br>
+                        <span class="line-7">help us take a step forward.<strong> You've come to the right place, {{ name }}! </strong><i class='bx bxs-quote-alt-right bx-tada-hover'></i></span>
                     </h5>
                 </div>
             </div>
         </div>
     </div>
     <br>
+</section>
+
+<section id="home-interior">
+    <div class="container-fluid">
+        <!-- <img class="arrow-img img-1" src="{{ url_for('static', filename='decoration/arrowblue.png') }}" alt="Arrow icon"> -->
+        <!-- <img class="arrow-img img-2" src="{{ url_for('static', filename='decoration/arrowblue2.png') }}" alt="Arrow icon"> -->
+        <!-- <img class="arrow-img img-3" src="{{ url_for('static', filename='decoration/arrowblue4.png') }}" alt="Arrow icon"> -->
+        <!-- <img class="arrow-img img-4" src="{{ url_for('static', filename='decoration/arrowblue5.png') }}" alt="Arrow icon"> -->
+        
+        <div class="row">
+            <div class="col">
+                <div class="col-sm">
+                    <h4 data-aos="fade-up">Moving</h4>
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                </div>
+                <div class="col-sm">
+                    <h4 data-aos="fade-up">Home Repairs</h4>
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                </div>
+                <div class="col-sm">
+                    <h4 data-aos="fade-up">Electrical Repairs</h4>
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                </div>
+            </div>
+            <div class="col-5">
+                <img class="home-int-img" src="{{ url_for('static', filename='images/interior.jpg') }}" alt="Image of the interior of a home">
+            </div>
+            <div class="col">
+                <div class="col-sm">
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                    <h4 data-aos="fade-up">Plumbing</h4>
+                </div>
+                <div class="col-sm">
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                    <h4 data-aos="fade-up">Painting</h4>
+                </div>
+                <div class="col-sm">
+                    <span data-aos="fade-up" class="material-symbols-outlined">radio_button_checked</span>
+                    <h4 data-aos="fade-up">Lawn Care</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="client-instructions">
@@ -73,78 +117,6 @@
         </div>
     </div>
     <br><br>
-</section>
-
-<section id="client-dashboard">
-    <div class="container pt-5">
-        <div class="title-text">
-            <h3>See your bookings</h3>
-        </div>
-        <br>
-        <div class="card">
-            <br>
-            <div class="card-title">
-                <h4><span class="material-symbols-outlined">check_box</span> Booking History</h4>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm title">
-                        <p><strong>Date of Booking</strong></p>
-                    </div>
-                    <div class="col-sm title">
-                        <p><strong>Name of Tradesperson</strong></p>
-                    </div>
-                    <div class="col-sm title">
-                        <p><strong>Task</strong></p>
-                    </div>
-                    <div class="col-sm title">
-                        <p><strong>Start Date</strong></p>
-                    </div>
-                    <div class="col-sm title">
-                        <p><strong>End Date</strong></p>
-                    </div>
-                    <div class="col-sm title">
-                        <p><strong>Task Description</strong></p>
-                    </div>
-                    <div class="col-sm title" style="border-right: none; text-transform: capitalize;">
-                        <p><strong>Status</strong></p>
-                    </div>
-                </div>
-                {% for booking in bookings %}
-                <div class="row">
-                    <div class="col-sm">
-                        <p><strong>{{ booking.booking_date }}<br><br>Booking ID: {{ booking.bookingID }}</strong></p>
-                    </div>
-                    <div class="col-sm">
-                        <p>{{ booking.tp_full_name }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>{{ booking.task_name }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>{{ booking.ss_date }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>{{ booking.se_date }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>{{ booking.task_description }}</p>
-                    </div>
-                    <div class="col-sm" style="border-right: none; text-transform: capitalize; display: flex; flex-direction: column;">
-                        <p><strong>{{ booking.status }}</strong></p>
-                        {% if booking.status == 'completed' %}
-                            <a href="{{ url_for('reviews')}}">
-                                <button class="review-btn" type="button"><span class="material-symbols-outlined">star_half</span> Post Review </button>
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
 </section>
 
 {% endblock %}

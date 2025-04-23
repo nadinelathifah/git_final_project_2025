@@ -5,12 +5,13 @@
 /* -------------- Client Dashboard Styling -------------- */
 
 #c-db {
-    min-height: 50vh;
+    min-height: 80vh;
     width: 100vw;
     position: relative;
     background: rgb(255, 251, 239);
     overflow: hidden;
 }
+
 
 #c-db .col-md-4 {
     height: 100%;
@@ -33,14 +34,132 @@
     z-index: 2;
 }
 
-.house-img {
-    max-width: 20vw;
-    transform: translateX(30px);
+.house-bg-1  {
+    position: absolute;
+    opacity: 0.5;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    z-index: 0;
 }
+
+.house-img {
+    max-width: 19vw;
+    animation: floatAround 6s ease-in-out infinite;
+    position: relative;
+    transform-origin: center;
+}
+
+
+@keyframes floatAround {
+    0% {transform: translate(0, 0) rotate(0deg) scale(0.9);}
+    20% {transform: translate(30px, -30px) rotate(5deg) scale(1);}
+    40% {transform: translate(-30px, -30px) rotate(-5deg) scale(1.05);}
+    60% {transform: translate(30px, -30px) rotate(5deg) scale(1);}
+    80% {transform: translate(-30px, -30px) rotate(-5deg) scale(1.05);}
+    100% {transform: translate(0, 0) rotate(0deg) scale(0.9);}
+}
+
 
 #c-db .speech-bubble {
     background: aliceblue;
     border: 2.5px solid #96c9ff;
+}
+
+#c-db .typing-text h5 {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#c-db .typing-text span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: none;
+    width: 0;
+    animation-fill-mode: forwards;
+}
+
+/* .typing-text span {
+    outline: 1px solid red;
+} */
+
+#c-db  .line-1 {
+    animation: typeLine1 3s steps(42) 0s 1 normal forwards;
+}
+#c-db  .line-2 {
+    animation: typeLine2 4s steps(60) 3.5s 1 normal forwards;
+}
+#c-db  .line-3 {
+    animation: typeLine3 3.8s steps(57) 7.5s 1 normal forwards;
+}
+#c-db  .line-4 {
+    animation: typeLine4 4.4s steps(60) 11.2s 1 normal forwards;
+}
+#c-db  .line-5 {
+    animation: typeLine5 3s steps(46) 15.5s 1 normal forwards;
+}
+#c-db  .line-6 {
+    animation: typeLine6 4s steps(58) 20s 1 normal forwards;
+}
+#c-db  .line-7 {
+    animation: typeLine7 4s steps(60) 24.3s 1 normal forwards;
+}
+
+@keyframes typeLine1 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.42ch; border-right: 4px solid rgb(25, 136, 255);}
+    99% { width: 41.58ch; border-right: 4px solid rgb(25, 136, 255);}
+    100% { width: 42ch; border-right: none;}
+}
+@keyframes typeLine2 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.6ch; border-right: 4px solid rgb(25, 136, 255);}
+    99% { width: 59.4ch; border-right: 4px solid rgb(25, 136, 255);}
+    100% { width: 60ch; border-right: none;}
+}
+@keyframes typeLine3 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.57ch; border-right: 4px solid rgb(25, 136, 255);}
+    99% { width: 56.43ch; border-right: 4px solid rgb(25, 136, 255);}
+    100% { width: 57ch; border-right: none;}
+}
+@keyframes typeLine4 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.6ch; border-right: 4px solid rgb(25, 136, 255);}
+    99% { width: 59.4ch; border-right: 4px solid rgb(25, 136, 255);}
+    100% { width: 60ch; border-right: none;}
+}
+@keyframes typeLine5 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.46ch; border-right: 4px solid rgb(25, 136, 255);}
+    99% { width: 45.54ch; border-right: 4px solid rgb(25, 136, 255);}
+    100% { width: 46ch; border-right: none;}
+}
+@keyframes typeLine6 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.58ch; border-right: 4px solid rgb(25, 136, 255);}
+    99% { width: 58.8ch; border-right: 4px solid rgb(25, 136, 255);}
+    100% { width: 58ch; border-right: none;}
+}
+@keyframes typeLine7 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.6ch; border-right: 4px solid rgb(25, 136, 255);}
+    99% { width: 59.4ch; border-right: 4px solid rgb(25, 136, 255);}
+    100% { width: 60ch; border-right: none;}
+}
+
+.speech-bubble.delay-1 {
+    transform: translateX(100%);
+    opacity: 0;
+    animation: slideIn 1s ease-out forwards;
+    animation-delay: 18.5s;
+}
+
+@keyframes slideIn {
+    0% {transform: translateX(100%); opacity: 0;}
+    100% {transform: translateX(0); opacity: 1;}
+    
 }
 
 #client-dashboard {
@@ -142,11 +261,17 @@
 /* -------------- Tradesperson Dashboard Styling -------------- */
 
 #tp-db {
-    min-height: 50vh;
+    min-height: 80vh;
     width: 100vw;
     position: relative;
     background: rgb(255, 251, 239);
     overflow-x: auto;
+    overflow: hidden;
+    z-index: 0;
+}
+
+#tp-db .container {
+    z-index: 1;
 }
 
 #tp-db .col-md-4 {
@@ -159,23 +284,38 @@
     width: 70%;
 }
 
-#tp-db .tool-img {
-    max-width: 23vw;
-    transform: translateX(20px);
-}
-
 #tp-db .title-text h2 {
+    position: relative;
     font-family: 'Bungee', sans-serif;
     font-size: 2.3rem;
     color: rgb(251, 142, 0);
     -webkit-text-stroke: 2px white;
     background: wheat;
     width: 500px;
+    z-index: 3;
 }
 
 #tp-db .row {
     display: flex;
     flex-direction: row;
+    z-index: 1;
+}
+
+.house-bg-2  {
+    position: absolute;
+    opacity: 0.5;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    z-index: 0;
+}
+
+.tool-img {
+    max-width: 23vw;
+    max-width: 19vw;
+    animation: floatAround 6s ease-in-out infinite;
+    position: relative;
+    transform-origin: center;
 }
 
 .speech-bubble {
@@ -185,9 +325,108 @@
     z-index: 3;
 }
 
+
 #tp-db .speech-bubble {
-    background: rgba(247, 173, 0, 0.2);
+    background: rgb(249, 239, 214);
     border: 2.5px solid rgb(247, 173, 0);
+}
+
+
+@keyframes floatAround {
+    0% {transform: translate(0, 0) rotate(0deg) scale(0.9);}
+    20% {transform: translate(30px, -30px) rotate(5deg) scale(1);}
+    40% {transform: translate(-30px, -30px) rotate(-5deg) scale(1.05);}
+    60% {transform: translate(30px, -30px) rotate(5deg) scale(1);}
+    80% {transform: translate(-30px, -30px) rotate(-5deg) scale(1.05);}
+    100% {transform: translate(0, 0) rotate(0deg) scale(0.9);}
+}
+
+
+#tp-db .typing-text h5 {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#tp-db .typing-text span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: none;
+    width: 0;
+    animation-fill-mode: forwards;
+}
+
+
+#tp-db .line-1 {
+    animation: typetheLine1 3s steps(37) 0s 1 normal forwards;
+}
+#tp-db  .line-2 {
+    animation: typetheLine2 4s steps(60) 3.5s 1 normal forwards;
+}
+#tp-db  .line-3 {
+    animation: typetheLine3 3.8s steps(58) 7.5s 1 normal forwards;
+}
+#tp-db .line-4 {
+    animation: typetheLine4 4.4s steps(56) 11.2s 1 normal forwards;
+}
+#tp-db  .line-5 {
+    animation: typetheLine5 1.5s steps(22) 15.5s 1 normal forwards;
+}
+#tp-db  .line-6 {
+    animation: typetheLine6 4s steps(60) 17.5s 1 normal forwards;
+}
+#tp-db  .line-7 {
+    animation: typetheLine7 3.5s steps(59) 21.5s 1 normal forwards;
+}
+
+@keyframes typetheLine1 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.37ch; border-right: 4px solid rgb(255, 136, 0);}
+    99% { width: 36.63ch; border-right: 4px solid rgb(255, 136, 0);}
+    100% { width: 37ch; border-right: none;}
+}
+@keyframes typetheLine2 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.6ch; border-right: 4px solid rgb(255, 136, 0);}
+    99% { width: 59.4ch; border-right: 4px solid rgb(255, 136, 0);}
+    100% { width: 60ch; border-right: none;}
+}
+@keyframes typetheLine3 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.58ch; border-right: 4px solid rgb(255, 136, 0);}
+    99% { width: 57.42ch; border-right: 4px solid rgb(255, 136, 0);}
+    100% { width: 58ch; border-right: none;}
+}
+@keyframes typetheLine4 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.56ch; border-right: 4px solid rgb(255, 136, 0);}
+    99% { width: 55.44ch; border-right: 4px solid rgb(255, 136, 0);}
+    100% { width: 56ch; border-right: none;}
+}
+@keyframes typetheLine5 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.22ch; border-right: 4px solid rgb(255, 136, 0);}
+    99% { width: 21.78ch; border-right: 4px solid rgb(255, 136, 0);}
+    100% { width: 22ch; border-right: none;}
+}
+@keyframes typetheLine6 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.6ch; border-right: 4px solid rgb(255, 136, 0);}
+    99% { width: 59.4ch; border-right: 4px solid rgb(255, 136, 0);}
+    100% { width: 60ch; border-right: none;}
+}
+@keyframes typetheLine7 {
+    0% { width: 0ch; border-right: none;}
+    1% { width: 0.59ch; border-right: 4px solid rgb(255, 136, 0);}
+    99% { width: 58.41ch; border-right: 4px solid rgb(255, 136, 0);}
+    100% { width: 59ch; border-right: none;}
+}
+
+.speech-bubble.delay-2 {
+    transform: translateX(100%);
+    opacity: 0;
+    animation: slideIn 1s ease-out forwards;
+    animation-delay: 17s;
 }
 
 #tp-dashboard {
@@ -259,4 +498,87 @@
         right: 350px;
         bottom: -400px;
     }
+}
+
+
+
+/* -------------- Interior Styling -------------- */
+
+
+#home-interior {
+    min-height: 100vh;
+    background: whitesmoke;
+    z-index: 0;
+}
+
+#home-interior .row{
+    min-height: 100vh;
+}
+
+.home-int-img {
+    position: relative;
+    max-width: 40vw;
+}
+
+#home-interior .col-5 {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+#home-interior .col {
+    min-height: 100vh;
+    color: rgb(0, 21, 116);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    z-index: 1;
+}
+
+#home-interior .col h4 {
+    font-size: 1.5rem;
+}
+
+#home-interior .material-symbols-outlined {
+    color: #96c9ff;
+    display: inline-flex;
+    vertical-align: middle;
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+#home-interior .col-sm {
+    display: flex;
+    flex-direction: row;
+}
+
+.arrow-img {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 3;
+}
+
+.arrow-img.img-1 {
+    width: 10vw;
+    left: 380px;
+    transform: translateY(50px);
+}
+
+.arrow-img.img-2 {
+    height: 17vh;
+    left: 400px;
+    transform: translateY(380px) rotate(250deg);
+}
+
+.arrow-img.img-3 {
+    height: 16vh;
+    left: 360px;
+    transform: translateY(20px) rotate(250deg);
+}
+
+.arrow-img.img-4 {
+    height: 16vh;
+    right: 400px;
+    transform: translateY(-40px);
 }
