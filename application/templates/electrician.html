@@ -6,29 +6,30 @@
 
 <!-- <img class="cable-img" src="{{ url_for('static', filename='decoration/cableblue.png')}}" alt="Decorative abstract shape"> -->
 <section id="electrician-section"> <!--An element that brings all the themes together linked to the electrician-section. -->
-    <div class="container"> <!--A Bootstrap 'container' to create a responsive fixed-width container for the content inside-->
-        <div class="card"></div> <!--A box to add style to the page, there's nothing in the card at the moment-->
-            <div class="content"> <!--Holds the main content to be displayed.-->
-                <h3>Trusted Local Electricians <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>
-                <p>Dedicated to providing safe, reliable, and high-quality electrical services for homes across West Lothian. Our team of qualified and friendly electricians are experts in everything from simple repairs to complex installations.
-                <br>Why choose Home Heroes?
+  <div class="container"> <!--A Bootstrap 'container' to create a responsive fixed-width container for the content inside-->
+      <div class="card"></div> <!--A box to add style to the page, there's nothing in the card at the moment-->
+          <div class="content"> <!--Holds the main content to be displayed.-->
+              <h3>Trusted Local Electricians <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> </h3>
+              <p>Dedicated to providing safe, reliable, and high-quality electrical services for homes across West Lothian. Our team of qualified and friendly electricians are experts in everything from simple repairs to complex installations.
+                  <br>Why choose Home Heroes?
                   <ul class="bullet-list"> <!--An unordered list styled as bullet style.-->
-                            <li>Local & Trusted: We live and work in your community.</li>
-                            <li>Qualified Professionals: Fully licensed and insured electricians.</li>
-                            <li>Reliable Service: Punctual, efficient, and dependable.</li>
-                            <li>Safety First: Your safety is our top priority.</li>
-                            <li>Transparent Pricing: No hidden fees, just honest quotes.</li>
-                        </ul>
+                      <li>Local & Trusted: We live and work in your community.</li>
+                      <li>Qualified Professionals: Fully licensed and insured electricians.</li>
+                      <li>Reliable Service: Punctual, efficient, and dependable.</li>
+                      <li>Safety First: Your safety is our top priority.</li>
+                      <li>Transparent Pricing: No hidden fees, just honest quotes.</li>
+                  </ul>
             </p>
-            </div>
-            <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/plug_change.jpg' )}}" alt=""> <!--The background image that will be covered up as the user scrolls.-->
-        </div>
-    </div>
+          </div>
+          <img data-aos="fade-right" src="{{ url_for('static', filename= 'images/plug_change.jpg' )}}" alt=""> <!--The background image that will be covered up as the user scrolls.-->
+      </div>
+  </div>
 </section>
 
 <section id="electrician-services-section">
     <div class="container pt-5">
-      <h2 class="pt-3 pb-2">Services</h2>
+      <h2 class="pt-3 pb-2">Our Services</h2>
+      <p>Book your high-quality, efficient service today!</p>
       <hr>
 
       <div class="container overflow-hidden"> <!--A Bootstrap feature that hides content that overflows the container-->
@@ -78,6 +79,11 @@
         </div>
       </div>
       </div>
+      <div data-aos="fade-right" class="text-banner">
+        <h1>Always charged, always ready – Power pros on the go!</h1>
+        <h1><span class="material-symbols-outlined" style="font-size: 3rem">charger</span></h1>
+    </div>
+    <br><br>
 </section> <!--End of the electrician-services-section.-->
 
 {% endblock %} <!--This closes the body_content block so the content from layout-services template will end here. I.e., end of inheritance.-->

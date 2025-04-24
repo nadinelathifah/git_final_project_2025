@@ -14,9 +14,9 @@
                 <h2>Sign Up</h2>
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
-                        <div style="color: red;" class="flash-messages">
+                        <div data-aos="fade-up" style="background: #d20011; color: white;" class="flash-messages">
                         {% for category, message in messages %}
-                            <div style="color: red;" class="alert alert-{{ category }}">{{ message }}</div>
+                            <div style="background: #d20011; color: white;" class="alert alert-{{ category }}">{{ message }}</div>
                         {% endfor %}
                         </div>
                     {% endif %}

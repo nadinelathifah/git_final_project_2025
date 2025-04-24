@@ -5,7 +5,7 @@
 /* -------------- Client Dashboard Styling -------------- */
 
 #c-db {
-    min-height: 80vh;
+    min-height: 100vh;
     width: 100vw;
     position: relative;
     background: rgb(255, 251, 239);
@@ -16,11 +16,17 @@
 #c-db .col-md-4 {
     height: 100%;
     width: 30%;
+    padding-left: 20px;
+    padding-top: 20px;
 }
 
 #c-db .col-md-8 {
     height: 100%;
     width: 70%;
+}
+
+#c-db .title-text {
+    margin-top: 40px;
 }
 
 #c-db .title-text h2 {
@@ -191,8 +197,9 @@
 }
 
 #client-dashboard .col-sm.title {
-    color: rgb(0, 21, 116);
-    background: whitesmoke;
+    background: rgb(0, 21, 116);
+    color: whitesmoke;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.412);
 }
 
 #client-dashboard .card-title h4 {
@@ -261,7 +268,7 @@
 /* -------------- Tradesperson Dashboard Styling -------------- */
 
 #tp-db {
-    min-height: 80vh;
+    min-height: 100vh;
     width: 100vw;
     position: relative;
     background: rgb(255, 251, 239);
@@ -275,6 +282,8 @@
 }
 
 #tp-db .col-md-4 {
+    padding-left: 20px;
+    padding-top: 20px;
     height: 100%;
     width: 30%;
 }
@@ -284,11 +293,15 @@
     width: 70%;
 }
 
+#tp-db .title-text {
+    margin-top: 40px;
+}
+
 #tp-db .title-text h2 {
     position: relative;
     font-family: 'Bungee', sans-serif;
     font-size: 2.3rem;
-    color: rgb(251, 142, 0);
+    color: rgb(251, 138, 0);
     -webkit-text-stroke: 2px white;
     background: wheat;
     width: 500px;
@@ -430,7 +443,7 @@
 }
 
 #tp-dashboard {
-    min-height: 150vh;
+    min-height: 140vh;
     width: 100vw;
     position: relative;
     background: rgb(255, 249, 229);
@@ -506,13 +519,28 @@
 
 
 #home-interior {
-    min-height: 100vh;
+    min-height: 80vh;
     background: whitesmoke;
     z-index: 0;
 }
 
-#home-interior .row{
-    min-height: 100vh;
+#home-interior .title-text {
+    margin-top: 20px;
+}
+
+#home-interior .title-text h2 {
+    position: relative;
+    font-family: 'Bungee', sans-serif;
+    font-size: 2.3rem;
+    color: #0092e1;
+    -webkit-text-stroke: 2px white;
+    background: #d8ebff;
+    width: 1000px;
+    z-index: 2;
+}
+
+#home-interior .row {
+    min-height: 80vh;
 }
 
 .home-int-img {
@@ -527,7 +555,7 @@
 }
 
 #home-interior .col {
-    min-height: 100vh;
+    min-height: 80vh;
     color: rgb(0, 21, 116);
     display: flex;
     flex-direction: column;
@@ -546,11 +574,21 @@
     vertical-align: middle;
     font-size: 2rem;
     margin-right: 10px;
+    margin-left: 10px;
 }
 
-#home-interior .col-sm {
+
+#home-interior .card {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: auto;
+    height: 7vh;
+    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 35px;
 }
 
 .arrow-img {

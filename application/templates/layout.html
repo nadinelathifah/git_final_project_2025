@@ -56,9 +56,9 @@
                         <li class="nav-item"><a href="{{ url_for('client_dashboard' )}}" id="dashboard" class="nav-link" aria-current="page">Client Dashboard</a></li>
                         <li class="nav-item"><a href="{{ url_for('find_tradesperson') }}#find-tp" id="dashboard" class="nav-link" aria-current="page">Make Booking</a></li>
                         <li class="nav-item"><a href="{{ url_for('client_bookings') }}" id="dashboard" class="nav-link" aria-current="page">See My Bookings</a></li>
-                        <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link active home-btn" aria-current="page" style="color: rgb(0, 21, 116); background: rgb(255, 247, 199);">Home</a></li>
+                        <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link active home-btn" aria-current="page" style="background: rgb(0, 21, 116); color: aliceblue;; border: 1.5px solid rgba(0, 21, 116, 0.77);">Home</a></li>
                         <li class="nav-item dropdown">
-                            <a id="dashboard" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>Services</a>
+                            <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgb(0, 21, 116); color: aliceblue;; border: 1.5px solid rgba(0, 21, 116, 0.77);"><i class='bx bxs-chevron-down-circle'></i>Services</a>
                             <ul class="drop-down">
                                 {% if request.path != '/services/moving' %}
                                     <li><a href="/services/moving" class="dropdown-item">Moving</a></li>
@@ -94,11 +94,11 @@
                         </li>
                         <li class="nav-item"><a href="{{ url_for('reviews') }}" id="dashboard" class="nav-link" aria-current="page">Your Reviews</a></li>
                         {% elif session['loggedIn'] and session['role'] == 'tradesperson' %}
-                        <li class="nav-item"><a href="{{ url_for('task_dashboard') }}" id="dashboard" class="nav-link" aria-current="page">Task Dashboard</a></li>
-                        <li class="nav-item"><a href="{{ url_for('see_bookings' )}}" id="dashboard" class="nav-link" aria-current="page">See Booking Requests</a></li>
-                        <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link active home-btn" aria-current="page" style="color: rgb(0, 21, 116); background: rgb(255, 247, 199);">Home</a></li>
+                        <li class="nav-item"><a href="{{ url_for('task_dashboard') }}" id="dashboard2" class="nav-link" aria-current="page">Task Dashboard</a></li>
+                        <li class="nav-item"><a href="{{ url_for('see_bookings' )}}" id="dashboard2" class="nav-link" aria-current="page">See Booking Requests</a></li>
+                        <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link active home-btn" aria-current="page" style="background: rgb(0, 21, 116); color: aliceblue;; border: 1.5px solid rgba(0, 21, 116, 0.77);">Home</a></li>
                         <li class="nav-item dropdown">
-                            <a id="dashboard" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-chevron-down-circle'></i>Services</a>
+                            <a id="dashboard2" class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgb(0, 21, 116); color: aliceblue;; border: 1.5px solid rgba(0, 21, 116, 0.77);"><i class='bx bxs-chevron-down-circle'></i>Services</a>
                             <ul class="drop-down">
                                 {% if request.path != '/services/moving' %}
                                     <li><a href="/services/moving" class="dropdown-item">Moving</a></li>
@@ -132,7 +132,7 @@
                                 {% endif %}
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="{{ url_for('reviews') }}" id="dashboard" class="nav-link" aria-current="page">Your Reviews</a></li>
+                        <li class="nav-item"><a href="{{ url_for('reviews') }}" id="dashboard2" class="nav-link" aria-current="page">Your Reviews</a></li>
                         {% else %}
                         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" style="color: rgb(0, 21, 116);">Home</a></li>
                         <li class="nav-item dropdown">
@@ -213,7 +213,7 @@
                             <input type="password" name="client_password" placeholder="Password" required>
                         </div>
                         <input type="hidden" name="role" value="client">
-                        <a href="#" class="forgot-pass">Forgot Password?</a>
+                        <a href="{{ url_for('forgot_password') }}" class="forgot-pass">Forgot Password?</a>
                         <button type="submit" class="btn btn-primary btn-lg btn-block" value='Login'>LOGIN</button>
                     </form>
                     <br>
@@ -240,7 +240,7 @@
                             <input type="password" name="tp_password" placeholder="Password">
                         </div>
                         <input type="hidden" name="role" value="tradesperson">
-                        <a href="#" class="forgot-pass">Forgot Password?</a>
+                        <a href="{{ url_for('forgot_password') }}" class="forgot-pass">Forgot Password?</a>
                         <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
                     </form>
                     <br>
@@ -285,6 +285,16 @@
                 <source src="{{ url_for('static', filename='videos/plumbing.mp4') }}" type="video/mp4">
             </video>
             {% endif %}
+            {% if request.path =='/services/painting' %}
+            <video autoplay loop muted class="video-bg">
+                <source src="{{ url_for('static', filename='videos/painting.mp4') }}" type="video/mp4">
+            </video>
+            {% endif %}
+            {% if request.path =='/services/lawn_care' %}
+            <video autoplay loop muted class="video-bg">
+                <source src="{{ url_for('static', filename='videos/gardening.mp4') }}" type="video/mp4">
+            </video>
+            {% endif %}
             {% if request.path =='/reviews' %}
             <video autoplay loop muted class="video-bg">
                 <source src="{{ url_for('static', filename='videos/lawncare.mp4') }}" type="video/mp4">
@@ -300,6 +310,26 @@
                 <h1 data-aos="fade-up">{{ title }}</h1>
                 <h4 data-aos="fade-up">{{ subheading }}</h4>
                 <div data-aos="fade-up" class="icon-wrapper">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {% if category == 'success' %}
+                            <span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle; margin-right: 10px;">check_circle</span>
+                                {{ message }}
+                            <span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle; margin-left: 10px;">mood</span>
+                            {% endif %}
+                            {% if category == 'error' %}
+                            <span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle; margin-right: 10px;">block</span>
+                                {{ message }}
+                            <span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle; margin-left: 10px;">sentiment_dissatisfied</span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
                     <!-- <i class='bx bxs-torch bx-tada-hover'></i>  -->
                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 2.85rem; color: #158fd1; margin-right: 8px; transform:translateY(2px)">tools_power_drill</span>
                     <i class='bx bxs-hard-hat bx-tada-hover'></i>
@@ -313,6 +343,21 @@
                 <h4 data-aos="fade-up"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; transform:translateY(2px)">{{ icon }}</span> 
                     {{ subheading }}
                 </h4>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <div data-aos="fade-up" class="flash-messages">
+                                {% for category, message in messages %}
+                                <div class="alert alert-success">
+                                    {% if category == 'success' %}
+                                    <span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle; margin-right: 10px;">check_circle</span>
+                                        {{ message }}
+                                    <span class="material-symbols-outlined" style="display: inline-flex; vertical-align: middle; margin-left: 10px;">mood</span>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
                 {% endif %}
             </div>
         </section>

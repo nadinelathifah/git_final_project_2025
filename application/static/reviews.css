@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 /* -------------- Reviews Section -------------- */
 
 #reviews {
@@ -104,7 +104,7 @@
 /* ------------- Cards + Swiper ------------- */
 
 #review-cards {
-    min-height: 90vh;
+    min-height: 60vh;
     width: 100vw;
     background: whitesmoke;
     overflow-x: hidden;
@@ -273,7 +273,7 @@
     background: white;
 } */
 
-/* ------------- Carousel ------------- */
+/* ------------- Quotes ------------- */
 
 
 #opening-quote {
@@ -316,7 +316,13 @@ p .secondline {
     max-height: 20%;
 }
 
-#reviews .pr-card {
-    border-radius: 25px;
-    padding: 35px;
+.text-banner {
+    text-align: center;
+    z-index: 3;
+}
+
+.text-banner h1 {
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 3rem;
+    z-index: 5;
 }

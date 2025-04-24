@@ -25,7 +25,7 @@
         <br>
 
 {% if session['loggedIn'] and session['role'] == 'client' %}
-        <div class="card pr-card" style="padding: 30px;">
+        <div class="card" style="padding: 30px;">
             <h3>Post a Review</h3>
             <form action="{{ url_for('reviews') }}" method="POST">
                 <div class="form-group">
@@ -60,7 +60,7 @@
         <div class="row">
             {% for review in client_reviews %}
                 <div class="col-md-4 mb-4">
-                    <div class="card pr-card">
+                    <div class="card">
                         <div class="row">
                             <div class="col-sm">
                                 <img class="reviewcard-img" src="{{ url_for('static', filename='logo/fullicon.png')}}" alt="">
@@ -247,6 +247,11 @@
         <img class="review-img img-4" src="{{ url_for('static', filename='decoration/circle_orange.png')}}" alt="Decorative abstract shape">
         <img class="review-img img-5" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
         <img class="review-img img-6" src="{{ url_for('static', filename='decoration/lightblue.png')}}" alt="Decorative abstract shape">
+        <br>
+        <div data-aos="fade-right" class="text-banner">
+            <h1>Home Heroes on the go!</h1>
+            <h1><span class="material-symbols-outlined" style="font-size: 3rem">construction</span></h1>
+        </div>
     </div>
 {% endif %}
 </section>

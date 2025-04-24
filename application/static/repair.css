@@ -47,8 +47,7 @@
 }
 
 #repair-section .card button {
-  background-color: yellow;
-  color: black;
+  background-color: #fefeff;
   padding: 5px 20px;
   border: none;
   border-radius: 5px;
@@ -59,7 +58,7 @@
 }
 
 #repair-section .card button:hover {
-  background-color: orange;
+  background-color: #007bff;
 }
 
 /* part two CSS styling for repairs*/

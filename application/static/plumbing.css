@@ -70,6 +70,7 @@
 #plumbing-services-section {
     min-height: 100vh;                /* Setting the height to 100vh ensures the section spans the entire height of the screen - vh is short for viewport height. */
     background: rgb(255, 251, 237); 
+    border-top: 1px solid rgba(150, 124, 90, 0.489);
 }
 
 /* To add styling to the card, we have to specify which id or class this card is from (#example-section) */

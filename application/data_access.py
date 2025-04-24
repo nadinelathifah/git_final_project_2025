@@ -468,6 +468,20 @@ def get_tp_profile():
         cursor.close()
         connection.close()
 
+
+def update_client_password(email, new_password):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("UPDATE clients SET password=%s WHERE email=%s", (new_password, email))
+    connection.commit()
+
+def update_tradesperson_password(email, new_password):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("UPDATE tradespeople SET password=%s WHERE email=%s", (new_password, email))
+    connection.commit()
+
+
 # TO ENCODE THE PASSWORD OF CLIENTS
 # client_passwords = [
 #     ('miranda@gmail.com', 'Miranda123'),

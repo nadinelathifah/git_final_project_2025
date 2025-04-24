@@ -1,7 +1,8 @@
 from flask import render_template, url_for, request, redirect, session, flash
 from application.forms.registration_form import ClientRegistrationForm, WorkerRegistrationForm
+from application.forms.password_form import ForgotPasswordForm, ResetPasswordForm
 from application.data import clients, tradespeople
-from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request, get_client_reviews, get_tp_reviews, post_review, get_tp_profile
+from application.data_access import add_client, add_tradesperson, get_client_by_email, get_tp_by_email, book_job, get_all_tasks, get_all_towns, find_matching_tradespeople, get_reviews, get_client_by_id, get_tp_by_id, set_tp_profile, display_tp_profile, update_tradesperson_profile, update_tp_personal_info, display_client_profile, update_client_info, get_towns_with_ids, get_tasks_with_ids, get_client_bookings, get_booking_requests, accept_booking_request, reject_booking_request, get_client_reviews, get_tp_reviews, post_review, get_tp_profile, update_client_password, update_tradesperson_password
 from application import app
 import bcrypt
 
@@ -264,6 +265,7 @@ def login_client():
         session['user'] = email
         session['role'] = 'client'
         session['client_id'] = client['clientID']
+        flash("You have successfully logged in.", "success")
         return redirect(url_for('client_dashboard'))
     else:
         flash("Invalid email or password", "error")
@@ -283,6 +285,7 @@ def login_tradesperson():
         session['user'] = email
         session['role'] = 'tradesperson'
         session['worker_id'] = tradesperson['workerID']
+        flash("You have successfully logged in.", "success")
         return redirect(url_for('task_dashboard'))
     else:
         flash("Invalid email or password", "error")
@@ -389,9 +392,11 @@ def book_service():
         book_job(clientID, workerID, taskID, service_start, service_end, task_description)
 
         if not workerID.isdigit() or not taskID.isdigit():
+            flash("Error: Invalid workerID or taskID", 'error')
             return "Error: Invalid workerID or taskID", 400
 
         # Redirect to a confirmation page or back to the tradesperson's page
+        flash("You have successfully booked a hero!", 'success')
         return redirect(url_for('client_dashboard'))
 
     # Handle the GET request: this is where the user will be directed after clicking "Book This Tradesperson"
@@ -416,16 +421,6 @@ def book_service():
                            subheading='Your home rescue, just a click away',
                            icon='task_alt',
                            background_image='/static/images/mansion.png')
-
-
-@app.route('/booking_confirmation')
-def booking_confirmation():
-    return render_template('booking_confirmation.html',
-                           head="booking confirmed",
-                           title="You have successfully booked!",
-                           subheading="Please wait for confirmation from the tradesperson.",
-                           icon='task_alt',
-                           background_image='/static/images/houses.jpeg')
 
 
 
@@ -635,7 +630,7 @@ def electrician():
                                head='Electrician',
                                title='Electrical Services',
                                subheading='Flickering light, faulty socket, or need an electrical overhaul? Home Heroes are on call!',
-                               icon='electrical_services') #background_image="/static/images/electrician1.jpg"
+                               icon='electrical_services') # background_image="/static/images/electrician1.jpg"
 
 @app.route('/services/painting')
 def painting():
@@ -643,8 +638,7 @@ def painting():
                            head='Painting Services',
                            title='Painting',
                            subheading='Home needs a splash of colour? Call our painters',
-                           icon='imagesearch_roller',
-                           background_image='/static/paints/paint.jpeg')
+                           icon='imagesearch_roller') # background_image='/static/paints/paint.jpeg'
 
 @app.route('/services/lawn_care')
 def lawn_care():
@@ -652,8 +646,7 @@ def lawn_care():
                            head='Lawn Care Services',
                            title='Yardwork & Lawn Care',
                            subheading='need your hedges trimmed? look no further...',
-                           icon='psychiatry',
-                           background_image='/static/images/gardening2.jpg')
+                           icon='psychiatry') # background_image='/static/images/gardening2.jpg'
 
 @app.route('/services/moving')
 def moving():
@@ -712,3 +705,64 @@ def reviews():
                            title='customer experiences',
                            subheading='review our work',
                            icon='star') # background_image='/static/images/gardening.jpg'
+
+
+
+
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    form = ForgotPasswordForm()
+    if form.validate_on_submit():
+        email = form.email.data.strip()
+
+        client = get_client_by_email(email)
+        tradesperson = get_tp_by_email(email)
+
+        if client:
+            session['reset_email'] = email
+            session['reset_role'] = 'client'
+            return redirect(url_for('reset_password'))
+        elif tradesperson:
+            session['reset_email'] = email
+            session['reset_role'] = 'tradesperson'
+            return redirect(url_for('reset_password'))
+        else:
+            flash('Email not found. Please check and try again.', 'error')
+
+    return render_template('password_forgot.html', 
+                           form=form,
+                           head="change password",
+                           title="Don't Fret!",
+                           subheading="We never leave our hero family behind",
+                           background_image="static/images/greetclient3.jpg")
+
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    form = ResetPasswordForm()
+    email = session.get('reset_email')
+    user_role = session.get('reset_role')
+
+    if not email or not user_role:
+        flash("Session expired or invalid.", "error")
+        return redirect(url_for('forgot_password'))
+
+    if form.validate_on_submit():
+        new_password = bcrypt.hashpw(form.new_password.data.encode('UTF-8'), bcrypt.gensalt(12))
+
+        if user_role == 'client':
+            update_client_password(email, new_password)
+        elif user_role == 'tradesperson':
+            update_tradesperson_password(email, new_password)
+
+        session.pop('reset_email', None)
+        session.pop('reset_role', None)
+        flash('Password reset successful. You can now log in.', 'success')
+        return redirect(url_for('home'))
+    
+    return render_template('password_reset.html', 
+                           form=form,
+                           head="change password",
+                           title="Don't Fret!",
+                           subheading="We never leave our hero family behind",
+                           background_image="static/images/greetclient3.jpg")

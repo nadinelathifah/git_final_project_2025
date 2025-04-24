@@ -188,6 +188,7 @@
 #lawncare-services {
     min-height: 150vh;
     background: rgb(255, 251, 237);
+    border-top: 1px solid rgba(150, 124, 90, 0.489);
 }
 
 #lawncare-services .col-sm-12 {
@@ -200,6 +201,10 @@
 
 #lawncare-services .col-sm-12 img {
     max-width: 25vw;
+}
+
+#lawncare-services .col-sm-12 img:hover {
+    transform: scale(1.05);
 }
 
 #lawncare-services .text-body {

@@ -82,6 +82,7 @@
 
 #moving-services-section {
     min-height: 80vh;
+    border-top: 1px solid rgba(150, 124, 90, 0.489);
 }
 
 #moving-services-section .text-content {
@@ -107,10 +108,16 @@
     display: flex;
     flex-direction: column;
     height: 500px; /* Fix card height to keep all same */
+    z-index: 3;
 }
 
 #moving-services-section .card:hover {
     transform: scale(1.05);
+}
+
+#moving-services-section {
+    background: rgb(255, 249, 229);
+    overflow: hidden;
 }
 
 @media (max-width: 768px) {
@@ -119,4 +126,3 @@
         align-items: center;
     }
 }
-

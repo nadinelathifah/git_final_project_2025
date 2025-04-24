@@ -5,6 +5,7 @@
     min-height: 100vh;
     width: 100vw;
     background: rgb(255, 249, 229);
+    overflow-x: hidden;
     /* background: rgb(255, 125, 125); */
     z-index: 0;
 }
@@ -172,8 +173,9 @@
 
 #painting-services {
     background: rgb(255, 251, 237);
-    min-height: 100vh;
+    min-height: 165vh;
     border-top: 1px solid rgba(150, 124, 90, 0.489);
+    overflow: hidden;
 }
 
 #painting-services img {

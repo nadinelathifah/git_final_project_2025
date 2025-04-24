@@ -61,11 +61,66 @@ footer .col-md-6 .bx-tada-hover {
     z-index: 3;
 }
 
+/* -------------- Login/Logout Styling -------------- */
+#logout-button {
+    padding: 10px;
+    width: 100%;
+    border-radius: 25px;
+    border: 1.5px solid aliceblue !important;
+    cursor: pointer;
+    color: aliceblue;
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #007bff;
+    transform: translateY(-10px);
+}
+
+#logout-button:hover {
+    background: rgb(0, 21, 116);
+    color: aliceblue;
+    border: 1.5px solid aliceblue !important;
+}
+
+#profile-icon {
+    font-variation-settings: 'FILL' 1;
+    color: #fcc332;
+    font-size: 2.5rem;
+    margin-right: 5px;
+}
+
+#dashboard {
+    background: linear-gradient(45deg, #96c9ff, #90e0ef, aliceblue);
+    color: rgb(0, 21, 116);
+}
+
+#dashboard:hover {
+    background: rgb(0, 21, 116);
+    color: aliceblue;
+}
+
+#dashboard {
+    border: 1.5px solid rgba(0, 21, 116, 0.77);
+}
+
+#dashboard2 {
+    background: linear-gradient(45deg, rgb(255, 173, 86), rgb(253, 225, 122));
+    color: black;
+    border: 1px solid rgba(0, 21, 116, 0.77);
+}
+
+#dashboard2:hover {
+    background: rgb(0, 21, 116);
+    color: rgb(255, 247, 199);
+}
+
+
 /* -------------- Hero Section -------------- */
 
 #hero-section {
     position: relative;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 #hero-section .container {
@@ -341,8 +396,8 @@ transform: translateY(0);
 }
 
 .home-btn:hover {
-    background: rgb(0, 21, 116) !important;
-    color: rgb(255, 247, 199) !important;
+    color: rgb(0, 21, 116) !important;
+    background: rgb(255, 247, 199) !important;
 }
 
 
@@ -513,6 +568,7 @@ form .btn-primary:hover {
     min-height: 100vh;
     background: whitesmoke;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 #about-section .first-row, 
 #about-section .third-row {
@@ -750,9 +806,11 @@ form .btn-primary:hover {
 
 /* -------------- How Section -------------- */
 #how-section {
-    height: 100vh;
+    min-height: 100vh;
     background: aliceblue;
     z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #how-section .container {
@@ -765,7 +823,7 @@ form .btn-primary:hover {
 #how-section .card {
     position: relative;
     background: linear-gradient(to left, #96c9ff, #90e0ef, aliceblue);
-    height: 81vh;
+    min-height: 81vh;
     width: 90vw;
     border: 1px solid aliceblue;
     border-radius: 25px;
@@ -819,41 +877,20 @@ form .btn-primary:hover {
     z-index: 3;
 }
 
+@media (max-width: 991px) {
+    #how-section {
+        height: 120vh;
+    }
+    #how-section .card {
+        height: auto;
+    }
 
-/* -------------- Login/Logout Styling -------------- */
-#logout-button {
-    padding: 10px;
-    width: 100%;
-    border-radius: 25px;
-    border: 1px solid whitesmoke;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 1rem;
-    font-weight: 500;
-    background: linear-gradient(to top, rgb(16, 74, 211), rgb(36, 111, 250));
-    transform: translateY(-10px);
-}
-
-#logout-button:hover {
-    background: whitesmoke;
-    color: rgb(16, 74, 211);
-}
-
-#profile-icon {
-    font-variation-settings: 'FILL' 1;
-    color: #fcc332;
-    font-size: 2.5rem;
-    margin-right: 5px;
-}
-
-#dashboard {
-    color: rgb(238, 119, 0);
-    background: rgb(255, 247, 199);
-}
-
-#dashboard:hover {
-    color: rgb(255, 247, 199);
-    background: rgb(255, 130, 6);
+    #how-section .content {
+        transform: translateY(300px);
+    }
+    .video-tp {
+        width: 85%;
+    }
 }
 
 
@@ -861,6 +898,7 @@ form .btn-primary:hover {
 #services-section {
     min-height: 115vh;
     background-color: #fcf8e5;
+    overflow-x: hidden;
     overflow-y: auto;
 }
 
@@ -934,6 +972,12 @@ form .btn-primary:hover {
     text-decoration: none;
 }
 
+@media (max-width: 991px) {
+    #services-section {
+        min-height: 210vh;
+    }
+}
+
 /* -------------- Location Section -------------- */
 
 #location-section {
@@ -941,6 +985,7 @@ form .btn-primary:hover {
     width: 100vw;
     background: aliceblue;
     z-index: 1;
+    overflow-x: hidden;
 }
 
 #location-section .container {
@@ -996,3 +1041,45 @@ form .btn-primary:hover {
     border-radius: 50px;
     z-index: 3;
 }
+
+
+
+/* -------NOTIFICATION--------- */
+
+.hero-flash-wrapper {
+    margin-top: 25px;
+    text-align: center;
+}
+  
+.hero-flash {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    animation: fadeInUp 0.8s ease-in-out;
+}
+  
+.alert-success {
+    background-color: #24db00;
+    color: white;
+    font-weight: 550;
+  }
+  
+.alert-error, .alert-danger {
+    background-color: #d20011;
+    color: white;
+    font-weight: 550;
+}
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
